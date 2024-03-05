@@ -161,8 +161,6 @@ class Users extends Controller{
                     // Create Session
                     $this->createUserSession($loggedInUser);
 
-                    echo $loggedInUser->designation;
-
                    // Redirect based on user role
                     switch($loggedInUser->designation) {
                         case 'admin':
@@ -217,7 +215,7 @@ class Users extends Controller{
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_name'] = $user->name;
-        // redirect('pages/home');
+        redirect('pages/home');
     }
 
     public function logout(){
