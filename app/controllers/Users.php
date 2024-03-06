@@ -160,6 +160,25 @@ class Users extends Controller{
                 if($loggedInUser){
                     // Create Session
                     $this->createUserSession($loggedInUser);
+
+                   // Redirect based on user role
+                    switch($loggedInUser->designation) {
+                        case 'admin':
+                            redirect('pages/admin/');
+                            break;
+                        case 'hrmanager':
+                            redirect('hrmanagers/home');
+                            break;
+                        case 'employee':
+                            redirect('pages/employee/');
+                            break;
+                        case 'driver':
+                            redirect('pages/driver/');
+                            break;
+                        default:
+                            echo 'Invalid role';
+                        break;
+                    }
                 } else {
                     $data['password_err'] = 'Password incorrect';
                     $this->view('users/login', $data);
