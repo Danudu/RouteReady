@@ -16,7 +16,7 @@
         <div class="top">
             <div class="logo">
                     <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
-                    <span class="logo_name">Route Ready</span>
+                    <span class="logo_name">Route Ready d</span>
             </div>
             <i class="fa-solid fa-bars" id="btn"></i>
         </div>
