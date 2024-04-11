@@ -90,8 +90,8 @@
                         <h3>Efficiency, Ease, Insights: <br>Your Corporate Mobility Revolution Begins with RouteReady</h3>
                     </div>
                     <div>
-                        <button type="button" class="btn2"><span class="spanbtn2">Book your ride, Click here now!</span><a href="#" class="bt">Login <br>As Employee</a></button>
-                        <button type="button" class="btn2"><span class="spanbtn2">Manage Employees & Drivers</span><a href="#" class="bt">Manage <br>Employees and Drivers</a></button>
+                        <button type="button" class="btn2"><a href="#" class="bt">Login <br>As Employee</a></button>
+                        <button type="button" class="btn2"><a href="#" class="bt">Logout</a></button>
                     </div>
                 </section>
             </div>
