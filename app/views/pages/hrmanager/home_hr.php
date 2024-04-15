@@ -86,15 +86,16 @@
             <div class="main">
                 <section class="welcome">
                     <div class="content">
-                        <h1>Welcome Aboard!</h1>
+                        <h1> <span>Welcome</span> Aboard!</h1>
                         <h3>Efficiency, Ease, Insights: <br>Your Corporate Mobility Revolution Begins with RouteReady</h3>
                     </div>
                     <div>
-                        <button type="button" class="btn2"><a href="#" class="bt">Login <br>As Employee</a></button>
-                        <button type="button" class="btn2"><a href="#" class="bt">Logout</a></button>
+                        <button type="button" class="btn2"><a href="#" class="bt">Login As Employee</a></button>
+                        <!-- <button type="button" class="btn2"><a href="#" class="bt">Logout</a></button> -->
                     </div>
                 </section>
             </div>
+            
             <div class="footer">
                 <p>&copy; 2023 Vehicle Reservation System.</p>
                 <h4>Follow us</h4>

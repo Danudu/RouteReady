@@ -12,46 +12,53 @@
 </head>
 
 <body>
-    <nav>
-        <div class="nav__logo">
-            <a href="<?php echo URLROOT; ?>"><img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="logo" /></a>
-        </div>
-        <ul class="nav__links">
-            <li class="link"><a href="<?php echo URLROOT; ?>">Home</a></li>
-            <li class="link"><a href="<?php echo URLROOT; ?>/#about">About</a></li>
-            <li class="link"><a href="<?php echo URLROOT; ?>/#services">Services</a></li>
-            <li class="link"><a href="<?php echo URLROOT; ?>/#contact">Contact</a></li>
-        </ul>
-    </nav>
-    <div class="wrapper">
-        <?php flash('register_success'); ?>
-        <form action="<?php echo URLROOT; ?>/users/login" method="post">
-            <h1>Login</h1>
-            <p>Welcome back! Login to your account</p>
-            <div class="input-box">
-                <label for="email">Email: <sup>*</sup></label>
-                <input type="email" name="email" value="<?php echo $data['email']; ?>" placeholder="E-mail" required>
-                <i class='bx bxs-user'></i>
-                <span><?php echo $data['email_err']; ?></span>
+    <div class="container">
+        <nav>
+            <div class="nav__logo">
+                <a href="<?php echo URLROOT; ?>"><img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="logo" /></a>
             </div>
-            <div class="input-box">
-                <label for="password">Password: <sup>*</sup></label>
-                <input type="password" name="password" value="<?php echo $data['password']; ?>" placeholder="Password"
-                    required>
-                <i class='bx bxs-lock-alt'></i>
-                <span><?php echo $data['password_err']; ?></span>
-            </div>
-            <div class="remember-forgot">
-                <label><input type="checkbox">Remember Me</label>
-                <a href="#">Forgot Password</a>
-            </div>
-            <input type="submit" value="Login" class="btn">
+            <ul class="nav__links">
+                <li class="link"><a href="<?php echo URLROOT; ?>">Home</a></li>
+                <li class="link"><a href="<?php echo URLROOT; ?>/#about">About</a></li>
+                <li class="link"><a href="<?php echo URLROOT; ?>/#services">Services</a></li>
+                <li class="link"><a href="<?php echo URLROOT; ?>/#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="form">
+            <div class="wrapper">
+                <?php flash('register_success'); ?>
+                <form action="<?php echo URLROOT; ?>/users/login" method="post">
+                    <h1>Login</h1>
+                    <p>Welcome back! Login to your account</p>
+                    <div class="input-box">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" value="<?php echo $data['email']; ?>" placeholder="E-mail"
+                            required>
+                        <i class='bx bxs-user'></i>
+                        <span><?php echo $data['email_err']; ?></span>
+                    </div>
+                    <div class="input-box">
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" value="<?php echo $data['password']; ?>"
+                            placeholder="Password" required>
+                        <i class='bx bxs-lock-alt'></i>
+                        <span><?php echo $data['password_err']; ?></span>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox">Remember Me</label>
+                        <a href="#">Forgot Password</a>
+                    </div>
+                    <input type="submit" value="Login" class="btn">
 
-            <div class="register-link">
-                <p>Dont have an account? <a href="<?php echo URLROOT; ?>/users/register">Register</a></p>
+                    <div class="register-link">
+                        <p>Dont have an account? <a href="<?php echo URLROOT; ?>/users/register">Register</a></p>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
+
     </div>
+
 </body>
 
 </html>
