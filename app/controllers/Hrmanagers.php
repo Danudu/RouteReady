@@ -18,7 +18,7 @@ class Hrmanagers extends Controller
     } else {
       $data = [
         'title' => 'HR Manager',
-        'description' => 'This is a simple MVC framework'
+        'description' => 'Welcome to the HR Manager page'
       ];
       $this->view('pages/hrmanager/home_hr', $data);
     }
