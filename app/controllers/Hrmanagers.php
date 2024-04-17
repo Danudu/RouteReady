@@ -23,4 +23,4 @@ class Hrmanagers extends Controller
       $this->view('pages/hrmanager/home_hr', $data);
     }
   }
-}
+} 

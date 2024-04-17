@@ -23,7 +23,7 @@
                 <a href="<?php echo URLROOT; ?>"><img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="logo" /></a>
             </div>
             <ul class="nav__links">
-                <li class="link"><a href="<?php echo URLROOT; ?>/hrmanagers/home">Home</a></li>
+                <li class="link"><a href="<?php echo URLROOT; ?>/pages/home">Home</a></li>
             </ul>
         </nav>
         <div class="form">

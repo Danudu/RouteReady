@@ -28,7 +28,7 @@ body {
 
 .container {
     backdrop-filter: blur(10px) brightness(0.3);
-
+    min-height: 100vh;
     padding-bottom: 30px;
 }
 

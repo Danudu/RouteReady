@@ -12,7 +12,8 @@ class Pages extends Controller
 
 
   }
-  public function index(){
+  public function index()
+  {
 
     if (isLoggedIn()) {
       redirect('pages/home');
@@ -26,18 +27,38 @@ class Pages extends Controller
     $this->view('pages/index', $data);
   }
 
-  public function home(){
+  public function home()
+  {
     if (!isLoggedIn()) {
       $this->view('pages/index');
     } else {
-      $data = [
-        'title' => 'Home',
-        'description' => 'This is a simple MVC framework'
-      ];
-      $this->view('pages/home', $data);
+       // Redirect based on user role
+       switch($_SESSION['user_designation']) {
+        case 'admin':
+            redirect('admins/home');
+            break;
+        case 'hrmanager':
+            redirect('hrmanagers/home');
+            break;
+        case 'employee':
+            redirect('employees/home');
+            break;
+        case 'driver':
+            redirect('drivers/home');
+            break;
+        default:
+            echo 'Invalid role';
+        break;
     }
+      $this->view('pages/home');
+    }
+
   }
-  public function about(){
+
+
+
+  public function about()
+  {
     if (!isLoggedIn()) {
       $this->view('pages/index');
     } else {
@@ -51,7 +72,8 @@ class Pages extends Controller
   }
 
 
-  public function profile($id = ''){
+  public function profile($id = '')
+  {
     if (!isLoggedIn()) {
       $this->view('pages/index');
     } else {
@@ -63,7 +85,8 @@ class Pages extends Controller
     }
   }
 
-  public function edit_profile($id = ''){
+  public function edit_profile($id = '')
+  {
     if (!isLoggedIn()) {
       $this->view('pages/index');
     } else {

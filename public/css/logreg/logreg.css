@@ -41,7 +41,7 @@ body {
   
   .container{
     backdrop-filter: blur(10px) brightness(0.3);
-    /* height: 100vh; */
+    min-height: 100vh;
   }
 
   .container .form{
