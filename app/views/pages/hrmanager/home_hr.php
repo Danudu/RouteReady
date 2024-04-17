@@ -41,7 +41,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/posts/employees">
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/viewEmployees">
                         <i class="fas fa-users"></i>
                         <span class="icon_name">Employees</span>
                     </a>

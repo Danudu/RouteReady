@@ -12,7 +12,8 @@ class Hrmanagers extends Controller
 
 
   }
-  public function home(){
+  public function home()
+  {
     if (!isLoggedIn()) {
       $this->view('pages/index');
     } else {
@@ -23,4 +24,48 @@ class Hrmanagers extends Controller
       $this->view('pages/hrmanager/home_hr', $data);
     }
   }
-} 
+
+  public function viewEmployees()
+  {
+    $employees = $this->userModel->getEmployees();
+    $data = [
+      'employees' => $employees
+    ];
+    $this->view('pages/hrmanager/view_employees', $data);
+  }
+
+  public function updateEmployeeStatus($id)
+  {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Handle the update using $id and $action
+      // For example:
+      $action = $_POST['action'];
+      $status = $action === 'approve' ? 'approved' : 'pending';
+      if ($this->userModel->updatestatus($id, $status)) {
+        flash('post_message', 'Employee status updated');
+        redirect('hrmanagers/viewEmployees');
+      } else {
+        die('Something went wrong');
+      }
+    } else {
+      // Handle if the POST request is not properly set
+    }
+  }
+
+  public function deleteEmployee($id)
+  {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Handle the delete using $id
+      // For example:
+      if ($this->userModel->deleteEmployee($id)) {
+        flash('post_message', 'Employee deleted');
+        redirect('hrmanagers/viewEmployees');
+      } else {
+        die('Something went wrong');
+      }
+    } else {
+      // Handle if the POST request is not properly set
+    }
+  }
+
+}

@@ -100,4 +100,40 @@ class User{
             return false;
         }
     }
+
+    public function getEmployees(){
+        $this->db->query('SELECT * FROM users WHERE designation = "employee"');
+
+        $results = $this->db->resultSet();
+
+        return $results;
+    }
+
+    public function updatestatus($id, $status){
+        $this->db->query('UPDATE users SET status = :status WHERE id = :id');
+        
+        // Bind values
+        $this->db->bind(':id', $id);
+        $this->db->bind(':status', $status);
+    
+        // Execute
+        if($this->db->execute()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteEmployee($id){
+        $this->db->query('DELETE FROM users WHERE id = :id');
+        // Bind values
+        $this->db->bind(':id', $id);
+    
+        // Execute
+        if($this->db->execute()){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
