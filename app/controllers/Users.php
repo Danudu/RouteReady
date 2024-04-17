@@ -157,12 +157,13 @@ class Users extends Controller{
                 
                 // Check and set logged in user
                 $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-                if($loggedInUser){
+                if($loggedInUser->status == 'pending'){
+                    $data['email_err'] = 'Your account is pending for approval';
+                    $this->view('users/login', $data);
+                } elseif($loggedInUser){
                     // Create Session
                     $this->createUserSession($loggedInUser);
-                    echo "<pre>
-                        $_SESSION
-                      </pre>";
+                    
                  
                     // redirect('pages/home');
                 } else {

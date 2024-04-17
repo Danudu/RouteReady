@@ -18,7 +18,7 @@ class User{
 
     //register user
     public function register($data){
-        $this->db->query('INSERT INTO users (name, emp_id, email, password, contact_num, address, department, designation) VALUES(:name, :emp_id, :email, :password, :contact_num, :address, :department, :designation)');
+        $this->db->query('INSERT INTO users (name, emp_id, email, password, contact_num, address, department, designation, status) VALUES(:name, :emp_id, :email, :password, :contact_num, :address, :department, :designation, :status)');
         //bind values
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':emp_id', $data['emp_id']);
@@ -28,6 +28,7 @@ class User{
         $this->db->bind(':address', $data['address']);
         $this->db->bind(':department', $data['department']);
         $this->db->bind(':designation', $data['designation']);
+        $this->db->bind(':status', 'pending');
 
         //execute
         if($this->db->execute()){
@@ -44,7 +45,7 @@ class User{
 
         $row = $this->db->single();
         $hashed_password = $row->password;
-        if(password_verify($password, $hashed_password)){
+        if(password_verify($password, $hashed_password) ){
             return $row;
         } else {
             return false;
