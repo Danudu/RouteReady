@@ -49,6 +49,7 @@ class Hrmanagers extends Controller
       }
     } else {
       // Handle if the POST request is not properly set
+      redirect('hrmanagers/viewEmployees');
     }
   }
 
@@ -65,7 +66,61 @@ class Hrmanagers extends Controller
       }
     } else {
       // Handle if the POST request is not properly set
+      redirect('hrmanagers/viewEmployees');
     }
   }
 
+  public function viewDrivers()
+  {
+    $drivers = $this->userModel->getDrivers();
+    $data = [
+      'drivers' => $drivers
+    ];
+    $this->view('pages/hrmanager/view_drivers', $data);
+  }
+
+  public function updatedriverStatus($id)
+  {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Handle the update using $id and $action
+      // For example:
+      $action = $_POST['action'];
+      $status = $action === 'approve' ? 'approved' : 'pending';
+      if ($this->userModel->updatedriverStatus($id, $status)) {
+        flash('post_message', 'Driver status updated');
+        redirect('hrmanagers/moreDriver');
+      } else {
+        die('Something went wrong');
+      }
+    } else {
+      // Handle if the POST request is not properly set
+      redirect('hrmanagers/moreDriver');
+    }
+  }
+
+  public function deletedriver($id)
+  {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Handle the delete using $id
+      // For example:
+      if ($this->userModel->deletedriver($id)) {
+        flash('post_message', 'Driver deleted');
+        redirect('hrmanagers/moreDriver');
+      } else {
+        die('Something went wrong');
+      }
+    } else {
+      // Handle if the POST request is not properly set
+      redirect('hrmanagers/moreDriver');
+    }
+  }
+
+  public function moreDriver()
+  {
+    $drivers = $this->userModel->getDrivers();
+    $data = [
+      'drivers' => $drivers
+    ];
+    $this->view('pages/hrmanager/view_drivers_more', $data);
+  }
 }

@@ -50,7 +50,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/posts/drivers">
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/viewDrivers">
                         <i class="fas fa-truck-fast"></i>
                         <span class="icon_name">Drivers</span>
                     </a>
