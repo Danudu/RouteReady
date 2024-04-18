@@ -24,34 +24,34 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($data['drivers'] as $driver): ?>
+           
                 <tr>
-                    <td><?php echo $driver->name; ?></td>
-                    <td><?php echo $driver->emp_id; ?></td>
-                    <td><?php echo $driver->email; ?></td>
-                    <td><?php echo $driver->contact_num; ?></td>
-                    <td><?php echo $driver->address; ?></td>
-                    <td><?php echo $driver->department; ?></td>
-                    <td><?php echo $driver->status; ?></td>
+                    <td><?php echo $data['user']->name; ?></td>
+                    <td><?php echo $data['user']->emp_id; ?></td>
+                    <td><?php echo $data['user']->email; ?></td>
+                    <td><?php echo $data['user']->contact_num; ?></td>
+                    <td><?php echo $data['user']->address; ?></td>
+                    <td><?php echo $data['user']->department; ?></td>
+                    <td><?php echo $data['user']->status; ?></td>
                     <td>
-                        <?php if ($driver->status === 'approved'): ?>
-                            <form action="<?php echo URLROOT; ?>/hrmanagers/updatedriverStatus/<?php echo $driver->id; ?>" method="POST">
+                        <?php if ($data['user']->status === 'approved'): ?>
+                            <form action="<?php echo URLROOT; ?>/hrmanagers/updatedriverStatus/<?php echo $data['user']->id; ?>" method="POST">
                                 <button type="submit" name="action" value="reject">Reject</button>
                             </form>
-                        <?php elseif ($driver->status === 'pending'): ?>
-                            <form action="<?php echo URLROOT; ?>/hrmanagers/updatedriverStatus/<?php echo $driver->id; ?>" method="POST">
+                        <?php elseif ($data['user']->status === 'pending'): ?>
+                            <form action="<?php echo URLROOT; ?>/hrmanagers/updatedriverStatus/<?php echo $data['user']->id; ?>" method="POST">
                                 <button type="submit" name="action" value="approve">Approve</button>
                             </form>
                         <?php endif; ?>
                     </td>
                     <td>
-                        <form action="<?php echo URLROOT; ?>/hrmanagers/deletedriver/<?php echo $driver->id; ?>" method="POST">
+                        <form action="<?php echo URLROOT; ?>/hrmanagers/deletedriver/<?php echo $data['user']->id; ?>" method="POST">
                             <button type="submit">Delete</button>
                         </form>
                     </td>
                     
                 </tr>
-            <?php endforeach; ?>
+            
         </tbody>
     </table>
 </body>

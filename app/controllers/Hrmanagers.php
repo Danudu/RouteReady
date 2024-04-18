@@ -115,12 +115,25 @@ class Hrmanagers extends Controller
     }
   }
 
-  public function moreDriver()
+  // public function moreDriver()
+  // {
+  //   $drivers = $this->userModel->getDrivers();
+  //   $data = [
+  //     'drivers' => $drivers
+  //   ];
+  //   $this->view('pages/hrmanager/view_drivers_more', $data);
+  // }
+
+  public function moreDriver($id = '')
   {
-    $drivers = $this->userModel->getDrivers();
-    $data = [
-      'drivers' => $drivers
-    ];
-    $this->view('pages/hrmanager/view_drivers_more', $data);
+    if (!isLoggedIn()) {
+      $this->view('pages/index');
+    } else {
+      $user = $this->userModel->getUserById($id);
+      $data = [
+        'user' => $user
+      ];
+      $this->view('pages/hrmanager/view_drivers_more', $data);
+    }
   }
 }

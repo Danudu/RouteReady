@@ -33,7 +33,7 @@
                     <td><?php echo $driver->address; ?></td>
                     <td><?php echo $driver->department; ?></td> -->
                     <td><?php echo $driver->status; ?></td>
-                    <td><a href="<?php echo URLROOT; ?>/hrmanagers/moreDriver">More</a></td>
+                    <td><a href="<?php echo URLROOT; ?>/hrmanagers/moreDriver/<?php echo $driver->id; ?>">More</a></td>
                     <!-- <td>
                         <?php if ($driver->status === 'approved'): ?>
                             <form action="<?php echo URLROOT; ?>/hrmanagers/updatedriverStatus/<?php echo $driver->id; ?>" method="POST">
