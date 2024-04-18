@@ -79,6 +79,16 @@ class User{
         return $row;
     }
 
+    public function getDriverById($id){
+        $this->db->query('SELECT * FROM users WHERE id = :id');
+        //bind value
+        $this->db->bind(':id', $id);
+
+        $row = $this->db->single();
+
+        return $row;
+    }
+
     //edit user
     public function updateUser($data){
         $this->db->query('UPDATE users SET name = :name, emp_id = :emp_id, email = :email, contact_num = :contact_num, address = :address, department = :department, password = :password WHERE id = :id');
