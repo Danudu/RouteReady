@@ -53,6 +53,8 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <a href="<?php echo URLROOT; ?>/pages/home">Back</a>
 </body>
 
 </html>

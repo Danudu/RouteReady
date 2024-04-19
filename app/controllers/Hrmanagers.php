@@ -75,6 +75,7 @@ class Hrmanagers extends Controller
     $drivers = $this->userModel->getDrivers();
     $data = [
       'drivers' => $drivers
+
     ];
     $this->view('pages/hrmanager/view_drivers', $data);
   }
@@ -115,11 +116,14 @@ class Hrmanagers extends Controller
     }
   }
 
-  public function moreDriver()
+
+
+  public function moreDriver($id)
   {
-    $drivers = $this->userModel->getDrivers();
+    $driver = $this->userModel->getDriverById($id);
     $data = [
-      'drivers' => $drivers
+      'driver' => $driver,
+      
     ];
     $this->view('pages/hrmanager/view_drivers_more', $data);
   }

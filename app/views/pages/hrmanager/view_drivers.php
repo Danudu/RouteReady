@@ -14,46 +14,25 @@
             <tr>
                 <th>Name</th>
                 <th>Driver ID</th>
-                <!-- <th>Email</th>
-                <th>Contact Number</th>
-                <th>Address</th>
-                <th>Department</th> -->
+              
                 <th>Status</th>
-                <!-- <th>Approve/Reject</th>
-                <th>Delete</th> -->
-            </tr>
+                
         </thead>
         <tbody>
             <?php foreach ($data['drivers'] as $driver): ?>
                 <tr>
                     <td><?php echo $driver->name; ?></td>
                     <td><?php echo $driver->emp_id; ?></td>
-                    <!-- <td><?php echo $driver->email; ?></td>
-                    <td><?php echo $driver->contact_num; ?></td>
-                    <td><?php echo $driver->address; ?></td>
-                    <td><?php echo $driver->department; ?></td> -->
+                 
                     <td><?php echo $driver->status; ?></td>
                     <td><a href="<?php echo URLROOT; ?>/hrmanagers/moreDriver/<?php echo $driver->id; ?>">More</a></td>
-                    <!-- <td>
-                        <?php if ($driver->status === 'approved'): ?>
-                            <form action="<?php echo URLROOT; ?>/hrmanagers/updatedriverStatus/<?php echo $driver->id; ?>" method="POST">
-                                <button type="submit" name="action" value="reject">Reject</button>
-                            </form>
-                        <?php elseif ($driver->status === 'pending'): ?>
-                            <form action="<?php echo URLROOT; ?>/hrmanagers/updatedriverStatus/<?php echo $driver->id; ?>" method="POST">
-                                <button type="submit" name="action" value="approve">Approve</button>
-                            </form>
-                        <?php endif; ?>
-                    </td>
-                    <td>
-                        <form action="<?php echo URLROOT; ?>/hrmanagers/deletedriver/<?php echo $driver->id; ?>" method="POST">
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td> -->
+                 
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+    
+    <a href="<?php echo URLROOT; ?>/pages/home">Back</a>
 </body>
 
 </html>

@@ -8,7 +8,8 @@
 </head>
 
 <body>
-    <h2>Drivers</h2>
+<?php $driver = $data['driver']; ?>
+    <h2>Drivers - <?php echo $driver->name; ?> </h2>
     <table>
         <thead>
             <tr>
@@ -24,8 +25,8 @@
             </tr>
         </thead>
         <tbody>
-            <?php if (!empty($data['drivers'])): ?>
-                <?php $driver = $data['drivers'][0]; ?>
+            <?php if (!empty($data['driver'])): ?>
+               
                 <tr>
                     <td><?php echo $driver->name; ?></td>
                     <td><?php echo $driver->emp_id; ?></td>
@@ -61,6 +62,7 @@
             <?php endif; ?>
         </tbody>
     </table>
+    <a href="<?php echo URLROOT; ?>/hrmanagers/viewDrivers">Back</a>
 </body>
 
 </html>
