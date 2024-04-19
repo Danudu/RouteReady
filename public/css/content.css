@@ -28,7 +28,7 @@
     position: fixed;
     top: 0;
     width: calc(100% - 85px);
-    background: var(--primary-color-light);
+    background: var(--primary-color);
     text-align: center;
     color: var(--text-light);
     padding: 20px;
@@ -140,7 +140,7 @@
 .footer{
     position: fixed;
     bottom: 0;
-    background: var(--primary-color-light);
+    background: var(--primary-color);
     text-align: center;
     color: var(--text-light);
     padding: 20px;

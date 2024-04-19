@@ -73,12 +73,12 @@
                         </select>
                     </div>
 
-                    <div class="input-box" id="driverDetails1" style="display: none;">
+                    <!-- <div class="input-box" id="driverDetails1" style="display: none;">
                         <input type="text" name="driver_license" placeholder="Driver License">
                     </div>
                     <div class="input-box" id="driverDetails2" style="display: none;">
                         <input type="text" name="vehicle_no" placeholder="Vehicle Number">
-                    </div>
+                    </div> -->
                     <div class="input-box">
                         <!-- <label for="password">Password: <sup>*</sup></label> -->
                         <input type="password" name="password" value="<?php echo $data['password']; ?>"
@@ -101,7 +101,7 @@
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         document.getElementById('designation').addEventListener('change', function () {
             var driverDetails1 = document.getElementById('driverDetails1');
             var driverDetails2 = document.getElementById('driverDetails2');
@@ -113,7 +113,7 @@
                 driverDetails2.style.display = 'none';
             }
         });
-    </script>
+    </script> -->
 
 </body>
 
