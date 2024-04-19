@@ -89,13 +89,13 @@ class Hrmanagers extends Controller
       $status = $action === 'approve' ? 'approved' : 'pending';
       if ($this->userModel->updatedriverStatus($id, $status)) {
         flash('post_message', 'Driver status updated');
-        redirect('hrmanagers/moreDriver');
+        redirect('hrmanagers/moreDriver/'.$id.'');
       } else {
         die('Something went wrong');
       }
     } else {
       // Handle if the POST request is not properly set
-      redirect('hrmanagers/moreDriver');
+      redirect('hrmanagers/moreDriver/'.$id.'');
     }
   }
 
@@ -106,13 +106,13 @@ class Hrmanagers extends Controller
       // For example:
       if ($this->userModel->deletedriver($id)) {
         flash('post_message', 'Driver deleted');
-        redirect('hrmanagers/moreDriver');
+        redirect('hrmanagers/moreDriver/'.$id.'');
       } else {
         die('Something went wrong');
       }
     } else {
       // Handle if the POST request is not properly set
-      redirect('hrmanagers/moreDriver');
+      redirect('hrmanagers/moreDriver/'.$id.'');
     }
   }
 

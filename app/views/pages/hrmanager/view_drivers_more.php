@@ -8,25 +8,31 @@
 </head>
 
 <body>
-<?php $driver = $data['driver']; ?>
-    <h2>Drivers - <?php echo $driver->name; ?> </h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Driver ID</th>
-                <th>Email</th>
-                <th>Contact Number</th>
-                <th>Address</th>
-                <th>Department</th>
-                <th>Status</th>
-                <th>Approve/Reject</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
+   
+        <?php $driver = $data['driver']; ?>
+
+        <h2>Drivers - 
             <?php if (!empty($data['driver'])): ?>
-               
+            <?php echo $driver->name; ?> 
+            <?php endif; ?>
+        </h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Driver ID</th>
+                    <th>Email</th>
+                    <th>Contact Number</th>
+                    <th>Address</th>
+                    <th>Department</th>
+                    <th>Status</th>
+                    <th>Approve/Reject</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            <?php if (!empty($data['driver'])): ?>
                 <tr>
                     <td><?php echo $driver->name; ?></td>
                     <td><?php echo $driver->emp_id; ?></td>
@@ -60,8 +66,8 @@
                     <td colspan="8">No data available</td>
                 </tr>
             <?php endif; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <a href="<?php echo URLROOT; ?>/hrmanagers/viewDrivers">Back</a>
 </body>
 

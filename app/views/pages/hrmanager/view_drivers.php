@@ -14,24 +14,30 @@
             <tr>
                 <th>Name</th>
                 <th>Driver ID</th>
-              
+
                 <th>Status</th>
-                
+
         </thead>
         <tbody>
-            <?php foreach ($data['drivers'] as $driver): ?>
-                <tr>
-                    <td><?php echo $driver->name; ?></td>
-                    <td><?php echo $driver->emp_id; ?></td>
-                 
-                    <td><?php echo $driver->status; ?></td>
-                    <td><a href="<?php echo URLROOT; ?>/hrmanagers/moreDriver/<?php echo $driver->id; ?>">More</a></td>
-                 
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
+            <?php if (!empty($data['drivers'])): ?>
+                <?php foreach ($data['drivers'] as $driver): ?>
+                    <tr>
+                        <td><?php echo $driver->name; ?></td>
+                        <td><?php echo $driver->emp_id; ?></td>
+
+                        <td><?php echo $driver->status; ?></td>
+                        <td><a href="<?php echo URLROOT; ?>/hrmanagers/moreDriver/<?php echo $driver->id; ?>">More</a></td>
+
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        <?php else: ?>
+            <tr>
+                <td colspan="8">No data available</td>
+            </tr>
+        <?php endif; ?>
     </table>
-    
+
     <a href="<?php echo URLROOT; ?>/pages/home">Back</a>
 </body>
 

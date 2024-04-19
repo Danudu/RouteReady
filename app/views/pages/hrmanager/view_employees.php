@@ -24,6 +24,7 @@
             </tr>
         </thead>
         <tbody>
+            <?php if (!empty($data['employees'])): ?>
             <?php foreach ($data['employees'] as $employee): ?>
                 <tr>
                     <td><?php echo $employee->name; ?></td>
@@ -52,6 +53,11 @@
                 </tr>
             <?php endforeach; ?>
         </tbody>
+        <?php else: ?>
+            <tr>
+                <td colspan="8">No data available</td>
+            </tr>
+        <?php endif; ?>
     </table>
 
     <a href="<?php echo URLROOT; ?>/pages/home">Back</a>
