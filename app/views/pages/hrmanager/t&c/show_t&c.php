@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Show T&C | RouteReady</title>
+    <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
 </head>
 <body>
-    <a href="<?php echo URLROOT; ?>/posts/employees">Back</a>
+    <a href="<?php echo URLROOT; ?>/posts/terms">Back</a>
 
     <h1><?php echo $data['post']->title; ?></h1>
 

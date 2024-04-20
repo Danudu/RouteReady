@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Employee</title>
-    <style>
+    <title>Add T&C | RouteReady</title>
+    <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
+    <!-- <style>
         form {
             width: 300px;
             margin: 0 auto;
@@ -23,13 +24,13 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
-    </style>
+    </style> -->
 </head>
 <body>
-    <a href="<?php echo URLROOT; ?>/posts/employees">Back</a>
-    <h2>Edit</h2>
-    <p>Edit employee using this form</p>
-    <form action="<?php echo URLROOT; ?>/posts/edit/<?php echo $data['id']; ?>" method="POST">
+    <a href="<?php echo URLROOT; ?>/posts/terms">Back</a>
+    <h2>Add Terms & Conditions</h2>
+    <p>Add T&C using this form</p>
+    <form action="<?php echo URLROOT; ?>/posts/add" method="POST">
         <label for="title">Title: </label>
         <input type="title" name="title" value="<?php echo $data['title']; ?>">
         <span><?php echo $data['title_err'];?></span>
@@ -38,7 +39,7 @@
         <input type="body" name="body" value="<?php echo $data['body']; ?>">
         <span><?php echo $data['body_err'];?></span>
 
-        <input type="submit" value="Add Employee">
+        <input type="submit" value="Submit">
     </form>
 </body>
 </html>

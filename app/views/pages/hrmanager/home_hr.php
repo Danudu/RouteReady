@@ -59,7 +59,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="<?php echo URLROOT; ?>/posts/terms">
                         <i class="fas fa-book-bookmark"></i>
                         <span class="icon_name">T&C</span>
                     </a>

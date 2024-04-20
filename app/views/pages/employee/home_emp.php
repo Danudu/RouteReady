@@ -39,7 +39,7 @@
                     <span class="tooltip">Profile</span>
                 </li>
             </ul>
-            <ul>
+            <!-- <ul>
                 <li>
                     <a href="<?php echo URLROOT; ?>/posts/employees">
                         <i class="fas fa-users"></i>
@@ -56,10 +56,10 @@
                     </a>
                     <span class="tooltip">Drivers</span>
                 </li>
-            </ul>
+            </ul> -->
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="<?php echo URLROOT; ?>/posts/terms_conditions">
                         <i class="fas fa-book-bookmark"></i>
                         <span class="icon_name">T&C</span>
                     </a>
