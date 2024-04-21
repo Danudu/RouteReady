@@ -18,6 +18,12 @@ body {
     background-color: var(--primary-color);
     color: var(--text-light);
     font-family: Arial, sans-serif;
+    background-image: url(http://localhost/RouteReady/public/img/pic2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+
 }
 
 .container {

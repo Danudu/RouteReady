@@ -23,6 +23,7 @@
             /* padding: 20px; */
             position: relative;
             /* Needed for positioning the back button */
+            
         }
 
 

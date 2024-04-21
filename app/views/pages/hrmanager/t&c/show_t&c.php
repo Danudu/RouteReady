@@ -21,6 +21,7 @@
             color: var(--text-light);
             font-family: Arial, sans-serif;
             padding: 20px;
+            
         }
 
         nav {

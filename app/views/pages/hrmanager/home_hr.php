@@ -32,6 +32,15 @@
             </ul>
             <ul>
                 <li>
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/dashboard">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span class="icon_name">Dashboard</span>
+                    </a>
+                    <span class="tooltip">Dashboard</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
                     <a href="<?php echo URLROOT; ?>/pages/profile/<?=$_SESSION['user_id']?>">
                         <i class="fas fa-user"></i>
                         <span class="icon_name">Profile</span>

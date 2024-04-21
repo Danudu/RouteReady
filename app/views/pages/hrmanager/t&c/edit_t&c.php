@@ -23,6 +23,7 @@
             padding: 20px;
             position: relative;
             /* Added position relative for positioning */
+            
         }
 
         nav {
@@ -108,11 +109,9 @@
             transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
             margin-right: 10px;
             position: absolute;
-            /* Position absolute for placing at the bottom right */
-            bottom: 20px;
-            /* Adjust as needed */
+            bottom: 0;
             right: 20px;
-            /* Adjust as needed */
+            
         }
 
         .button:hover {

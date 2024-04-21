@@ -25,6 +25,15 @@ class Hrmanagers extends Controller
     }
   }
 
+  public function dashboard()
+  {
+    $data = [
+      'title' => 'HR Manager',
+      'description' => 'Welcome to the HR Manager page'
+    ];
+    $this->view('pages/hrmanager/dashboard_hr', $data);
+  }
+
   public function viewEmployees()
   {
     $employees = $this->userModel->getEmployees();

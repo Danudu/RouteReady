@@ -23,6 +23,7 @@
             padding: 20px;
             margin: 0;
             position: relative;
+
         }
 
         nav {
@@ -198,6 +199,8 @@
         </div>
         <a href="<?php echo URLROOT; ?>/pages/home" class="button back-button">Back</a>
     </div>
+
+
 </body>
 
 </html>

@@ -82,18 +82,6 @@
 }
 
 .btn2{
-    /* width: 200px;
-    padding: 15px 0;
-    text-align: center;
-    margin: 20px 10px;  
-    border-radius: 25px;
-    font-weight: bold;
-    border: 2px solid #fff;
-    background-color: transparent;
-    color: #fff;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden; */
     padding: 1rem 2rem;
     outline: none;
     border: none;
@@ -105,26 +93,7 @@
     transition: 0.3s;
 }
 
-/* .spanbtn2{
-    background: #202020;
-    height: 100%;
-    width: 0%;
-    border-radius: 25px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    transition: all 0.5s ease;
-    opacity: 0;
-    text-align: center;
-    padding: 20px;
-}
 
-.btn2:hover .spanbtn2{
-    width: 100%;
-    transition: all 0.5s ease;
-    opacity: 1;
-}
-*/
 .btn2:hover{
     box-shadow: 0 0 10px var(--text-light) ;
 }
