@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/logreg/logreg.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/edit_profile.css">
 </head>
 
 <body>

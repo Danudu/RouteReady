@@ -38,9 +38,8 @@
                 <li><strong>Registered Date:</strong> <?php echo $data['user']->date; ?></li>
             </ul>
             <div class="button-container">
+                <a href="<?php echo URLROOT; ?>/pages/edit_profile/<?= $_SESSION['user_id'] ?>" class="button">Edit Profile</a>
                 <a href="<?php echo URLROOT; ?>/pages/home" class="button">Back</a>
-                <a href="<?php echo URLROOT; ?>/pages/edit_profile/<?= $_SESSION['user_id'] ?>" class="button">Edit
-                    Profile</a>
             </div>
         </div>
 
