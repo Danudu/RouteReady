@@ -12,6 +12,7 @@
     --primary-color-extra-light: #35373b;
     --text-light: #d1d5db;
     --white: #ffffff;
+    --max-width: 1200px;
 }
 
 body {
@@ -23,12 +24,13 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
-
+    min-width: var(--max-width);
 }
 
 .container {
     backdrop-filter: blur(10px) brightness(0.3);
     min-height: 100vh;
+    min-width: var(--max-width);
     
 }
 
@@ -93,7 +95,7 @@ a {
 .wrapper{
    
     background-color: rgb(31, 33, 37, 0.4);
-
+    
     border: 2px solid var(--primary-color-extra-light);
 
     color: var(--white);

@@ -12,6 +12,7 @@
     --primary-color-extra-light: #35373b;
     --text-light: #d1d5db;
     --white: #ffffff;
+    --max-width: 1200px;
 }
 
 body {
@@ -23,6 +24,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
+    min-width: var(--max-width);
 
 }
 

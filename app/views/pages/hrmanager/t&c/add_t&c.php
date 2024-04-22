@@ -14,6 +14,8 @@
             --primary-color-extra-light: #35373b;
             --text-light: #d1d5db;
             --white: #ffffff;
+            --max-width: 1200px;
+            
         }
 
         body {
