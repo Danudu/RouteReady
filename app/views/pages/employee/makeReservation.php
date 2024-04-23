@@ -10,6 +10,206 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+<style>
+    
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #111317;
+  --primary-color-light: #1f2125;
+  --primary-color-extra-light: #35373b;
+  --text-light: #d1d5db;
+  --white: #ffffff;
+  --max-width: 1200px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  .bg__blur {
+    position: absolute;
+    box-shadow: 0 0 1000px 50px var(--white);
+    z-index: -1;
+  }
+  
+body {
+    /* font-family: "Poppins", sans-serif; */
+    /* background-color: var(--primary-color); */
+    background-image: url(http://localhost/RouteReady/public/img/pic3.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    
+    /* min-height: 100vh; */
+    /* max-height: none; */
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center;
+    min-height: 100vh; */
+  }
+  
+  .container{
+    backdrop-filter: blur(10px) brightness(0.3);
+    min-height: 100vh;
+  }
+
+  .container .form{
+    padding-bottom: 30px;
+  }
+  nav {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  a {
+    text-decoration: none;
+  }
+  .nav__logo {
+    max-width: 90px;
+    
+  }
+  
+  .nav__logo img {
+    width: 75%;
+    border-radius: 30%;
+  }
+  
+  .nav__links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+  
+  .link a {
+    position: relative;
+    padding-bottom: 0.75rem;
+    color: var(--white);
+  }
+  
+  .link a::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 0;
+    left: 0;
+    bottom: 0;
+    background-color: var(--text-light);
+    transition: 0.3s;
+  }
+  
+  .link a:hover::after {
+    width: 50%;
+  }
+
+.topic-content h2 {
+    text-align: center;
+    margin-left: 25%;
+    color: black;
+    font-size: 30px;
+}
+
+
+
+.flatpickr-calendar {
+    font-size: 12px; 
+    width: 50px; 
+     
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.form-box {
+    max-width: 600px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input-group .error {
+    color: red;
+    font-size: 14px;
+}
+
+
+.button-box {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f4f4f4;
+}
+
+.toggle-btn:hover {
+    background-color: #ddd;
+}
+
+.selected {
+    background-color: #007bff;
+    color: #fff;
+} 
+</style>
+
 <script>
     function changeRoute() {
         var schedule = document.getElementById("schedule").value;

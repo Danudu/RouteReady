@@ -545,6 +545,36 @@ class Employees extends Controller
     $this->view('pages/employee/viewMonthlyPayments', $data);
 }
 
+public function viewMonthlyReservations() {
+  // Check if the user is logged in
+  if (!isLoggedIn()) {
+      redirect('login');
+  }
+  
+  // Retrieve the user's ID from the session
+  $user_id = $_SESSION['user_id'];
+  
+  // Retrieve selected month and year from the query parameters
+  $selectedMonth = isset($_GET['month']) ? $_GET['month'] : date('m'); // Default to current month if not selected
+  $selectedYear = isset($_GET['year']) ? $_GET['year'] : date('Y'); // Default to current year if not selected
+  
+  // Load the TransportReservation model
+  $this->employeeReservationModel = $this->model('EmployeeReservation');
+  
+  // Get reservations for the selected month and year
+  $reservations = $this->employeeReservationModel->getReservationsForMonthYear($user_id, $selectedMonth, $selectedYear);
+  
+  // Prepare data to pass to the view
+  $data = [
+      'selectedMonth' => $selectedMonth,
+      'selectedYear' => $selectedYear,
+      'reservations' => $reservations
+  ];
+  
+  // Load the view with the monthly reservation data
+  $this->view('pages/employee/viewMonthlyReservations', $data);
+}
+
 
 }
 

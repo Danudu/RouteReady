@@ -1,35 +1,36 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make WorkTrip Reservation | RouteReady</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/worktrip.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar2.css">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Make WorkTrip Reservation | RouteReady</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/worktrip.css">
-        <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar2.css">
+    <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
 
-        <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const timeInput = document.getElementById('triptime');
+            const ampmSelect = document.getElementById('ampm');
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const timeInput = document.getElementById('triptime');
-                const ampmSelect = document.getElementById('ampm');
-
-                timeInput.addEventListener('change', function () {
-                    const selectedTime = timeInput.value;
-                    const selectedAMPM = ampmSelect.value;
-                    const formattedTime = selectedTime + ' ' + selectedAMPM;
-                    timeInput.value = formattedTime;
-                });
+            timeInput.addEventListener('change', function () {
+                const selectedTime = timeInput.value;
+                const selectedAMPM = ampmSelect.value;
+                const formattedTime = selectedTime + ' ' + selectedAMPM;
+                timeInput.value = formattedTime;
             });
-        </script>
+        });
+    </script>
+    
 
-    </head>
+</head>
 
 <body>
     <div class="sidebar">
@@ -88,7 +89,7 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
-            
+
             <ul class="lobtn">
                 <li>
                     <a href="<?php echo URLROOT; ?>/users/logout">
