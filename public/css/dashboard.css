@@ -20,12 +20,11 @@
 }
 
 body{
-    background-image: url(http://localhost/RouteReady/public/img/highway.gif);
+    /* background-image: url(http://localhost/RouteReady/public/img/highway.gif);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    backdrop-filter: blur(10px) brightness(0.5);
-    min-width: var(--max-width);
+    backdrop-filter: blur(10px) brightness(0.5); */
     
 
 }
@@ -64,6 +63,21 @@ body{
 .buttons{
     padding-top: 50px;
 }
+
+/* Main Content */
+.main-content{
+    position: relative;
+    min-height: 100vh;
+    top: 0;
+    left: 85px;
+    transition: all 0.5s ease;
+    width: calc(100% - 85px);
+    /* background-image: url(/hrmanager/img/highway.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+}
+
 .sidebar{
     position: fixed;
     top: 0;

@@ -1,60 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-            line-height: 1.6;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #fff;
-            background-color: #007bff;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Profile | <?php echo $data['user']->name; ?></title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/profile.css">
 </head>
+
 <body>
+
     <?php flash('update_success'); ?>
     <div class="container">
-        <a href="<?php echo URLROOT; ?>/pages/home">Back</a>
-        <!-- <?php
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
-        ?> -->
-        <h1>User Profile</h1>
-            <p>Welcome, <?php echo $data['user']->name; ?>!</p>
+        <nav>
+            <div class="nav__logo">
+                <a href="<?php echo URLROOT; ?>"><img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="logo" /></a>
+            </div>
+            <div class="nav__links">
+                <p class="link"><a href="<?php echo URLROOT; ?>/pages/home">Home</a></p>
+            </div>
+        </nav>
+        <div class="wrapper_prof">
+            <h1>Profile</h1>
+            <p class="welcome">Welcome, <?php echo $data['user']->name; ?>!</p>
             <p>This is your profile page where you can view and manage your information.</p>
             <ul>
                 <li><strong>Name:</strong> <?php echo $data['user']->name; ?></li>
@@ -66,7 +37,13 @@
                 <li><strong>Role:</strong> <?php echo $data['user']->designation; ?></li>
                 <li><strong>Registered Date:</strong> <?php echo $data['user']->date; ?></li>
             </ul>
-            <a href="<?php echo URLROOT; ?>/pages/edit_profile/<?=$_SESSION['user_id']?>" class="button">Edit Profile</a>
+            <div class="button-container">
+                <a href="<?php echo URLROOT; ?>/pages/edit_profile/<?= $_SESSION['user_id'] ?>" class="button">Edit Profile</a>
+                <a href="<?php echo URLROOT; ?>/pages/home" class="button">Back</a>
+            </div>
+        </div>
+
     </div>
 </body>
+
 </html>

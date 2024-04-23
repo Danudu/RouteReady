@@ -72,4 +72,9 @@
             }
         }
         
+        public function getLastUpdatedDate(){
+            $this->db->query('SELECT date FROM posts ORDER BY date DESC LIMIT 1');
+            $row = $this->db->single();
+            return $row->date; // Return only the date property
+        }
     }

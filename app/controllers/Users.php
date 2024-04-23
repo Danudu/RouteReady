@@ -157,28 +157,15 @@ class Users extends Controller{
                 
                 // Check and set logged in user
                 $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-                if($loggedInUser){
+                if($loggedInUser->status == 'pending'){
+                    $data['email_err'] = 'Your account is pending for approval';
+                    $this->view('users/login', $data);
+                } elseif($loggedInUser){
                     // Create Session
                     $this->createUserSession($loggedInUser);
-
-                   // Redirect based on user role
-                    switch($loggedInUser->designation) {
-                        case 'admin':
-                            redirect('pages/admin/');
-                            break;
-                        case 'hrmanager':
-                            redirect('hrmanagers/home');
-                            break;
-                        case 'employee':
-                            redirect('pages/employee/');
-                            break;
-                        case 'driver':
-                            redirect('pages/driver/');
-                            break;
-                        default:
-                            echo 'Invalid role';
-                        break;
-                    }
+                    
+                 
+                    // redirect('pages/home');
                 } else {
                     $data['password_err'] = 'Password incorrect';
                     $this->view('users/login', $data);
@@ -215,6 +202,7 @@ class Users extends Controller{
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_name'] = $user->name;
+        $_SESSION['user_designation'] = $user->designation;
         redirect('pages/home');
     }
 
@@ -223,7 +211,7 @@ class Users extends Controller{
         unset($_SESSION['user_email']);
         unset($_SESSION['user_name']);
         session_destroy();
-        redirect('pages/index');
+        redirect('users/login');
     }
 
 }

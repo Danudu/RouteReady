@@ -7,8 +7,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/content.css">
-    <title>Welcome -To RouteReady</title>
+    <title>Home | RouteReady</title>
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
+
+    <style>
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .content2 {
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,19 +59,11 @@
             <ul>
                 <li>
                     <a href="home">
-                        <i class="fa-solid fa-house"></i>
-                        <span class="icon_name">Home</span>
-                    </a>
-                    <span class="tooltip">HomePage</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="home">
-                        <i class="fa-solid fa-chart-line"></i>
-                        <span class="icon_name">Dashboard</span>
-                    </a>
-                    <span class="tooltip">Dashboard</span>
+                        <a href="<?php echo URLROOT; ?>/pages/home/<?= $_SESSION['user_id'] ?>">
+                            <i class="fa-solid fa-house"></i>
+                            <span class="icon_name">Home</span>
+                        </a>
+                        <span class="tooltip">HomePage</span>
                 </li>
             </ul>
             <ul>
@@ -49,27 +75,36 @@
                     <span class="tooltip">Profile</span>
                 </li>
             </ul>
-            <!-- <ul>
+            <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/posts/employees">
-                        <i class="fas fa-users"></i>
-                        <span class="icon_name">Employees</span>
+                    <a href="<?php echo URLROOT; ?>/employees/viewReservation">
+                        <i class="fa-solid fa-magnifying-glass-location"></i>
+                        <span class="icon_name">Reservations</span>
                     </a>
-                    <span class="tooltip">Employees</span>
+                    <span class="tooltip">Reservations</span>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/posts/drivers">
-                        <i class="fas fa-truck-fast"></i>
-                        <span class="icon_name">Drivers</span>
+                    <a href="<?php echo URLROOT; ?>/employees/viewWorkTrips">
+                        <i class="fa-solid fa-suitcase-rolling"></i>
+                        <span class="icon_name">WorkTrips</span>
                     </a>
-                    <span class="tooltip">Drivers</span>
+                    <span class="tooltip">WorkTrips</span>
                 </li>
-            </ul> -->
+            </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/posts/terms_conditons">
+                    <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                        <span class="icon_name">Payment</span>
+                    </a>
+                    <span class="tooltip">Payment</span>
+                </li>
+            </ul>
+            <ul>
+                <li id="showPopup">
+                    <a href="#" onclick="event.preventDefault();" id="showPopup">
                         <i class="fas fa-book-bookmark"></i>
                         <span class="icon_name">T&C</span>
                     </a>
@@ -91,7 +126,7 @@
     <div class="main-content">
         <div class="container">
             <div class="header">
-                <h1>Route Ready</h1>
+                <h1>Route Ready Employee</h1>
             </div>
             <div class="main">
                 <section class="welcome">
@@ -101,8 +136,10 @@
                         </h3>
                     </div>
                     <div>
-                        <button type="button" class="btn2"><a href="#" class="bt">Login <br>As Employee</a></button>
-                        <button type="button" class="btn2"><a href="#" class="bt">Logout</a></button>
+                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/employees/viewReservation"
+                                class="bt">Transport Reservation</a></button>
+                        <button type="button" class="btn2"><a href="<?php echo URLROOT;
+                        ; ?>/employees/viewWorkTrips" class="bt">WorkTrip Reservation</a></button>
                     </div>
                 </section>
             </div>
@@ -127,7 +164,42 @@
         </div>
     </div>
 
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close" id="close">&times;</span>
+            <div class="content2">
+                <div>
+                    <h1>Terms & Conditions</h1>
+                    <!-- PHP echo statement for last updated date -->
+                    <p>Last Updated on <?php echo $data['lastdate']; ?></p>
+                </div>
+                <?php foreach ($data['posts'] as $post): ?>
+                    <ul>
+                        <li>
+                            <h4><?php echo $post->title; ?></h4>
+                            <p><?php echo $post->body; ?></p>
+                        </li>
+                    </ul>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+
 </body>
+
+<script>
+    document.getElementById('showPopup').addEventListener('click', function () {
+        console.log("Show popup clicked"); // Debug statement
+        // Show the popup
+        document.getElementById('popup').style.display = 'block';
+    });
+
+    document.getElementById('close').addEventListener('click', function () {
+        console.log("Close button clicked"); // Debug statement
+        // Close the popup
+        document.getElementById('popup').style.display = 'none';
+    });
+</script>
 
 <script>
     let btn = document.querySelector("#btn");
