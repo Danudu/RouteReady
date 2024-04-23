@@ -77,16 +77,9 @@
         xhr.send(JSON.stringify({ route: route, date: date }));
     }
 
-
-
-
 </script>
 
-
-
 </head>
-
-
 <body>
     <div class="sidebar">
 
@@ -363,9 +356,8 @@
     function setupFlatpickr() {
         var today = new Date();
         var tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1);
-        var todayString = today.toISOString().split('T')[0]; // Get today's date in 'YYYY-MM-DD' format
-        var tomorrowString = tomorrow.toISOString().split('T')[0];
+        tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
+        var tomorrowString = tomorrow.toISOString().split('T')[0]; 
 
         var currentTime = today.getHours(); // Get the current hour
 
@@ -391,16 +383,14 @@
         end.setDate(today.getDate() + 30); // Get the date after 30 days
 
         flatpickr("#reservationDateDaily", {
-            defaultDate: todayString, // Set the default date to today
+            defaultDate: tomorrowString, // Set the default date to tomorrow
             dateFormat: "Y-m-d",
             appendTo: document.getElementById("reservationDateDaily").parentNode,
             static: true,
             position: "below",
-            minDate: todayString, // Set the minimum date to today
+            minDate: tomorrowString, // Set the minimum date to tomorrow
             maxDate: tomorrowString // Set the maximum date to tomorrow
         });
-
-
 
         flatpickr("#reservationStartDate", {
             defaultDate: tomorrowString, // Set the default start date to tomorrow's date

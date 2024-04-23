@@ -142,7 +142,6 @@
     <div class="main-content">
         <div class="container">
 
-
             <!-- Display daily reservations -->
             <h2>Daily Reservations</h2>
             <table class="table">
@@ -158,6 +157,14 @@
                 </thead>
                 <tbody>
                     <?php foreach ($data['dailyReservations'] as $reservation): ?>
+                        <?php
+                            $reservationDateTime = strtotime($reservation->Date);
+                            $currentDateTime = time();
+                            $tomorrow = strtotime('tomorrow');
+                            
+                            // Check if the reservation is before tomorrow
+                            $disableActions = ($reservationDateTime < $tomorrow);
+                        ?>
                         <tr>
                             <!-- Display reservation details -->
                             <td><?php echo $reservation->ScheduleType; ?></td>
@@ -167,28 +174,24 @@
                             <td><?php echo $reservation->DropOff; ?></td>
                             <!-- Action buttons -->
                             <td>
-
-                                <a
-                                    href="<?php echo URLROOT; ?>/employees/editDailyReservation/<?php echo $reservation->ReservationID; ?>"><i
-                                        class="fas fa-pencil-alt" style="color: black;"></i></a>
-
+                                <?php if(!$disableActions): ?>
+                                    <a href="<?php echo URLROOT; ?>/employees/editDailyReservation/<?php echo $reservation->ReservationID; ?>">
+                                        <i class="fas fa-pencil-alt" style="color: black;"></i>
+                                    </a>
+                                <?php endif; ?>
                             </td>
                             <td>
-
-                                <form
-                                    action="<?php echo URLROOT; ?>/employees/deleteReservation/<?php echo $reservation->ReservationID; ?>"
-                                    method="post">
-                                    <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
-                                </form>
-
+                                <?php if(!$disableActions): ?>
+                                    <form action="<?php echo URLROOT; ?>/employees/deleteReservation/<?php echo $reservation->ReservationID; ?>" method="post">
+                                        <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
 
-            <br>
-            <br>
             <!-- Display Monthly Reservations -->
             <h2>Monthly Reservations</h2>
             <table class="table">
@@ -215,20 +218,18 @@
                             <td><?php echo $reservation->DropOff; ?></td>
                             <!-- Action buttons -->
                             <td>
-
-                                <a
-                                    href="<?php echo URLROOT; ?>/employees/editMonthlyReservation/<?php echo $reservation->MReservationID; ?>"><i
-                                        class="fas fa-pencil-alt" style="color: black;"></i></a>
-
+                                <?php if(strtotime($reservation->EndDate) >= strtotime('tomorrow')): ?> <!-- Check if end date is tomorrow or in the future -->
+                                    <a href="<?php echo URLROOT; ?>/employees/editMonthlyReservation/<?php echo $reservation->MReservationID; ?>">
+                                        <i class="fas fa-pencil-alt" style="color: black;"></i>
+                                    </a>
+                                <?php endif; ?>
                             </td>
                             <td>
-
-                                <form
-                                    action="<?php echo URLROOT; ?>/employees/deleteMonthlyReservation/<?php echo $reservation->MReservationID; ?>"
-                                    method="post">
-                                    <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
-                                </form>
-
+                                <?php if(strtotime($reservation->EndDate) >= strtotime('tomorrow')): ?> <!-- Check if end date is tomorrow or in the future -->
+                                    <form action="<?php echo URLROOT; ?>/employees/deleteMonthlyReservation/<?php echo $reservation->MReservationID; ?>" method="post">
+                                        <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -236,19 +237,12 @@
             </table>
 
             <!-- Add button for making a reservation -->
-            <div style="padding: 10px 40px;
-    border: 2px solid black;
-    border-radius: 8px;
-    max-width:30%;
-    margin-top: 10px;  
-    background: black;
-    font-size: 15px;
-    text-align:center;
-    margin-left:30%;
-">
-                <a href="<?php echo URLROOT; ?>/employees/makeReservation" class="new"
-                    style="color: white; text-decoration: none;">Make a Reservation</a>
+            <div>
+                <a href="<?php echo URLROOT; ?>/employees/makeReservation" class="new">Make a Reservation</a>
             </div>
+
+        </div>
+    </div>
 
 </body>
 
