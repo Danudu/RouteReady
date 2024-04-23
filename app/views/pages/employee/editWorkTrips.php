@@ -5,16 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <title>Edit Work Trip Reservation</title>
-
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar2.css">
+
+    <title>Edit WorkTrips | RouteReady</title>
+    <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
+
 
 </head>
 
 <body>
     <div class="sidebar">
 
-        <div class="top">
+    <div class="top">
             <div class="logo">
                 <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
                 <span class="logo_name">Route Ready</span>
@@ -52,6 +54,15 @@
             </ul>
             <ul>
                 <li>
+                    <a href="<?php echo URLROOT; ?>/employees/viewWorkTrips">
+                        <i class="fa-solid fa-suitcase-rolling"></i>
+                        <span class="icon_name">WorkTrips</span>
+                    </a>
+                    <span class="tooltip">WorkTrips</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
                     <a href="<?php echo URLROOT; ?>/reservationPayment/displayPayments">
                         <i class="fa-solid fa-hand-holding-dollar"></i>
                         <span class="icon_name">Payment</span>
@@ -61,7 +72,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="<?php echo URLROOT; ?>/posts/terms_conditions">
                         <i class="fas fa-book-bookmark"></i>
                         <span class="icon_name">T&C</span>
                     </a>

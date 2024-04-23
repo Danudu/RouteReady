@@ -17,6 +17,7 @@ class Employees extends Controller
       $this->view('pages/index');
     }
     $this->userModel = $this->model('User');
+    $this->postModel = $this->model('Post');
     $this->employeeReservationModel = $this->model('EmployeeReservation');
     $this->workTripModel = $this->model('WorkTrip');
     $this->reservationModel = $this->model('ReservationModel');
@@ -32,13 +33,18 @@ class Employees extends Controller
   }
   public function home()
   {
+    $posts = $this->postModel->getPosts();
+    $date = $this->postModel->getLastUpdatedDate();
+
+    error_log("Last Updated Date: " . $date);
+
     if (!isLoggedIn()) {
       $this->view('pages/index');
     } else {
       $data = [
-        'title' => 'Employees Home Page',
-        'description' => 'This is a simple MVC framework'
-      ];
+        'posts' => $posts,
+        'lastdate' => $date
+    ];
       $this->view('pages/employee/employeeHome', $data);
     }
   }
@@ -307,7 +313,7 @@ class Employees extends Controller
       'reservation' => $reservation
     ];
 
-    $this->view('employees/editMonthlyReservation', $data);
+    $this->view('pages/employee/editMonthlyReservation', $data);
   }
 
   public function updateMonthlyReservation()

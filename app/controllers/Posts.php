@@ -23,17 +23,21 @@
 
             $this->view('pages/hrmanager/t&c/t&c', $data);
         }
-        public function terms_conditions(){
-            // Get posts
-            $posts = $this->postModel->getPosts();
+        // public function terms_conditions(){
+        //     // Get posts
+        //     $posts = $this->postModel->getPosts();
+        //     $date = $this->postModel->getLastUpdatedDate();
+
+        //     error_log("Last Updated Date: " . $date);
 
 
-            $data = [
-                'posts' => $posts
-            ];
+        //     $data = [
+        //         'posts' => $posts,
+        //         'lastdate' => $date
+        //     ];
 
-            $this->view('pages/terms_conditions', $data);
-        }
+        //     $this->view('pages/home', $data);
+        // }
 
         public function drivers(){
             $data = [];

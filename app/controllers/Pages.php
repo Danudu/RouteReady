@@ -32,6 +32,7 @@ class Pages extends Controller
     if (!isLoggedIn()) {
       $this->view('pages/index');
     } else {
+      
        // Redirect based on user role
        switch($_SESSION['user_designation']) {
         case 'admin':
