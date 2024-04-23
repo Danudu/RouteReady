@@ -8,15 +8,23 @@
     <title>Reservations | RouteReady</title>
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
 
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/worktrip.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar2.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
+        body {
+            background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            /* backdrop-filter: blur(10px) brightness(0.5); */
+
+
+        }
+
         .btn-delete i {
             font-size: 1.5em;
             /* Increase the size of the delete icon */
@@ -26,6 +34,76 @@
             /* Remove border */
             cursor: pointer;
             /* Set cursor to pointer */
+        }
+
+        .container {
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .wrapper {
+            backdrop-filter: blur(5px);
+            background-color: rgb(31, 33, 37, 0.4);
+
+            border: 2px solid var(--primary-color-extra-light);
+
+            color: var(--white);
+            border-radius: 12px;
+            padding: 30px 40px;
+            margin: 30px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--primary-color-extra-light);
+        }
+
+        th {
+            background-color: var(--primary-color);
+        }
+
+
+        tbody tr:hover {
+            background-color: var(--primary-color-extra-light);
+
+        }
+
+        .button {
+            width: 300px;
+            height: 45px;
+            background: var(--text-light);
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            cursor: pointer;
+            font-size: 16px;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-align: center;
+            line-height: 45px;
+            display: inline-block;
+            text-decoration: none;
+            transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+        }
+
+        .button:hover {
+            background-color: var(--primary-color-light);
+            color: var(--white);
+            box-shadow: 0 0 10px var(--primary-color-extra-light);
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -116,7 +194,7 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
-            
+
             <ul class="lobtn">
                 <li>
                     <a href="<?php echo URLROOT; ?>/users/logout">
@@ -140,109 +218,109 @@
 
 
     <div class="main-content">
-        <div class="container">
+        <div class="wrapper">
+            <div class="container">
 
-            <!-- Display daily reservations -->
-            <h2>Daily Reservations</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="sortable">Schedule <span class="arrow">&#9660;</span></th>
-                        <th class="sortable">Route <span class="arrow">&#9660;</span></th>
-                        <th class="sortable">Date <span class="arrow">&#9660;</span></th>
-                        <th>Pick Up</th>
-                        <th>Drop Off</th>
-                        <th colspan="2">Action</th> <!-- New column for action buttons -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($data['dailyReservations'] as $reservation): ?>
-                        <?php
-                            $reservationDateTime = strtotime($reservation->Date);
-                            $currentDateTime = time();
-                            $tomorrow = strtotime('tomorrow');
-                            
-                            // Check if the reservation is before tomorrow
-                            $disableActions = ($reservationDateTime < $tomorrow);
-                        ?>
+
+                <!-- Display daily reservations -->
+                <h2>Daily Reservations</h2>
+                <table class="table">
+                    <thead>
                         <tr>
-                            <!-- Display reservation details -->
-                            <td><?php echo $reservation->ScheduleType; ?></td>
-                            <td><?php echo $reservation->Route; ?></td>
-                            <td><?php echo $reservation->Date; ?></td>
-                            <td><?php echo $reservation->PickUp; ?></td>
-                            <td><?php echo $reservation->DropOff; ?></td>
-                            <!-- Action buttons -->
-                            <td>
-                                <?php if(!$disableActions): ?>
-                                    <a href="<?php echo URLROOT; ?>/employees/editDailyReservation/<?php echo $reservation->ReservationID; ?>">
-                                        <i class="fas fa-pencil-alt" style="color: black;"></i>
+                            <th class="sortable">Schedule <span class="arrow">&#9660;</span></th>
+                            <th class="sortable">Route <span class="arrow">&#9660;</span></th>
+                            <th class="sortable">Date <span class="arrow">&#9660;</span></th>
+                            <th>Pick Up</th>
+                            <th>Drop Off</th>
+                            <th colspan="2">Action</th> <!-- New column for action buttons -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data['dailyReservations'] as $reservation): ?>
+                            <tr>
+                                <!-- Display reservation details -->
+                                <td><?php echo $reservation->ScheduleType; ?></td>
+                                <td><?php echo $reservation->Route; ?></td>
+                                <td><?php echo $reservation->Date; ?></td>
+                                <td><?php echo $reservation->PickUp; ?></td>
+                                <td><?php echo $reservation->DropOff; ?></td>
+                                <!-- Action buttons -->
+                                <td>
+
+                                    <a
+                                        href="<?php echo URLROOT; ?>/employees/editDailyReservation/<?php echo $reservation->ReservationID; ?>">
+                                        <i class="fas fa-pencil-alt" style="color: white;"></i>
                                     </a>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?php if(!$disableActions): ?>
-                                    <form action="<?php echo URLROOT; ?>/employees/deleteReservation/<?php echo $reservation->ReservationID; ?>" method="post">
+
+                                </td>
+                                <td>
+
+                                    <form
+                                        action="<?php echo URLROOT; ?>/employees/deleteReservation/<?php echo $reservation->ReservationID; ?>"
+                                        method="post">
                                         <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
                                     </form>
-                                <?php endif; ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
 
-            <!-- Display Monthly Reservations -->
-            <h2>Monthly Reservations</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="sortable">Schedule <span class="arrow">&#9660;</span></th>
-                        <th class="sortable">Route <span class="arrow">&#9660;</span></th>
-                        <th class="sortable">Start Date <span class="arrow">&#9660;</span></th>
-                        <th>End Date</th>
-                        <th>Pick Up</th>
-                        <th>Drop Off</th>
-                        <th colspan="2">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($data['monthlyReservations'] as $reservation): ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+                <br>
+                <br>
+                <!-- Display Monthly Reservations -->
+                <h2>Monthly Reservations</h2>
+                <table class="table">
+                    <thead>
                         <tr>
-                            <!-- Display reservation details -->
-                            <td><?php echo $reservation->ScheduleType; ?></td>
-                            <td><?php echo $reservation->Route; ?></td>
-                            <td><?php echo $reservation->StartDate; ?></td>
-                            <td><?php echo $reservation->EndDate; ?></td>
-                            <td><?php echo $reservation->PickUp; ?></td>
-                            <td><?php echo $reservation->DropOff; ?></td>
-                            <!-- Action buttons -->
-                            <td>
-                                <?php if(strtotime($reservation->EndDate) >= strtotime('tomorrow')): ?> <!-- Check if end date is tomorrow or in the future -->
-                                    <a href="<?php echo URLROOT; ?>/employees/editMonthlyReservation/<?php echo $reservation->MReservationID; ?>">
-                                        <i class="fas fa-pencil-alt" style="color: black;"></i>
-                                    </a>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?php if(strtotime($reservation->EndDate) >= strtotime('tomorrow')): ?> <!-- Check if end date is tomorrow or in the future -->
-                                    <form action="<?php echo URLROOT; ?>/employees/deleteMonthlyReservation/<?php echo $reservation->MReservationID; ?>" method="post">
+                            <th class="sortable">Schedule <span class="arrow">&#9660;</span></th>
+                            <th class="sortable">Route <span class="arrow">&#9660;</span></th>
+                            <th class="sortable">Start Date <span class="arrow">&#9660;</span></th>
+                            <th>End Date</th>
+                            <th>Pick Up</th>
+                            <th>Drop Off</th>
+                            <th colspan="2">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data['monthlyReservations'] as $reservation): ?>
+                            <tr>
+                                <!-- Display reservation details -->
+                                <td><?php echo $reservation->ScheduleType; ?></td>
+                                <td><?php echo $reservation->Route; ?></td>
+                                <td><?php echo $reservation->StartDate; ?></td>
+                                <td><?php echo $reservation->EndDate; ?></td>
+                                <td><?php echo $reservation->PickUp; ?></td>
+                                <td><?php echo $reservation->DropOff; ?></td>
+                                <!-- Action buttons -->
+                                <td>
+
+                                    <a
+                                        href="<?php echo URLROOT; ?>/employees/editMonthlyReservation/<?php echo $reservation->MReservationID; ?>"><i
+                                            class="fas fa-pencil-alt" style="color: white;"></i></a>
+
+                                </td>
+                                <td>
+
+                                    <form
+                                        action="<?php echo URLROOT; ?>/employees/deleteMonthlyReservation/<?php echo $reservation->MReservationID; ?>"
+                                        method="post">
                                         <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
                                     </form>
-                                <?php endif; ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
 
-            <!-- Add button for making a reservation -->
-            <div>
-                <a href="<?php echo URLROOT; ?>/employees/makeReservation" class="new">Make a Reservation</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+                <!-- Add button for making a reservation -->
+                <a href="<?php echo URLROOT; ?>/employees/makeReservation" class="button">Make a Reservation</a>
+
             </div>
 
         </div>
-    </div>
 
 </body>
 

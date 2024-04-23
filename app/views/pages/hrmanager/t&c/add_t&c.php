@@ -25,6 +25,11 @@
             /* padding: 20px; */
             position: relative;
             /* Needed for positioning the back button */
+            background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+    
             
         }
 
@@ -93,6 +98,8 @@
             margin-top: 30px;
             margin-bottom: 80px;
             max-width: 600px;
+    
+            backdrop-filter: blur(10px);
         }
 
         .button {

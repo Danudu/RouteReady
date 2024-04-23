@@ -11,6 +11,15 @@
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
 
     <style>
+        :root {
+            --primary-color: #111317;
+            --primary-color-light: #1f2125;
+            --primary-color-extra-light: #35373b;
+            --text-light: #d1d5db;
+            --white: #ffffff;
+            --max-width: 1200px;
+        }
+
         .popup {
             display: none;
             position: fixed;
@@ -26,22 +35,60 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
+            background-color: var(--primary-color-light);
+            padding: 60px 30px;
+            border-radius: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+            max-width: 800px;
+            color: var(--text-light);
         }
 
         .close {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
             cursor: pointer;
+            width: 30px;
+            height: 30px;
+            color: var(--primary-color);
+            font-size: 25px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            background-color: var(--text-light);
         }
 
         .content2 {
-            padding: 20px;
+            padding: 0 20px;
+            height: 400px;
+           
+            overflow-y: auto;
+            font-size: 14px;
+            font-weight: 500;
         }
+
+        .content2::-webkit-scrollbar {
+            background-color: var(--primary-color-extra-light);
+            width: 2px;
+        }
+
+        .content2::-webkit-scrollbar-thumb {
+            background-color: var(--text-light);
+        }
+
+        .content2 h1 {
+            text-transform: uppercase;
+        }
+        .terms {
+            margin-top: 20px;
+        }
+
+        .terms ul {
+            margin-bottom: 20px;
+        }
+        
     </style>
 </head>
 
@@ -173,14 +220,17 @@
                     <!-- PHP echo statement for last updated date -->
                     <p>Last Updated on <?php echo $data['lastdate']; ?></p>
                 </div>
-                <?php foreach ($data['posts'] as $post): ?>
-                    <ul>
-                        <li>
-                            <h4><?php echo $post->title; ?></h4>
-                            <p><?php echo $post->body; ?></p>
-                        </li>
-                    </ul>
-                <?php endforeach; ?>
+                <div class="terms">
+                    <?php foreach ($data['posts'] as $post): ?>
+                        <ul>
+                            <li>
+                                <h4><?php echo $post->title; ?></h4>
+                                <p><?php echo $post->body; ?></p>
+                            </li>
+                        </ul>
+                    <?php endforeach; ?>
+                </div>
+
             </div>
         </div>
     </div>

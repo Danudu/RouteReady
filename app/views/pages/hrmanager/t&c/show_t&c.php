@@ -7,6 +7,7 @@
     <title>Show T&C | RouteReady</title>
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
     <style>
+
         /* Color Variables */
         :root {
             --primary-color: #111317;
@@ -22,7 +23,9 @@
             color: var(--text-light);
             font-family: Arial, sans-serif;
             padding: 20px;
-            
+    
+    
+          
         }
 
         nav {
