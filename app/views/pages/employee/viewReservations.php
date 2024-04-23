@@ -21,8 +21,6 @@
             background-size: cover;
 
             /* backdrop-filter: blur(10px) brightness(0.5); */
-
-
         }
 
         .btn-delete i {
@@ -44,9 +42,7 @@
         .wrapper {
             backdrop-filter: blur(5px);
             background-color: rgb(31, 33, 37, 0.4);
-
             border: 2px solid var(--primary-color-extra-light);
-
             color: var(--white);
             border-radius: 12px;
             padding: 30px 40px;
@@ -63,7 +59,6 @@
             margin-bottom: 20px;
         }
 
-
         th,
         td {
             padding: 10px;
@@ -75,10 +70,8 @@
             background-color: var(--primary-color);
         }
 
-
         tbody tr:hover {
             background-color: var(--primary-color-extra-light);
-
         }
 
         .button {
@@ -104,6 +97,11 @@
             background-color: var(--primary-color-light);
             color: var(--white);
             box-shadow: 0 0 10px var(--primary-color-extra-light);
+        }
+
+        .disabled {
+            pointer-events: none;
+            opacity: 0.6;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -139,7 +137,6 @@
 
 <body>
     <div class="sidebar">
-
         <div class="top">
             <div class="logo">
                 <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
@@ -216,12 +213,9 @@
         };
     </script>
 
-
     <div class="main-content">
         <div class="wrapper">
             <div class="container">
-
-
                 <!-- Display daily reservations -->
                 <h2>Daily Reservations</h2>
                 <table class="table">
@@ -246,29 +240,29 @@
                                 <td><?php echo $reservation->DropOff; ?></td>
                                 <!-- Action buttons -->
                                 <td>
-
-                                    <a
-                                        href="<?php echo URLROOT; ?>/employees/editDailyReservation/<?php echo $reservation->ReservationID; ?>">
+                                    <?php
+                                    $disableEdit = (strtotime($reservation->Date) < strtotime('tomorrow'));
+                                    $disableDelete = (strtotime($reservation->Date) < strtotime('tomorrow'));
+                                    ?>
+                                    <a href="<?php echo URLROOT; ?>/employees/editDailyReservation/<?php echo $reservation->ReservationID; ?>"
+                                        <?php if ($disableEdit) echo 'class="disabled"'; ?>>
                                         <i class="fas fa-pencil-alt" style="color: white;"></i>
                                     </a>
-
                                 </td>
                                 <td>
-
                                     <form
                                         action="<?php echo URLROOT; ?>/employees/deleteReservation/<?php echo $reservation->ReservationID; ?>"
                                         method="post">
-                                        <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                        <button type="submit" class="btn-delete" <?php if ($disableDelete) echo 'disabled'; ?>>
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
                                     </form>
-
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
 
-                <br>
-                <br>
                 <!-- Display Monthly Reservations -->
                 <h2>Monthly Reservations</h2>
                 <table class="table">
@@ -295,20 +289,23 @@
                                 <td><?php echo $reservation->DropOff; ?></td>
                                 <!-- Action buttons -->
                                 <td>
-
-                                    <a
-                                        href="<?php echo URLROOT; ?>/employees/editMonthlyReservation/<?php echo $reservation->MReservationID; ?>"><i
-                                            class="fas fa-pencil-alt" style="color: white;"></i></a>
-
+                                    <?php
+                                    $disableEdit = (strtotime($reservation->EndDate) < strtotime('tomorrow'));
+                                    $disableDelete = (strtotime($reservation->EndDate) < strtotime('tomorrow'));
+                                    ?>
+                                    <a href="<?php echo URLROOT; ?>/employees/editMonthlyReservation/<?php echo $reservation->MReservationID; ?>"
+                                        <?php if ($disableEdit) echo 'class="disabled"'; ?>>
+                                        <i class="fas fa-pencil-alt" style="color: white;"></i>
+                                    </a>
                                 </td>
                                 <td>
-
                                     <form
                                         action="<?php echo URLROOT; ?>/employees/deleteMonthlyReservation/<?php echo $reservation->MReservationID; ?>"
                                         method="post">
-                                        <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                        <button type="submit" class="btn-delete" <?php if ($disableDelete) echo 'disabled'; ?>>
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
                                     </form>
-
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -317,11 +314,9 @@
 
                 <!-- Add button for making a reservation -->
                 <a href="<?php echo URLROOT; ?>/employees/makeReservation" class="button">Make a Reservation</a>
-
             </div>
-
         </div>
-
+    </div>
 </body>
 
 </html>

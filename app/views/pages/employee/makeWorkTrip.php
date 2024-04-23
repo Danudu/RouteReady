@@ -3,18 +3,18 @@
 <head>
 
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Make WorkTrip Reservation | RouteReady</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/worktrip.css">
-        <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar2.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make WorkTrip Reservation | RouteReady</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/worktrip.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar2.css">
 
-        <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
+    <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const timeInput = document.getElementById('triptime');
@@ -137,7 +137,7 @@
                             <input type="text" id="des" name="des" placeholder="Destination">
                         </div>
                         <div class="input-box">
-                            <input type="date" id="tripdate" name="tripdate">
+                            <input type="text" id="tripdate" name="tripdate" placeholder="Select Date">
                         </div>
                         <div class="input-box">
                             <input type="time" id="tripTime" name="triptime">
@@ -154,6 +154,16 @@
                 </div>
             </div>
         </div>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            flatpickr("#tripdate", {
+                minDate: "today",
+                dateFormat: "Y-m-d" // You can change the date format as needed
+            });
+        });
+    </script>
 </body>
 
 </html>
+
