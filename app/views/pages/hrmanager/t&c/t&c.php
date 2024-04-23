@@ -16,8 +16,15 @@
             --white: #ffffff;
             --max-width: 1200px;
         }
-
+      
+        
         body {
+            background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+    
+            backdrop-filter: blur(10px) brightness(0.5);
             background-color: var(--primary-color);
             color: var(--text-light);
             font-family: Arial, sans-serif;

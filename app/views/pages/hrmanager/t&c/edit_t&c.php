@@ -24,7 +24,7 @@
             padding: 20px;
             position: relative;
             /* Added position relative for positioning */
-            
+            background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
         }
 
         nav {
@@ -89,6 +89,7 @@
             margin-top: 30px;
             margin-bottom: 60px;
             max-width: 600px;
+            backdrop-filter: blur(10px);
         }
 
         .button {
@@ -108,10 +109,15 @@
             display: inline-block;
             text-decoration: none;
             transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
-            margin-right: 10px;
+            margin-top: 20px;
+            
+            
+        }
+
+        .button.back {
             position: absolute;
-            bottom: 0;
-            right: 20px;
+            right: 0;
+            margin-right: 20px;
             
         }
 
@@ -225,10 +231,10 @@
                 <input type="text" name="body" value="<?php echo $data['body']; ?>" placeholder="Enter T&C Body">
                 <span><?php echo $data['body_err']; ?></span>
 
-                <input type="submit" value="Update" class="button">
             </form>
+            <input type="submit" value="Update" class="button">
         </div>
-        <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $data['id']; ?>" class="button">Back</a>
+        <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $data['id']; ?>" class="button back">Back</a>
     </div>
 </body>
 

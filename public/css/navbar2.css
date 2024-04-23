@@ -17,17 +17,10 @@
     text-decoration: none;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-}
-
-body{
-    /* background-image: url(http://localhost/RouteReady/public/img/highway.gif);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    backdrop-filter: blur(10px) brightness(0.5); */
     
-
 }
+
+
 .logo{
     position: relative;
     list-style-type: none;
@@ -72,10 +65,7 @@ body{
     left: 85px;
     transition: all 0.5s ease;
     width: calc(100% - 85px);
-    /* background-image: url(/hrmanager/img/highway.gif);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover; */
+
 }
 
 .sidebar{
