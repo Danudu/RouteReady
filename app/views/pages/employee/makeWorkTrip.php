@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/worktrip.css">
         <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar2.css">
- 
+
         <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -34,7 +34,7 @@
 <body>
     <div class="sidebar">
 
-    <div class="top">
+        <div class="top">
             <div class="logo">
                 <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
                 <span class="logo_name">Route Ready</span>
@@ -81,22 +81,14 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/reservationPayment/displayPayments">
+                    <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments">
                         <i class="fa-solid fa-hand-holding-dollar"></i>
                         <span class="icon_name">Payment</span>
                     </a>
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/posts/terms_conditions">
-                        <i class="fas fa-book-bookmark"></i>
-                        <span class="icon_name">T&C</span>
-                    </a>
-                    <span class="tooltip">Terms & Conditions</span>
-                </li>
-            </ul>
+            
             <ul class="lobtn">
                 <li>
                     <a href="<?php echo URLROOT; ?>/users/logout">

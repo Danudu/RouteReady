@@ -505,4 +505,47 @@ class Employees extends Controller
     }
   }
 
+
+
+
+
+
+//   RESERVATION PAYMENT
+
+
+
+
+  public function viewMonthlyPayments() {
+    // Check if the user is logged in
+    if (!isLoggedIn()) {
+        redirect('login');
+    }
+    
+    // Retrieve the user's ID from the session
+    $user_id = $_SESSION['user_id'];
+    
+    // Check if a month and year are selected
+    $selectedMonth = isset($_POST['month']) ? $_POST['month'] : date('m'); // Default to current month if not selected
+    $selectedYear = isset($_POST['year']) ? $_POST['year'] : date('Y'); // Default to current year if not selected
+    
+    // Load the EmployeeReservation model
+    $this->employeeReservationModel = $this->model('EmployeeReservation');
+    
+    // Get total payment for the selected month and year
+    $totalPayment = $this->employeeReservationModel->getTotalPaymentForMonthYear($user_id, $selectedMonth, $selectedYear);
+    
+    // Prepare data to pass to the view
+    $data = [
+        'selectedMonth' => $selectedMonth,
+        'selectedYear' => $selectedYear,
+        'totalPayment' => $totalPayment
+    ];
+    
+    // Load the view with the monthly payment data
+    $this->view('pages/employee/viewMonthlyPayments', $data);
 }
+
+
+}
+
+

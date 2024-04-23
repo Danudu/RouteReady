@@ -95,7 +95,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/reservationPayment/displayPayments">
+                    <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments">
                         <i class="fa-solid fa-hand-holding-dollar"></i>
                         <span class="icon_name">Payment</span>
                     </a>
