@@ -28,7 +28,7 @@
             });
         });
     </script>
-    
+
 
 </head>
 
@@ -138,7 +138,7 @@
                             <input type="text" id="des" name="des" placeholder="Destination">
                         </div>
                         <div class="input-box">
-                            <input type="date" id="tripdate" name="tripdate">
+                            <input type="text" id="tripdate" name="tripdate" placeholder="Select Date">
                         </div>
                         <div class="input-box">
                             <input type="time" id="tripTime" name="triptime">
@@ -155,6 +155,16 @@
                 </div>
             </div>
         </div>
+
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            flatpickr("#tripdate", {
+                minDate: "today",
+                dateFormat: "Y-m-d" // You can change the date format as needed
+            });
+        });
+    </script>
 </body>
 
 </html>

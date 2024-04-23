@@ -77,7 +77,7 @@ class Employees extends Controller
       $totalDailyCount = $this->employeeReservationModel->getDailyReservationCountByRouteAndDate($data['route'], $data['Date']);
 
       // Define the reservation limit
-      $reservationLimit = 3;
+      $reservationLimit = 10;
 
       // Check if the total reservation count exceeds the limit
       if (($totalMonthlyCount + $totalDailyCount) >= $reservationLimit) {

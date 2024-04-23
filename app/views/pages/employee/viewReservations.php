@@ -105,6 +105,11 @@
             color: var(--white);
             box-shadow: 0 0 10px var(--primary-color-extra-light);
         }
+
+        .disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -247,18 +252,26 @@
                                 <!-- Action buttons -->
                                 <td>
 
-                                    <a
-                                        href="<?php echo URLROOT; ?>/employees/editDailyReservation/<?php echo $reservation->ReservationID; ?>">
+                                    <?php
+                                    $disableEdit = (strtotime($reservation->Date) < strtotime('tomorrow'));
+                                    $disableDelete = (strtotime($reservation->Date) < strtotime('tomorrow'));
+                                    ?>
+                                    <a href="<?php echo URLROOT; ?>/employees/editDailyReservation/<?php echo $reservation->ReservationID; ?>"
+                                        <?php if ($disableEdit)
+                                            echo 'class="disabled"'; ?>>
+
                                         <i class="fas fa-pencil-alt" style="color: white;"></i>
                                     </a>
-
                                 </td>
                                 <td>
 
                                     <form
                                         action="<?php echo URLROOT; ?>/employees/deleteReservation/<?php echo $reservation->ReservationID; ?>"
                                         method="post">
-                                        <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                        <button type="submit" class="btn-delete" <?php if ($disableDelete)
+                                            echo 'disabled'; ?>>
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
                                     </form>
 
                                 </td>
@@ -295,18 +308,24 @@
                                 <td><?php echo $reservation->DropOff; ?></td>
                                 <!-- Action buttons -->
                                 <td>
-
-                                    <a
-                                        href="<?php echo URLROOT; ?>/employees/editMonthlyReservation/<?php echo $reservation->MReservationID; ?>"><i
-                                            class="fas fa-pencil-alt" style="color: white;"></i></a>
-
+                                    <?php
+                                    $disableEdit = (strtotime($reservation->EndDate) < strtotime('tomorrow'));
+                                    $disableDelete = (strtotime($reservation->EndDate) < strtotime('tomorrow'));
+                                    ?>
+                                    <a href="<?php echo URLROOT; ?>/employees/editMonthlyReservation/<?php echo $reservation->MReservationID; ?>"
+                                        <?php if ($disableEdit)
+                                            echo 'class="disabled"'; ?>>
+                                        <i class="fas fa-pencil-alt" style="color: white;"></i>
+                                    </a>
                                 </td>
                                 <td>
 
                                     <form
                                         action="<?php echo URLROOT; ?>/employees/deleteMonthlyReservation/<?php echo $reservation->MReservationID; ?>"
                                         method="post">
-                                        <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                        <button type="submit" class="btn-delete" <?php if ($disableDelete) echo 'disabled'; ?>>
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
                                     </form>
 
                                 </td>
@@ -321,6 +340,7 @@
             </div>
 
         </div>
+    </div>
 
 </body>
 
