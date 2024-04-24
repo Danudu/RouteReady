@@ -62,6 +62,12 @@ class Employees extends Controller
       // Retrieve user ID from session
       $user_id = $_SESSION['user_id'];
 
+      // Check if the user has already made a reservation
+      if ($this->employeeReservationModel->hasExistingReservation($user_id)) {
+        flash('error', 'You have already made a reservation.');
+        redirect('employees/viewReservation');
+      }
+
       // Prepare data array
       $data = [
         'schedule' => trim($_POST['schedule']),
@@ -97,7 +103,8 @@ class Employees extends Controller
       } else {
         // Reservation failed
         // Redirect or show error message
-        die('Something went wrong');
+        flash('error', 'Failed to make reservation. Please try again.');
+        redirect('employees/viewReservation');
       }
     } else {
       // If not a POST request, load the view with default data

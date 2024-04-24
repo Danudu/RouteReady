@@ -214,7 +214,29 @@ class EmployeeReservation
         return $this->db->resultSet();
     }
 
+    public function hasExistingReservation($user_id)
+    {
+        // Check if the user has made any daily or monthly reservations
+        return $this->hasDailyReservation($user_id) || $this->hasMonthlyReservation($user_id);
+    }
 
+    public function hasDailyReservation($user_id)
+    {
+        // Query the database to check for daily reservations
+        $this->db->query("SELECT COUNT(*) AS total FROM TransportReservation WHERE id = :user_id");
+        $this->db->bind(':user_id', $user_id);
+        $row = $this->db->single();
+        return $row->total > 0;
+    }
+
+    public function hasMonthlyReservation($user_id)
+    {
+        // Query the database to check for monthly reservations
+        $this->db->query("SELECT COUNT(*) AS total FROM MonthlyReservation WHERE id = :user_id");
+        $this->db->bind(':user_id', $user_id);
+        $row = $this->db->single();
+        return $row->total > 0;
+    }
 
 
 }
