@@ -5,7 +5,7 @@ class Employees extends Controller
   private $userModel;
   private $employeeReservationModel;
   private $workTripModel;
-  private $reservationModel;
+  private $postModel;
   public function __construct()
   {
 
@@ -20,7 +20,7 @@ class Employees extends Controller
     $this->postModel = $this->model('Post');
     $this->employeeReservationModel = $this->model('EmployeeReservation');
     $this->workTripModel = $this->model('WorkTrip');
-    $this->reservationModel = $this->model('ReservationModel');
+   
 
 
     // if (!isLoggedIn()) {
@@ -50,79 +50,72 @@ class Employees extends Controller
   }
   public function makeReservation()
   {
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      // Sanitize POST data
-      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-      // Check if user is logged in
-      if (!isset($_SESSION['user_id'])) {
-        redirect('login');
-      }
-
-      // Retrieve user ID from session
-      $user_id = $_SESSION['user_id'];
-
-      // Check if the user has already made a reservation
-      if ($this->employeeReservationModel->hasExistingReservation($user_id)) {
-        flash('error', 'You have already made a reservation.');
-        redirect('employees/viewReservation');
-      }
-
-      // Prepare data array
-      $data = [
-        'schedule' => trim($_POST['schedule']),
-        'route' => trim($_POST['route']),
-        'Date' => trim($_POST['Date']),
-        'pickup' => trim($_POST['pickup']),
-        'dropoff' => isset($_POST['dropoff']) ? trim($_POST['dropoff']) : '',
-        'id' => $user_id
-      ];
-
-      // Get the total count of both monthly and daily reservations for the route on the date
-      $totalMonthlyCount = $this->employeeReservationModel->getMonthlyReservationCountByRouteAndDate($data['route'], $data['Date']);
-      $totalDailyCount = $this->employeeReservationModel->getDailyReservationCountByRouteAndDate($data['route'], $data['Date']);
-
-      // Define the reservation limit
-      $reservationLimit = 10;
-
-      // Check if the total reservation count exceeds the limit
-      if (($totalMonthlyCount + $totalDailyCount) >= $reservationLimit) {
-        // Display error message if the limit is exceeded
-        flash('error', 'Reservation limit exceeded for this route on the selected date.');
-        // Load the view with the error message
-        $this->view('pages/employee/makeReservation', $data);
-        // Stop further execution
-        return;
-      }
-
-      // If the limit is not exceeded, proceed with making the reservation
-      if ($this->employeeReservationModel->makeReservation($data)) {
-        // Reservation successful
-        // Redirect or show success message
-        redirect('employees/viewReservation');
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          // Sanitize POST data
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+  
+          // Check if user is logged in
+          if (!isset($_SESSION['user_id'])) {
+              redirect('login');
+          }
+  
+          // Retrieve user ID from session
+          $user_id = $_SESSION['user_id'];
+  
+          // Prepare data array
+          $data = [
+              'schedule' => trim($_POST['schedule']),
+              'route' => trim($_POST['route']),
+              'Date' => trim($_POST['Date']),
+              'pickup' => trim($_POST['pickup']),
+              'dropoff' => isset($_POST['dropoff']) ? trim($_POST['dropoff']) : '',
+              'id' => $user_id
+          ];
+  
+         
+  
+          // Get the total count of both monthly and daily reservations for the route on the date
+          $totalMonthlyCount = $this->employeeReservationModel->getMonthlyReservationCountByRouteAndDate($data['route'], $data['Date']);
+          $totalDailyCount = $this->employeeReservationModel->getDailyReservationCountByRouteAndDate($data['route'], $data['Date']);
+  
+          // Define the reservation limit
+          $reservationLimit = 10;
+  
+          // Check if the total reservation count exceeds the limit
+          if (($totalMonthlyCount + $totalDailyCount) >= $reservationLimit) {
+              // Display error message if the limit is exceeded
+              flash('error', 'Reservation limit exceeded for this route on the selected date.');
+              // Load the view with the error message
+              $this->view('pages/employee/makeReservation', $data);
+              // Stop further execution
+              return;
+          }
+  
+          // If the limit is not exceeded and there is no existing reservation, proceed with making the reservation
+          if ($this->employeeReservationModel->makeReservation($data)) {
+              // Reservation successful
+              // Redirect or show success message
+              redirect('employees/viewReservation');
+          } else {
+              // Reservation failed
+              // Redirect or show error message
+              flash('error', 'Failed to make reservation. Please try again.');
+              redirect('employees/viewReservation');
+          }
       } else {
-        // Reservation failed
-        // Redirect or show error message
-        flash('error', 'Failed to make reservation. Please try again.');
-        redirect('employees/viewReservation');
+          // If not a POST request, load the view with default data
+          $data = [
+              'schedule' => '',
+              'route' => '',
+              'Date' => '',
+              'pickup' => '',
+              'dropoff' => ''
+          ];
+  
+          $this->view('pages/employee/makeReservation', $data);
       }
-    } else {
-      // If not a POST request, load the view with default data
-      $data = [
-        'schedule' => '',
-        'route' => '',
-        'Date' => '',
-        'pickup' => '',
-        'dropoff' => ''
-      ];
-
-      $this->view('pages/employee/makeReservation', $data);
-    }
   }
-
-
-
-
+  
   public function monthlyMakeReservation()
   {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -581,6 +574,27 @@ public function viewMonthlyReservations() {
     // Load the view with the monthly reservation data
     $this->view('pages/employee/viewMonthlyReservations', $data);
 }
+
+
+public function checkReservationExistence()
+{
+    // Check if any reservation exists for the next day
+    $reservationExists = $this->employeeReservationModel->checkReservationExistsByDate();
+
+    // Prepare response array
+    $response = [];
+
+    if ($reservationExists) {
+        // If reservation exists, set error message
+        $response['error'] = 'Reservations already exist for the next day.';
+    }
+
+    // Send response as JSON
+    echo json_encode($response);
+}
+
+
+
 }
 
 

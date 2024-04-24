@@ -214,29 +214,44 @@ class EmployeeReservation
         return $this->db->resultSet();
     }
 
-    public function hasExistingReservation($user_id)
-    {
-        // Check if the user has made any daily or monthly reservations
-        return $this->hasDailyReservation($user_id) || $this->hasMonthlyReservation($user_id);
-    }
 
-    public function hasDailyReservation($user_id)
+
+    public function checkReservationExistsByDate()
     {
-        // Query the database to check for daily reservations
-        $this->db->query("SELECT COUNT(*) AS total FROM TransportReservation WHERE id = :user_id");
-        $this->db->bind(':user_id', $user_id);
+        // Get the current date
+        $currentDate = date('Y-m-d');
+    
+        // Calculate the next day
+        $nextDay = date('Y-m-d', strtotime('+1 day', strtotime($currentDate)));
+    
+        // Query to check if any reservation exists for the next day
+        $this->db->query('SELECT COUNT(*) AS totalReservations 
+                          FROM TransportReservation 
+                          WHERE Date = :nextDay');
+        $this->db->bind(':nextDay', $nextDay);
+    
+        // Execute the query and fetch the result
         $row = $this->db->single();
-        return $row->total > 0;
+    
+        // Return true if there are reservations for the next day, false otherwise
+        if ($row->totalReservations > 0) {
+            return true;
+        }
+    
+        // If no daily reservations exist, check for monthly reservations
+        $this->db->query('SELECT COUNT(*) AS totalMonthly 
+                          FROM MonthlyReservation 
+                          WHERE :nextDay BETWEEN StartDate AND EndDate');
+        $this->db->bind(':nextDay', $nextDay);
+    
+        // Execute the query and fetch the result
+        $monthlyRow = $this->db->single();
+    
+        // Return true if there are monthly reservations for the next day, false otherwise
+        return $monthlyRow->totalMonthly > 0;
     }
-
-    public function hasMonthlyReservation($user_id)
-    {
-        // Query the database to check for monthly reservations
-        $this->db->query("SELECT COUNT(*) AS total FROM MonthlyReservation WHERE id = :user_id");
-        $this->db->bind(':user_id', $user_id);
-        $row = $this->db->single();
-        return $row->total > 0;
-    }
-
+    
+    
+    
 
 }
