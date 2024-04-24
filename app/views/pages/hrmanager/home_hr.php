@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/content.css">
-    <title>Welcome -To RouteReady</title>
+    <title>Home | RouteReady</title>
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
 </head>
 <body>
@@ -32,6 +32,15 @@
             </ul>
             <ul>
                 <li>
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/dashboard">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span class="icon_name">Dashboard</span>
+                    </a>
+                    <span class="tooltip">Dashboard</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
                     <a href="<?php echo URLROOT; ?>/pages/profile/<?=$_SESSION['user_id']?>">
                         <i class="fas fa-user"></i>
                         <span class="icon_name">Profile</span>
@@ -41,7 +50,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/posts/employees">
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/viewEmployees">
                         <i class="fas fa-users"></i>
                         <span class="icon_name">Employees</span>
                     </a>
@@ -50,7 +59,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/posts/drivers">
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/viewDrivers">
                         <i class="fas fa-truck-fast"></i>
                         <span class="icon_name">Drivers</span>
                     </a>
@@ -59,7 +68,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="<?php echo URLROOT; ?>/posts/terms">
                         <i class="fas fa-book-bookmark"></i>
                         <span class="icon_name">T&C</span>
                     </a>
@@ -86,15 +95,16 @@
             <div class="main">
                 <section class="welcome">
                     <div class="content">
-                        <h1>Welcome Aboard!</h1>
+                        <h1> <span>Welcome</span> Aboard!</h1>
                         <h3>Efficiency, Ease, Insights: <br>Your Corporate Mobility Revolution Begins with RouteReady</h3>
                     </div>
                     <div>
-                        <button type="button" class="btn2"><span class="spanbtn2">Book your ride, Click here now!</span><a href="#" class="bt">Login <br>As Employee</a></button>
-                        <button type="button" class="btn2"><span class="spanbtn2">Manage Employees & Drivers</span><a href="#" class="bt">Manage <br>Employees and Drivers</a></button>
+                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/users/logout" class="bt">Login As Employee</a></button>
+                        <!-- <button type="button" class="btn2"><a href="#" class="bt">Logout</a></button> -->
                     </div>
                 </section>
             </div>
+            
             <div class="footer">
                 <p>&copy; 2023 Vehicle Reservation System.</p>
                 <h4>Follow us</h4>

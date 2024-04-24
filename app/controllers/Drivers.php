@@ -20,7 +20,7 @@ class Drivers extends Controller
         'title' => 'HR Manager',
         'description' => 'This is a simple MVC framework'
       ];
-      $this->view('pages/hrmanager/home_hr', $data);
+      $this->view('pages/employee/home_emp', $data);
     }
   }
 }
