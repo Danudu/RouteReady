@@ -12,7 +12,7 @@
             $this->userModel = $this->model('User');
         }
 
-        public function employees(){
+        public function terms(){
             // Get posts
             $posts = $this->postModel->getPosts();
 
@@ -21,8 +21,23 @@
                 'posts' => $posts
             ];
 
-            $this->view('posts/employees', $data);
+            $this->view('pages/hrmanager/t&c/t&c', $data);
         }
+        // public function terms_conditions(){
+        //     // Get posts
+        //     $posts = $this->postModel->getPosts();
+        //     $date = $this->postModel->getLastUpdatedDate();
+
+        //     error_log("Last Updated Date: " . $date);
+
+
+        //     $data = [
+        //         'posts' => $posts,
+        //         'lastdate' => $date
+        //     ];
+
+        //     $this->view('pages/home', $data);
+        // }
 
         public function drivers(){
             $data = [];
@@ -58,7 +73,7 @@
                     //validated
                     if($this->postModel->addPost($data)){
                         flash('post_message', 'Post Added');
-                        redirect('posts/employees');
+                        redirect('posts/terms');
                     }
                     else{
                         die('Something went wrong');
@@ -66,7 +81,7 @@
                 }
                 else{
                     //load view with errors
-                    $this->view('posts/add', $data);
+                    $this->view('pages/hrmanager/t&c/add_t&c', $data);
                 }
                 
             }
@@ -78,7 +93,7 @@
                     'body_err' => ''
                 ];
                 
-                $this->view('posts/add', $data);   
+                $this->view('pages/hrmanager/t&c/add_t&c', $data);   
             }   
         }
 
@@ -112,7 +127,7 @@
                     //validated
                     if($this->postModel->updatePost($data)){
                         flash('post_message', 'Post Updated');
-                        redirect('posts/employees');
+                        redirect('posts/terms');
                     }
                     else{
                         die('Something went wrong');
@@ -120,7 +135,7 @@
                 }
                 else{
                     //load view with errors
-                    $this->view('posts/edit', $data);
+                    $this->view('pages/hrmanager/t&c/edit_t&c', $data);
                 }
 
             }
@@ -130,7 +145,7 @@
 
                 //check for owner
                 if($post->user_id != $_SESSION['user_id']){
-                    redirect('posts/employees');
+                    redirect('posts/terms');
                 }
 
                 $data = [
@@ -141,7 +156,7 @@
                     'body_err' => ''
                 ];
     
-                $this->view('posts/edit', $data);
+                $this->view('pages/hrmanager/t&c/edit_t&c', $data);
 
             }
         }
@@ -154,19 +169,19 @@
 
                 //check for owner
                 if($post->user_id != $_SESSION['user_id']){
-                    redirect('posts/employees');
+                    redirect('posts/terms');
                 }
 
                 if($this->postModel->deletePost($id)){
                     flash('post_message', 'Post Removed');
-                    redirect('posts/employees');
+                    redirect('posts/terms');
                 }
                 else{
                     die('Something went wrong');
                 }
             }
             else{
-                redirect('posts/employees');
+                redirect('posts/terms');
             }
         }
 
@@ -180,7 +195,7 @@
                 'user' => $user
             ];
 
-            $this->view('posts/show', $data);
+            $this->view('pages/hrmanager/t&c/show_t&c', $data);
 
         }
 
