@@ -202,6 +202,32 @@
         document.addEventListener("DOMContentLoaded", function () {
             setupFlatpickr();
         });
+
+
+        function validateForm() {
+    var schedule = document.getElementById("schedule").value;
+    var route = document.getElementById("route").value;
+    var reservationDate = document.getElementById("reservationDateDaily").value;
+    var pickup = document.getElementById("pickup").value;
+    var dropoff = document.getElementById("dropoff").value;
+
+    // Check if any of the required fields are empty
+    if (schedule === "" || route === "" || reservationDate === "" || pickup === "" || dropoff === "") {
+        alert("Please fill out all required fields.");
+        return false; // Prevent form submission
+    }
+    
+    // Additional validation logic can be added here if needed
+
+    return true; // Allow form submission
+}
+
+// Add event listener to the form's submit event
+document.getElementById("Daily").addEventListener("submit", function(event) {
+    if (!validateForm()) {
+        event.preventDefault(); // Prevent form submission if validation fails
+    }
+});
     </script>
 </head>
 
