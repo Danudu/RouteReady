@@ -1,8 +1,8 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 
 <head>
-
-    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Make WorkTrip Reservation | RouteReady</title>
@@ -15,21 +15,158 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const timeInput = document.getElementById('triptime');
-                const ampmSelect = document.getElementById('ampm');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const timeInput = document.getElementById('triptime');
+            const ampmSelect = document.getElementById('ampm');
 
-                timeInput.addEventListener('change', function () {
-                    const selectedTime = timeInput.value;
-                    const selectedAMPM = ampmSelect.value;
-                    const formattedTime = selectedTime + ' ' + selectedAMPM;
-                    timeInput.value = formattedTime;
-                });
+            timeInput.addEventListener('change', function () {
+                const selectedTime = timeInput.value;
+                const selectedAMPM = ampmSelect.value;
+                const formattedTime = selectedTime + ' ' + selectedAMPM;
+                timeInput.value = formattedTime;
             });
-        </script>
+        });
+    </script>
 
-    </head>
+    <style>
+        :root {
+            --primary-color: #111317;
+            --primary-color-light: #1f2125;
+            --primary-color-extra-light: #35373b;
+            --text-light: #d1d5db;
+            --white: #ffffff;
+            --max-width: 1200px;
+        }
+        .background {
+            background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            
+        }
+
+        .main-content {
+            padding: 50px 0;
+            backdrop-filter: blur(10px) brightness(0.8);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .wrapper {
+            background-color: rgba(31, 33, 37, 0.4);
+            border: 2px solid var(--primary-color-extra-light);
+            color: var(--white);
+            border-radius: 12px;
+            padding: 30px 40px;
+            max-width: 800px;
+            margin: auto;
+            width: 800px;
+        }
+
+        h1 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="date"],
+        input[type="time"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-color-light);
+            background-color: var(--primary-color);
+            color: var(--white);
+            box-sizing: border-box;
+            font-size: medium;
+        }
+
+        input[type="submit"],
+        .button {
+            width: 100%;
+            height: 45px;
+            /* Increased height for larger button */
+            background: var(--text-light);
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            cursor: pointer;
+            font-size: 20px;
+            /* Increased font size */
+            color: var(--primary-color);
+            font-weight: 600;
+            text-align: center;
+            line-height: 45px;
+            /* Centering text vertically */
+            display: inline-block;
+            text-decoration: none;
+            transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+            margin-top: 20px;
+            /* Added margin top */
+        }
+
+        input[type="submit"]:hover,
+        .button:hover {
+            background-color: var(--primary-color-light);
+            color: var(--white);
+            box-shadow: 0 0 10px var(--primary-color-extra-light);
+        }
+
+        .register-link {
+            text-align: center;
+        }
+
+        .register-link .button {
+            border: 2px solid var(--text-light);
+            /* Added border */
+            background: transparent;
+            color: var(--text-light);
+        }
+
+        .register-link .button:hover {
+            background: var(--primary-color-light);
+            /* Background on hover */
+            color: var(--white);
+        }
+
+        .input-box textarea {
+            height: 120px;
+            /* Adjust the height as needed */
+            resize: vertical;
+            /* Allow vertical resizing */
+            width: 100%;
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-color-light);
+            background-color: var(--primary-color);
+            color: var(--white);
+            box-sizing: border-box;
+            font-size: medium;
+        }
+    </style>
+
+
+</head>
 
 <body>
     <div class="sidebar">
@@ -88,7 +225,7 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
-            
+
             <ul class="lobtn">
                 <li>
                     <a href="<?php echo URLROOT; ?>/users/logout">
@@ -109,53 +246,64 @@
             sidebar.classList.toggle("active");
         };
     </script>
-
-
-    <div class="main-content">
-
-        <div class="container">
-            <div class="form">
-                <div class="wrapper__reg">
+    <div class="background">
+        <div class="main-content">
+            <div class="container">
+                <div class="wrapper">
                     <h1>Work Trip Reservation</h1>
                     <form action="<?php echo URLROOT; ?>/employees/makeWorkTrip" method="post">
-                        <div class="input-box">
+                        <div class="form-group">
+                            <label for="e_name">Employee Name:</label>
                             <input type="text" id="e_name" name="e_name" placeholder="Employee Name">
                         </div>
-                        <div class="input-box">
-                            <input type="text" id="email" name="email" placeholder="Email Address">
+                        <div class="form-group">
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" name="email" placeholder="Email Address">
                         </div>
-                        <div class="input-box">
+                        <div class="form-group">
+                            <label for="reason">Reason for Vehicle use:</label>
                             <input type="text" id="reason" name="reason" placeholder="Reason for Vehicle use">
                         </div>
-                        <div class="input-box">
-                            <input type="text" name="p_no" placeholder="Number of Passengers">
+                        <div class="form-group">
+                            <label for="p_no">Number of Passengers:</label>
+                            <input type="number" id="p_no" name="p_no" placeholder="Number of Passengers">
                         </div>
-                        <div class="input-box">
-                            <input type="text" id="comments" name="comments" placeholder="Comments or Special Requests">
+                        <div class="form-group">
+                            <label for="comments">Comments or Special Requests:</label>
+                            <div class="input-box">
+                                <textarea id="comments" name="comments" placeholder="Comments or Special Requests">
+                                </textarea>
+                            </div>
                         </div>
-                        <div class="input-box">
+                        <div class="form-group">
+                            <label for="des">Destination:</label>
                             <input type="text" id="des" name="des" placeholder="Destination">
                         </div>
-                        <div class="input-box">
-                            <input type="text" id="tripdate" name="tripdate" placeholder="Select Date">
+                        <div class="form-group">
+                            <label for="tripdate">Select Date:</label>
+                            <input type="date" id="tripdate" name="tripdate">
                         </div>
-                        <div class="input-box">
-                            <input type="time" id="tripTime" name="triptime">
+                        <div class="form-group">
+                            <label for="triptime">Select Time:</label>
+                            <input type="time" id="tripTime" name="triptime" style="color:aliceblue">
                             <select id="ampm" name="ampm">
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
                             </select>
                         </div>
-                        <input type="submit" value="Reserve" class="btn">
+                        <input type="submit" value="Reserve" class="button">
                     </form>
                     <div class="register-link">
-                        <a href="<?php echo URLROOT; ?>/employees/viewWorkTrips" class="btn">View Work Trips</a>
+                        <a href="<?php echo URLROOT; ?>/employees/viewWorkTrips" class="button">View Work Trips</a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
+
+
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             flatpickr("#tripdate", {
                 minDate: "today",
@@ -166,4 +314,3 @@
 </body>
 
 </html>
-

@@ -11,6 +11,60 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar2.css">
 
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
+    <style>
+        body {
+            background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            /* backdrop-filter: blur(10px) brightness(0.5); */
+        }
+        .container {
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .wrapper {
+            backdrop-filter: blur(5px);
+            background-color: rgb(31, 33, 37, 0.4);
+
+            border: 2px solid var(--primary-color-extra-light);
+
+            color: var(--white);
+            border-radius: 12px;
+            padding: 30px 40px;
+            margin: 30px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--primary-color-extra-light);
+        }
+
+        th {
+            background-color: var(--primary-color);
+        }
+
+
+        tbody tr:hover {
+            background-color: var(--primary-color-extra-light);
+
+        }
+    </style>
 </head>
 
 <body>
@@ -94,7 +148,8 @@
 
 
     <div class="main-content">
-        <div class="container">
+        <div class="wrapper">
+            <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="mt-3">Monthly Reservations</h2>
@@ -129,6 +184,8 @@
                 </div>
             </div>
         </div>
+        </div>
+        
     </div>
 </body>
 

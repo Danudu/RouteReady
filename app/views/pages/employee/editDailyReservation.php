@@ -16,6 +16,135 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+    <style>
+        :root {
+            --primary-color: #111317;
+            --primary-color-light: #1f2125;
+            --primary-color-extra-light: #35373b;
+            --text-light: #d1d5db;
+            --white: #ffffff;
+            --max-width: 1200px;
+        }
+
+        .main-content {
+            padding: 50px 0;
+            background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .container {
+            backdrop-filter: blur(10px) brightness(0.8);
+            /* max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 10px; */
+            background-color: rgba(31, 33, 37, 0.4);
+            border: 2px solid var(--primary-color-extra-light);
+            color: var(--white);
+            border-radius: 12px;
+            padding: 30px 40px;
+            max-width: 800px;
+            margin: auto;
+            width: 800px;
+        }
+
+        .topic-content {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .topic-content h2 {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .form-box {
+            background-color: rgba(31, 33, 37, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .date-topic {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .date {
+            margin-bottom: 20px;
+        }
+
+        .submit input[type="submit"] {
+            width: 100%;
+            height: 45px;
+            /* Increased height for larger button */
+            background: var(--text-light);
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            cursor: pointer;
+            font-size: 20px;
+            /* Increased font size */
+            color: var(--primary-color);
+            font-weight: 600;
+            text-align: center;
+            line-height: 45px;
+            /* Centering text vertically */
+            display: inline-block;
+            text-decoration: none;
+            transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+            margin-top: 20px;
+            /* Added margin top */
+        }
+
+        .submit input[type="submit"]:hover {
+            background-color: var(--primary-color-light);
+            color: var(--white);
+            box-shadow: 0 0 10px var(--primary-color-extra-light);
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-color-light);
+            background-color: var(--primary-color);
+            color: var(--white);
+            box-sizing: border-box;
+            font-size: medium;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-color-light);
+            background-color: var(--primary-color);
+            color: var(--white);
+            box-sizing: border-box;
+            font-size: medium;
+        }
+    </style>
+
+
     <script>
         function changeRoute() {
             var schedule = document.getElementById("schedule").value;
@@ -133,7 +262,7 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
-            
+
             <ul class="lobtn">
                 <li>
                     <a href="<?php echo URLROOT; ?>/users/logout">
@@ -168,21 +297,20 @@
                         value="<?php echo $data['reservation']->ReservationID; ?>">
                     <div class="column">
                         <section class="section">
-                            <!-- Updated structure: label followed by the dropdown -->
                             <span class="dropdown-topic"><label class="topic" for="schedule">Schedule
-                                    Type</label></span></br>
+                                    Type</label></span><br>
                             <select name="schedule" id="schedule" class="schedule" onchange="changeRoute()">
-                                <option value="Select" <?php echo ($data['reservation']->ScheduleType == 'Select') ? 'selected' : ''; ?>>Select</option>
+                                <option disabled selected>Select Type ...</option>
                                 <option value="ToWork" <?php echo ($data['reservation']->ScheduleType == 'ToWork') ? 'selected' : ''; ?>>To work</option>
                                 <option value="FromWork" <?php echo ($data['reservation']->ScheduleType == 'FromWork') ? 'selected' : ''; ?>>From work</option>
                                 <option value="BothWays" <?php echo ($data['reservation']->ScheduleType == 'BothWays') ? 'selected' : ''; ?>>Both ways</option>
                             </select>
                         </section>
 
-
-                        <section class="section"></br>
-                            <span class="dropdown-topic"><label class="topic" for="schedule">Route</label></span>
+                        <section class="section">
+                            <span class="dropdown-topic"><label class="topic" for="schedule">Route</label></span><br>
                             <select name="route" id="route" class="route">
+                                <option disabled selected>Select Route...</option>
                                 <option value="Nugegoda" <?php echo ($data['reservation']->Route == 'Nugegoda') ? 'selected' : ''; ?>>Nugegoda</option>
                                 <option value="Kaluthara" <?php echo ($data['reservation']->Route == 'Kaluthara') ? 'selected' : ''; ?>>Kaluthara</option>
                                 <option value="Gampaha" <?php echo ($data['reservation']->Route == 'Gampaha') ? 'selected' : ''; ?>>Gampaha</option>
@@ -192,8 +320,7 @@
                     </div>
                     <div class="column">
                         <section class="section">
-                            <span class="date-topic"></span> <label for="reservationDate">Reservation
-                                Date</label></span><br>
+                            <span class="date-topic"></span> <label for="reservationDate">Reservation Date</label><br>
                             <div class="date">
                                 <input type="date" name="Date" value="<?php echo $data['reservation']->Date; ?>">
                             </div>
@@ -203,26 +330,27 @@
                             <span class="pickup-topic"></span><label for="pickup">Pick Up</label>
                             <div class="pickup">
                                 <input type="text" name="pickup" value="<?php echo $data['reservation']->PickUp; ?>">
+                            </div>
                         </section>
                     </div>
-
                     <div class="column">
                         <section class="section" id="dropoff">
                             <span class="drop-topic"></span><label for="dropoff">Drop Off</label>
                             <div class="pickup">
                                 <input type="text" name="dropoff" value="<?php echo $data['reservation']->DropOff; ?>">
+                            </div>
                         </section>
                     </div>
-
                     <div class="column">
                         <section class="section">
-                            <div class="submit"><input type="submit" value="update"></div>
+                            <div class="submit"><input type="submit" value="Update"></div>
                         </section>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
