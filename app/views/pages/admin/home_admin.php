@@ -59,13 +59,32 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/hrmanagers/viewDrivers">
+                    <a href="<?php echo URLROOT; ?>/admins/addHr">
                         <i class="fas fa-truck-fast"></i>
-                        <span class="icon_name">Drivers</span>
+                        <span class="icon_name">HR Manager</span>
                     </a>
-                    <span class="tooltip">Drivers</span>
+                    <span class="tooltip">HR Manager</span>
                 </li>
             </ul>
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/admins/calculate">
+                        <i class="fas fa-users"></i>
+                        <span class="icon_name">Salary</span>
+                    </a>
+                    <span class="tooltip">Salary</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/admins/addHr">
+                        <i class="fas fa-users"></i>
+                        <span class="icon_name">HRManager</span>
+                    </a>
+                    <span class="tooltip">HRManger</span>
+                </li>
+            </ul>
+           
             <ul>
                 <li>
                     <a href="<?php echo URLROOT; ?>/posts/terms">

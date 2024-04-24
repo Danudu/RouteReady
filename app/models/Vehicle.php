@@ -2,10 +2,12 @@
 class Vehicle {
     // Define properties
     private $db;
+  
 
     public function __construct()
     {
         $this->db = new Database;
+        
     }
 
     // Example method for saving to a database
@@ -54,37 +56,17 @@ class Vehicle {
             return false;
         }
     }
+    
+
+
+ }
+   
+    
+   
+    
 
 
 
-    private $registrationNumber;
-    private $vehicleNumber;
-    private $vehicleName;
-    private $capacity;
 
-    public function viewVehicle($registrationNumber, $vehicleNumber, $vehicleName, $capacity) {
-        $this->registrationNumber = $registrationNumber;
-        $this->vehicleNumber = $vehicleNumber;
-        $this->vehicleName = $vehicleName;
-        $this->capacity = $capacity;
-    }
-
-    // Getters
-    public function getRegistrationNumber() {
-        return $this->registrationNumber;
-    }
-
-    public function getVehicleNumber() {
-        return $this->vehicleNumber;
-    }
-
-    public function getVehicleName() {
-        return $this->vehicleName;
-    }
-
-    public function getCapacity() {
-        return $this->capacity;
-    }
-}
 
 
