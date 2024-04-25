@@ -85,5 +85,25 @@ class Vehicle {
     public function getCapacity() {
         return $this->capacity;
     }
+
+
+    public function getVehicleDetails() {
+        try {
+            // Prepare query
+            $this->db->query('SELECT * FROM VehicleDetails');
+
+            // Execute query
+            $this->db->execute();
+
+            // Fetch all vehicle details as an associative array
+            $vehicles = $this->db->resultSet();
+
+            return $vehicles;
+        } catch (PDOException $e) {
+            // Log or display the error
+            echo 'Error: ' . $e->getMessage();
+            return []; // Return an empty array if an error occurs
+        }
+    }
 }
 
