@@ -424,6 +424,55 @@ class Employees extends Controller
 }
 
 
+ //  WORKTRIP 
+ public function makeWorkTrip()
+ {
+   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+     if (!isset($_SESSION['user_id'])) {
+       redirect('login');
+     }
+
+
+     $user_id = $_SESSION['user_id'];
+
+
+
+     $data = [
+       'employee_name' => trim($_POST['e_name']),
+       'email' => trim($_POST['email']),
+       'reason' => trim($_POST['reason']),
+       'numofPassengers' => trim($_POST['p_no']),
+       'destination' => trim($_POST['des']),
+       'comments' => trim($_POST['comments']),
+       'tripDate' => trim($_POST['tripdate']),
+       'tripTime' => trim($_POST['triptime']),
+       'id' => $user_id
+     ];
+
+     if ($this->workTripModel->addWorkTrip($data)) {
+
+      redirect('employees/viewWorkTrips');
+    } else {
+      die('Something went wrong.');
+    }
+  } else {
+
+    $data = [
+      'employee_name' => '',
+      'email' => '',
+      'reason' => '',
+      'numofPassengers' => '',
+      'destination' => '',
+      'comments' => '',
+      'tripDate' => '',
+      'tripTime' => ''
+    ];
+    $this->view('pages/employee/makeWorkTrip', $data);
+  }
+}
+
 
 
   public function viewWorkTrips($id = '')
