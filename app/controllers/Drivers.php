@@ -207,9 +207,10 @@ public function view_time_table($driverId) {
     'timetable'=> $timetable
   ];
 
+
   // Include the view to display the timetable
 
-  $this->view('pages/driver/apply_leave', $data);}
+  $this->view('pages/driver/driver_timetable_view', $data);}
 
 
 
