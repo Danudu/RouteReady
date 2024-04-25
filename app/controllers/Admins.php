@@ -294,6 +294,25 @@ class Admins extends Controller
             }
             $this->view('pages/admin/view_schedule', );
         } 
+        public function viewVehicle()
+        {
+            // Create an instance of the Vehicle model
+            $vehicleModel = new Vehicle();
+    
+            // Call the function to get vehicle details from the model
+            $vehicles = $vehicleModel->getAllVehicles();
+    
+            // Render the view passing the vehicle data
+            $this->view('pages/admin/viewVehicle');
+               
+        }
+        public function viewFullDayBooking()
+        {
+            // Include the view file
+            include 'pages/admin/full_day_booking.php';
+        }
+    
+    
  }
         
        

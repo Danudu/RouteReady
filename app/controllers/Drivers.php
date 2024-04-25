@@ -9,18 +9,25 @@ class Drivers extends Controller
     }
 
     $this->userModel = $this->model('User');
+    $this->postModel = $this->model('Post');
 
 
   }
-  public function home(){
+  public function home()
+  {
+    $posts = $this->postModel->getPosts();
+    $date = $this->postModel->getLastUpdatedDate();
+
+    error_log("Last Updated Date: " . $date);
+
     if (!isLoggedIn()) {
       $this->view('pages/index');
     } else {
       $data = [
-        'title' => 'HR Manager',
-        'description' => 'This is a simple MVC framework'
-      ];
-      $this->view('pages/employee/home_emp', $data);
+        'posts' => $posts,
+        'lastdate' => $date
+    ];
+      $this->view('pages/driver/home_driver', $data);
     }
   }
 }

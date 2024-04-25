@@ -2,7 +2,7 @@
 class Vehicle {
     // Define properties
     private $db;
-  
+    private $query;
 
     public function __construct()
     {
@@ -55,6 +55,37 @@ class Vehicle {
             echo 'Error: ' . $e->getMessage();
             return false;
         }
+    }
+    public function getAllVehicles()
+    {
+        // Establish database connection
+        $host = "localhost";
+        $username = "root";
+        $password = "root";
+        $db = "routeready_db";
+
+        $conn = new mysqli($host, $username, $password, $db);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Retrieve all vehicle details
+        $sql = "SELECT * FROM VehicleDetails";
+        $result = $conn->query($sql);
+        $vehicles = [];
+
+        if ($result->num_rows > 0) {
+            // Loop through the results and store them in an array
+            while ($row = $result->fetch_assoc()) {
+                $vehicles[] = $row;
+            }
+        }
+
+        // Close the database connection
+        $conn->close();
+
+        return $vehicles;
     }
     
 

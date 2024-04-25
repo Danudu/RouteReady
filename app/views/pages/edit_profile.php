@@ -59,23 +59,19 @@
                         <label for="department">Department:</label>
                         <input type="text" name="department" value="<?php echo $data['department']; ?>">
                     </div>
-                    <!-- <div class="input-box">
-                        <label for="department">Department:</label>
-                        <input type="text" name="department" value="<?php echo $data['department']; ?>">
-                    </div> -->
+                  
                     <div class="input-box">
                         <label for="password">Password:</label>
-                        <input type="password" name="password" placeholder="Enter new password"
-                            value="<?php echo $data['password']; ?>">
+                        <input type="password" name="password" placeholder="Enter password">
                         <span><?php echo $data['password_err']; ?></span>
                     </div>
 
                     <div class="input-box">
                         <label for="confirm_password">Confirm Password:</label>
-                        <input type="password" name="confirm_password" placeholder="Re-type new password"
-                            value="<?php echo $data['confirm_password']; ?>">
+                        <input type="password" name="confirm_password" placeholder="Re-type password">
                         <span><?php echo $data['confirm_password_err']; ?></span>
                     </div>
+
                     <input type="submit" value="Update" class="btn">
 
                     <div class="register-link">

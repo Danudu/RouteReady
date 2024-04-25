@@ -50,7 +50,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/admins/addVehicles">
+                    <a href="<?php echo URLROOT; ?>/admins/ viewVehicle">
                     <i class="fa-solid fa-van-shuttle"></i>
                         <span class="icon_name">Vehicle</span>
                     </a>
