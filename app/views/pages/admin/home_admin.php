@@ -51,7 +51,7 @@
             <ul>
                 <li>
                     <a href="<?php echo URLROOT; ?>/admins/addVehicles">
-                        <i class="fas fa-users"></i>
+                    <i class="fa-solid fa-van-shuttle"></i>
                         <span class="icon_name">Vehicle</span>
                     </a>
                     <span class="tooltip">vehicle</span>
@@ -59,22 +59,26 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/admins/addHr">
-                        <i class="fas fa-truck-fast"></i>
-                        <span class="icon_name">HR Manager</span>
+                    <a href="<?php echo URLROOT; ?>/admins/redirectToTimetable">
+                    <i class="fa-regular fa-calendar-days"></i>
+                        <span class="icon_name"> Schedule</span>
                     </a>
-                    <span class="tooltip">HR Manager</span>
+                    <span class="tooltip">Schedule</span>
                 </li>
             </ul>
+            
+          
+        
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/admins/calculate">
-                        <i class="fas fa-users"></i>
-                        <span class="icon_name">Salary</span>
+                    <a href="<?php echo URLROOT; ?>/admins/handleFormSubmission">
+                    <i class="fa-solid fa-comments-dollar"></i>
+                        <span class="icon_name">ODSalary</span>
                     </a>
-                    <span class="tooltip">Salary</span>
+                    <span class="tooltip">ODSalary</span>
                 </li>
             </ul>
+
             <ul>
                 <li>
                     <a href="<?php echo URLROOT; ?>/admins/addHr">
