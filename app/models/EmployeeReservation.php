@@ -216,41 +216,43 @@ class EmployeeReservation
 
 
 
-    public function checkReservationExistsByDate()
-    {
-        // Get the current date
-        $currentDate = date('Y-m-d');
+    public function checkReservationExistsByDate($userId)
+{
+    // Get the current date
+    $currentDate = date('Y-m-d');
     
-        // Calculate the next day
-        $nextDay = date('Y-m-d', strtotime('+1 day', strtotime($currentDate)));
+    // Calculate the next day
+    $nextDay = date('Y-m-d', strtotime('+1 day', strtotime($currentDate)));
     
-        // Query to check if any reservation exists for the next day
-        $this->db->query('SELECT COUNT(*) AS totalReservations 
-                          FROM TransportReservation 
-                          WHERE Date = :nextDay');
-        $this->db->bind(':nextDay', $nextDay);
+    // Query to check if any reservation exists for the next day for the logged-in user
+    $this->db->query('SELECT COUNT(*) AS totalReservations 
+                      FROM TransportReservation 
+                      WHERE Date = :nextDay AND id = :userId');
+    $this->db->bind(':nextDay', $nextDay);
+    $this->db->bind(':userId', $userId);
     
-        // Execute the query and fetch the result
-        $row = $this->db->single();
+    // Execute the query and fetch the result
+    $row = $this->db->single();
     
-        // Return true if there are reservations for the next day, false otherwise
-        if ($row->totalReservations > 0) {
-            return true;
-        }
-    
-        // If no daily reservations exist, check for monthly reservations
-        $this->db->query('SELECT COUNT(*) AS totalMonthly 
-                          FROM MonthlyReservation 
-                          WHERE :nextDay BETWEEN StartDate AND EndDate');
-        $this->db->bind(':nextDay', $nextDay);
-    
-        // Execute the query and fetch the result
-        $monthlyRow = $this->db->single();
-    
-        // Return true if there are monthly reservations for the next day, false otherwise
-        return $monthlyRow->totalMonthly > 0;
+    // Return true if there are reservations for the next day for the logged-in user, false otherwise
+    if ($row->totalReservations > 0) {
+        return true;
     }
     
+    // If no daily reservations exist, check for monthly reservations
+    $this->db->query('SELECT COUNT(*) AS totalMonthly 
+                      FROM MonthlyReservation 
+                      WHERE :nextDay BETWEEN StartDate AND EndDate AND id = :userId');
+    $this->db->bind(':nextDay', $nextDay);
+    $this->db->bind(':userId', $userId);
+    
+    // Execute the query and fetch the result
+    $monthlyRow = $this->db->single();
+    
+    // Return true if there are monthly reservations for the next day for the logged-in user, false otherwise
+    return $monthlyRow->totalMonthly > 0;
+}
+
     
     
 

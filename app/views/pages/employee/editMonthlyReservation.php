@@ -145,39 +145,26 @@
     </style>
 
     <script>
-        function changeRoute() {
-            var schedule = document.getElementById("schedule").value;
-            var pickup = document.getElementById("pickup");
-            var dropoff = document.getElementById("dropoff");
+       function changeRoute() {
+        var schedule = document.getElementById("schedule").value;
+        var pickup = document.getElementById("pickup");
+        var dropoff = document.getElementById("dropoff");
 
-            if (schedule == "ToWork") {
-                pickup.style.display = "block";
-                dropoff.style.display = "none";
-            } else if (schedule == "FromWork") {
-                pickup.style.display = "none";
-                dropoff.style.display = "block";
-            } else {
-                pickup.style.display = "block";
-                dropoff.style.display = "block";
-            }
+        if (schedule == "ToWork") {
+            pickup.style.display = "block";
+            dropoff.style.display = "none";
+            // Clear the drop off field
+            document.getElementById("dropoffField").value = "";
+        } else if (schedule == "FromWork") {
+            pickup.style.display = "none";
+            dropoff.style.display = "block";
+            // Clear the pick up field
+            document.getElementById("pickupField").value = "";
+        } else {
+            pickup.style.display = "block";
+            dropoff.style.display = "block";
         }
-
-        function changeRouteMonthly() {
-            var schedule = document.getElementById("monthly_schedule").value;
-            var monthly_pickup = document.getElementById("monthly_pickup");
-            var monthly_dropoff = document.getElementById("monthly_dropoff");
-
-            if (schedule == "ToWork") {
-                monthly_pickup.style.display = "block";
-                monthly_dropoff.style.display = "none";
-            } else if (schedule == "FromWork") {
-                monthly_pickup.style.display = "none";
-                monthly_dropoff.style.display = "block";
-            } else {
-                monthly_pickup.style.display = "block";
-                monthly_dropoff.style.display = "block";
-            }
-        }
+    }
 
         function setupFlatpickr() {
             flatpickr("#reservationDateDaily", {
@@ -290,6 +277,11 @@
                 <h2>Edit Monthly Reservation</h2>
             </div>
             <div class="form-box">
+            <?php if (flash('error')): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo flash('error'); ?>
+                        </div>
+                    <?php endif; ?>
                 <form action="<?php echo URLROOT; ?>/employees/updateMonthlyReservation" method="post"
                     class="input-group" id="Daily">
                     <input type="hidden" name="MReservationID"
@@ -339,20 +331,19 @@
                     </div>
                     <div class="column">
 
-                        <section class="section" id="pickup">
-                            <span class="pickup-topic"></span><label for="pickup">Pick Up</label>
-                            <div class="pickup">
-                                <input type="text" name="pickup" value="<?php echo $data['reservation']->PickUp; ?>">
-                        </section>
+                    <section class="section" id="pickup" style="<?php echo ($data['reservation']->ScheduleType == 'ToWork') ? 'display:block;' : 'display:none;'; ?>">
+    <span class="pickup-topic"></span><label for="pickup">Pick Up</label>
+    <div class="pickup">
+        <input type="text" id="pickupField" name="pickup" value="<?php echo $data['reservation']->PickUp; ?>">
+    </div>
+</section>
 
-
-
-                        <section class="section" id="dropoff">
-                            <span class="drop-topic"></span><label for="dropoff">Drop Off</label>
-                            <div class="pickup">
-                                <input type="text" name="dropoff" value="<?php echo $data['reservation']->DropOff; ?>">
-                        </section>
-                    </div>
+<section class="section" id="dropoff" style="<?php echo ($data['reservation']->ScheduleType == 'FromWork') ? 'display:block;' : 'display:none;'; ?>">
+    <span class="drop-topic"></span><label for="dropoff">Drop Off</label>
+    <div class="pickup">
+        <input type="text" id="dropoffField" name="dropoff" value="<?php echo $data['reservation']->DropOff; ?>">
+    </div>
+</section>
 
                     <div class="column">
                         <section class="section">

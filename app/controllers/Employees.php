@@ -73,13 +73,33 @@ class Employees extends Controller
           ];
   
          
-  
+   
+          if (empty($data['schedule']) || empty($data['route']) || empty($data['Date'])) {
+            flash('error', 'Please fill out all required fields.');
+            $this->view('pages/employee/makeReservation', $data);
+            return;
+        }
+
+        // If the schedule is "ToWork", ensure the pickup city is provided
+        if ($data['schedule'] === "ToWork" && empty($data['pickup'])) {
+            flash('error', 'Please enter the pickup city.');
+            $this->view('pages/employee/makeReservation', $data);
+            return;
+        }
+
+        // If the schedule is "FromWork", ensure the drop-off city is provided
+        if ($data['schedule'] === "FromWork" && empty($data['dropoff'])) {
+            flash('error', 'Please enter the drop-off city.');
+            $this->view('pages/employee/makeReservation', $data);
+            return;
+        }
+
           // Get the total count of both monthly and daily reservations for the route on the date
           $totalMonthlyCount = $this->employeeReservationModel->getMonthlyReservationCountByRouteAndDate($data['route'], $data['Date']);
           $totalDailyCount = $this->employeeReservationModel->getDailyReservationCountByRouteAndDate($data['route'], $data['Date']);
   
           // Define the reservation limit
-          $reservationLimit = 10;
+          $reservationLimit = 2;
   
           // Check if the total reservation count exceeds the limit
           if (($totalMonthlyCount + $totalDailyCount) >= $reservationLimit) {
@@ -117,59 +137,69 @@ class Employees extends Controller
   }
   
   public function monthlyMakeReservation()
-  {
+{
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-      if (!isset($_SESSION['user_id'])) {
-        redirect('login');
-      }
-
-      // Retrieve user ID from session
-      $user_id = $_SESSION['user_id'];
-
-      // Sanitize POST
-      $data = [
-        'schedule' => trim($_POST['schedule']),
-        'route' => trim($_POST['route']),
-        'StartDate' => trim($_POST['StartDate']),
-        'EndDate' => trim($_POST['EndDate']),
-        'pickup' => trim($_POST['pickup']),
-        'dropoff' => isset($_POST['dropoff']) ? trim($_POST['dropoff']) : '',
-        'id' => $user_id
-      ];
-
-      // Validation and further checks go here
-
-
-      // Make sure there are no errors
-      if (empty($data['route_err']) && empty($data['schedule_err'])) {
-        // Validation passed
-        // Execute
-        if ($this->employeeReservationModel->monthlyMakeReservation($data)) { // Correct method call
-          // Redirect to the desired location
-          redirect('employees/viewReservation');
-        } else {
-          die('Something went wrong');
+        if (!isset($_SESSION['user_id'])) {
+            redirect('login');
         }
-      } else {
-        // Load view with errors
-        $this->view('pages/employee/makeReservations', $data);
-      }
+
+        // Retrieve user ID from session
+        $user_id = $_SESSION['user_id'];
+
+        // Sanitize POST
+        $data = [
+            'schedule' => trim($_POST['schedule']),
+            'route' => trim($_POST['route']),
+            'StartDate' => trim($_POST['StartDate']),
+            'EndDate' => trim($_POST['EndDate']),
+            'pickup' => trim($_POST['pickup']),
+            'dropoff' => trim($_POST['dropoff']), // Always retrieve dropoff field
+            'id' => $user_id
+        ];
+
+        // Check if all required fields are filled
+        if (empty($data['schedule']) || empty($data['route']) || empty($data['StartDate']) || empty($data['EndDate'])) {
+            flash('error', 'Please fill out all required fields.');
+            $this->view('pages/employee/makeReservation', $data);
+            return;
+        }
+
+        // If the schedule is "ToWork", ensure the pickup city is provided
+        if ($data['schedule'] === "ToWork" && empty($data['pickup'])) {
+            flash('error', 'Please enter the pickup city.');
+            $this->view('pages/employee/makeReservation', $data);
+            return;
+        }
+
+        // If the schedule is "FromWork", ensure the drop-off city is provided
+        if ($data['schedule'] === "FromWork" && empty($data['dropoff'])) {
+            flash('error', 'Please enter the drop-off city.');
+            $this->view('pages/employee/makeReservation', $data);
+            return;
+        }
+
+        // Make reservation if all checks pass
+        if ($this->employeeReservationModel->monthlyMakeReservation($data)) {
+            redirect('employees/viewReservation');
+        } else {
+            die('Something went wrong');
+        }
     } else {
-      // Default data for initial load
-      $data = [
-        'schedule' => '',
-        'route' => '',
-        'StartDate' => '',
-        'EndDate' => '',
-        'pickup' => '',
-        'dropoff' => ''
-      ];
+        // Default data for initial load
+        $data = [
+            'schedule' => '',
+            'route' => '',
+            'StartDate' => '',
+            'EndDate' => '',
+            'pickup' => '',
+            'dropoff' => ''
+        ];
 
-      $this->view('pages/employee/makeReservation', $data);
+        $this->view('pages/employee/makeReservation', $data);
     }
+}
 
-  }
 
   public function viewReservation($id = '')
   {
@@ -233,63 +263,86 @@ class Employees extends Controller
 
   public function editDailyReservation($ReservationID)
   {
-    if (!isset($_SESSION['user_id'])) {
-      redirect('login');
-    }
-
-    // Retrieve the user's ID from the session
-    $user_id = $_SESSION['user_id'];
-
-    // Get the daily reservation details to populate the form
-    $reservation = $this->employeeReservationModel->getDailyReservationById($ReservationID, $user_id);
-
-
-    // Check if the reservation exists and belongs to the current user
-    if (!$reservation) {
-      // Redirect or show an error message
-      redirect('employees/viewReservation');
-    }
-
-    // Load the edit daily reservation view with reservation data
-    $data = [
-      'reservation' => $reservation
-    ];
-
-    $this->view('pages/employee/editDailyReservation', $data);
+      if (!isset($_SESSION['user_id'])) {
+          redirect('login');
+      }
+  
+      // Retrieve the user's ID from the session
+      $user_id = $_SESSION['user_id'];
+  
+      // Get the daily reservation details to populate the form
+      $reservation = $this->employeeReservationModel->getDailyReservationById($ReservationID, $user_id);
+  
+      // Check if the reservation exists and belongs to the current user
+      if (!$reservation) {
+          // Redirect or show an error message
+          redirect('employees/viewReservation');
+      }
+  
+      
+  
+      // Load the edit daily reservation view with reservation data and initial state
+      $data = [
+          'reservation' => $reservation,
+     
+      ];
+  
+      $this->view('pages/employee/editDailyReservation', $data);
   }
+  
 
   public function updateDailyReservation()
-  {
+{
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      if (!isset($_SESSION['user_id'])) {
-        redirect('login');
-      }
+        if (!isset($_SESSION['user_id'])) {
+            redirect('login');
+        }
 
-      // Retrieve user ID from session
-      $user_id = $_SESSION['user_id'];
+        // Retrieve user ID from session
+        $user_id = $_SESSION['user_id'];
 
-      // Sanitize POST
-      $data = [
-        'ReservationID' => trim($_POST['ReservationID']),
-        'schedule' => trim($_POST['schedule']),
-        'route' => trim($_POST['route']),
-        'Date' => trim($_POST['Date']),
-        'pickup' => trim($_POST['pickup']),
-        'dropoff' => isset($_POST['dropoff']) ? trim($_POST['dropoff']) : '',
-        'id' => $user_id
-      ];
+        // Sanitize POST
+        $data = [
+            'ReservationID' => trim($_POST['ReservationID']),
+            'schedule' => trim($_POST['schedule']),
+            'route' => trim($_POST['route']),
+            'Date' => trim($_POST['Date']),
+            'pickup' => trim($_POST['pickup']),
+            'dropoff' => isset($_POST['dropoff']) ? trim($_POST['dropoff']) : '',
+            'id' => $user_id
+        ];
 
-      // Update the daily reservation
-      if ($this->employeeReservationModel->updateDailyReservation($data)) {
-        redirect('employees/viewReservation');
-      } else {
-        die('Something went wrong');
-      }
+        // Validate the form fields
+        if (empty($data['schedule']) || empty($data['route']) || empty($data['Date'])) {
+            flash('error', 'Please fill out all required fields.');
+            redirect('employees/editDailyReservation/' . $data['ReservationID']);
+            return;
+        }
+
+        // If the schedule is "ToWork", ensure the pickup city is provided
+        if ($data['schedule'] === "ToWork" && empty($data['pickup'])) {
+            flash('error', 'Please enter the pickup city.');
+            redirect('employees/editDailyReservation/' . $data['ReservationID']);
+            return;
+        }
+
+        // If the schedule is "FromWork", ensure the drop-off city is provided
+        if ($data['schedule'] === "FromWork" && empty($data['dropoff'])) {
+            flash('error', 'Please enter the drop-off city.');
+            redirect('employees/editDailyReservation/' . $data['ReservationID']);
+            return;
+        }
+
+        // Update the daily reservation
+        if ($this->employeeReservationModel->updateDailyReservation($data)) {
+            redirect('employees/viewReservation');
+        } else {
+            die('Something went wrong');
+        }
     } else {
-      redirect('employees/viewReservation');
+        redirect('employees/viewReservation');
     }
-  }
-
+}
   public function editMonthlyReservation($MReservationID)
   {
     if (!isset($_SESSION['user_id'])) {
@@ -317,89 +370,58 @@ class Employees extends Controller
   }
 
   public function updateMonthlyReservation()
-  {
+{
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      if (!isset($_SESSION['user_id'])) {
-        redirect('login');
-      }
+        if (!isset($_SESSION['user_id'])) {
+            redirect('login');
+        }
 
-      // Retrieve user ID from session
-      $user_id = $_SESSION['user_id'];
+        // Retrieve user ID from session
+        $user_id = $_SESSION['user_id'];
 
-      // Sanitize POST
-      $data = [
-        'MReservationID' => trim($_POST['MReservationID']),
-        'schedule' => trim($_POST['schedule']),
-        'route' => trim($_POST['route']),
-        'StartDate' => trim($_POST['StartDate']),
-        'EndDate' => trim($_POST['EndDate']),
-        'pickup' => trim($_POST['pickup']),
-        'dropoff' => isset($_POST['dropoff']) ? trim($_POST['dropoff']) : '',
-        'id' => $user_id
-      ];
+        // Sanitize POST
+        $data = [
+            'MReservationID' => trim($_POST['MReservationID']),
+            'schedule' => trim($_POST['schedule']),
+            'route' => trim($_POST['route']),
+            'StartDate' => trim($_POST['StartDate']),
+            'EndDate' => trim($_POST['EndDate']),
+            'pickup' => trim($_POST['pickup']),
+            'dropoff' => isset($_POST['dropoff']) ? trim($_POST['dropoff']) : '',
+            'id' => $user_id
+        ];
 
-      // Update the monthly reservation
-      if ($this->employeeReservationModel->updateMonthlyReservation($data)) {
+        // Validate the form fields
+        if (empty($data['schedule']) || empty($data['route']) || empty($data['StartDate']) || empty($data['EndDate'])) {
+            flash('error', 'Please fill out all required fields.');
+            redirect('employees/editMonthlyReservation/' . $data['MReservationID']);
+            return;
+        }
+
+        // If the schedule is "ToWork", ensure the pickup city is provided
+        if ($data['schedule'] === "ToWork" && empty($data['pickup'])) {
+            flash('error', 'Please enter the pickup city.');
+            redirect('employees/editMonthlyReservation/' . $data['MReservationID']);
+            return;
+        }
+
+        // If the schedule is "FromWork", ensure the drop-off city is provided
+        if ($data['schedule'] === "FromWork" && empty($data['dropoff'])) {
+            flash('error', 'Please enter the drop-off city.');
+            redirect('employees/editMonthlyReservation/' . $data['MReservationID']);
+            return;
+        }
+
+        // Update the monthly reservation
+        if ($this->employeeReservationModel->updateMonthlyReservation($data)) {
+            redirect('employees/viewReservation');
+        } else {
+            die('Something went wrong');
+        }
+    } else {
         redirect('employees/viewReservation');
-      } else {
-        die('Something went wrong');
-      }
-    } else {
-      redirect('employees/viewReservation');
     }
-  }
-
-
-  //  WORKTRIP 
-  public function makeWorkTrip()
-  {
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-      if (!isset($_SESSION['user_id'])) {
-        redirect('login');
-      }
-
-
-      $user_id = $_SESSION['user_id'];
-
-
-
-      $data = [
-        'employee_name' => trim($_POST['e_name']),
-        'email' => trim($_POST['email']),
-        'reason' => trim($_POST['reason']),
-        'numofPassengers' => trim($_POST['p_no']),
-        'destination' => trim($_POST['des']),
-        'comments' => trim($_POST['comments']),
-        'tripDate' => trim($_POST['tripdate']),
-        'tripTime' => trim($_POST['triptime']),
-        'id' => $user_id
-      ];
-
-
-
-      if ($this->workTripModel->addWorkTrip($data)) {
-
-        redirect('employees/viewWorkTrips');
-      } else {
-        die('Something went wrong.');
-      }
-    } else {
-
-      $data = [
-        'employee_name' => '',
-        'email' => '',
-        'reason' => '',
-        'numofPassengers' => '',
-        'destination' => '',
-        'comments' => '',
-        'tripDate' => '',
-        'tripTime' => ''
-      ];
-      $this->view('pages/employee/makeWorkTrip', $data);
-    }
-  }
+}
 
 
 
@@ -578,15 +600,26 @@ public function viewMonthlyReservations() {
 
 public function checkReservationExistence()
 {
-    // Check if any reservation exists for the next day
-    $reservationExists = $this->employeeReservationModel->checkReservationExistsByDate();
+    // Check if the user is logged in
+    if (!isLoggedIn()) {
+        // If not logged in, return unauthorized response
+        http_response_code(401);
+        echo json_encode(['error' => 'Unauthorized access']);
+        return;
+    }
+
+    // Get the logged-in user's ID
+    $userId = $_SESSION['user_id'];
+
+    // Check if any reservation exists for the next day for the logged-in user
+    $reservationExists = $this->employeeReservationModel->checkReservationExistsByDate($userId);
 
     // Prepare response array
     $response = [];
 
     if ($reservationExists) {
         // If reservation exists, set error message
-        $response['error'] = 'Reservations already exist for the next day.';
+        $response['error'] = 'You have already made a reservation for the next day.';
     }
 
     // Send response as JSON

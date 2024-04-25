@@ -1,7 +1,8 @@
+
 <html>
 <title>Make Reservation | RouteReady</title>
 <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/Reservation.css">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -135,7 +136,6 @@
         padding: 10px;
         border-radius: 15px;
         border: 1px solid var(--primary-color-light);
-        background-color: var(--primary-color);
         color: var(--white);
         box-sizing: border-box;
         font-size: medium;
@@ -180,10 +180,10 @@
         var pickup = document.getElementById("pickup");
         var dropoff = document.getElementById("dropoff");
 
-        if (schedule == "Morning Schedule") {
+        if (schedule == "ToWork") {
             pickup.style.display = "block";
             dropoff.style.display = "none";
-        } else if (schedule == "Evening Schedule") {
+        } else if (schedule == "FromWork") {
             pickup.style.display = "none";
             dropoff.style.display = "block";
         } else {
@@ -197,10 +197,10 @@
         var monthly_pickup = document.getElementById("monthly_pickup");
         var monthly_dropoff = document.getElementById("monthly_dropoff");
 
-        if (schedule == "Morning Schedule") {
+        if (schedule == "ToWork") {
             monthly_pickup.style.display = "block";
             monthly_dropoff.style.display = "none";
-        } else if (schedule == "Evening Schedule") {
+        } else if (schedule == "FromWork") {
             monthly_pickup.style.display = "none";
             monthly_dropoff.style.display = "block";
         } else {
@@ -241,7 +241,8 @@
         xhr.send(JSON.stringify({ route: route, date: date }));
     }
 
-    
+
+
 
 
 </script>
@@ -350,79 +351,90 @@
                             <button type="button" class="toggle-btn" onclick="monthly()">Monthly Reservations</button>
                         </div>
 
-                        <form id="Daily" action="<?php echo URLROOT; ?>/employees/makeReservation" method="post" class="input-group" onsubmit="return validateForm()">
-    <div class="column">
-        <section class="section">
-            <span class="dropdown-topic"><label class="topic" for="schedule">Schedule Type</label></span>
-            <select name="schedule" id="schedule" class="schedule" required>
-                <option disabled selected>Select Type ...</option>
-                <option value="Morning Schedule">From Home to workplace (Morning Schedule)</option>
-                <option value="Evening Schedule">From workplace to home (Evening Schedule)</option>
-                <option value="Morning & evening schedule">Return Trip (Morning & evening schedule)</option>
-            </select>
-        </section>
+                        <form id="Daily" action="<?php echo URLROOT; ?>/employees/makeReservation" method="post"
+                            class="input-group" >
+                            <div class="column">
+                                <section class="section">
+                                    <span class="dropdown-topic"><label class="topic" for="schedule">Schedule
+                                            Type</label></span>
+                                    <select name="schedule" id="schedule" class="schedule" onchange="changeRoute()"
+                                        value="<?php echo $data['scheduleType']; ?>">
+                                        <option disabled selected>Select Type ...</option>
+                                        <option value="ToWork">To work</option>
+                                        <option value="FromWork">From work</option>
+                                        <option value="BothWays">Both ways</option>
+                                    </select>
+                                </section>
 
-        <section class="section">
-            <span class="dropdown-topic"><label class="topic">Route</label></span>
-            <select name="route" class="route" required>
-                <option disabled selected>Select Route...</option>
-                <option value="Nugegoda">Nugegoda</option>
-                <option value="Kaluthara">Kaluthara</option>
-                <option value="Gampaha">Gampaha</option>
-                <option value="Awissawella">Awissawella</option>
-            </select>
-        </section>
-    </div>
+                                <section class="section">
+                                    <span class="dropdown-topic"><label class="topic">Route</label></span>
+                                    <select name="route" class="route" value="<?php echo $data['route']; ?>">
+                                        <option disabled selected>Select Route...</option>
+                                        <option value="Nugegoda">Nugegoda</option>
+                                        <option value="Kaluthara">Kaluthara</option>
+                                        <option value="Gampaha">Gampaha</option>
+                                        <option value="Awissawella">Awissawella</option>
+                                    </select>
+                                </section>
+                            </div>
 
-    <div class="column">
-        <section class="section">
-            <span class="date-topic"></span> <label for="reservationDateDaily">Reservation Date</label></span>
-            <div class="date">
-                <input type="date" id="reservationDateDaily" name="Date" placeholder="Reservation Date" required>
-            </div>
-        </section>
+                            <div class="column">
+                                <section class="section">
+                                    <span class="date-topic"></span> <label for="reservationDate">Reservation
+                                        Date</label></span>
+                                    <div class="date">
+                                        <input type="text" id="reservationDateDaily" name="Date"
+                                            placeholder="reservation Date" readonly>
+                                    </div>
+                                </section>
+                                <div class="column">
+                                <section class="section" id="pickup">
+                                    <span class="pickup-topic"></span><label for="pickup">Pick Up</label>
+                                    <div class="pickup"> <input type="text" id="pickup" name="pickup"
+                                            placeholder="Enter pickup city" value="<?php echo $data['pickup']; ?>">
+                                    </div>
+                                </section>
+                            </div>
 
-        <section class="section" id="pickup">
-            <span class="pickup-topic"></span><label for="pickup">Pick Up</label>
-            <div class="pickup"> <input type="text" id="pickup" name="pickup" placeholder="Enter pickup city" required>
-            </div>
-        </section>
-    </div>
+                          
+                                <section class="section" id="dropoff">
+                                    <span class="drop-topic"></span><label for="dropoff">Drop Off</label>
+                                    <div class="pickup"> <input type="text" id="dropoff" name="dropoff"
+                                            placeholder="Enter drop off city" value="<?php echo $data['dropoff']; ?>">
+                                    </div>
+                                </section>
+                            </div>
 
-    <div class="column">
-        <section class="section" id="dropoff">
-            <span class="drop-topic"></span><label for="dropoff">Drop Off</label>
-            <div class="pickup"> <input type="text" id="dropoff" name="dropoff" placeholder="Enter drop off city" required>
-            </div>
-        </section>
-    </div>
+                            <div class="column">
+                                <section class="section">
+                                    <div class="submit"><input type="submit" value="Reserve"></div>
+                                </section>
+                            </div>
+                        </form>
 
-    <div class="column">
-        <section class="section">
-            <div class="submit"><input type="submit" value="Reserve"></div>
-        </section>
-    </div>
-</form>
-
-
+                        <?php if (flash('error')): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo flash('error'); ?>
+                        </div>
+                    <?php endif; ?>
                         <form id="Monthly" action="<?php echo URLROOT; ?>/employees/monthlyMakeReservation"
                             method="post" class="input-group">
                             <div class="column">
                                 <section class="section">
-                                    <label class="topic" for="monthly_schedule ">Schedule Type</label>
+                                    <label class="topic" for="monthly_schedule">Schedule Type</label>
                                     <select name="schedule" id="monthly_schedule" class="schedule"
-                                        onchange="changeRouteMonthly()" value="<?php echo $data['scheduleType']; ?>" required>
+                                        onchange="changeRouteMonthly()" value="<?php echo $data['scheduleType']; ?>">
                                         <option disabled selected>Select Type ...</option>
-                                        <option value="Morning Schedule">From Home to workplace(Morning Schedule)</option>
-                                        <option value="Evening Schedule">From workplace to home(Evening Schedule) </option>
-                                        <option value="Morning & evening schedule">Return Trip(Morning & evening schedule) </option>
+                                        <option value="ToWork">To work</option>
+                                        <option value="FromWork">From work</option>
+                                        <option value="BothWays">Both ways</option>
                                     </select>
                                 </section>
 
                                 <section class="section">
                                     <span class="dropdown-topic"><label class="topic">Route</label></span>
                                     <div class="dropdown">
-                                        <select name="route" class="route" value="<?php echo $data['route']; ?>" required>
+                                        <select name="route" class="route" value="<?php echo $data['route']; ?>">
                                         <option disabled selected>Select Route...</option>
                                             <option value="Nugegoda">Nugegoda</option>
                                             <option value="Kaluthara">Kaluthara</option>
@@ -439,7 +451,7 @@
                                         Date</label></span>
                                     <div class="date">
                                         <input type="date" id="reservationStartDate" name="StartDate"
-                                            placeholder="Reservation Start Date" required>
+                                            placeholder="Reservation Start Date">
                                     </div>
                                 </section>
 
@@ -448,7 +460,7 @@
                                         Date</label></span>
                                     <div class="date">
                                         <input type="date" id="reservationEndDate" name="EndDate"
-                                            placeholder="Reservation End Date" required>
+                                            placeholder="Reservation End Date">
                                     </div>
                                 </section>
                             </div>
@@ -457,14 +469,14 @@
                                 <section class="section" id="monthly_pickup">
                                     <span class="pickup-topic"></span><label for="monthly_pickup">Pick Up</label>
                                     <div class="pickup"> <input type="text" id="monthly_pickup" name="pickup"
-                                            placeholder="Enter pickup city" value="<?php echo $data['pickup']; ?>" required>
+                                            placeholder="Enter pickup city" value="<?php echo $data['pickup']; ?>">
                                     </div>
                                 </section>
 
                                 <section class="section" id="monthly_dropoff">
                                     <span class="drop-topic"></span><label for="monthly_dropoff">Drop Off</label>
                                     <div class="pickup"> <input type="text" id="monthly_dropoff" name="dropoff"
-                                            placeholder="Enter drop off city" value="<?php echo $data['dropoff']; ?>" required>
+                                            placeholder="Enter drop off city" value="<?php echo $data['dropoff']; ?>">
                                     </div>
                                 </section>
                             </div>
@@ -581,6 +593,5 @@
         return nextDay;
     }
 
-    
 
 </script>
