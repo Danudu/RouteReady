@@ -29,13 +29,16 @@
             <p>This is your profile page where you can view and manage your information.</p>
             <ul>
                 <li><strong>Name:</strong> <?php echo $data['user']->name; ?></li>
-                <li><strong>Employee ID:</strong> <?php echo $data['user']->emp_id; ?></li>
-                <li><strong>E-mail:</strong> <?php echo $data['user']->email; ?></li>
+                <li><strong>Driver ID:</strong> <?php echo $data['driver']->driver_id; ?></li>
+                <li><strong>Age:</strong> <?php echo $data['driver']->age; ?></li>
                 <li><strong>Contact:</strong> <?php echo $data['user']->contact_num; ?></li>
                 <li><strong>Address:</strong> <?php echo $data['user']->address; ?></li>
-                <li><strong>Department:</strong> <?php echo $data['user']->department; ?></li>
+                <li><strong>NIC Number:</strong> <?php echo $data['driver']->nic_number; ?></li>
+                <li><strong>License Number:</strong> <?php echo $data['driver']->driver_license; ?></li>
                 <li><strong>Role:</strong> <?php echo $data['user']->designation; ?></li>
-                <li><strong>Registered Date:</strong> <?php echo $data['user']->date; ?></li>
+                <li><strong>Years Of Experience:</strong> <?php echo $data['driver']->years_of_experience; ?></li>
+                <li><strong>E-mail:</strong> <?php echo $data['user']->email; ?></li>
+                
             </ul>
             <div class="button-container">
                 <a href="<?php echo URLROOT; ?>/pages/edit_profile/<?= $_SESSION['user_id'] ?>" class="button">Edit Profile</a>

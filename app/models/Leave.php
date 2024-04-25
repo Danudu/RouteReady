@@ -29,7 +29,29 @@ class Leave {
         return $this->db->execute();
     }
     
-
+    public function getLeaveCount($user_id) {
+        $sql = 'SELECT 
+                    SUM(CASE WHEN type = "sick" THEN 1 ELSE 0 END) AS sick_leave_count,
+                    SUM(CASE WHEN type = "personal" THEN 1 ELSE 0 END) AS personal_leave_count,
+                    SUM(CASE WHEN type = "other" THEN 1 ELSE 0 END) AS other_leave_count
+                FROM leaves
+                WHERE driver_id = :user_id';
+    
+        // Prepare the SQL statement
+        $this->db->query($sql);
+        $this->db->bind(':user_id', $user_id, PDO::PARAM_INT);
+    
+        // Execute the SQL statement
+        $result = $this->db->resultSet();
+    
+        
+    
+       
+    
+        // Return the result
+        return $result;
+    }
+    
     
     
     

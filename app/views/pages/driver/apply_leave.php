@@ -46,6 +46,13 @@
         </form>
     </div>
 
+    <?php
+$leaveTypeCount = $data['leaveTypeCount']; 
+
+var_dump($leaveTypeCount);
+?>
+
+
     <!-- JavaScript -->
     <script>
         document.getElementById('type').addEventListener('change', function() {

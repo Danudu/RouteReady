@@ -115,7 +115,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/pages/profile/<?= $_SESSION['user_id'] ?>">
+                    <a href="<?php echo URLROOT; ?>/drivers/profile/<?= $_SESSION['user_id'] ?>">
                         <i class="fas fa-user"></i>
                         <span class="icon_name">Profile</span>
                     </a>
@@ -186,7 +186,7 @@
                         <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/drivers/applyLeave"
                                 class="bt">Leaves</a></button>
                         <button type="button" class="btn2"><a href="<?php echo URLROOT;
-                        ; ?>/employees/viewWorkTrips" class="bt">WorkTrip Reservation</a></button>
+                        ; ?>/employees/viewWorkTrips" class="bt">Salaries</a></button>
                     </div>
                 </section>
             </div>
