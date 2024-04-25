@@ -183,10 +183,10 @@
                         </h3>
                     </div>
                     <div>
-                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/employees/viewReservation"
-                                class="bt">Transport Reservation</a></button>
+                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/drivers/applyLeave"
+                                class="bt">Leaves</a></button>
                         <button type="button" class="btn2"><a href="<?php echo URLROOT;
-                        ; ?>/employees/viewWorkTrips" class="bt">WorkTrip Reservation</a></button>
+                        ; ?>/employees/viewWorkTrips" class="bt">Salaries</a></button>
                     </div>
                 </section>
             </div>
