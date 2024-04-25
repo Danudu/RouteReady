@@ -27,15 +27,15 @@
         <div class="form">
             <div class="wrapper">
                 <?php flash('register_success'); ?>
-                <form action="<?php echo URLROOT; ?>/users/login" method="post">
-                    <h1>Login</h1>
-                    <p>Welcome back! Login to your account</p>
+                <form action="<?php echo URLROOT; ?>/hrmanagers/asEmployee" method="post">
+                    <h1>Proceed to Employee Account</h1>
+                    <p>Welcome back! Login to your employee account</p>
                     <div class="input-box">
                         <label for="email">Email:</label>
                         <input type="email" name="email" value="<?php echo $data['email']; ?>" placeholder="E-mail"
                             required>
                         <i class='bx bxs-user'></i>
-                        <span><?php echo $data['email_err']; ?></span>
+                        <!-- <span><?php echo $data['email_err']; ?></span> -->
                     </div>
                     <div class="input-box">
                         <label for="password">Password:</label>
@@ -44,14 +44,10 @@
                         <i class='bx bxs-lock-alt'></i>
                         <span><?php echo $data['password_err']; ?></span>
                     </div>
-                    <div class="remember-forgot">
-                        <label><input type="checkbox">Remember Me</label>
-                        <a href="#">Forgot Password</a>
-                    </div>
-                    <input type="submit" value="Login" class="btn">
+                    <input type="submit" value="Proceed" class="btn">
 
                     <div class="register-link">
-                        <p>Dont have an account? <a href="<?php echo URLROOT; ?>/users/register">Register</a></p>
+                        <p>Back to Management? <a href="<?php echo URLROOT; ?>/pages/home">Back</a></p>
                     </div>
                 </form>
             </div>

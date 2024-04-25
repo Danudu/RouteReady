@@ -182,4 +182,18 @@ class User{
             return false;
         }
     }
+
+    public function getLastInsertedUserId(){
+        // Prepare SQL query to get the last inserted user ID
+        $this->db->query('SELECT LAST_INSERT_ID() as user_id');
+
+        // Execute
+        $this->db->execute();
+
+        // Fetch the result
+        $row = $this->db->single();
+
+        // Return the last inserted user ID
+        return $row->user_id;
+    }
 }

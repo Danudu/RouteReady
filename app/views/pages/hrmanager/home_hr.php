@@ -99,7 +99,7 @@
                         <h3>Efficiency, Ease, Insights: <br>Your Corporate Mobility Revolution Begins with RouteReady</h3>
                     </div>
                     <div>
-                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/users/logout" class="bt">Login As Employee</a></button>
+                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/hrmanagers/asEmployee" class="bt">Login As Employee</a></button>
                         <!-- <button type="button" class="btn2"><a href="#" class="bt">Logout</a></button> -->
                     </div>
                 </section>
