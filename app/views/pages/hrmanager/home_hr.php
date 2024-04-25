@@ -32,7 +32,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/hrmanagers/dashboard">
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/viewEmployeePayments">
                         <i class="fa-solid fa-chart-line"></i>
                         <span class="icon_name">Dashboard</span>
                     </a>

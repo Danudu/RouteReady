@@ -253,7 +253,17 @@ class EmployeeReservation
     return $monthlyRow->totalMonthly > 0;
 }
 
-    
+public function getReservationsCountForRange($user_id, $start_month, $end_month, $year)
+    {
+        $reservationsCount = [];
+        
+        for ($month = $start_month; $month <= $end_month; $month++) {
+            $reservations = $this->getReservationsForMonthYear($user_id, $month, $year);
+            $reservationsCount[date('F', mktime(0, 0, 0, $month, 1))] = count($reservations);
+        }
+        
+        return $reservationsCount;
+    }    
     
 
 }
