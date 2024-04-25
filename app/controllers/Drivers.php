@@ -30,19 +30,39 @@ class Drivers extends Controller
       $bankName = $_POST['bankName'];
       $branchName = $_POST['branchName'];
       $holdersName = $_POST['holdersName'];
-      $result= $this->bankDetailsModel->addBankDetails($driver_id, $accountNo, $bankName, $branchName, $holdersName);
+
+      $result= $this->bankDetailModel->addBankDetails($driver_id, $accountNo, $bankName, $branchName, $holdersName);
+
+      
 
       echo "Success";
       
     }else{
+
       $data = [
-      'title' => 'HR Manager',
-      'description' => 'This is a simple MVC framework'
-    ];
+        
+      ];
+
     $this->view('pages/driver/add_bank_details', $data);
     }
     
   }
+
+  public function edit_bank_details(){
+    if ($_SERVER[''] == 'POST') {
+      $driver_id = $_POST[''];
+      $accountNo = $_POST[''];
+      $bankName = $_POST[''];
+      $branchName = $_POST[''];
+      $holderName = $_POST[''];
+
+      $result= $this->bankDetailModel->editBankDetails($driver_id, $accountNo, $bankName, $branchName, $holderName);
+
+      
+  }
+
+
+
 
   public function home()
   {
@@ -211,6 +231,23 @@ public function view_time_table($driverId) {
   // Include the view to display the timetable
 
   $this->view('pages/driver/driver_timetable_view', $data);}
+
+
+  public function viewSalaryReport() {
+
+    // Retrieve salary report data from the model
+    $salaryReport = $this->leaveModel->getDriverSalaryReport();
+    // var_dump($salaryReport);
+
+    // Include the view to display the salary report
+    $data = [
+      'salaryReport'=> $salaryReport
+  
+      ];
+
+      $this->view('pages/driver/driver_salary_report_view', $data);
+    
+}
 
 
 

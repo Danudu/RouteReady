@@ -51,6 +51,27 @@ class Leave {
         // Return the result
         return $result;
     }
+
+
+    public function getDriverSalaryReport(){
+        $sql = 'SELECT * FROM salary_report';
+
+        $this->db->query($sql);
+        
+        $result = $this->db->resultSet();
+
+        return $result;
+    }
+
+    public function getBankDetails($driver_id){
+        $sql = 'SELECT * FROM bank_details WHERE driver_id: driver_id';
+
+        $this->db->query($sql);
+        $this->db->bind(':driver_id', $driver_id, PDO::PARAM_INT);
+
+        $result = $this->db->resultSet();
+        return $result;
+    }
     
     
     

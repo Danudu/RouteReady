@@ -15,8 +15,25 @@ class BankDetailsModel {
     return $this->db->execute();
     }
 
+    public function editBankDetails($driver_id, $accountNo, $bankName, $branchName, $holderName) {
+        $sql = "UPDATE bank_details SET 
+        driver_id = :driver_id;
+        accountNo = :accountNo;
+        bankName = :bankName;
+        branchName = :branchName;
+        holderName = :holderName;
+        ";
 
+        $this->db->bind(":driver_id", $driver_id);
+        $this->db->bind(":accountNo", $accountNo);
+        $this->db->bind(":bankName", $bankName);
+        $this->db->bind(":branchName", $branchName);
+        $this->db->bind(":holderName", $holderName);
 
-}
+        $this->db->query($sql);
+
+        return $this->db->execute();
+
+    }
 
 ?>
