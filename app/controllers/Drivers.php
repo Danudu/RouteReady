@@ -2,6 +2,7 @@
 class Drivers extends Controller
 {
   private $leaveModel;
+  private $timetable;
   private $bankDetailsModel;
 
   public function __construct()
@@ -15,6 +16,7 @@ class Drivers extends Controller
     // Load necessary models
     $this->userModel = $this->model('User');
     $this->leaveModel = $this->model('Leave');
+    $this->timetable = $this->model('DriverTimeTableModel');
     $this->driverModel = $this->model('Driver');
     $this->bankDetailsModel = $this->model('BankDetailsModel');
   }
@@ -196,6 +198,18 @@ class Drivers extends Controller
 
     $this->view('pages/driver/apply_leave', $data);
 }
+
+public function view_time_table($driverId) {
+  // Retrieve timetable data from the model
+  $timetable = $this->timetable->getDriverTimetable($driverId);
+
+  $data = [
+    'timetable'=> $timetable
+  ];
+
+  // Include the view to display the timetable
+
+  $this->view('pages/driver/apply_leave', $data);}
 
 
 
