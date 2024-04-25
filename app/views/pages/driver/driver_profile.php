@@ -24,7 +24,7 @@
             </div>
         </nav>
         <div class="wrapper_prof">
-            <h1>Profile</h1>
+            <h1>Profile Driver</h1>
             <p class="welcome">Welcome, <?php echo $data['user']->name; ?>!</p>
             <p>This is your profile page where you can view and manage your information.</p>
             <ul>
@@ -36,6 +36,7 @@
                 <li><strong>Department:</strong> <?php echo $data['user']->department; ?></li>
                 <li><strong>Role:</strong> <?php echo $data['user']->designation; ?></li>
                 <li><strong>Registered Date:</strong> <?php echo $data['user']->date; ?></li>
+                
             </ul>
             <div class="button-container">
                 <a href="<?php echo URLROOT; ?>/pages/edit_profile/<?= $_SESSION['user_id'] ?>" class="button">Edit Profile</a>

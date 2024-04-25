@@ -115,7 +115,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/pages/profile/<?= $_SESSION['user_id'] ?>">
+                    <a href="<?php echo URLROOT; ?>/drivers/profile/<?= $_SESSION['user_id'] ?>">
                         <i class="fas fa-user"></i>
                         <span class="icon_name">Profile</span>
                     </a>
@@ -173,7 +173,7 @@
     <div class="main-content">
         <div class="container">
             <div class="header">
-                <h1>Route Ready Employee</h1>
+                <h1>Route Ready Driver</h1>
             </div>
             <div class="main">
                 <section class="welcome">
