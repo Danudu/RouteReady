@@ -34,7 +34,7 @@ function getClassBasedOnSchedule($currentType, $expectedType) {
 
         .main-content {
             padding: 50px 0;
-            background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
+            background-image: url(http://localhost:8888/RouteReady/public/img/pic5.jpg);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -263,6 +263,15 @@ function getClassBasedOnSchedule($currentType, $expectedType) {
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
+            <ul>
+                <li id="showPopup">
+                    <a href="#" onclick="event.preventDefault();" id="showPopup">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="icon_name">T&C</span>
+                    </a>
+                    <span class="tooltip">Terms & Conditions</span>
+                </li>
+            </ul>
 
             <ul class="lobtn">
                 <li>
@@ -346,6 +355,7 @@ function getClassBasedOnSchedule($currentType, $expectedType) {
             </div>
         </div>
     </div>
+    
 
 </body>
 

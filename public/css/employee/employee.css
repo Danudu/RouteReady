@@ -19,7 +19,7 @@ body {
     background-color: var(--primary-color);
     color: var(--text-light);
     font-family: Arial, sans-serif;
-    background-image: url(http://localhost/RouteReady/public/img/pic1.jpg);
+    background-image: url(http://localhost:8888/RouteReady/public/img/pic1.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

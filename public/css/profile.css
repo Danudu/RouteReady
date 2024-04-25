@@ -19,7 +19,7 @@
 
 body {
 
-    background-image: url(http://localhost/RouteReady/public/img/pic3.jpg);
+    background-image: url(http://localhost:8888/RouteReady/public/img/pic3.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

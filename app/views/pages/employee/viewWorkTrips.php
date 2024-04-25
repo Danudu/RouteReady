@@ -6,17 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkTrip Reservations | RouteReady</title>
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
-
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/worktrip.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
         body {
-            background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
+            background-image: url(http://localhost:8888/RouteReady/public/img/pic5.jpg);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -193,6 +189,15 @@
                         <span class="icon_name">Payment</span>
                     </a>
                     <span class="tooltip">Payment</span>
+                </li>
+            </ul>
+            <ul>
+                <li id="showPopup">
+                    <a href="#" onclick="event.preventDefault();" id="showPopup">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="icon_name">T&C</span>
+                    </a>
+                    <span class="tooltip">Terms & Conditions</span>
                 </li>
             </ul>
 

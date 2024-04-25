@@ -16,7 +16,7 @@
 
 
     .background {
-        background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
+        background-image: url(http://localhost:8888/RouteReady/public/img/pic5.jpg);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -309,6 +309,15 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
+            <ul>
+                <li id="showPopup">
+                    <a href="#" onclick="event.preventDefault();" id="showPopup">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="icon_name">T&C</span>
+                    </a>
+                    <span class="tooltip">Terms & Conditions</span>
+                </li>
+            </ul>
 
             <ul class="lobtn">
                 <li>
@@ -527,71 +536,57 @@
     });
 
     function setupFlatpickr() {
-        var today = new Date();
-        var tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
-        var tomorrowString = tomorrow.toISOString().split('T')[0];
+    var today = new Date();
+    var tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
+    var tomorrowString = tomorrow.toISOString().split('T')[0];
+    
+    // Calculate next month's first day and last day
+    var nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1); // Next month's first day
+    var lastDayOfNextMonth = new Date(today.getFullYear(), today.getMonth() + 2, 0); // Next month's last day
 
-        var currentTime = today.getHours(); // Get the current hour
+    flatpickr("#reservationDateDaily", {
+        defaultDate: tomorrowString, // Set the default date to tomorrow
+        dateFormat: "Y-m-d",
+        appendTo: document.getElementById("reservationDateDaily").parentNode,
+        static: true,
+        position: "below",
+        minDate: tomorrowString, // Set the minimum date to tomorrow
+        maxDate: tomorrowString // Set the maximum date to tomorrow
+    });
 
-        // If it's after 3 PM, set the default date to tomorrow, else set it to today
-        var defaultDate = currentTime >= 15 ? getNextDay(today) : today;
+    flatpickr("#reservationStartDate", {
+        defaultDate: nextMonth, // Set the default start date to the first day of next month
+        dateFormat: "Y-m-d",
+        appendTo: document.getElementById("reservationStartDate").parentNode,
+        static: true,
+        position: "below",
+        minDate: nextMonth, // Set the minimum start date to the first day of next month
+        maxDate: nextMonth, // Set the maximum start date to the last day of the next month
+        disable: [
+            function(date) {
+                // Disable all dates apart from the first day of each month
+                return (date.getDate() !== 1);
+            }
+        ]
+    });
 
-        var defaultDateString = defaultDate.toISOString().split('T')[0];
-
-        var today = new Date();
-        var tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
-        var end = new Date(today);
-        end.setDate(today.getDate() + 30); // Get the date after 30 days
-
-
-        var tomorrowString = tomorrow.toISOString().split('T')[0]; // Convert tomorrow's date to string
-        var endString = end.toISOString().split('T')[0]; // Convert the end date to strin
-
-        var today = new Date();
-        var tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
-        var end = new Date(today);
-        end.setDate(today.getDate() + 30); // Get the date after 30 days
-
-        flatpickr("#reservationDateDaily", {
-            defaultDate: tomorrowString, // Set the default date to tomorrow
-            dateFormat: "Y-m-d",
-            appendTo: document.getElementById("reservationDateDaily").parentNode,
-            static: true,
-            position: "below",
-            minDate: tomorrowString, // Set the minimum date to tomorrow
-            maxDate: tomorrowString // Set the maximum date to tomorrow
-        });
-
-        flatpickr("#reservationStartDate", {
-            defaultDate: tomorrowString, // Set the default start date to tomorrow's date
-            dateFormat: "Y-m-d",
-            appendTo: document.getElementById("reservationStartDate").parentNode,
-            static: true,
-            position: "below",
-            minDate: tomorrowString, // Set the minimum start date to tomorrow's date
-            maxDate: endString, // Set the maximum start date to 30 days from today
-        });
-
-        flatpickr("#reservationEndDate", {
-            defaultDate: endString, // Set the default end date to 30 days from today
-            dateFormat: "Y-m-d",
-            appendTo: document.getElementById("reservationEndDate").parentNode,
-            static: true,
-            position: "below",
-            minDate: tomorrowString, // Set the minimum end date to tomorrow's date
-            maxDate: endString, // Set the maximum end date to 30 days from today
-        });
-    }
-
-
-    function getNextDay(date) {
-        var nextDay = new Date(date);
-        nextDay.setDate(date.getDate() + 1); // Get the date of the next day
-        return nextDay;
-    }
+    flatpickr("#reservationEndDate", {
+        defaultDate: lastDayOfNextMonth, // Set the default end date to the last day of the next month
+        dateFormat: "Y-m-d",
+        appendTo: document.getElementById("reservationEndDate").parentNode,
+        static: true,
+        position: "below",
+        minDate: lastDayOfNextMonth, // Set the minimum end date to the last day of the next month
+        maxDate: lastDayOfNextMonth, // Set the maximum end date to the last day of the next month
+        disable: [
+            function(date) {
+                // Disable all dates apart from the last day of each month
+                return (date.getDate() !== lastDayOfNextMonth.getDate());
+            }
+        ]
+    });
+}
 
 
 </script>

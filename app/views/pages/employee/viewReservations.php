@@ -15,7 +15,7 @@
 
     <style>
         body {
-            background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
+            background-image: url(http://localhost:8888/RouteReady/public/img/pic5.jpg);
             background-position: center;
             background-repeat: no-repeat;
             background-size
@@ -230,6 +230,15 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
+            <ul>
+                <li id="showPopup">
+                    <a href="#" onclick="event.preventDefault();" id="showPopup">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="icon_name">T&C</span>
+                    </a>
+                    <span class="tooltip">Terms & Conditions</span>
+                </li>
+            </ul>
 
             <ul class="lobtn">
                 <li>
@@ -338,8 +347,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <form
-                                        action="<?php echo URLROOT; ?>/employees/deleteMonthlyReservation/<?php echo $reservation->MReservationID; ?>"
+                                    <form action="<?php echo URLROOT; ?>/employees/deleteMonthlyReservation/<?php echo $reservation->MReservationID; ?>"
                                         method="post">
                                         <button type="submit" class="btn-delete" <?php if ($disableDelete) echo 'disabled'; ?>>
                                             <i class="fas fa-trash-alt"></i>

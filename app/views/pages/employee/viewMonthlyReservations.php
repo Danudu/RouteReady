@@ -13,7 +13,7 @@
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
     <style>
         body {
-            background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
+            background-image: url(http://localhost:8888/RouteReady/public/img/pic5.jpg);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -64,6 +64,31 @@
             background-color: var(--primary-color-extra-light);
 
         }
+
+      
+.button {
+    width: 150px;
+    height: 45px;
+    background: var(--text-light);
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-align: center;
+    line-height: 45px;
+    display: inline-block;
+    text-decoration: none;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+}
+
+.button:hover {
+    background-color: var(--primary-color-light);
+    color: var(--white);
+}
     </style>
 </head>
 
@@ -124,6 +149,15 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
+            <ul>
+                <li id="showPopup">
+                    <a href="#" onclick="event.preventDefault();" id="showPopup">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="icon_name">T&C</span>
+                    </a>
+                    <span class="tooltip">Terms & Conditions</span>
+                </li>
+            </ul>
             
             <ul class="lobtn">
                 <li>
@@ -152,7 +186,7 @@
             <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="mt-3">Monthly Reservations</h2>
+                    <h2 class="mt-3">Reservations - <?php echo date('F Y', strtotime($data['selectedYear'] . '-' . $data['selectedMonth'] . '-01')); ?></h2>
                     <?php if (empty($data['reservations'])): ?>
                         <p>No reservations have been made for
                             <?php echo date('F Y', strtotime($data['selectedYear'] . '-' . $data['selectedMonth'] . '-01')); ?>
@@ -184,6 +218,7 @@
                 </div>
             </div>
         </div>
+        <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments" class="button" id="back" >Back</a>
         </div>
         
     </div>
