@@ -137,45 +137,47 @@ class Hrmanagers extends Controller
     $this->view('pages/hrmanager/view_drivers_more', $data);
   }
 
-    public function viewEmployeePayment()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Get form data
-            $employee_id = $_POST['employee_id'];
-            $start_month = $_POST['start_month'];
-            $end_month = $_POST['end_month'];
-            $year = date('Y'); // You can customize the year as needed
-
-            // Get reservations count for the range of months and year
-            $reservationsCount = $this->reservationModel->getReservationsCountForRange($employee_id, $start_month, $end_month, $year);
-
-            // Calculate payment based on reservations count
-            $paymentData = [];
-            foreach ($reservationsCount as $month => $count) {
-                // Calculate payment here based on count
-                // For example, assuming $rate per reservation:
-                $rate = 400; // Example rate per reservation
-                $payment = $count * $rate;
-                $paymentData[$month] = $payment;
-            }
-
-            // Prepare data to pass to view
-            $data = [
-                'employee_id' => $employee_id,
-                'start_month' => $start_month,
-                'end_month' => $end_month,
-                'year' => $year,
-                'reservationsCount' => $reservationsCount,
-                'paymentData' => $paymentData
-            ];
-
-            // Load view with data
-            $this->view('pages/hrmanager/view_employee_payment', $data);
-        } else {
-            // Handle if the POST request is not properly set
-            redirect('hrmanagers/home');
-        }
-    }
+  public function viewEmployeePayment()
+  {
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          // Get form data
+          $employee_id = $_POST['employee_id'];
+          $start_month = $_POST['start_month'];
+          $end_month = $_POST['end_month'];
+          $year = date('Y'); // You can customize the year as needed
+  
+          // Load EmployeeReservation model
+          $employeeReservationModel = $this->model('EmployeeReservation');
+  
+          // Get reservations count for the range of months and year
+          $reservationsCount = $employeeReservationModel->getReservationCountForMonths($employee_id, $start_month, $end_month, $year);
+  
+          // Calculate total payment based on reservations count
+          $totalPayment = 0;
+          foreach ($reservationsCount as $count) {
+              // Assuming $rate per reservation
+              $rate = 400; // Example rate per reservation
+              $totalPayment += $count * $rate;
+          }
+  
+          // Prepare data to pass to view
+          $data = [
+              'employee_id' => $employee_id,
+              'start_month' => $start_month,
+              'end_month' => $end_month,
+              'year' => $year,
+              'reservationsCount' => $reservationsCount,
+              'totalPayment' => $totalPayment
+          ];
+  
+          // Load view with data
+          $this->view('pages/hrmanager/view_employee_payment', $data);
+      } else {
+          // Handle if the POST request is not properly set
+          redirect('hrmanagers/home');
+      }
+  }
+  
 }
 
   

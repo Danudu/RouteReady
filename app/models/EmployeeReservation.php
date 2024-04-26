@@ -253,17 +253,37 @@ class EmployeeReservation
     return $monthlyRow->totalMonthly > 0;
 }
 
-public function getReservationsCountForRange($user_id, $start_month, $end_month, $year)
-    {
+public function getReservationCountForCount($user_id, $start_month, $end_month, $year)
+{
+    try {
+        // Initialize an array to store reservation counts for each month
         $reservationsCount = [];
-        
+
+        // Loop through each month within the given period
         for ($month = $start_month; $month <= $end_month; $month++) {
-            $reservations = $this->getReservationsForMonthYear($user_id, $month, $year);
-            $reservationsCount[date('F', mktime(0, 0, 0, $month, 1))] = count($reservations);
+            // Query to count reservations for each month
+            $this->db->query("SELECT COUNT(*) AS totalReservations 
+                              FROM TransportReservation 
+                              WHERE id = :user_id 
+                              AND MONTH(Date) = :month 
+                              AND YEAR(Date) = :year");
+            $this->db->bind(':user_id', $user_id);
+            $this->db->bind(':month', $month);
+            $this->db->bind(':year', $year);
+            
+            // Execute the query and fetch the result
+            $result = $this->db->single();
+            
+            // Store the count for the current month
+            $reservationsCount[$month] = $result->totalReservations;
         }
-        
+
         return $reservationsCount;
-    }    
-    
+    } catch (PDOException $e) {
+        // Log or display the error
+        echo 'Error: ' . $e->getMessage();
+        return false;
+    }
+}
 
 }
