@@ -1,6 +1,9 @@
 <?php
 class Drivers extends Controller
 {
+  private $userModel;
+  private $postModel;
+  private $driverModel;
   public function __construct()
   {
     // if not logged in, redirect to landing page
@@ -90,7 +93,6 @@ class Drivers extends Controller
           'driver_license' => trim($_POST['driver_license']),
           'vehicle_type' => trim($_POST['vehicle_type']),
           'years_of_experience' => trim($_POST['years_of_experience']),
-          'department' => trim($_POST['department']),
           'password' => trim($_POST['password']),
           'confirm_password' => trim($_POST['confirm_password']),
           'name_err' => '',

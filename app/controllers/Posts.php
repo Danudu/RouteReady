@@ -1,6 +1,8 @@
 <?php
 
     class Posts extends Controller{
+        private $postModel;
+        private $userModel;
 
         public function __construct(){
             // if not logged in, redirect to landing page

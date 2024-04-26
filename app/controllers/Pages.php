@@ -1,6 +1,7 @@
 <?php
 class Pages extends Controller
 {
+  private $userModel;
   public function __construct()
   {
     // if not logged in, redirect to landing page

@@ -4,6 +4,7 @@ class Admins extends Controller
 {
 
   private $userModel;
+  private $postModel;
   private $VehicleModel;
   public function __construct()
   {
@@ -100,38 +101,4 @@ class Admins extends Controller
           $this->view('pages/admin/addVehicles', $data); // Load the view with form fields
       }
   }
-
-    public function getVehicleDetails() {
-        // Establish a database connection
-        // $host = "localhost";
-        // $username = "root";
-        // $password = "root";
-        // $db = "RouteReady";
-
-        // $conn = new mysqli($host, $username, $password, $db);
-
-        // if ($conn->connect_error) {
-        //     die("Connection failed: " . $conn->connect_error);
-        // }
-
-        // Retrieve all vehicle details
-        $sql = "SELECT * FROM VehicleDetails";
-        $result = $conn->query($sql);
-        $vehicles = [];
-
-        if ($result->num_rows > 0) {
-            // Loop through the results and create Vehicle objects
-            while ($row = $result->fetch_assoc()) {
-                $vehicle = new Vehicle($row["Registration_Number"], $row["Vehicle_Number"], $row["Vehicle_Name"], $row["capacity"]);
-                $vehicles[] = $vehicle;
-            }
-        }
-
-        // Close the database connection
-        // $conn->close();
-
-        return $vehicles;
-    }
-
-
 }

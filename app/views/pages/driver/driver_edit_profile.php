@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile | <?php echo $data['user']->name; ?></title>
+    <title>Profile | <?php echo $data['name'] ?></title>
     <link rel="stylesheet" href="styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/profile.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/edit_profile.css">
 </head>
 
 <body>
