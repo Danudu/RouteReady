@@ -49,13 +49,23 @@ class Hrmanagers extends Controller
       // Handle the update using $id and $action
       // For example:
       $action = $_POST['action'];
-      $status = $action === 'approve' ? 'approved' : 'pending';
-      if ($this->userModel->updatestatus($id, $status)) {
+      if ($action === 'approve') {
+        $status = 'approved';
+    } elseif ($action === 'reject') {
+        $status = 'rejected';
+    } elseif ($action === 'approve') {
+        $status = 'approved';
+    } else {
+        // Handle invalid action
+        die('Invalid action');
+    }
+    
+    if ($this->userModel->updatestatus($id, $status)) {
         flash('post_message', 'Employee status updated');
         redirect('hrmanagers/viewEmployees');
-      } else {
+    } else {
         die('Something went wrong');
-      }
+    }
     } else {
       // Handle if the POST request is not properly set
       redirect('hrmanagers/viewEmployees');

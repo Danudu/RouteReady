@@ -6,6 +6,7 @@ class Employees extends Controller
   private $employeeReservationModel;
   private $workTripModel;
   private $reservationModel;
+  private $postModel;
   public function __construct()
   {
 
