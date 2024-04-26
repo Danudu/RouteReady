@@ -55,17 +55,18 @@
         <label for="week"><h2>For The Week:</h2></label>
         <input type="week" name="week" id="week" onchange="updateDateInput()">
         <br>
-        <button onclick="viewAvailableVehicles()">View Available Vehicles</button>
-    </div>
+        
+    
     <br>
-    <div style="text-align: center; margin-top: 20px;">
-        <a href="full_day_booking.php"><button>Full Day Reservation</button></a>
-    </div>
-
+    
+        <a href="<?php echo URLROOT; ?>/admins/viewFullDayBooking" class="button">View Full Day Booking</a>
+    
+        </div>
     <h2 style="text-align: center;">Short-Term Reservation</h2>
 
     <div class="form-container">
-       
+                   <a href="<?php echo URLROOT; ?>/admins/availableVehicles" class="button" id="viewAvailableVehicles">View Available Vehicles</a>
+
         <form method="post" action="<?php echo URLROOT; ?>/admins/redirectToTimetable">
             <label for="b_date">Date:</label>
             <input type="date" id="date" name="date" min="<?php echo date('Y-m-d'); ?>" required><br><br>
@@ -167,7 +168,7 @@ foreach ($timeSlots as $slot) {
         if ($count > 0) {
             echo "<div class='cell with-data'>";
             echo "Records: $count<br>";
-            echo "<button onclick=\"viewTimetable('$day', '$slot')\">View</button>";
+            echo "<button onclick=\"redirectToViewSchedule('$day', '$slot')\">View</button>";
             echo "</div>";
         } else {
             echo "<div class='cell'></div>";
@@ -203,9 +204,6 @@ foreach ($timeSlots as $slot) {
     </div>
 
     <script>
-        function viewAvailableVehicles() {
-            window.location.href = 'available_vehicle.php';
-        }
 
         function viewTimetable(day, timeSlot) {
             window.location.href = 'timetable_view.php?day=' + encodeURIComponent(day) + '&time_slot=' + encodeURIComponent(timeSlot);
@@ -273,6 +271,26 @@ foreach ($timeSlots as $slot) {
             var month = (date.getMonth() + 1).toString().padStart(2, '0');
             var day = date.getDate().toString().padStart(2, '0');
             return `${year}-${month}-${day}`;
+        }
+        document.getElementById('viewAvailableVehicles').addEventListener('click', function() {
+        // Fetch available vehicles from the server using AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Replace the content of a div with the response from the server
+                    document.getElementById('availableVehicles').innerHTML = xhr.responseText;
+                } else {
+                    // Handle error
+                    console.error('Failed to fetch available vehicles');
+                }
+            }
+        };
+        xhr.open('GET', '<?php echo URLROOT; ?>/admins/viewAvailableVehicles', true);
+        xhr.send();
+    });
+    function redirectToViewSchedule(day, slot) {
+            window.location.href = '<?php echo URLROOT; ?>/admins/viewSchedule?day=' + day + '&timeSlot=' + slot;
         }
     </script>
 </body>

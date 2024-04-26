@@ -20,7 +20,7 @@
 }
 
 body{
-    background-image: url(http://localhost/RouteReady/public/img/highway.gif);
+    background-image: url(http://localhost:8888/RouteReady/public/img/highway.gif);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

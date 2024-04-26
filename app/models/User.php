@@ -118,6 +118,13 @@ class User{
 
         return $results;
     }
+    public function getHrmanager(){
+        $this->db->query('SELECT * FROM users WHERE designation = "hrmanager"');
+
+        $results = $this->db->resultSet();
+
+        return $results;
+    }
 
     public function updatestatus($id, $status){
         $this->db->query('UPDATE users SET status = :status WHERE id = :id');

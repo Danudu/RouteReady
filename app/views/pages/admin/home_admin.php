@@ -50,7 +50,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/admins/ viewVehicle">
+                    <a href="<?php echo URLROOT; ?>/admins/addVehicles">
                     <i class="fa-solid fa-van-shuttle"></i>
                         <span class="icon_name">Vehicle</span>
                     </a>
@@ -81,7 +81,7 @@
 
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/admins/addHr">
+                    <a href="<?php echo URLROOT; ?>/admins/viewhr">
                         <i class="fas fa-users"></i>
                         <span class="icon_name">HRManager</span>
                     </a>
@@ -122,7 +122,7 @@
                         <h3>Efficiency, Ease, Insights: <br>Your Corporate Mobility Revolution Begins with RouteReady</h3>
                     </div>
                     <div>
-                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/users/logout" class="bt">Login As Employee</a></button>
+                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/admins/asEmployee" class="bt">Login As Employee</a></button>
                         <!-- <button type="button" class="btn2"><a href="#" class="bt">Logout</a></button> -->
                     </div>
                 </section>

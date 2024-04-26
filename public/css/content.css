@@ -16,7 +16,6 @@
     left: 85px;
     transition: all 0.5s ease;
     width: calc(100% - 85px);
-    background-image: url(/hrmanager/img/highway.gif);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

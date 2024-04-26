@@ -15,15 +15,13 @@
         </div>
    
         <form id="vehicleForm" action="<?php echo URLROOT; ?>/admins/addVehicles" method="post">
-        <a href="viewVehicle.php" class="button">View Vehicles all</a>
+       
 
         <div>
          <a href="<?php echo URLROOT; ?>/admins/viewVehicle" class="btn">View Vehicles</a>
-         <a href="viewVehicles.php" class="btn">Add Vehicle</a>
+        
          </div>
-            <div >
-                 <a href="<?php echo URLROOT; ?>/admins/viewVehicleDetails" class="btn">View Vehicles</a>
-            </div>
+            
             <div class="form-group">
                 <button type="button" id="viewRegistrationBtn">View Registration</button>
             </div>

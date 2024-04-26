@@ -2,11 +2,15 @@
 class Vehicle {
     // Define properties
     private $db;
-    private $query;
+    private $result;
+   
+   
+  
 
     public function __construct()
     {
         $this->db = new Database;
+        
         
     }
 
@@ -56,41 +60,113 @@ class Vehicle {
             return false;
         }
     }
-    public function getAllVehicles()
-    {
-        // Establish database connection
-        $host = "localhost";
-        $username = "root";
-        $password = "root";
-        $db = "routeready_db";
-
-        $conn = new mysqli($host, $username, $password, $db);
-
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+  
+    public function getVehicleDetails() {
+        try {
+            $this->db->query("SELECT Registration_Number, Vehicle_Number, Vehicle_Name, capacity FROM VehicleDetails;");
+            $this->db->execute();
+            $results = $this->db->resultSet();
+            // Debugging: Check if results are fetched
+           
+            return $results;
+        } catch (Exception $e) {
+            // Error handling: Log or handle the exception appropriately
+            return []; // Return empty array or handle error as needed
         }
-
-        // Retrieve all vehicle details
-        $sql = "SELECT * FROM VehicleDetails";
-        $result = $conn->query($sql);
-        $vehicles = [];
-
-        if ($result->num_rows > 0) {
-            // Loop through the results and store them in an array
-            while ($row = $result->fetch_assoc()) {
-                $vehicles[] = $row;
-            }
-        }
-
-        // Close the database connection
-        $conn->close();
-
-        return $vehicles;
     }
     
 
+    public function get_vehicle_details($reg_no) {
+        try {
+            // Prepare the SQL statement
+            $sql = "SELECT * FROM VehicleDetails WHERE Registration_Number = ?";
+    
+            // Prepare the query
+            $this->db->query($sql, array($reg_no));
+    
+            // Execute the query
+            $this->db->execute();
+    
+            // Fetch the result as an associative array
+            $result = $this->db->single(); // Assuming 'single()' fetches a single row
+    
+            return $result;
+        } catch (Exception $e) {
+            // Error handling: Log or handle the exception appropriately
+            return null; // Return null or handle error as needed
+        }
+    }
+    
+    
 
- }
+    public function getCustomColumnNames() {
+        // Customize column names as needed
+        $custom_column_names = array(
+            "Registration_Number" => "Registration Number",
+            "Vehicle_Number" => "Vehicle Number",
+            "Vehicle_Name" => "Vehicle Type",
+            "capacity" => "Capacity",
+            "Vehicle_Type" => "Vehicle_type",
+            "model" => "Model",
+            "r_year" => "Registration Year",
+            "vin" => "VIN",
+            "year" => "Manufacture Year",
+            "insu_pro" => "Insurance Provider",
+            "insu_pn" => "Insurance Number"
+            // Add more column names as needed
+        );
+    
+        return $custom_column_names;
+    }
+    
+    
+        public function getBookedDays() {
+            $this->db->query( $sql = "SELECT vd.Vehicle_Name, vd.capacity, t1.date AS booked_date
+                    FROM VehicleDetails vd
+                    LEFT JOIN (
+                        SELECT vehicle_id, date FROM timetable WHERE date >= CURDATE()
+                    ) AS t1 ON vd.Vehicle_Number = t1.vehicle_id
+                    LEFT JOIN (
+                        SELECT vehicle_id, b_date AS date FROM fullday_timetable WHERE b_date >= CURDATE()
+                    ) AS t2 ON vd.Vehicle_Number = t2.vehicle_id");
+    
+            
+            $this->db->query($sql);
+            $this->db->execute();
+            $results = $this->db->resultSet();
+    
+            if (!$results) {
+                die("Query failed: " );
+            }
+    
+            $booked_days = [];
+            while ($row = mysqli_fetch_assoc($results)) {
+                $vehicleName = $row['Vehicle_Name'];
+                $capacity = $row['capacity'];
+                $booked_days[$vehicleName][$capacity][] = date('l', strtotime($row['booked_date']));
+            }
+    
+            mysqli_free_result($results);
+            return $booked_days;
+        }
+       
+    }
+    
+    
+       
+
+    
+    
+
+    
+    
+    
+      
+      
+    
+    
+
+ 
    
     
    

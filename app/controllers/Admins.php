@@ -8,7 +8,11 @@ class Admins extends Controller
   private $bankModel;
   private $salaryModel;
   private $outsalaryModel;
-
+  private $adminModel;
+  private $postModel;
+  
+ 
+  
   
   public function __construct()
   {
@@ -26,18 +30,12 @@ class Admins extends Controller
     $this->bankModel = $this->model('BankModel');
     $this->salaryModel = $this->model('Salary');
     $this->outsalaryModel = $this->model('OutSalaryModel'); 
-    
-  
-    
-
-
-    // if (!isLoggedIn()) {
-    //     $this->view('pages/index');
-    //   }
-
-    //   $this->userModel = $this->model('User');
+    $this->adminModel = $this->model('Admin');
    
+  
 
+
+   
   }
   public function home()
   {
@@ -112,147 +110,7 @@ class Admins extends Controller
       }
   }
 
-  public function addHr()
-  {
-      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-          // Handle form submission
-          
-          // Sanitize form data
-          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-          
-          // Check if user is logged in (You may adjust this part based on your authentication system)
-          if (!isset($_SESSION['user_id'])) {
-              redirect('login');
-          }
-          
-          // Prepare data from the form
-          $data = [
-              'e_name' => trim($_POST['e_name']),
-              'e_no' => trim($_POST['e_no']),
-              'nic' => trim($_POST['nic']),
-              'position' => trim($_POST['position']),
-              'date' => trim($_POST['date']),
-              'email' => trim($_POST['email'])
-          ];
-          
-          // Instantiate the HR reservation model
-          $hrModel = $this->model('Hrreservation');
-          
-          // Call the addHrManager method from the model to insert the data into the database
-          if ($hrModel->addHr($data)) {
-              redirect('pages/admin/viewHr'); // Redirect after successful insertion
-          } else {
-              die('Something went wrong.'); // Handle error if insertion fails
-          }
-      } else {
-          // If request method is not POST, load the view with empty form fields
-          $data = [
-              'e_name' => '',
-              'e_no' => '',
-              'nic' => '',
-              'position' => '',
-              'date' => '',
-              'email' => ''
-          ];
-          $this->view('pages/admin/addHr', $data); // Load the view with form fields
-      }
-  }
 
-   
-
-    
-
-    // Add bank details
-    public function addBankDetails() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-            // Data array
-            $data = [
-                'driver_id' => trim($_POST['driver_id']),
-                'accountNo' => trim($_POST['accountNo']),
-                'bankName' => trim($_POST['bankName']),
-                'branchName' => trim($_POST['branchName']),
-                'holdersName' => trim($_POST['holdersName'])
-            ];
-
-            // Call model method to add bank details
-            if ($this->bankModel->addBankDetails($data)) {
-                // Bank details added successfully
-                // Redirect or do something else as needed
-            } else {
-                die('Something went wrong.');
-            }
-        } else {
-            // If not a POST request, load the view for adding bank details
-            $this->view('add_bank_details');
-        }
-    }
-
-
-    
-
-    public function calculate() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Retrieve form data
-            $driver_id = $_POST['driver_id'];
-            $number_of_days = $_POST['number_of_days'];
-            $additional_deduction_days = $_POST['additional_deduction_days']; // Additional days for deduction
-            $basic_salary_per_day = $_POST['basic_salary_per_day'];
-            $additional_deduction_payment = $_POST['additional_deduction_payment'];
-            $service_commission_percentage = $_POST['service_commission_percentage'];
-
-            // Perform any necessary validation
-
-            // Calculate basic salary based on number of days
-            $basic_salary = $basic_salary_per_day * $number_of_days;
-
-            // Calculate additional deduction
-            $additional_deduction_amount = $additional_deduction_days * $additional_deduction_payment;
-
-            // Calculate service commission
-            $service_commission = ($basic_salary / 100) * $service_commission_percentage;
-
-            // Calculate total salary
-            $total_salary = $basic_salary - $additional_deduction_amount + $service_commission;
-
-            // Create data array for database insertion
-            $salaryData = [
-                'paymentID' => $this->generatePaymentID($driver_id),
-                'driver_id' => $driver_id,
-                'month' => date('F'), // Get the current month (Full name)
-                'year' => date('Y'), // Get the current year (4-digit)
-                'basic_salary' => $basic_salary,
-                'number_of_days' => $number_of_days,
-                'additional_deduction_days' => $additional_deduction_days,
-                'additional_deduction_amount' => $additional_deduction_amount,
-                'service_commission' => $service_commission,
-                'total_salary' => $total_salary,
-                'status' => '0' // Set default status to 'Pending'
-            ];
-
-            // Insert salary data into the database
-            $this->salaryModel->insertSalary($salaryData);
-
-            
-            $this->view('pages/admin/addSalary', $salaryData);
-        } else {
-            // If request method is not POST, load the salary calculation view
-            $this->view('pages/admin/addSalary');
-        }
-    }
-
-    // Method to generate a unique paymentID based on driver_id, month, and year
-    private function generatePaymentID($driver_id) {
-        $month_year = date("my"); // Get the current month and year (formatted as 'mmyy')
-        $payment_id = $driver_id . $month_year; // Concatenate the driver_id with the month and year
-        
-        return $payment_id;
-    }
-   
-    
- 
     
     // Function to handle form submission and insert salary details
     function handleFormSubmission() {
@@ -286,7 +144,7 @@ class Admins extends Controller
             $this->view('pages/admin/out_salary');
              }
         }
-        function redirectToTimetable() {
+    function redirectToTimetable() {
             if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['driver_id'])) {
                 $driver_id = $_GET['driver_id'];
                 header("Location: view_schedule.php?driver_id=$driver_id");
@@ -294,26 +152,212 @@ class Admins extends Controller
             }
             $this->view('pages/admin/view_schedule', );
         } 
-        public function viewVehicle()
-        {
-            // Create an instance of the Vehicle model
-            $vehicleModel = new Vehicle();
+    public function viewvehicle() {
+            // Retrieve all vehicle details
+            $data['vehicles'] = $this->VehicleModel->getVehicleDetails();
     
-            // Call the function to get vehicle details from the model
-            $vehicles = $vehicleModel->getAllVehicles();
-    
-            // Render the view passing the vehicle data
-            $this->view('pages/admin/viewVehicle');
-               
+            // Pass the data to the view
+            $this->view('pages/admin/viewVehicles', $data);
         }
-        public function viewFullDayBooking()
-        {
-            // Include the view file
-            include 'pages/admin/full_day_booking.php';
-        }
+        
+            // Your existing code here
+        
+            
+            
+                // Method to handle displaying available vehicles
+    public function availableVehicles() {
+                    
+                    $bookedDays = $this->VehicleModel->getBookedDays();
+                    
+                    include('pages/admin/available_vehicles.php');
+                }
+                public function viewSchedule($day, $timeSlot) {
+                    include 'Model.php'; // Include the Model
+                    
+                    $timetable = $model->getTimetable($day, $timeSlot);
+                    
+                    if ($timetable !== null) {
+                        $this->view('pages/admin/schedule_view', );// Include the View
+                    } else {
+                        echo "No timetable data available.";
+                    }
+                }
+                function viewMoreDetails($reg_no) {
+                    
+                   
+                    // Create Vehicle model object
+                    $vehicle = new Vehicle();
+                
+                    // Fetch vehicle details based on registration number
+                    $vehicle_details = $vehicle->get_vehicle_details($reg_no);
+                
+                   
+                   
+                    $this->view('pages/admin/view_more');
+                }
+                
+                // Function to handle deleting a vehicle record
+                
+                
+                
+            
+
+public function asEmployee(){
+ 
+                    // Check for POST
+                    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                        // Process form
+                
+                        // Sanitize POST data
+                        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                
+                        //init data
+                        $data = [
+                            'email' => $_SESSION['user_email'], // Use the logged-in user's email
+                            'password' => trim($_POST['password']),
+                            'password_err' => '',
+                        ];
+                
+                        // Validate Password
+                        if(empty($data['password'])){
+                            $data['password_err'] = 'Please enter password';
+                        }
+                
+                        // Make sure errors are empty
+                        if(empty($data['password_err'])){
+                            // Validated
+                
+                            // Check and set logged in user
+                            $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+                            if($loggedInUser){
+                                
+                                redirect('employees/home');
+                            } else {
+                                $data['password_err'] = 'Password incorrect';
+                                $this->view('pages/admin/as_employee', $data);
+                            }
+                
+                        } else {
+                            // Load view with errors
+                            $this->view('pages/admin/as_employee', $data);
+                        }
+                
+                    } else {
+                        // Init data
+                        $data = [
+                            'email' => $_SESSION['user_email'], // Use the logged-in user's email
+                            'password' => '',
+                            'password_err' => ''
+                        ];
+                        // Load view
+                        $this->view('pages/admin/as_employee', $data);
+                    }   
+}
+public function viewhr()
+{
+  $hrmanagers = $this->userModel->getHrmanager();
+  $data = [
+    'hrmanagers' => $hrmanagers
+  ];
+  $this->view('pages/admin/view_hr', $data);
+}          
+public function deleteHR($id)
+{
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Handle the delete using $id
+    // For example:
+    if ($this->userModel->deleteEmployee($id)) {
+      flash('post_message', 'HrManager deleted');
+      redirect('admins/viewhr');
+    } else {
+      die('Something went wrong');
+    }
+  } else {
+    // Handle if the POST request is not properly set
+    redirect('admins/viewhr');
+  }
+}
+public function updateHRStatus($id)
+  {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Handle the update using $id and $action
+      // For example:
+      $action = $_POST['action'];
+      if ($action === 'approve') {
+        $status = 'approved';
+    } elseif ($action === 'reject') {
+        $status = 'rejected';
+    } elseif ($action === 'approve') {
+        $status = 'approved';
+    } else {
+        // Handle invalid action
+        die('Invalid action');
+    }
     
+    if ($this->userModel->updatestatus($id, $status)) {
+        flash('post_message', 'HR Manager status updated');
+        redirect('admins/viewhr');
+    } else {
+        die('Something went wrong');
+    }
+    } else {
+      // Handle if the POST request is not properly set
+      redirect('admins/viewhr');
+    }
+  }  
+  public function viewFullDayBooking(){
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        
+        //sanitize
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+        $data = [
+            $data = array(
+                'b_date' => trim($_POST['b_date']),
+                'location' =>  trim($_POST['location']),
+                'no_pas' =>  trim($_POST['no_pas']),
+                'driver_id' =>  trim($_POST['driver_id']) ,
+                'vehicle_id' => trim($_POST['vehicle_id']) ,
+                'b_date_err' => '',
+                'location_err' => '',
+                'no_pas_err' => '',
+                'driver_id_err' => '',
+                'vehicle_id_err' => '')
+        ];
+            
+        
+
+     
+       
+            if($this->adminModel->addbooking($data)){
+                flash('post_message', 'booking Added Succesfully');
+                redirect('admins/viewFullDayBooking');
+            }
+            else{
+                die('Something went wrong');
+            }
+   
+        
+    }
+    else{
+        $data = [
+            'title' => '',
+            'body' => '',
+            'title_err' => '',
+            'body_err' => ''
+        ];
+        
+        $this->view('pages/admin/full_day_booking', $data);   
+    }   
+}
+       
+      
+}   
+        
+        
     
- }
+        
+ 
         
        
       
@@ -341,5 +385,4 @@ class Admins extends Controller
   
 
   
-
 
