@@ -366,7 +366,19 @@ public function updateHRStatus($id)
       // Pass the data to the view
       return $this->view('pages/admin/full_booking', ['timetableData' => $timetableData]);
   }
-     
+  public function timetable_view($day, $timeSlot) {
+    // Load model
+    $this->model('Admin');
+
+    // Fetch data from model based on day and time slot
+    $data['timetable'] = $this->adminModel->get_timetable($day, $timeSlot);
+
+    // Pass data to the view
+    $data['day'] = $day;
+    $data['timeSlot'] = $timeSlot;
+    $this->view('pages/admin/schedule_view', $data);
+}
+
    
 }   
         

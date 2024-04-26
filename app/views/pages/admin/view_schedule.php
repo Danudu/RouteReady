@@ -65,7 +65,6 @@
     <h2 style="text-align: center;">Short-Term Reservation</h2>
 
     <div class="form-container">
-                   <a href="<?php echo URLROOT; ?>/admins/availableVehicles" class="button" id="viewAvailableVehicles">View Available Vehicles</a>
 
         <form method="post" action="<?php echo URLROOT; ?>/admins/redirectToTimetable">
             <label for="b_date">Date:</label>
@@ -153,28 +152,32 @@ $timeSlots = array(
     "8:00 PM - 10:00 PM",
     "10:00 PM - 12:00 PM"
 );
+?>
 
-foreach ($timeSlots as $slot) {
-    echo "<div class='cell time-slot'>$slot</div>";
+   
+   <?php foreach ($timeSlots as $slot): ?>
+    <div class='cell time-slot'><?php echo $slot; ?></div>
 
-    // Iterate over days
-    foreach (array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday") as $day) {
+    <?php foreach (array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday") as $day): ?>
+        <?php
         // Fetch number of records for the current day and time slot from the database
         $sql = "SELECT COUNT(*) AS count FROM timetable WHERE day = '$day' AND time_slot = '$slot'";
         $result = $connection->query($sql);
         $count = ($result->num_rows > 0) ? $result->fetch_assoc()['count'] : 0;
+        ?>
+        <!-- Display the number of records and view button if there's at least one record, otherwise display an empty cell -->
+        <?php if ($count > 0): ?>
+            <div class='cell with-data'>
+                Records: <?php echo $count; ?><br>
+                <a href="<?php echo URLROOT; ?>/admins/timetable_view" class="button">View</a>
+            </div>
+        <?php else: ?>
+            <div class='cell'></div>
+        <?php endif; ?>
+    <?php endforeach; ?>
+<?php endforeach; ?>
 
-        // Display the number of records and view button if there's at least one record, otherwise display an empty cell
-        if ($count > 0) {
-            echo "<div class='cell with-data'>";
-            echo "Records: $count<br>";
-            echo "<button onclick=\"redirectToViewSchedule('$day', '$slot')\">View</button>";
-            echo "</div>";
-        } else {
-            echo "<div class='cell'></div>";
-        }
-    }
-}
+    <?php
         // Check if the form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Collect form data

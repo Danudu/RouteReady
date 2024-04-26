@@ -63,6 +63,31 @@ class Admin {
             return false;
         }
     }
-  
-
+ 
+    public function get_timetable($day, $timeSlot) {
+        // Build the SQL query
+        $sql = "SELECT *
+                FROM timetable
+                WHERE day = ? AND time_slot = ?
+                ORDER BY b_date";
+    
+        // Execute the query with parameters
+        $query = $this->db->query($sql, array($day, $timeSlot));
+    
+        // Check for query execution error
+        if (!$query) {
+            // Query execution failed, return false
+            return false;
+        }
+    
+        // Check if there are any rows returned
+        if ($query->num_rows() > 0) {
+            return $query->getResultArray(); // Return an array of rows
+        } else {
+            return false; // No rows found
+        }
+    }
+    
+     
+    
 }
