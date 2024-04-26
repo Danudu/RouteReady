@@ -196,4 +196,24 @@ class User{
         // Return the last inserted user ID
         return $row->user_id;
     }
+
+
+    // Inside EmployeeReservation.php model
+
+
+
+public function getAllUsers()
+{
+    $this->db->query('SELECT * FROM users');
+    return $this->db->resultSet();
+}
+
+// Inside your UserModel class
+
+public function getApprovedUsers()
+{
+    $this->db->query('SELECT * FROM users WHERE status = "accept"'); // Assuming 'approved' column represents approval status
+    return $this->db->resultSet();
+}
+
 }

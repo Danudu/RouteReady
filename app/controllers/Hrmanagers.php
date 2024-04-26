@@ -1,6 +1,12 @@
 <?php
 class Hrmanagers extends Controller
 {
+
+  private $userModel;
+  private $employeeReservationModel;
+  private $workTripModel;
+  private $postModel;
+  private $emplyeeReservationoModel;
   public function __construct()
   {
     // if not logged in, redirect to landing page
@@ -9,7 +15,7 @@ class Hrmanagers extends Controller
     }
 
     $this->userModel = $this->model('User');
-
+    $this->employeeReservationModel = $this->model('EmployeeReservation');
 
   }
   public function home()
@@ -44,23 +50,35 @@ class Hrmanagers extends Controller
   }
 
   public function updateEmployeeStatus($id)
-  {
+{
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      // Handle the update using $id and $action
-      // For example:
-      $action = $_POST['action'];
-      $status = $action === 'approve' ? 'approved' : 'pending';
-      if ($this->userModel->updatestatus($id, $status)) {
-        flash('post_message', 'Employee status updated');
-        redirect('hrmanagers/viewEmployees');
-      } else {
-        die('Something went wrong');
-      }
+        // Check if the action is to delete the user
+        if (isset($_POST['action']) && $_POST['action'] === 'delete') {
+            // Update user status to "rejected"
+            $status = 'rejected';
+            if ($this->userModel->updatestatus($id, $status)) {
+                flash('post_message', 'Employee status updated to rejected');
+                redirect('hrmanagers/viewEmployees');
+            } else {
+                die('Something went wrong');
+            }
+        } else {
+            // Handle other actions (approve, etc.)
+            $action = $_POST['action'];
+            $status = $action === 'approve' ? 'approved' : 'pending';
+            if ($this->userModel->updatestatus($id, $status)) {
+                flash('post_message', 'Employee status updated');
+                redirect('hrmanagers/viewEmployees');
+            } else {
+                die('Something went wrong');
+            }
+        }
     } else {
-      // Handle if the POST request is not properly set
-      redirect('hrmanagers/viewEmployees');
+        // Handle if the POST request is not properly set
+        redirect('hrmanagers/viewEmployees');
     }
-  }
+}
+
 
   public function deleteEmployee($id)
   {
@@ -190,6 +208,49 @@ class Hrmanagers extends Controller
         // Load view
         $this->view('pages/hrmanager/as_employee', $data);
     }   
+}
+
+
+// Controller: calculatePayments method
+public function calculatePayments()
+{
+    // Check if the user is logged in
+    if (!isLoggedIn()) {
+        redirect('login');
+    }
+
+    // Get approved users only
+    $approvedUsers = $this->userModel->getApprovedUsers();
+
+    // Check if a month and year are selected
+    $selectedMonth = isset($_POST['month']) ? $_POST['month'] : date('m'); // Default to current month if not selected
+    $selectedYear = isset($_POST['year']) ? $_POST['year'] : date('Y'); // Default to current year if not selected
+
+    // Initialize an array to store payments for each user
+    $payments = [];
+
+    // Iterate through each approved user to calculate payments
+    foreach ($approvedUsers as $user) {
+        // Calculate payments for the user for the selected month and year
+        $paymentInfo = $this->employeeReservationModel->calculateMonthlyPayments($user->id, $selectedMonth, $selectedMonth, $selectedYear);
+        
+        // Store user's information along with payments
+        $payments[] = [
+            'emp_id' => $user->emp_id,
+            'name' => $user->name, // Assuming 'name' property exists in your user object, adjust accordingly
+            'totalPayment' => $paymentInfo['totalPayment']
+        ];
+    }
+
+    // Prepare data to pass to the view
+    $data = [
+        'selectedMonth' => $selectedMonth,
+        'selectedYear' => $selectedYear,
+        'payments' => $payments
+    ];
+
+    // Load the view to display the payments for each user
+    $this->view('pages/hrmanager/payments', $data);
 }
 
 }

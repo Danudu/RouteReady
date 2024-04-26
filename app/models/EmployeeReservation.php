@@ -253,37 +253,40 @@ class EmployeeReservation
     return $monthlyRow->totalMonthly > 0;
 }
 
-public function getReservationCountForCount($user_id, $start_month, $end_month, $year)
+public function getDailyReservationCountByUserAndMonth($userId, $year, $month)
 {
-    try {
-        // Initialize an array to store reservation counts for each month
-        $reservationsCount = [];
-
-        // Loop through each month within the given period
-        for ($month = $start_month; $month <= $end_month; $month++) {
-            // Query to count reservations for each month
-            $this->db->query("SELECT COUNT(*) AS totalReservations 
-                              FROM TransportReservation 
-                              WHERE id = :user_id 
-                              AND MONTH(Date) = :month 
-                              AND YEAR(Date) = :year");
-            $this->db->bind(':user_id', $user_id);
-            $this->db->bind(':month', $month);
-            $this->db->bind(':year', $year);
-            
-            // Execute the query and fetch the result
-            $result = $this->db->single();
-            
-            // Store the count for the current month
-            $reservationsCount[$month] = $result->totalReservations;
-        }
-
-        return $reservationsCount;
-    } catch (PDOException $e) {
-        // Log or display the error
-        echo 'Error: ' . $e->getMessage();
-        return false;
-    }
+    $this->db->query('SELECT COUNT(*) AS totalDaily FROM TransportReservation WHERE id = :userId AND YEAR(Date) = :year AND MONTH(Date) = :month');
+    $this->db->bind(':userId', $userId);
+    $this->db->bind(':year', $year);
+    $this->db->bind(':month', $month);
+    $row = $this->db->single();
+    return $row->totalDaily;
 }
+
+public function calculateMonthlyPayments($userId, $startMonth, $endMonth, $year)
+{
+    $payments = [];
+    $totalPayment = 0;
+
+    for ($month = $startMonth; $month <= $endMonth; $month++) {
+        $dailyReservationsCount = $this->getDailyReservationCountByUserAndMonth($userId, $year, $month);
+        $payment = 400 * $dailyReservationsCount;
+        
+        // Add payment for the month to the payments array
+        $payments[] = [
+            'month' => date('F', mktime(0, 0, 0, $month, 1)),
+            'payment' => $payment
+        ];
+
+        // Update total payment
+        $totalPayment += $payment;
+    }
+
+    return [
+        'payments' => $payments,
+        'totalPayment' => $totalPayment
+    ];
+}
+
 
 }

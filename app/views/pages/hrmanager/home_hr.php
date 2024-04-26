@@ -32,7 +32,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/hrmanagers/viewEmployeePayments">
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/dashborad">
                         <i class="fa-solid fa-chart-line"></i>
                         <span class="icon_name">Dashboard</span>
                     </a>
@@ -64,6 +64,15 @@
                         <span class="icon_name">Drivers</span>
                     </a>
                     <span class="tooltip">Drivers</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/calculatePayments">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                        <span class="icon_name">Payment</span>
+                    </a>
+                    <span class="tooltip">Payment</span>
                 </li>
             </ul>
             <ul>
