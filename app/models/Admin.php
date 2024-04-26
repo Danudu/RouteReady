@@ -20,6 +20,7 @@ class Admin {
     
     
     public function addbooking($data){
+
         $this->db->query('INSERT INTO fullday_timetable (b_date,location,no_pas,driver_id,vehicle_id) VALUES(:b_date,:location,:no_pas,:driver_id,:vehicle_id)');
          // Bind values
         $this->db->bind(':b_date', $data['b_date']);

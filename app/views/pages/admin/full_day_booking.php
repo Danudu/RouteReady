@@ -22,7 +22,7 @@
 <body>
 <a href="timetable_update.php"><button>Go to Schedule Page</button></a>
     <h2>Full Day Booking</h2>
-    <form method="post" action="<?php echo URLROOT; ?>/admins/viewFullDayBooking">
+    <form method="post" action="<?php echo URLROOT ?>/admins/viewFullDayBooking">
         <label for="b_date">Date:</label>
         <input type="date" id="b_date" name="b_date" min="<?php echo date('Y-m-d'); ?>" required><br><br>
 

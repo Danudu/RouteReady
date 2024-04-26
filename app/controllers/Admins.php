@@ -152,6 +152,10 @@ class Admins extends Controller
             }
             $this->view('pages/admin/view_schedule', );
         } 
+
+    public function testFunc(){
+        die("Um here");
+    }
     public function viewvehicle() {
             // Retrieve all vehicle details
             $data['vehicles'] = $this->VehicleModel->getVehicleDetails();
@@ -183,17 +187,18 @@ class Admins extends Controller
                     }
                 }
                 function viewMoreDetails($reg_no) {
+                    die($reg_no);
                     
                    
-                    // Create Vehicle model object
-                    $vehicle = new Vehicle();
+                    // // Create Vehicle model object
+                    // $vehicle = new Vehicle();
                 
-                    // Fetch vehicle details based on registration number
-                    $vehicle_details = $vehicle->get_vehicle_details($reg_no);
+                    // // Fetch vehicle details based on registration number
+                    // $vehicle_details = $vehicle->get_vehicle_details($reg_no);
                 
                    
                    
-                    $this->view('pages/admin/view_more');
+                    // $this->view('pages/admin/view_more');
                 }
                 
                 // Function to handle deleting a vehicle record
@@ -306,13 +311,15 @@ public function updateHRStatus($id)
     }
   }  
   public function viewFullDayBooking(){
+
+
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
         
         //sanitize
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-        $data = [
-            $data = array(
+        $data = array(
                 'b_date' => trim($_POST['b_date']),
                 'location' =>  trim($_POST['location']),
                 'no_pas' =>  trim($_POST['no_pas']),
@@ -323,14 +330,15 @@ public function updateHRStatus($id)
                 'no_pas_err' => '',
                 'driver_id_err' => '',
                 'vehicle_id_err' => '')
-        ];
+        ;
             
         
-
+        // $this->adminModel->addbooking($data);
      
        
             if($this->adminModel->addbooking($data)){
-                flash('post_message', 'booking Added Succesfully');
+            //     // flash('post_message', 'booking Added Succesfully');
+            
                 redirect('admins/viewFullDayBooking');
             }
             else{

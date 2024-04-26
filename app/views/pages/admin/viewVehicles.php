@@ -74,9 +74,34 @@
             // Retrieve all vehicle details
             $sql = "SELECT Registration_Number,Vehicle_Number,Vehicle_Name,capacity FROM VehicleDetails";
             $result = $conn->query($sql);
+            ?>
 
-            if ($result->num_rows > 0) {
+            <?php if ($result->num_rows > 0) :?>
+                <?php while ($row = $result->fetch_assoc()):?>
+
+                    <?php $reg_no = $row["Registration_Number"];?>
+                    <tr>
+                        <td><?php echo $row["Registration_Number"] ?></td>;
+                        <td><?php echo $row["Vehicle_Number"] ?></td>;
+                        <td><?php echo $row["Vehicle_Name"] ?></td>;
+                        <td><?php echo $row["capacity"] ?></td>;
+                        <!-- <td>" . $row["Vehicle_Number"] . "</td>";
+                        <td>" . $row["Vehicle_Name"] . "</td>";
+                        <td>" . $row["capacity"] . "</td>"; -->
+                        <td><a  href="<?php echo URLROOT ?>/admins/viewMoreDetails/<?php echo $reg_no ?>">View More</a></td>
+                        <!-- controllers/Admins.php?action=view&?reg_no=$reg_no" -->
+                       
+                    </tr>
+
+                <?php endwhile;?>
+
+            <?php else:?>
+                <tr><td colspan='7'>No vehicle details found</td></tr>
+            <?php endif; ?>
+            
+            <!-- if ($result->num_rows > 0) {
                 // Loop through the results and display the vehicle details
+
                 while ($row = $result->fetch_assoc()) {
                     $reg_no = $row["Registration_Number"];
 
@@ -85,15 +110,18 @@
                     echo "  <td>" . $row["Vehicle_Number"] . "</td>";
                     echo "  <td>" . $row["Vehicle_Name"] . "</td>";
                     echo "  <td>" . $row["capacity"] . "</td>";
-                    echo "<td><a  href='/controllers/Admins.php?action=view&?reg_no=$reg_no'>View More</a></td>";
+
+                    // echo "<td><a  href='/controllers/Admins.php?action=view&?reg_no=$reg_no'>View More</a></td>";
+                    echo "<td><a href=''</td>";
                    
                     
                     echo "</tr>";
                 }
             } else {
                 echo "<tr><td colspan='7'>No vehicle details found</td></tr>";
-            }
+            } -->
 
+            <?php
             // Close the database connection
             $conn->close();
             ?>
