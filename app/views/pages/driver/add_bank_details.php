@@ -8,8 +8,6 @@
 <body>
     <h2>Add Bank Details</h2>
     <form method="post" action="">
-        <label for="driver_id">Driver ID:</label>
-        <input type="text" id="driver_id" name="driver_id" required><br><br>
 
         <label for="accountNo">Account Number:</label>
         <input type="text" id="accountNo" name="accountNo" required><br><br>

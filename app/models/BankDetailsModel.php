@@ -35,5 +35,6 @@ class BankDetailsModel {
         return $this->db->execute();
 
     }
+}
 
 ?>

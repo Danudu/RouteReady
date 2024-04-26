@@ -3,7 +3,7 @@ class Drivers extends Controller
 {
   private $leaveModel;
   private $timetable;
-  private $bankDetailsModel;
+  private BankDetailsModel $bankDetailsModel;
 
   public function __construct()
   {
@@ -25,13 +25,13 @@ class Drivers extends Controller
   {
     // Display home page for drivers
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      $driver_id = $_POST['driver_id'];
+      $driver_id = $_SESSION['designationDetails']->driver_id;
       $accountNo = $_POST['accountNo'];
       $bankName = $_POST['bankName'];
       $branchName = $_POST['branchName'];
       $holdersName = $_POST['holdersName'];
 
-      $result= $this->bankDetailModel->addBankDetails($driver_id, $accountNo, $bankName, $branchName, $holdersName);
+      $result= $this->bankDetailsModel->addBankDetails($driver_id, $accountNo, $bankName, $branchName, $holdersName);
 
       
 
@@ -57,8 +57,10 @@ class Drivers extends Controller
       $holderName = $_POST[''];
 
       $result= $this->bankDetailModel->editBankDetails($driver_id, $accountNo, $bankName, $branchName, $holderName);
+    }else{
+    }
 
-      
+
   }
 
 
@@ -89,7 +91,7 @@ class Drivers extends Controller
     // Check if form is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // Get form data
-      $driver_id = $_SESSION['user_id']; // Assuming driver_id is stored in session after login
+      $driver_id = $_SESSION['designationDetails']->driver_id; // Assuming driver_id is stored in session after login
       $type = $_POST['type'];
       $std_date = $_POST['std_date'];
       $end_date = $_POST['end_date'];

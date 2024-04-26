@@ -37,6 +37,14 @@ class Driver{
     
         return $row;
     }
+    public function getDriverByUserId($id){
+        $this->db->query('SELECT * FROM drivers WHERE user_id = :user_id');
+        $this->db->bind(':user_id', $id);
+    
+        $row = $this->db->single();
+    
+        return $row;
+    }
 
   
 

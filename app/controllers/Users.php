@@ -1,8 +1,10 @@
 <?php
 
 class Users extends Controller{
+    private Driver $driverModel;
     public function __construct(){
         $this->userModel = $this->model('User');
+        $this->driverModel = $this->model('Driver');
     }  
     
     public function register(){
@@ -203,6 +205,10 @@ class Users extends Controller{
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_name'] = $user->name;
         $_SESSION['user_designation'] = $user->designation;
+        if($user->designation == 'driver'){
+            $_SESSION['designationDetails'] = $this->driverModel->getDriverByUserId($user->id);
+        }
+
         redirect('pages/home');
     }
 
@@ -210,6 +216,7 @@ class Users extends Controller{
         unset($_SESSION['user_id']);
         unset($_SESSION['user_email']);
         unset($_SESSION['user_name']);
+        unset($_SESSION['designationDetails']);
         session_destroy();
         redirect('users/login');
     }
