@@ -49,7 +49,7 @@
    
     <div>
     <h3 style="text-align: center;">Vehicle Registration Details</h3>
-        <table class="table">
+    <table class="table">
             <tr>
                 <th>Registration Number</th>
                 <th>Vehicle Number</th>
@@ -88,7 +88,7 @@
                         <!-- <td>" . $row["Vehicle_Number"] . "</td>";
                         <td>" . $row["Vehicle_Name"] . "</td>";
                         <td>" . $row["capacity"] . "</td>"; -->
-                        <td><a  href="<?php echo URLROOT ?>/admins/viewMoreDetails/<?php echo $reg_no ?>">View More</a></td>
+                        <td><a  href="<?php echo URLROOT ?>/admins/showVehicleDetails/<?php echo $reg_no ?>">View More</a></td>
                         <!-- controllers/Admins.php?action=view&?reg_no=$reg_no" -->
                        
                     </tr>

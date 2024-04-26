@@ -80,22 +80,39 @@ class Vehicle {
         try {
             // Prepare the SQL statement
             $sql = "SELECT * FROM VehicleDetails WHERE Registration_Number = ?";
-    
+            
             // Prepare the query
-            $this->db->query($sql, array($reg_no));
-    
+            $this->db->query($sql,array($reg_no));
+            
             // Execute the query
             $this->db->execute();
-    
+            
             // Fetch the result as an associative array
             $result = $this->db->single(); // Assuming 'single()' fetches a single row
-    
-            return $result;
+            
+            if ($result) {
+                // Fetch custom column names from the Vehicle model
+                $custom_column_names = (new Vehicle())->getCustomColumnNames();
+                
+                // Map custom column names to the result
+                $mapped_result = [];
+                foreach ($result as $column_name => $value) {
+                    // Use custom column name if available, otherwise use column name from the database
+                    $mapped_result[isset($custom_column_names[$column_name]) ? $custom_column_names[$column_name] : $column_name] = $value;
+                }
+                
+                return $mapped_result;
+            } else {
+                return null; // No results found
+            }
         } catch (Exception $e) {
             // Error handling: Log or handle the exception appropriately
             return null; // Return null or handle error as needed
         }
     }
+    
+    
+    
     
     
 

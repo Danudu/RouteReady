@@ -4,7 +4,7 @@ class Admins extends Controller
 {
 
   private $userModel;
-  private $VehicleModel;
+  private $vehicleModel;
   private $bankModel;
   private $salaryModel;
   private $outsalaryModel;
@@ -26,7 +26,7 @@ class Admins extends Controller
     }
     $this->userModel = $this->model('User');
     $this->postModel = $this->model('Post');
-    $this->VehicleModel = $this->model('Vehicle');
+    $this->vehicleModel = $this->model('Vehicle');
     $this->bankModel = $this->model('BankModel');
     $this->salaryModel = $this->model('Salary');
     $this->outsalaryModel = $this->model('OutSalaryModel'); 
@@ -87,7 +87,7 @@ class Admins extends Controller
           ];
   
           // Call the addVehicle method from the model to insert the data into the database
-          if ($this->VehicleModel->addVehicle($data)) {
+          if ($this->vehicleModel->addVehicle($data)) {
               redirect('pages/admin/viewVehicles'); // Redirect after successful insertion
           } else {
               die('Something went wrong.'); // Handle error if insertion fails
@@ -153,12 +153,10 @@ class Admins extends Controller
             $this->view('pages/admin/view_schedule', );
         } 
 
-    public function testFunc(){
-        die("Um here");
-    }
+    
     public function viewvehicle() {
             // Retrieve all vehicle details
-            $data['vehicles'] = $this->VehicleModel->getVehicleDetails();
+            $data['vehicles'] = $this->vehicleModel->getVehicleDetails();
     
             // Pass the data to the view
             $this->view('pages/admin/viewVehicles', $data);
@@ -169,9 +167,9 @@ class Admins extends Controller
             
             
                 // Method to handle displaying available vehicles
-    public function availableVehicles() {
+                public function availableVehicles() {
                     
-                    $bookedDays = $this->VehicleModel->getBookedDays();
+                    $bookedDays = $this->vehicleModel->getBookedDays();
                     
                     include('pages/admin/available_vehicles.php');
                 }
@@ -186,22 +184,21 @@ class Admins extends Controller
                         echo "No timetable data available.";
                     }
                 }
-                function viewMoreDetails($reg_no) {
-                    die($reg_no);
-                    
-                   
-                    // // Create Vehicle model object
-                    // $vehicle = new Vehicle();
+               
                 
-                    // // Fetch vehicle details based on registration number
-                    // $vehicle_details = $vehicle->get_vehicle_details($reg_no);
+                    public function showVehicleDetails($reg_no) {
+                        // Fetch vehicle details based on registration number
+                        $vehicle_details = $this->vehicleModel->get_vehicle_details($reg_no);
                 
-                   
-                   
-                    // $this->view('pages/admin/view_more');
-                }
+                        // Pass the vehicle details to the view
+                        if ($vehicle_details) {
+                            return $this-> view('pages/admin/view_more', ['vehicle_details' => $vehicle_details, 'reg_no' => $reg_no]);
+                        } else {
+                            return $this->view('pages/admin/view_more', ['reg_no' => $reg_no]); // Display a 'not found' message
+                        }
+                    }
                 
-                // Function to handle deleting a vehicle record
+                
                 
                 
                 
@@ -337,9 +334,9 @@ public function updateHRStatus($id)
      
        
             if($this->adminModel->addbooking($data)){
-            //     // flash('post_message', 'booking Added Succesfully');
+            echo ('booking Added Succesfully');
             
-                redirect('admins/viewFullDayBooking');
+            redirect('admins/viewFullDayBooking');
             }
             else{
                 die('Something went wrong');
@@ -358,14 +355,25 @@ public function updateHRStatus($id)
         $this->view('pages/admin/full_day_booking', $data);   
     }   
 }
-       
-      
+
+
+
+  public function showTimetable()
+  {
+      // Fetch all data from the fullday_timetable table sorted by date
+      $timetableData = $this->adminModel->getbooking() ;
+
+      // Pass the data to the view
+      return $this->view('pages/admin/full_booking', ['timetableData' => $timetableData]);
+  }
+     
+   
 }   
         
         
     
         
- 
+
         
        
       

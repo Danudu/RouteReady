@@ -55,7 +55,7 @@
         $timeSlot = $_GET['time_slot'];
 
         // Create an instance of the Schedule class
-        $schedule = new Schedule();
+        
 
         // Fetch timetable details from the model
         $result = $schedule->fetchTimetableDetailsFromModel($day, $timeSlot);

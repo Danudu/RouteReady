@@ -37,7 +37,7 @@
 
 <h2>More Details</h2>
 
-<?php if (isset($vehicle_details)): ?>
+<?php if (isset($vehicle_details) && !empty($vehicle_details)): ?>
     <table>
         <?php 
         // Get custom column names from the Vehicle class
@@ -52,7 +52,7 @@
     </table>
    
 <?php else: ?>
-    <p>No results found for registration number: <?php echo $reg_no; ?></p>
+    <p>No results found for registration number: <?php echo ($reg_no); ?></p>
 <?php endif; ?>
 
 </body>

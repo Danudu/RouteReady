@@ -20,7 +20,14 @@
     </style>
 </head>
 <body>
-<a href="timetable_update.php"><button>Go to Schedule Page</button></a>
+<div>
+         <a href="<?php echo URLROOT; ?>/admins/redirectToTimetable" class="btn">Go To Schedule Page</a>
+        
+</div>
+<div>
+         <a href="<?php echo URLROOT; ?>/admins/showTimetable" class="btn">View Bookings</a>
+        
+</div>
     <h2>Full Day Booking</h2>
     <form method="post" action="<?php echo URLROOT ?>/admins/viewFullDayBooking">
         <label for="b_date">Date:</label>

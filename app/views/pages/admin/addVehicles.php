@@ -22,10 +22,7 @@
         
          </div>
             
-            <div class="form-group">
-                <button type="button" id="viewRegistrationBtn">View Registration</button>
-            </div>
-           
+            
             <div class="form-group">
                 <label for="reg_no">Registration number:</label>
                 <input type="text" id="reg_no" name="reg_no" placeholder="Enter Registration Number">
