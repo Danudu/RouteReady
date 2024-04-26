@@ -98,13 +98,13 @@ class Hrmanagers extends Controller
       $status = $action === 'approve' ? 'approved' : 'pending';
       if ($this->userModel->updatedriverStatus($id, $status)) {
         flash('post_message', 'Driver status updated');
-        redirect('hrmanagers/moreDriver/'.$id.'');
+        redirect('hrmanagers/moreDriver/' . $id . '');
       } else {
         die('Something went wrong');
       }
     } else {
       // Handle if the POST request is not properly set
-      redirect('hrmanagers/moreDriver/'.$id.'');
+      redirect('hrmanagers/moreDriver/' . $id . '');
     }
   }
 
@@ -115,13 +115,13 @@ class Hrmanagers extends Controller
       // For example:
       if ($this->userModel->deletedriver($id)) {
         flash('post_message', 'Driver deleted');
-        redirect('hrmanagers/moreDriver/'.$id.'');
+        redirect('hrmanagers/moreDriver/' . $id . '');
       } else {
         die('Something went wrong');
       }
     } else {
       // Handle if the POST request is not properly set
-      redirect('hrmanagers/moreDriver/'.$id.'');
+      redirect('hrmanagers/moreDriver/' . $id . '');
     }
   }
 
@@ -132,52 +132,64 @@ class Hrmanagers extends Controller
     $driver = $this->userModel->getDriverById($id);
     $data = [
       'driver' => $driver,
-      
+
     ];
     $this->view('pages/hrmanager/view_drivers_more', $data);
   }
 
-  public function viewEmployeePayment()
-  {
-      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-          // Get form data
-          $employee_id = $_POST['employee_id'];
-          $start_month = $_POST['start_month'];
-          $end_month = $_POST['end_month'];
-          $year = date('Y'); // You can customize the year as needed
-  
-          // Load EmployeeReservation model
-          $employeeReservationModel = $this->model('EmployeeReservation');
-  
-          // Get reservations count for the range of months and year
-          $reservationsCount = $employeeReservationModel->getReservationCountForMonths($employee_id, $start_month, $end_month, $year);
-  
-          // Calculate total payment based on reservations count
-          $totalPayment = 0;
-          foreach ($reservationsCount as $count) {
-              // Assuming $rate per reservation
-              $rate = 400; // Example rate per reservation
-              $totalPayment += $count * $rate;
-          }
-  
-          // Prepare data to pass to view
-          $data = [
-              'employee_id' => $employee_id,
-              'start_month' => $start_month,
-              'end_month' => $end_month,
-              'year' => $year,
-              'reservationsCount' => $reservationsCount,
-              'totalPayment' => $totalPayment
-          ];
-  
-          // Load view with data
-          $this->view('pages/hrmanager/view_employee_payment', $data);
-      } else {
-          // Handle if the POST request is not properly set
-          redirect('hrmanagers/home');
-      }
-  }
-  
-}
 
   
+
+  public function asEmployee(){
+ 
+    // Check for POST
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        // Process form
+
+        // Sanitize POST data
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+        //init data
+        $data = [
+            'email' => $_SESSION['user_email'], // Use the logged-in user's email
+            'password' => trim($_POST['password']),
+            'password_err' => '',
+        ];
+
+        // Validate Password
+        if(empty($data['password'])){
+            $data['password_err'] = 'Please enter password';
+        }
+
+        // Make sure errors are empty
+        if(empty($data['password_err'])){
+            // Validated
+
+            // Check and set logged in user
+            $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+            if($loggedInUser){
+                
+                redirect('employees/home');
+            } else {
+                $data['password_err'] = 'Password incorrect';
+                $this->view('pages/hrmanager/as_employee', $data);
+            }
+
+        } else {
+            // Load view with errors
+            $this->view('pages/hrmanager/as_employee', $data);
+        }
+
+    } else {
+        // Init data
+        $data = [
+            'email' => $_SESSION['user_email'], // Use the logged-in user's email
+            'password' => '',
+            'password_err' => ''
+        ];
+        // Load view
+        $this->view('pages/hrmanager/as_employee', $data);
+    }   
+}
+
+}

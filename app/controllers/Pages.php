@@ -86,7 +86,7 @@ class Pages extends Controller
     }
   }
 
-  public function edit_profile($id = '')
+  public function edit_profile($id)
   {
     if (!isLoggedIn()) {
       $this->view('pages/index');

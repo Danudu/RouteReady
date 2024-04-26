@@ -28,6 +28,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
         }
 
         .popup-content {
@@ -115,7 +116,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/pages/profile/<?= $_SESSION['user_id'] ?>">
+                    <a href="<?php echo URLROOT; ?>/drivers/profile/<?= $_SESSION['user_id'] ?>">
                         <i class="fas fa-user"></i>
                         <span class="icon_name">Profile</span>
                     </a>
@@ -173,7 +174,7 @@
     <div class="main-content">
         <div class="container">
             <div class="header">
-                <h1>Route Ready Employee</h1>
+                <h1>Route Ready Driver</h1>
             </div>
             <div class="main">
                 <section class="welcome">
@@ -183,10 +184,10 @@
                         </h3>
                     </div>
                     <div>
-                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/employees/viewReservation"
-                                class="bt">Transport Reservation</a></button>
+                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/drivers/applyLeave"
+                                class="bt">Leaves</a></button>
                         <button type="button" class="btn2"><a href="<?php echo URLROOT;
-                        ; ?>/employees/viewWorkTrips" class="bt">WorkTrip Reservation</a></button>
+                        ; ?>/employees/viewWorkTrips" class="bt">Salaries</a></button>
                     </div>
                 </section>
             </div>
