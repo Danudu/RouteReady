@@ -58,19 +58,25 @@
                                 <td><?php echo $driver->department; ?></td>
                                 <td><?php echo $driver->status; ?></td>
                                 <td>
-                                    <?php if ($driver->status === 'approved'): ?>
-                                        <form
-                                            action="<?php echo URLROOT; ?>/hrmanagers/updatedriverStatus/<?php echo $driver->id; ?>"
-                                            method="POST">
-                                            <button class="button" type="submit" name="action" value="reject">Reject</button>
-                                        </form>
-                                    <?php elseif ($driver->status === 'pending'): ?>
-                                        <form
+                                    <?php if ($driver->status === 'pending'): ?>
+                                            <form
                                             action="<?php echo URLROOT; ?>/hrmanagers/updatedriverStatus/<?php echo $driver->id; ?>"
                                             method="POST">
                                             <button class="button" type="submit" name="action" value="approve">Approve</button>
                                         </form>
-                                    <?php endif; ?>
+                                        <?php elseif ($driver->status === 'approved'): ?>
+                                            <form
+                                                action="<?php echo URLROOT; ?>/hrmanagers/updatedriverStatus/<?php echo $driver->id; ?>"
+                                                method="POST">
+                                                <button class="button" type="submit" name="action" value="reject">Reject</button>
+                                            </form>
+                                        <?php elseif($driver->status === 'rejected'): ?>
+                                            <form
+                                                action="<?php echo URLROOT; ?>/hrmanagers/updatedriverStatus/<?php echo $driver->id; ?>"
+                                                method="POST">
+                                                <button class="button" type="submit" name="action" value="approve">Approve</button>
+                                            </form>
+                                        <?php endif; ?>
                                 </td>
                                 <td>
                                     <form action="<?php echo URLROOT; ?>/hrmanagers/deletedriver/<?php echo $driver->id; ?>"

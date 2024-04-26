@@ -111,7 +111,16 @@ class Hrmanagers extends Controller
       // Handle the update using $id and $action
       // For example:
       $action = $_POST['action'];
-      $status = $action === 'approve' ? 'approved' : 'pending';
+      if ($action === 'approve') {
+        $status = 'approved';
+      } elseif ($action === 'reject') {
+        $status = 'rejected';
+      } elseif ($action === 'approve') {
+        $status = 'approved';
+      } else {
+        // Handle invalid action
+        die('Invalid action');
+      }
       if ($this->userModel->updatedriverStatus($id, $status)) {
         flash('post_message', 'Driver status updated');
         redirect('hrmanagers/moreDriver/' . $id . '');
