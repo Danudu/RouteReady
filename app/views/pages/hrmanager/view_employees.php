@@ -48,13 +48,19 @@
                                     <td><?php echo $employee->department; ?></td>
                                     <td><?php echo $employee->status; ?></td>
                                     <td>
-                                        <?php if ($employee->status === 'approved'): ?>
+                                    <?php if ($employee->status === 'pending'): ?>
+                                            <form
+                                            action="<?php echo URLROOT; ?>/hrmanagers/updateEmployeeStatus/<?php echo $employee->id; ?>"
+                                            method="POST">
+                                            <button class="button" type="submit" name="action" value="approve">Approve</button>
+                                        </form>
+                                        <?php elseif ($employee->status === 'approved'): ?>
                                             <form
                                                 action="<?php echo URLROOT; ?>/hrmanagers/updateEmployeeStatus/<?php echo $employee->id; ?>"
                                                 method="POST">
                                                 <button class="button" type="submit" name="action" value="reject">Reject</button>
                                             </form>
-                                        <?php elseif ($employee->status === 'pending'): ?>
+                                        <?php elseif($employee->status === 'rejected'): ?>
                                             <form
                                                 action="<?php echo URLROOT; ?>/hrmanagers/updateEmployeeStatus/<?php echo $employee->id; ?>"
                                                 method="POST">

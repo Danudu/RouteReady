@@ -212,7 +212,7 @@ public function getAllUsers()
 
 public function getApprovedUsers()
 {
-    $this->db->query('SELECT * FROM users WHERE status = "accept"'); // Assuming 'approved' column represents approval status
+    $this->db->query('SELECT * FROM users WHERE status = "approved"'); // Assuming 'approved' column represents approval status
     return $this->db->resultSet();
 }
 

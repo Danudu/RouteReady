@@ -50,34 +50,33 @@ class Hrmanagers extends Controller
   }
 
   public function updateEmployeeStatus($id)
-{
+  {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Check if the action is to delete the user
-        if (isset($_POST['action']) && $_POST['action'] === 'delete') {
-            // Update user status to "rejected"
-            $status = 'rejected';
-            if ($this->userModel->updatestatus($id, $status)) {
-                flash('post_message', 'Employee status updated to rejected');
-                redirect('hrmanagers/viewEmployees');
-            } else {
-                die('Something went wrong');
-            }
-        } else {
-            // Handle other actions (approve, etc.)
-            $action = $_POST['action'];
-            $status = $action === 'approve' ? 'approved' : 'pending';
-            if ($this->userModel->updatestatus($id, $status)) {
-                flash('post_message', 'Employee status updated');
-                redirect('hrmanagers/viewEmployees');
-            } else {
-                die('Something went wrong');
-            }
-        }
+      // Handle the update using $id and $action
+      // For example:
+      $action = $_POST['action'];
+      if ($action === 'approve') {
+        $status = 'approved';
+    } elseif ($action === 'reject') {
+        $status = 'rejected';
+    } elseif ($action === 'approve') {
+        $status = 'approved';
     } else {
-        // Handle if the POST request is not properly set
-        redirect('hrmanagers/viewEmployees');
+        // Handle invalid action
+        die('Invalid action');
     }
-}
+    
+    if ($this->userModel->updatestatus($id, $status)) {
+        flash('post_message', 'Employee status updated');
+        redirect('hrmanagers/viewEmployees');
+    } else {
+        die('Something went wrong');
+    }
+    } else {
+      // Handle if the POST request is not properly set
+      redirect('hrmanagers/viewEmployees');
+    }
+  }
 
 
   public function deleteEmployee($id)

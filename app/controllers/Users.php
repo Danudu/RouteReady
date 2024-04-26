@@ -189,11 +189,11 @@ class Users extends Controller
                     if ($loggedInUser->status == 'pending') {
                         $data['email_err'] = 'Your account is pending for approval';
                         $this->view('users/login', $data);
-                    } else if ($loggedInUser->status == 'rejected'){
+                    } elseif ($loggedInUser->status == 'rejected') {
                         $data['email_err'] = 'Your account is rejected';
                         $this->view('users/login', $data);
-                    }
-                    else {
+                        
+                    } else {
                         // Create Session
                         $this->createUserSession($loggedInUser);
                         // redirect('pages/home');
