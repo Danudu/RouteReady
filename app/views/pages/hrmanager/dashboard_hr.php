@@ -1,22 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/dashboard.css">
-    
+
     <title>Home | RouteReady</title>
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
 </head>
+
 <body>
-<div class="sidebar">
+    <div class="sidebar">
 
         <div class="top">
             <div class="logo">
-                    <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
-                    <span class="logo_name">Route Ready</span>
+                <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
+                <span class="logo_name">Route Ready</span>
             </div>
             <i class="fa-solid fa-bars" id="btn"></i>
         </div>
@@ -32,7 +33,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="home">
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/dashboard">
                         <i class="fa-solid fa-chart-line"></i>
                         <span class="icon_name">Dashboard</span>
                     </a>
@@ -41,7 +42,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/pages/profile/<?=$_SESSION['user_id']?>">
+                    <a href="<?php echo URLROOT; ?>/pages/profile/<?= $_SESSION['user_id'] ?>">
                         <i class="fas fa-user"></i>
                         <span class="icon_name">Profile</span>
                     </a>
@@ -68,6 +69,16 @@
             </ul>
             <ul>
                 <li>
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/calculatePayments">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                        <span class="icon_name">Payment</span>
+                    </a>
+                    <span class="tooltip">Payment</span>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
                     <a href="<?php echo URLROOT; ?>/posts/terms">
                         <i class="fas fa-book-bookmark"></i>
                         <span class="icon_name">T&C</span>
@@ -87,23 +98,26 @@
         </div>
     </div>
 
+
     <div class="main-content">
         <div class="container">
             <h1>Welcome to RouteReady</h1>
-            <p>RouteReady is a web application that helps you manage your employees and drivers. You can add, edit, delete and view employees and drivers. You can also add, edit, delete and view terms and conditions.</p>
+            <p>RouteReady is a web application that helps you manage your employees and drivers. You can add, edit,
+                delete and view employees and drivers. You can also add, edit, delete and view terms and conditions.</p>
         </div>
     </div>
-    
+
 </body>
 
 <script>
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
 
-    btn.onclick = function() {
+    btn.onclick = function () {
         sidebar.classList.toggle("active");
     };
 </script>
+
 </html>
 
 <!-- https://www.youtube.com/watch?v=uy1tgKOnPB0 -->

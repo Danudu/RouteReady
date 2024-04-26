@@ -68,6 +68,16 @@
             </ul>
             <ul>
                 <li>
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/calculatePayments">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                        <span class="icon_name">Payment</span>
+                    </a>
+                    <span class="tooltip">Payment</span>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
                     <a href="<?php echo URLROOT; ?>/posts/terms">
                         <i class="fas fa-book-bookmark"></i>
                         <span class="icon_name">T&C</span>

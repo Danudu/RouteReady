@@ -1,6 +1,11 @@
 <?php
 class Hrmanagers extends Controller
 {
+  private $userModel;
+  private $employeeReservationModel;
+  private $workTripModel;
+  private $postModel;
+  private $emplyeeReservationoModel;
   public function __construct()
   {
     // if not logged in, redirect to landing page
@@ -9,6 +14,7 @@ class Hrmanagers extends Controller
     }
 
     $this->userModel = $this->model('User');
+    $this->employeeReservationModel = $this->model('EmployeeReservation');
 
 
   }
@@ -51,21 +57,21 @@ class Hrmanagers extends Controller
       $action = $_POST['action'];
       if ($action === 'approve') {
         $status = 'approved';
-    } elseif ($action === 'reject') {
+      } elseif ($action === 'reject') {
         $status = 'rejected';
-    } elseif ($action === 'approve') {
+      } elseif ($action === 'approve') {
         $status = 'approved';
-    } else {
+      } else {
         // Handle invalid action
         die('Invalid action');
-    }
-    
-    if ($this->userModel->updatestatus($id, $status)) {
+      }
+
+      if ($this->userModel->updatestatus($id, $status)) {
         flash('post_message', 'Employee status updated');
         redirect('hrmanagers/viewEmployees');
-    } else {
+      } else {
         die('Something went wrong');
-    }
+      }
     } else {
       // Handle if the POST request is not properly set
       redirect('hrmanagers/viewEmployees');
@@ -148,58 +154,101 @@ class Hrmanagers extends Controller
   }
 
 
-  
 
-  public function asEmployee(){
- 
+
+  public function asEmployee()
+  {
+
     // Check for POST
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        // Process form
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Process form
 
-        // Sanitize POST data
-        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+      // Sanitize POST data
+      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-        //init data
-        $data = [
-            'email' => $_SESSION['user_email'], // Use the logged-in user's email
-            'password' => trim($_POST['password']),
-            'password_err' => '',
-        ];
+      //init data
+      $data = [
+        'email' => $_SESSION['user_email'], // Use the logged-in user's email
+        'password' => trim($_POST['password']),
+        'password_err' => '',
+      ];
 
-        // Validate Password
-        if(empty($data['password'])){
-            $data['password_err'] = 'Please enter password';
-        }
+      // Validate Password
+      if (empty($data['password'])) {
+        $data['password_err'] = 'Please enter password';
+      }
 
-        // Make sure errors are empty
-        if(empty($data['password_err'])){
-            // Validated
+      // Make sure errors are empty
+      if (empty($data['password_err'])) {
+        // Validated
 
-            // Check and set logged in user
-            $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-            if($loggedInUser){
-                
-                redirect('employees/home');
-            } else {
-                $data['password_err'] = 'Password incorrect';
-                $this->view('pages/hrmanager/as_employee', $data);
-            }
+        // Check and set logged in user
+        $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+        if ($loggedInUser) {
 
+          redirect('employees/home');
         } else {
-            // Load view with errors
-            $this->view('pages/hrmanager/as_employee', $data);
+          $data['password_err'] = 'Password incorrect';
+          $this->view('pages/hrmanager/as_employee', $data);
         }
+
+      } else {
+        // Load view with errors
+        $this->view('pages/hrmanager/as_employee', $data);
+      }
 
     } else {
-        // Init data
-        $data = [
-            'email' => $_SESSION['user_email'], // Use the logged-in user's email
-            'password' => '',
-            'password_err' => ''
-        ];
-        // Load view
-        $this->view('pages/hrmanager/as_employee', $data);
-    }   
-}
+      // Init data
+      $data = [
+        'email' => $_SESSION['user_email'], // Use the logged-in user's email
+        'password' => '',
+        'password_err' => ''
+      ];
+      // Load view
+      $this->view('pages/hrmanager/as_employee', $data);
+    }
+  }
+
+  // Controller: calculatePayments method
+  public function calculatePayments()
+  {
+    // Check if the user is logged in
+    if (!isLoggedIn()) {
+      redirect('login');
+    }
+
+    // Get approved users only
+    $approvedUsers = $this->userModel->getApprovedUsers();
+
+    // Check if a month and year are selected
+    $selectedMonth = isset($_POST['month']) ? $_POST['month'] : date('m'); // Default to current month if not selected
+    $selectedYear = isset($_POST['year']) ? $_POST['year'] : date('Y'); // Default to current year if not selected
+
+    // Initialize an array to store payments for each user
+    $payments = [];
+
+    // Iterate through each approved user to calculate payments
+    foreach ($approvedUsers as $user) {
+      // Calculate payments for the user for the selected month and year
+      $paymentInfo = $this->employeeReservationModel->calculateMonthlyPayments($user->id, $selectedMonth, $selectedMonth, $selectedYear);
+
+      // Store user's information along with payments
+      $payments[] = [
+        'emp_id' => $user->emp_id,
+        'name' => $user->name, // Assuming 'name' property exists in your user object, adjust accordingly
+        'totalPayment' => $paymentInfo['totalPayment']
+      ];
+    }
+
+    // Prepare data to pass to the view
+    $data = [
+      'selectedMonth' => $selectedMonth,
+      'selectedYear' => $selectedYear,
+      'payments' => $payments
+    ];
+
+    // Load the view to display the payments for each user
+    $this->view('pages/hrmanager/payments', $data);
+  }
 
 }

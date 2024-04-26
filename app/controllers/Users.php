@@ -2,6 +2,11 @@
 
 class Users extends Controller
 {
+    private $userModel;
+    private $employeeReservationModel;
+    private $workTripModel;
+    private $postModel;
+    private $driverModel;
     public function __construct()
     {
         $this->userModel = $this->model('User');
@@ -132,7 +137,7 @@ class Users extends Controller
         }
     }
 
-    
+
 
 
     public function login()
@@ -187,7 +192,7 @@ class Users extends Controller
                     } elseif ($loggedInUser->status == 'rejected') {
                         $data['email_err'] = 'Your account is rejected';
                         $this->view('users/login', $data);
-                        
+
                     } else {
                         // Create Session
                         $this->createUserSession($loggedInUser);

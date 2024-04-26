@@ -8,12 +8,10 @@ class Vehicle {
         $this->db = new Database;
     }
 
-    // Example method for saving to a database
+    // Method for adding vehicle data to the database
     public function addVehicle($data) {
         try {
-            // Debug file data
-            var_dump($data['front_photo']);
-
+            $imageData = file_get_contents($_FILES['image']['tmp_name']); 
             // Check if file is uploaded and not empty
             if (!empty($data['front_photo']['tmp_name'])) {
                 // Read file contents
@@ -37,8 +35,8 @@ class Vehicle {
             $this->db->bind(':vin', $data['vin_number']);
             $this->db->bind(':insu_pro', $data['insurance_company']);
             $this->db->bind(':insu_pn', $data['insurance_number']);
-            $this->db->bind(':capacity', $capacity); // Use the converted integer value
-            $this->db->bind(':image', $imageData); // Bind image data
+            $this->db->bind(':capacity', $data['capacity']); // Use the converted integer value
+            $this->db->bind(':images1', $data['V_Image']); // Bind image data
             $this->db->bind(':images1', $data['side_photo_1']);
             $this->db->bind(':images2', $data['side_photo_2']);
 
@@ -54,36 +52,26 @@ class Vehicle {
             return false;
         }
     }
-
-
-
-    private $registrationNumber;
-    private $vehicleNumber;
-    private $vehicleName;
-    private $capacity;
-
-    public function viewVehicle($registrationNumber, $vehicleNumber, $vehicleName, $capacity) {
-        $this->registrationNumber = $registrationNumber;
-        $this->vehicleNumber = $vehicleNumber;
-        $this->vehicleName = $vehicleName;
-        $this->capacity = $capacity;
+    
+    public function getVehicleDetails() {
+        try {
+            $this->db->query("SELECT Registration_Number, Vehicle_Number, Vehicle_Name, capacity FROM VehicleDetails;");
+            $this->db->execute();
+            $results = $this->db->resultSet();
+            // Debugging: Check if results are fetched
+           
+            return $results;
+        } catch (Exception $e) {
+            // Error handling: Log or handle the exception appropriately
+            return []; // Return empty array or handle error as needed
+        }
     }
 
-    // Getters
-    public function getRegistrationNumber() {
-        return $this->registrationNumber;
-    }
-
-    public function getVehicleNumber() {
-        return $this->vehicleNumber;
-    }
-
-    public function getVehicleName() {
-        return $this->vehicleName;
-    }
-
-    public function getCapacity() {
-        return $this->capacity;
+    // Method to get full details of a specific vehicle by registration number
+    public function getVehicleDetailsByRegNumber($regNumber)
+    {
+        $this->db->query('SELECT * FROM VehicleDetails WHERE Registration_Number = :regNumber');
+        $this->db->bind(':regNumber', $regNumber);
+        return $this->db->single();
     }
 }
-
