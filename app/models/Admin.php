@@ -64,27 +64,23 @@ class Admin {
         }
     }
  
-    public function get_timetable($day, $timeSlot) {
-        // Build the SQL query
-        $sql = "SELECT *
-                FROM timetable
-                WHERE day = ? AND time_slot = ?
-                ORDER BY b_date";
+    public function get_Timetable($day, $timeSlot) {
+        $sql = "SELECT * FROM timetable WHERE day = '$day' AND time_slot = '$timeSlot'";
+        $result = mysqli_query($this->connection, $sql);
     
-        // Execute the query with parameters
-        $query = $this->db->query($sql, array($day, $timeSlot));
-    
-        // Check for query execution error
-        if (!$query) {
-            // Query execution failed, return false
-            return false;
+        if (!$result) {
+            die("Query failed: " . mysqli_error($this->connection));
         }
-    
-        // Check if there are any rows returned
-        if ($query->num_rows() > 0) {
-            return $query->getResultArray(); // Return an array of rows
+
+        if (mysqli_num_rows($result) > 0) {
+            $timetable = [];
+            while ($row = mysqli_fetch_assoc($result)) {
+                $timetable[] = $row;
+            }
+            mysqli_free_result($result);
+            return $timetable;
         } else {
-            return false; // No rows found
+            return null;
         }
     }
     
