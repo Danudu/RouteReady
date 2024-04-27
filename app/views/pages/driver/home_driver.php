@@ -124,29 +124,38 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewReservation">
-                        <i class="fa-solid fa-magnifying-glass-location"></i>
-                        <span class="icon_name">Reservations</span>
+                    <a href="<?php echo URLROOT; ?>/drivers/applyLeave">
+                    <i class="fa-solid fa-person-walking-arrow-right"></i>
+                        <span class="icon_name">Apply Leaves</span>
                     </a>
-                    <span class="tooltip">Reservations</span>
+                    <span class="tooltip">Apply Leaves</span>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewWorkTrips">
-                        <i class="fa-solid fa-suitcase-rolling"></i>
-                        <span class="icon_name">WorkTrips</span>
+                    <a href="<?php echo URLROOT; ?>/deivers/view_time_table">
+                    <i class="fa-regular fa-calendar-days"></i>
+                        <span class="icon_name">Schedule</span>
                     </a>
-                    <span class="tooltip">WorkTrips</span>
+                    <span class="tooltip">Schedule</span>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments">
-                        <i class="fa-solid fa-hand-holding-dollar"></i>
-                        <span class="icon_name">Payment</span>
+                    <a href="<?php echo URLROOT; ?>/drivers/viewSalaryReport">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                        <span class="icon_name">Salary Reports</span>
                     </a>
-                    <span class="tooltip">Payment</span>
+                    <span class="tooltip">Salary Reports</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/drivers/add_bank_details">
+                    <i class="fa-solid fa-money-check-dollar"></i>
+                        <span class="icon_name">Payments</span>
+                    </a>
+                    <span class="tooltip">Payments</span>
                 </li>
             </ul>
             <ul>

@@ -67,10 +67,11 @@ class Leave {
         $sql = 'SELECT * FROM bank_details WHERE driver_id: driver_id';
 
         $this->db->query($sql);
-        $this->db->bind(':driver_id', $driver_id, PDO::PARAM_INT);
+        $this->db->bind(':driver', $driver_id,);
 
-        $result = $this->db->resultSet();
-        return $result;
+       $result = $this->db->resultSet();
+       return $result;
+
     }
     
     
