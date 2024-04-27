@@ -38,13 +38,14 @@
             --white: #ffffff;
             --max-width: 1200px;
         }
+
         .background {
             background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
 
-            
+
         }
 
         .main-content {
@@ -251,14 +252,21 @@
             <div class="container">
                 <div class="wrapper">
                     <h1>Work Trip Reservation</h1>
+                    <?php if (flash('error')): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo flash('error'); ?>
+                        </div>
+                    <?php endif; ?>
                     <form action="<?php echo URLROOT; ?>/employees/makeWorkTrip" method="post">
                         <div class="form-group">
                             <label for="e_name">Employee Name:</label>
-                            <input type="text" id="e_name" name="e_name" placeholder="Employee Name">
+                            <input type="text" id="e_name" name="e_name" placeholder="Employee Name"
+                                value="<?php echo $_SESSION['user_name']; ?>" readonly>
                         </div>
                         <div class="form-group">
                             <label for="email">Email Address:</label>
-                            <input type="email" id="email" name="email" placeholder="Email Address">
+                            <input type="email" id="email" name="email" placeholder="Email Address"
+                                value="<?php echo $_SESSION['user_email']; ?>" readonly>
                         </div>
                         <div class="form-group">
                             <label for="reason">Reason for Vehicle use:</label>
@@ -304,12 +312,27 @@
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            flatpickr("#tripdate", {
-                minDate: "today",
-                dateFormat: "Y-m-d" // You can change the date format as needed
-            });
+        document.addEventListener("DOMContentLoaded", function () {
+            setupFlatpickr(); // Call the setupFlatpickr function when the document is fully loaded
         });
+
+        function setupFlatpickr() {
+            var today = new Date();
+            var tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
+            var tomorrowString = tomorrow.toISOString().split('T')[0];
+
+
+
+            // Set up Flatpickr with default date as tomorrow and minDate as tomorrow
+            flatpickr("#tripdate", {
+                defaultDate: tomorrow,
+                minDate: tomorrow,
+                dateFormat: "Y-m-d", // You can change the date format as needed
+                static: true,
+                position: "below"
+            });
+        }
     </script>
 </body>
 

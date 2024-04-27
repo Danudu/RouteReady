@@ -8,29 +8,35 @@ class WorkTrip {
 
     // WorkTrip
 
-public function addWorkTrip($data) {
-    try {
-        $this->db->query('INSERT INTO work_trips (employee_name, email, reason, numofPassengers, destination, comments, tripDate, tripTime, id) VALUES (:employee_name, :email, :reason, :numofPassengers, :destination, :comments, :tripDate, :tripTime, :id)');
-        $this->db->bind(':employee_name', $data['employee_name']);
-        $this->db->bind(':email', $data['email']);
-        $this->db->bind(':reason', $data['reason']);
-        $this->db->bind(':numofPassengers', $data['numofPassengers']);
-        $this->db->bind(':destination', $data['destination']);
-        $this->db->bind(':comments', $data['comments']);
-        $this->db->bind(':tripDate', $data['tripDate']);
-        $this->db->bind(':tripTime', $data['tripTime']);
-        $this->db->bind(':id', $data['id']);
-
-        if ($this->db->execute()) {
-            return true;
-        } else {
-            return false;
-        }
-    } catch (PDOException $e) {
-        // Log or display the error
-        echo 'Error: ' . $e->getMessage();
+    public function addWorkTrip($data) {
+        try {
+            $this->db->query('INSERT INTO work_trips (employee_name, email, reason, numofPassengers, destination, comments, tripDate, tripTime, id, status) VALUES (:employee_name, :email, :reason, :numofPassengers, :destination, :comments, :tripDate, :tripTime, :id, :status)');
+            $this->db->bind(':employee_name', $data['employee_name']);
+            $this->db->bind(':email', $data['email']);
+            $this->db->bind(':reason', $data['reason']);
+            $this->db->bind(':numofPassengers', $data['numofPassengers']);
+            $this->db->bind(':destination', $data['destination']);
+            $this->db->bind(':comments', $data['comments']);
+            $this->db->bind(':tripDate', $data['tripDate']);
+            $this->db->bind(':tripTime', $data['tripTime']);
+            $this->db->bind(':id', $data['id']);
+            $this->db->bind(':status', 'pending'); // Set status to pending
+    
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            // Log or display the error
+            echo 'Error: ' . $e->getMessage();
         return false;
     }
+}
+
+public function getPendingWorkTripReservations() {
+    $this->db->query("SELECT * FROM work_trips WHERE status = 'pending'");
+    return $this->db->resultSet();
 }
 
 public function getWorkTripReservations($user_id) {
@@ -84,6 +90,25 @@ public function updateWorkTripReservation($data) {
         return false;
     }
 }
+
+public function updateStatus($tripID, $status)
+{
+    try {
+        $this->db->query('UPDATE work_trips SET status = :status WHERE tripID = :tripID');
+        $this->db->bind(':status', $status);
+        $this->db->bind(':tripID', $tripID);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (PDOException $e) {
+        // Log or display the error
+        echo 'Error: ' . $e->getMessage();
+        return false;
+    }
 }
 
-?>
+}
+

@@ -228,4 +228,12 @@ class User
         return $this->db->resultSet();
     }
 
+    public function getHrmanager(){
+        $this->db->query('SELECT * FROM users WHERE designation = "hrmanager"');
+
+        $results = $this->db->resultSet();
+
+        return $results;
+    }
+
 }

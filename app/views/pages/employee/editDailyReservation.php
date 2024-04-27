@@ -1,3 +1,9 @@
+<?php
+// Define function to determine class based on schedule type
+function getClassBasedOnSchedule($currentType, $expectedType) {
+    return ($currentType == $expectedType) ? '' : 'hidden';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -147,61 +153,56 @@
 
     <script>
         function changeRoute() {
-            var schedule = document.getElementById("schedule").value;
-            var pickup = document.getElementById("pickup");
-            var dropoff = document.getElementById("dropoff");
+        var schedule = document.getElementById("schedule").value;
+        var pickup = document.getElementById("pickup");
+        var dropoff = document.getElementById("dropoff");
 
-            if (schedule == "ToWork") {
-                pickup.style.display = "block";
-                dropoff.style.display = "none";
-            } else if (schedule == "FromWork") {
-                pickup.style.display = "none";
-                dropoff.style.display = "block";
-            } else {
-                pickup.style.display = "block";
-                dropoff.style.display = "block";
-            }
+        if (schedule == "ToWork") {
+            pickup.style.display = "block";
+            dropoff.style.display = "none";
+            // Clear the drop off field
+            document.getElementById("dropoffField").value = "";
+        } else if (schedule == "FromWork") {
+            pickup.style.display = "none";
+            dropoff.style.display = "block";
+            // Clear the pick up field
+            document.getElementById("pickupField").value = "";
+        } else {
+            pickup.style.display = "block";
+            dropoff.style.display = "block";
         }
-
-        function changeRouteMonthly() {
-            var schedule = document.getElementById("monthly_schedule").value;
-            var monthly_pickup = document.getElementById("monthly_pickup");
-            var monthly_dropoff = document.getElementById("monthly_dropoff");
-
-            if (schedule == "ToWork") {
-                monthly_pickup.style.display = "block";
-                monthly_dropoff.style.display = "none";
-            } else if (schedule == "FromWork") {
-                monthly_pickup.style.display = "none";
-                monthly_dropoff.style.display = "block";
-            } else {
-                monthly_pickup.style.display = "block";
-                monthly_dropoff.style.display = "block";
-            }
-        }
-
-        function setupFlatpickr() {
-            flatpickr("#reservationDateDaily", {
-                minDate: "today",
-                dateFormat: "Y-m-d",
-                appendTo: document.getElementById("reservationDateDaily").parentNode,
-                static: true,
-                position: "below",
-            });
-
-            flatpickr("#reservationDateMonthly", {
-                minDate: "today",
-                dateFormat: "Y-m-d",
-                appendTo: document.getElementById("reservationDateMonthly").parentNode,
-                static: true,
-                position: "below",
-            });
-        }
-
-        // Call setupFlatpickr function when the document is fully loaded
+    }
         document.addEventListener("DOMContentLoaded", function () {
-            setupFlatpickr();
-        });
+        setupFlatpickr();
+    });
+
+
+    function checkReservationAvailability() {
+        var route = document.getElementById("route").value;
+        var date = document.getElementById("reservationDateDaily").value;
+
+        // Send AJAX request
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "<?php echo URLROOT; ?>/employees/checkReservationAvailability", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                var errorDiv = document.getElementById("error");
+                if (response.error) {
+                    // Display error message
+                    errorDiv.innerText = response.error;
+                    errorDiv.style.display = "block"; // Show the error message
+                } else {
+                    // No error, submit the form
+                    errorDiv.style.display = "none"; // Hide the error message
+                    document.getElementById("Daily").submit();
+                }
+            }
+        };
+        xhr.send(JSON.stringify({ route: route, date: date }));
+    }
+
     </script>
 </head>
 
@@ -262,6 +263,15 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
+            <ul>
+                <li id="showPopup">
+                    <a href="#" onclick="event.preventDefault();" id="showPopup">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="icon_name">T&C</span>
+                    </a>
+                    <span class="tooltip">Terms & Conditions</span>
+                </li>
+            </ul>
 
             <ul class="lobtn">
                 <li>
@@ -275,22 +285,17 @@
         </div>
     </div>
 
-    <script>
-        let btn = document.querySelector("#btn");
-        let sidebar = document.querySelector(".sidebar");
-
-        btn.onclick = function () {
-            sidebar.classList.toggle("active");
-        };
-    </script>
-
-
     <div class="main-content">
         <div class="container">
             <div class="topic-content">
                 <h2>Edit Daily Reservation</h2>
             </div>
             <div class="form-box">
+            <?php if (flash('error')): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo flash('error'); ?>
+                        </div>
+                    <?php endif; ?>
                 <form action="<?php echo URLROOT; ?>/employees/updateDailyReservation" method="post" class="input-group"
                     id="Daily">
                     <input type="hidden" name="ReservationID"
@@ -322,24 +327,24 @@
                         <section class="section">
                             <span class="date-topic"></span> <label for="reservationDate">Reservation Date</label><br>
                             <div class="date">
-                                <input type="date" name="Date" value="<?php echo $data['reservation']->Date; ?>">
+                                <input type="date" name="Date" value="<?php echo $data['reservation']->Date; ?>" readonly>
                             </div>
                         </section>
+                        <!-- Update the PHP code to include inline styles based on the schedule type -->
+<section class="section" id="pickup" style="<?php echo ($data['reservation']->ScheduleType == 'ToWork') ? 'display:block;' : 'display:none;'; ?>">
+    <span class="pickup-topic"></span><label for="pickup">Pick Up</label>
+    <div class="pickup">
+        <input type="text" id="pickupField" name="pickup" value="<?php echo $data['reservation']->PickUp; ?>">
+    </div>
+</section>
 
-                        <section class="section" id="pickup">
-                            <span class="pickup-topic"></span><label for="pickup">Pick Up</label>
-                            <div class="pickup">
-                                <input type="text" name="pickup" value="<?php echo $data['reservation']->PickUp; ?>">
-                            </div>
-                        </section>
-                    </div>
-                    <div class="column">
-                        <section class="section" id="dropoff">
-                            <span class="drop-topic"></span><label for="dropoff">Drop Off</label>
-                            <div class="pickup">
-                                <input type="text" name="dropoff" value="<?php echo $data['reservation']->DropOff; ?>">
-                            </div>
-                        </section>
+<section class="section" id="dropoff" style="<?php echo ($data['reservation']->ScheduleType == 'FromWork') ? 'display:block;' : 'display:none;'; ?>">
+    <span class="drop-topic"></span><label for="dropoff">Drop Off</label>
+    <div class="pickup">
+        <input type="text" id="dropoffField"  name="dropoff" value="<?php echo $data['reservation']->DropOff; ?>">
+    </div>
+</section>
+
                     </div>
                     <div class="column">
                         <section class="section">
@@ -350,7 +355,100 @@
             </div>
         </div>
     </div>
+    
 
 </body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        daily(); // Call the daily function to set the initial state
+    });
+
+    var dailyForm = document.getElementById("Daily");
+    var button = document.getElementById("button");
+
+    function daily() {
+        dailyForm.style.display = "block";
+        monthlyForm.style.display = "none";
+        button.style.left = "0";
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        setupFlatpickr(); // Call the setupFlatpickr function when the document is fully loaded
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        setupFlatpickr(); // Call the setupFlatpickr function when the document is fully loaded
+    });
+
+    function setupFlatpickr() {
+        var today = new Date();
+        var tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
+        var tomorrowString = tomorrow.toISOString().split('T')[0];
+
+        var currentTime = today.getHours(); // Get the current hour
+
+        // If it's after 3 PM, set the default date to tomorrow, else set it to today
+        var defaultDate = currentTime >= 15 ? getNextDay(today) : today;
+
+        var defaultDateString = defaultDate.toISOString().split('T')[0];
+
+        var today = new Date();
+        var tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
+        var end = new Date(today);
+        end.setDate(today.getDate() + 30); // Get the date after 30 days
+
+
+        var tomorrowString = tomorrow.toISOString().split('T')[0]; // Convert tomorrow's date to string
+        var endString = end.toISOString().split('T')[0]; // Convert the end date to strin
+
+        var today = new Date();
+        var tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
+        var end = new Date(today);
+        end.setDate(today.getDate() + 30); // Get the date after 30 days
+
+        flatpickr("#reservationDateDaily", {
+            defaultDate: tomorrowString, // Set the default date to tomorrow
+            dateFormat: "Y-m-d",
+            appendTo: document.getElementById("reservationDateDaily").parentNode,
+            static: true,
+            position: "below",
+            minDate: tomorrowString, // Set the minimum date to tomorrow
+            maxDate: tomorrowString // Set the maximum date to tomorrow
+        });
+
+        flatpickr("#reservationStartDate", {
+            defaultDate: tomorrowString, // Set the default start date to tomorrow's date
+            dateFormat: "Y-m-d",
+            appendTo: document.getElementById("reservationStartDate").parentNode,
+            static: true,
+            position: "below",
+            minDate: tomorrowString, // Set the minimum start date to tomorrow's date
+            maxDate: endString, // Set the maximum start date to 30 days from today
+        });
+
+        flatpickr("#reservationEndDate", {
+            defaultDate: endString, // Set the default end date to 30 days from today
+            dateFormat: "Y-m-d",
+            appendTo: document.getElementById("reservationEndDate").parentNode,
+            static: true,
+            position: "below",
+            minDate: tomorrowString, // Set the minimum end date to tomorrow's date
+            maxDate: endString, // Set the maximum end date to 30 days from today
+        });
+    }
+
+
+    function getNextDay(date) {
+        var nextDay = new Date(date);
+        nextDay.setDate(date.getDate() + 1); // Get the date of the next day
+        return nextDay;
+    }
+
+
+</script>
 
 </html>

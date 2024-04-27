@@ -20,6 +20,7 @@
 
             /* backdrop-filter: blur(10px) brightness(0.5); */
         }
+
         .container {
             margin: 0 auto;
             padding: 20px;
@@ -63,6 +64,30 @@
         tbody tr:hover {
             background-color: var(--primary-color-extra-light);
 
+        }
+
+        .button {
+            width: 150px;
+            height: 45px;
+            background: var(--text-light);
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            cursor: pointer;
+            font-size: 16px;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-align: center;
+            line-height: 45px;
+            display: inline-block;
+            text-decoration: none;
+            transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+        }
+
+        .button:hover {
+            background-color: var(--primary-color-light);
+            color: var(--white);
         }
     </style>
 </head>
@@ -124,7 +149,7 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
-            
+
             <ul class="lobtn">
                 <li>
                     <a href="<?php echo URLROOT; ?>/users/logout">
@@ -150,42 +175,46 @@
     <div class="main-content">
         <div class="wrapper">
             <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="mt-3">Monthly Reservations</h2>
-                    <?php if (empty($data['reservations'])): ?>
-                        <p>No reservations have been made for
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="mt-3">Reservations -
                             <?php echo date('F Y', strtotime($data['selectedYear'] . '-' . $data['selectedMonth'] . '-01')); ?>
-                        </p>
-                    <?php else: ?>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Schedule Type</th>
-                                    <th>Route</th>
-                                    <th>Date</th>
-                                    <th>PickUp</th>
-                                    <th>DropOff</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($data['reservations'] as $reservation): ?>
+                        </h2>
+
+                        <?php if (empty($data['reservations'])): ?>
+                            <p>No reservations have been made for
+                                <?php echo date('F Y', strtotime($data['selectedYear'] . '-' . $data['selectedMonth'] . '-01')); ?>
+                            </p>
+                        <?php else: ?>
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td><?php echo $reservation->ScheduleType; ?></td>
-                                        <td><?php echo $reservation->Route; ?></td>
-                                        <td><?php echo $reservation->Date; ?></td>
-                                        <td><?php echo $reservation->PickUp; ?></td>
-                                        <td><?php echo $reservation->DropOff; ?></td>
+                                        <th>Schedule Type</th>
+                                        <th>Route</th>
+                                        <th>Date</th>
+                                        <th>PickUp</th>
+                                        <th>DropOff</th>
                                     </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    <?php endif; ?>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($data['reservations'] as $reservation): ?>
+                                        <tr>
+                                            <td><?php echo $reservation->ScheduleType; ?></td>
+                                            <td><?php echo $reservation->Route; ?></td>
+                                            <td><?php echo $reservation->Date; ?></td>
+                                            <td><?php echo $reservation->PickUp; ?></td>
+                                            <td><?php echo $reservation->DropOff; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
+            <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments" class="button" id="back">Back</a>
         </div>
-        </div>
-        
+
     </div>
 </body>
 

@@ -162,15 +162,15 @@
                     <span class="tooltip">HomePage</span>
                 </li>
             </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/hrmanagers/dashboard">
-                        <i class="fa-solid fa-chart-line"></i>
-                        <span class="icon_name">Dashboard</span>
-                    </a>
-                    <span class="tooltip">Dashboard</span>
-                </li>
-            </ul>
+            <!-- <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/hrmanagers/dashboard">
+                <i class="fa-solid fa-chart-line"></i>
+                <span class="icon_name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+        </li>
+    </ul> -->
             <ul>
                 <li>
                     <a href="<?php echo URLROOT; ?>/pages/profile/<?= $_SESSION['user_id'] ?>">
@@ -230,6 +230,15 @@
                     <span class="tooltip">Terms & Conditions</span>
                 </li>
             </ul>
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/admins/viewPendingWorkTrips">
+                        <i class="fa-solid fa-suitcase-rolling"></i>
+                        <span class="icon_name">WorkTrips</span>
+                    </a>
+                    <span class="tooltip">WorkTrips</span>
+                </li>
+            </ul>
             <ul class="lobtn">
                 <li>
                     <a href="<?php echo URLROOT; ?>/users/logout">
@@ -258,7 +267,7 @@
                         <a href="<?php echo URLROOT; ?>/admins/viewvehicle" class="btn view-button">View
                             Vehicles</a>
                     </div>
-                    
+
                     <div class="topic-content">
                         <h1>Vehicle Registration</h1>
                     </div>
@@ -312,7 +321,8 @@
 
                         <div class="form-group">
                             <label for="passenger_capacity">Vehicle Passenger Capacity:</label>
-                            <input type="text" id="passenger_capacity" name="passenger_capacity" placeholder="Enter Passenger Capacity">
+                            <input type="text" id="passenger_capacity" name="passenger_capacity"
+                                placeholder="Enter Passenger Capacity">
                         </div>
 
                         <div class="form-group">

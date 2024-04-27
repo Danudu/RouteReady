@@ -17,13 +17,10 @@ class Vehicle {
     // Example method for saving to a database
     public function addVehicle($data) {
         try {
-            // Debug file data
-            var_dump($data['front_photo']);
-
             // Check if file is uploaded and not empty
-            if (!empty($data['front_photo']['tmp_name'])) {
+            if (!empty($_FILES['image']['tmp_name'])) {
                 // Read file contents
-                $imageData = file_get_contents($data['front_photo']['tmp_name']);
+                $imageData = file_get_contents($_FILES['image']['tmp_name']);
             } else {
                 // If file is not uploaded, set image data to null
                 $imageData = null;
@@ -43,10 +40,10 @@ class Vehicle {
             $this->db->bind(':vin', $data['vin_number']);
             $this->db->bind(':insu_pro', $data['insurance_company']);
             $this->db->bind(':insu_pn', $data['insurance_number']);
-            $this->db->bind(':capacity', $data['passenger_capacity']); // Use the converted integer value
+            $this->db->bind(':capacity', $capacity); // Use the converted integer value
             $this->db->bind(':image', $imageData); // Bind image data
-            $this->db->bind(':images1', $data['side_photo_1']);
-            $this->db->bind(':images2', $data['side_photo_2']);
+            $this->db->bind(':images1', $data['images1']);
+            $this->db->bind(':images2', $data['images2']);
 
             // Execute query
             if ($this->db->execute()) {
@@ -83,6 +80,13 @@ class Vehicle {
         $row = $this->db->single();
     
         return $row;
+    }
+
+    public function getVehicleDetailsByRegNumber($regNumber)
+    {
+        $this->db->query('SELECT * FROM VehicleDetails WHERE Registration_Number = :regNumber');
+        $this->db->bind(':regNumber', $regNumber);
+        return $this->db->single();
     }
 
     

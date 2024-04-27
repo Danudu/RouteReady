@@ -9,6 +9,7 @@ class Admins extends Controller
   private $salaryModel;
   private $outsalaryModel;
   private $adminModel;
+  private $workTripModel;
   private $postModel;
 
 
@@ -27,6 +28,7 @@ class Admins extends Controller
     $this->userModel = $this->model('User');
     $this->postModel = $this->model('Post');
     $this->vehicleModel = $this->model('Vehicle');
+    $this->workTripModel = $this->model('WorkTrip');
     // $this->bankModel = $this->model('BankModel');
     // $this->salaryModel = $this->model('Salary');
     // $this->outsalaryModel = $this->model('OutSalaryModel');
@@ -78,20 +80,23 @@ class Admins extends Controller
         'manufacture_year' => trim($_POST['year']),
         'insurance_company' => trim($_POST['insu_pro']),
         'insurance_number' => trim($_POST['insu_pn']),
-        'passenger_capacity' => trim($_POST['passenger_capacity']),
-        'front_photo' => $_FILES['front_photo'], // Handle file uploads separately
-        'side_photo_1' => $_FILES['side_photo_1'],
-        'side_photo_2' => $_FILES['side_photo_2'],
-        // Additional fields
+        'passenger_capacity' => trim($_POST['passenger_capacity'])
 
       ];
 
-      // Call the addVehicle method from the model to insert the data into the database
       if ($this->vehicleModel->addVehicle($data)) {
-        redirect('admins/viewVehicle'); // Redirect after successful insertion
-      } else {
+        // Handle file uploads separately
+        $front_photo = $this->uploadFile('image');
+        $side_photo_1 = $this->uploadFile('images1');
+        $side_photo_2 = $this->uploadFile('images2');
+
+        // Update the database with file paths
+        $this->vehicleModel->updatePhotos($front_photo, $side_photo_1, $side_photo_2);
+
+        redirect('admins/addVehicles');
+    } else {
         die('Something went wrong.'); // Handle error if insertion fails
-      }
+    }
     } else {
       // If request method is not POST, load the view with empty form fields
       $data = [
@@ -110,6 +115,35 @@ class Admins extends Controller
     }
   }
 
+  private function uploadFile($fileInputName)
+{
+    $uploadDirectory = 'uploads/';
+
+    $fileName = basename($_FILES[$fileInputName]['name']);
+    $targetFile = $uploadDirectory . $fileName;
+    $fileType = pathinfo($targetFile, PATHINFO_EXTENSION);
+
+    // Check if file already exists
+    if (file_exists($targetFile)) {
+        return null; // Return null if file already exists
+    }
+
+    // Check file size
+    if ($_FILES[$fileInputName]['size'] > 500000) {
+        return null; // Return null if file size exceeds limit
+    }
+
+    // Allow certain file formats
+    if ($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg" && $fileType != "gif") {
+        return null; // Return null if file format is not allowed
+    }
+    // Upload file
+    if (move_uploaded_file($_FILES[$fileInputName]["tmp_name"], $targetFile)) {
+        return $fileName; // Return the uploaded file name
+    } else {
+        return null; // Return null if file upload fails
+    }
+}
 
 
   // Function to handle form submission and insert salary details
@@ -446,6 +480,43 @@ public function deleteVehicle($reg_no)
     return $this->view('pages/admin/full_booking', ['timetableData' => $timetableData]);
   }
 
+  public function viewPendingWorkTrips()
+{
+    $pendingWorkTrips = $this->workTripModel->getPendingWorkTripReservations(); // Fetch pending work trips from the model
+    $data = [
+        'pendingWorkTrips' => $pendingWorkTrips
+    ];
+    $this->view('pages/admin/viewPendingWorkTrips', $data); // Pass the data to the view
+}
+
+  public function approveWorkTrip($tripID)
+{
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Get the action (approve or reject)
+        $action = $_POST['action'];
+
+        // Update the status of the work trip based on the action
+        if ($action === 'approve') {
+            $status = 'approved';
+        } elseif ($action === 'reject') {
+            $status = 'rejected';
+        } else {
+            // Handle invalid action
+            die('Invalid action');
+        }
+
+        // Update the status in the database
+        if ($this->workTripModel->updateStatus($tripID, $status)) {
+            // Redirect to the view pending work trips page
+            redirect('admins/viewPendingWorkTrips');
+        } else {
+            die('Something went wrong');
+        }
+    } else {
+        // Handle if the request method is not POST
+        redirect('admins/viewPendingWorkTrips');
+    }
+}
 
 }
 

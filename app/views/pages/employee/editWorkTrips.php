@@ -6,9 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar2.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <title>Edit WorkTrips | RouteReady</title>
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const timeInput = document.getElementById('triptime');
+            const ampmSelect = document.getElementById('ampm');
+
+            timeInput.addEventListener('change', function () {
+                const selectedTime = timeInput.value;
+                const selectedAMPM = ampmSelect.value;
+                const formattedTime = selectedTime + ' ' + selectedAMPM;
+                timeInput.value = formattedTime;
+            });
+        });
+    
+    </script>
 
     <style>
         :root {
@@ -217,6 +234,15 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
+            <ul>
+                <li id="showPopup">
+                    <a href="#" onclick="event.preventDefault();" id="showPopup">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="icon_name">T&C</span>
+                    </a>
+                    <span class="tooltip">Terms & Conditions</span>
+                </li>
+            </ul>
             
             <ul class="lobtn">
                 <li>
@@ -237,12 +263,27 @@
         btn.onclick = function () {
             sidebar.classList.toggle("active");
         };
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+    // Retrieve the value of tripTime from the server
+    const tripTimeValue = "<?php echo $data['workTrip']->tripTime; ?>";
+
+    // Set the value of the tripTime input field
+    document.getElementById('tripTime').value = tripTimeValue;
+});
+
     </script>
 
 
 <div class="main-content">
     <div class="container">
         <h2>Edit Work Trip Reservation</h2>
+        <?php if (flash('error')): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo flash('error'); ?>
+                        </div>
+                    <?php endif; ?>
         <div class="form-box">
             <form action="<?php echo URLROOT; ?>/employees/updateWorkTripReservation" method="post" class="input-group">
                 <input type="hidden" name="tripID" value="<?php echo $data['workTrip']->tripID; ?>">
@@ -250,14 +291,14 @@
                     <section class="section">
                         <label for="e_name">Employee Name:</label>
                         <div class="employee-name">
-                            <input type="text" id="employee_name" name="employee_name" value="<?php echo $data['workTrip']->employee_name; ?>">
+                            <input type="text" id="employee_name" name="employee_name" value="<?php echo $data['workTrip']->employee_name; ?>" readonly>
                         </div>
                     </section>
 
                     <section class="section">
                         <label for="email">Email Address:</label>
                         <div class="pickup">
-                            <input type="text" id="email" name="email" value="<?php echo $data['workTrip']->email; ?>">
+                            <input type="text" id="email" name="email" value="<?php echo $data['workTrip']->email; ?>" readonly>
                         </div>
                     </section>
 
@@ -293,23 +334,23 @@
                     </section>
 
                     <section class="section">
-                        <label for="tripdate">Reservation Date:</label>
-                        
-                        <input type="date" id="tripDate" name="tripDate" value="<?php echo $data['workTrip']->tripDate; ?>">
-                        
-                    </section>
+    <label for="tripdate">Select Date:</label>
+    <input type="text" id="tripDate" name="tripDate" value="<?php echo $data['workTrip']->tripDate; ?>">
+</section>
 
-                    <section class="section">
-                        <label for="triptime">Reservation Time:</label>
-                        <div class="dropoff">
-                            <input type="time" id="tripTime" name="tripTime" value="<?php echo $data['workTrip']->tripTime; ?>">
-                            
-                            <select id="ampm" name="ampm">
-                                <option value="AM">AM</option>
-                                <option value="PM">PM</option>
-                            </select>
-                        </div>
-                    </section>
+
+<section class="section">
+    <label for="triptime">Select Time:</label>
+    <div class="dropoff">
+        <input type="time" id="tripTime" name="tripTime" value="<?php echo $data['workTrip']->tripTime; ?>" style="color:aliceblue">
+        
+        <select id="ampm" name="ampm">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+        </select>
+    </div>
+</section>
+
 
                     <section class="section">
                         <div class="submit"><input type="submit" value="Update"></div>
@@ -320,17 +361,38 @@
     </div>
 </div>
 
+
 <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            flatpickr("#tripdate", {
-                minDate: "today",
-                dateFormat: "Y-m-d" // You can change the date format as needed
-            });
-        });
-    </script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    setupFlatpickr(); // Call the setupFlatpickr function when the document is fully loaded
+});
+
+function setupFlatpickr() {
+    var today = new Date();
+    var tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
+
+    // Set up Flatpickr with default date as tomorrow and minDate as tomorrow
+    flatpickr("#tripDate", {
+        defaultDate: '<?php echo $data['workTrip']->tripDate; ?>',
+        minDate: tomorrow,
+        dateFormat: "Y-m-d", // You can change the date format as needed
+        static: true,
+        position: "below"
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Retrieve the value of tripTime from the server
+    const tripTimeValue = "<?php echo $data['workTrip']->tripTime; ?>";
+
+    // Set the value of the tripTime input field
+    document.getElementById('tripTime').value = tripTimeValue;
+});
 
 
+</script>
 
 </body>
-
 </html>

@@ -1,5 +1,3 @@
-<!-- View: pages/hrmanager/payments.php -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,8 +32,8 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
-        
-        
+
+
         .main-content {
             padding: 50px 0;
             backdrop-filter: blur(10px) brightness(0.8);
@@ -143,7 +141,6 @@
 
 <body>
     <div class="sidebar">
-
         <div class="top">
             <div class="logo">
                 <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
@@ -163,7 +160,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/hrmanagers/dashboard">
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/calculatePayments">
                         <i class="fa-solid fa-chart-line"></i>
                         <span class="icon_name">Dashboard</span>
                     </a>
@@ -199,16 +196,6 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/hrmanagers/calculatePayments">
-                        <i class="fa-solid fa-hand-holding-dollar"></i>
-                        <span class="icon_name">Payment</span>
-                    </a>
-                    <span class="tooltip">Payment</span>
-                </li>
-            </ul>
-
-            <ul>
-                <li>
                     <a href="<?php echo URLROOT; ?>/posts/terms">
                         <i class="fas fa-book-bookmark"></i>
                         <span class="icon_name">T&C</span>
@@ -227,6 +214,7 @@
             </ul>
         </div>
     </div>
+    </div>
     <div class="main-content">
         <div class="wrapper">
             <h2>View Payments</h2>
@@ -244,8 +232,7 @@
                 <select name="year" id="year">
                     <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
                         <option value="<?php echo $i; ?>" <?php echo ($data['selectedYear'] == $i) ? 'selected' : ''; ?>>
-                            <?php echo $i; ?>
-                        </option>
+                            <?php echo $i; ?></option>
                     <?php endfor; ?>
                 </select>
                 <button type="submit" class="button">View Payments</button>
@@ -253,12 +240,14 @@
                 </br>
             </form>
             </br>
+
+
             <!-- Display payments in a table -->
             <?php if (!empty($data['payments'])): ?>
+
                 <h3>Payments for
-                    <?php echo date('F Y', strtotime($data['selectedYear'] . '-' . $data['selectedMonth'] . '-01')); ?>
-                </h3>
-                <table>
+                    <?php echo date('F Y', strtotime($data['selectedYear'] . '-' . $data['selectedMonth'] . '-01')); ?></h3>
+                <table id="report">
                     <thead>
                         <tr>
                             <th>User ID</th>
@@ -276,11 +265,17 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-            <?php else: ?>
-                <p>No payments available for the selected month and year.</p>
-            <?php endif; ?>
-        </div>
+            </div>
+        <?php else: ?>
+            <p>No payments available for the selected month and year.</p>
+        <?php endif; ?>
+        <button id="downloadpdf">Download PDF</button></a>
     </div>
+
+
+    </div>
+
+
 
     <script>
         // JavaScript to submit form when month and year are selected
@@ -299,6 +294,26 @@
             sidebar.classList.toggle("active");
         };
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const filename = 'PDFFILE' + '.pdf';
+        document.getElementById('downloadpdf').addEventListener('click', function () {
+            // Select the element that you want to convert to PDF
+            const element = document.getElementById('report');
+
+            // Specify the filename for the downloaded PDF
+
+            html2pdf(element, {
+                filename: filename
+            });
+        });
+    </script>
 </body>
 
 </html>
+
+<!-- View: pages/hrmanager/payments.php -->
+
