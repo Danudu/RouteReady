@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar.css">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/content.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/employee/employee.css">
     <title>Home | RouteReady</title>
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
 </head>
@@ -96,45 +94,54 @@
             </ul>
         </div>
     </div>
-
     <div class="main-content">
-        <div class="container">
-            <div class="header">
-                <h1>Route Ready Admin </h1>
-            </div>
-            <div class="main">
-                <section class="welcome">
-                    <div class="content">
-                        <h1> <span>Welcome</span> Aboard!</h1>
-                        <h3>Efficiency, Ease, Insights: <br>Your Corporate Mobility Revolution Begins with RouteReady</h3>
-                    </div>
-                    <div>
-                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/users/logout" class="bt">Login As Employee</a></button>
-                        <!-- <button type="button" class="btn2"><a href="#" class="bt">Logout</a></button> -->
-                    </div>
-                </section>
-            </div>
+        <div class="wrapper">
+            <div class="container">
+                <h2>Pending Work Trip Reservations</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Email</th>
+                            <th>Reason</th>
+                            <th>Number of Passengers</th>
+                            <th>Destination</th>
+                            <th>Comments</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    <!-- Loop through pending work trips -->
+    <?php foreach ($data['pendingWorkTrips'] as $workTrip) : ?>
+        <tr>
+            <td><?php echo $workTrip->employee_name; ?></td>
+            <td><?php echo $workTrip->email; ?></td>
+            <td><?php echo $workTrip->reason; ?></td>
+            <td><?php echo $workTrip->numofPassengers; ?></td>
+            <td><?php echo $workTrip->destination; ?></td>
+            <td><?php echo $workTrip->comments; ?></td>
             
-            <div class="footer">
-                <p>&copy; 2023 Vehicle Reservation System.</p>
-                <h4>Follow us</h4>
-                <div class="footer-social">
-                    <div class="footer-links">
-                        <ul>
-                            <li class="social"><a href="https://www.facebook.com/" class="social"><i class="fa-brands fa-facebook"></i></a></li>
-                            <li class="social"><a href="https://twitter.com/" class="social"><i class="fa-brands fa-twitter"></i></a></li>
-                            <li class="social"><a href="https://www.instagram.com/" class="social"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li class="social"><a href="https://www.linkedin.com/" class="social"><i class="fa-brands fa-linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
+            <td>
+                <!-- Add form to approve or reject the work trip -->
+                <form action="<?php echo URLROOT; ?>/admins/approveWorkTrip/<?php echo $workTrip->tripID; ?>" method="post">
+                    <input type="hidden" name="action" value="approve">
+                    <button type="submit" class="button">Approve</button>
+                </form>
+                <form action="<?php echo URLROOT; ?>/admins/approveWorkTrip/<?php echo $workTrip->tripID; ?>" method="post">
+                    <input type="hidden" name="action" value="reject">
+                    <button type="submit" class="button">Reject</button>
+                </form>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
+
+                </table>
             </div>
         </div>
     </div>
-    
-</body>
 
-<script>
+    <script>
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
 
@@ -142,6 +149,7 @@
         sidebar.classList.toggle("active");
     };
 </script>
-</html>
 
-<!-- https://www.youtube.com/watch?v=uy1tgKOnPB0 -->
+</body>
+
+</html>

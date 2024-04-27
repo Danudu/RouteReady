@@ -223,45 +223,56 @@
     </script>
 
 
-    <div class="main-content">
+<div class="main-content">
         <div class="wrapper">
             <div class="container">
                 <h2>Work Trip Reservations</h2>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Employee Name</th>
-                            <th>Email</th>
+                            <th>Date</th>
+                            <th>Time</th>
                             <th>Reason</th>
                             <th>Number of Passengers</th>
                             <th>Destination</th>
                             <th>Comments</th>
-                            <th>Date</th>
-                            <th>Time</th>
+                            <th>Status</th>
                             <th colspan="2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($data['workTripReservations'] as $workTripReservation): ?>
+                            <?php
+                                $disableButtons = false;
+
+                                // Check if the trip date is before the current date
+                                if (strtotime($workTripReservation->tripDate) < strtotime('today')) {
+                                    $disableButtons = true;
+                                } else {
+                                    // Check if the status is approved or rejected
+                                    if ($workTripReservation->status === 'approved' || $workTripReservation->status === 'rejected') {
+                                        $disableButtons = true;
+                                    }
+                                }
+                            ?>
                             <tr>
-                                <td><?php echo $workTripReservation->employee_name; ?></td>
-                                <td><?php echo $workTripReservation->email; ?></td>
+                                <td><?php echo $workTripReservation->tripDate; ?></td>
+                                <td><?php echo date('H:i', strtotime($workTripReservation->tripTime)); ?></td>
                                 <td><?php echo $workTripReservation->reason; ?></td>
                                 <td><?php echo $workTripReservation->numofPassengers; ?></td>
                                 <td><?php echo $workTripReservation->destination; ?></td>
                                 <td><?php echo $workTripReservation->comments; ?></td>
-                                <td><?php echo $workTripReservation->tripDate; ?></td>
-                                <td><?php echo $workTripReservation->tripTime; ?></td>
+                                <td><?php echo $workTripReservation->status; ?></td>
                                 <td>
-                                    <a
-                                        href="<?php echo URLROOT; ?>/employees/editWorkTrips/<?php echo $workTripReservation->tripID; ?>"><i
-                                            class="fas fa-pencil-alt" style="color: white;"></i></a>
+                                    <a href="<?php echo URLROOT; ?>/employees/editWorkTrips/<?php echo $workTripReservation->tripID; ?>" <?php if ($disableButtons) echo 'disabled'; ?>>
+                                        <i class="fas fa-pencil-alt" style="color: <?php echo $disableButtons ? 'gray' : 'white'; ?>"></i>
+                                    </a>
                                 </td>
                                 <td>
-                                    <form
-                                        action="<?php echo URLROOT; ?>/employees/deleteWorkTripReservation/<?php echo $workTripReservation->tripID; ?>"
-                                        method="post">
-                                        <button type="submit" class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                    <form action="<?php echo URLROOT; ?>/employees/deleteWorkTripReservation/<?php echo $workTripReservation->tripID; ?>" method="post">
+                                        <button type="submit" class="btn-delete" <?php if ($disableButtons) echo 'disabled'; ?>>
+                                            <i class="fas fa-trash-alt" style="color: <?php echo $disableButtons ? 'gray' : ''; ?>"></i>
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
@@ -272,10 +283,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 </body>
 
 </html>

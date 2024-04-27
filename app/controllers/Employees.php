@@ -451,6 +451,12 @@ class Employees extends Controller
        'id' => $user_id
      ];
 
+
+     if (empty($data['reason']) || empty($data['numofPassengers']) || empty($data['destination']) || empty($data['tripDate']) || empty($data['tripTime'])) {
+      flash('error', 'Please fill out all required fields.');
+      $this->view('pages/employee/makeWorkTrip', $data);
+      return;
+  }
      if ($this->workTripModel->addWorkTrip($data)) {
 
       redirect('employees/viewWorkTrips');
@@ -560,6 +566,12 @@ class Employees extends Controller
         'id' => $user_id
       ];
 
+    
+      if (empty($data['reason']) || empty($data['numofPassengers']) || empty($data['destination']) || empty($data['tripDate']) || empty($data['tripTime'])) {
+        flash('error', 'Please fill out all required fields.');
+        redirect('employees/editWorkTrips/' . $data['tripID']);
+        return;
+    }
       // Update the work trip reservation
       if ($this->workTripModel->updateWorkTripReservation($data)) {
         // Success message
@@ -575,15 +587,6 @@ class Employees extends Controller
       redirect('employees/viewWorkTrips');
     }
   }
-
-
-
-
-
-
-//   RESERVATION PAYMENT
-
-
 
 
   public function viewMonthlyPayments() {

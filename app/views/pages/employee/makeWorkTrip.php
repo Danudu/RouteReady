@@ -27,6 +27,7 @@
                 timeInput.value = formattedTime;
             });
         });
+    
     </script>
 
     <style>
@@ -255,6 +256,11 @@
             <div class="container">
                 <div class="wrapper">
                     <h1>Work Trip Reservation</h1>
+                    <?php if (flash('error')): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo flash('error'); ?>
+                        </div>
+                    <?php endif; ?>
                     <form action="<?php echo URLROOT; ?>/employees/makeWorkTrip" method="post">
                     <div class="form-group">
     <label for="e_name">Employee Name:</label>
@@ -307,15 +313,34 @@
     </div>
 
 
-
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            flatpickr("#tripdate", {
-                minDate: "today",
-                dateFormat: "Y-m-d" // You can change the date format as needed
-            });
-        });
-    </script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    setupFlatpickr(); // Call the setupFlatpickr function when the document is fully loaded
+});
+
+function setupFlatpickr() {
+    var today = new Date();
+    var tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
+    var tomorrowString = tomorrow.toISOString().split('T')[0];
+
+    
+
+    // Set up Flatpickr with default date as tomorrow and minDate as tomorrow
+    flatpickr("#tripdate", {
+        defaultDate: tomorrow,
+        minDate: tomorrow,
+        dateFormat: "Y-m-d", // You can change the date format as needed
+        static: true,
+        position: "below"
+    });
+}
+
+
+
+</script>
+
 </body>
 
 </html>
