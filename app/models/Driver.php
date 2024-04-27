@@ -9,20 +9,24 @@ class Driver {
     }
 
     // Method to insert driver data
-    public function insertDriverData($data){
-        // Prepare SQL query to insert driver data
-        $this->db->query('INSERT INTO drivers (user_id, driver_license, vehicle_type) VALUES (:user_id, :driver_license, :vehicle_type)');
 
-        // Bind values
-        $this->db->bind(':user_id', $data['user_id']);
+    public function register($data){
+        $this->db->query('INSERT INTO outsourceDrivers (name, age, email, password, contact, address, driver_license, status) VALUES(:name, :age, :email, :password, :contact_num, :address, :driver_license, :status)');
+        //bind values
+        $this->db->bind(':name', $data['name']);
+        $this->db->bind(':age', $data['age']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':contact_num', $data['contact_num']);
+        $this->db->bind(':address', $data['address']);
         $this->db->bind(':driver_license', $data['driver_license']);
-        $this->db->bind(':vehicle_type', $data['vehicle_type']);
+        $this->db->bind(':status', 'pending');
 
-        // Execute
+        //execute
         if($this->db->execute()){
-            return true; // Insertion successful
+            return true;
         } else {
-            return false; // Insertion failed
+            return false;
         }
     }
 
