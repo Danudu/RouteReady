@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apply for Leave</title>
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
-
-
-    
 </head>
 <body>
     <div class="container">
@@ -20,8 +17,7 @@
                 <label for="type">Leave Type:</label>
                 <select id="type" name="type" required>
                     <option value="select">-Select-</option>
-                    <option value="Personal">Sick</option>
-                    <option value="Sick Leave">Medical Leave</option>
+                    <option value="Sick Leave">Sick Leave</option>
                     <option value="Personal">Personal</option>
                     <option value="Other">Other</option>
                 </select>
@@ -62,7 +58,7 @@ var_dump($leaveTypeCount);
         document.getElementById('type').addEventListener('change', function() {
             var type = this.value;
             var medicalReportField = document.getElementById('medical-report-field');
-            if (type === 'Medical Leave') {
+            if (type === 'Sick Leave') {
                 medicalReportField.style.display = 'block';
             } else {
                 medicalReportField.style.display = 'none';
@@ -76,7 +72,7 @@ var_dump($leaveTypeCount);
     var medicalReportField = document.getElementById('medical-report-field');
     var medicalReportInput = document.getElementById('medical_report');
 
-    if (type === 'Medical') {
+    if (type === 'Sick Leave') {
         medicalReportField.style.display = 'block';
         // Clear previous error message
         medicalReportInput.setCustomValidity('');

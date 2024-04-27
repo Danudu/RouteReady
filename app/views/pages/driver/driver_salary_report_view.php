@@ -25,7 +25,7 @@
             <th>Total Salary</th>
             <th>Status</th>
         </tr>
-        
+        <!-- Table data -->
         <?php
 
 if (!empty($data["salaryReport"])) {

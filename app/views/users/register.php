@@ -9,36 +9,6 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/logreg/logreg.css">
-    <script>
-        window.onload = function() {
-            var designationSelect = document.getElementById('designation');
-            var ageInput = document.getElementById('age');
-            var yearsInput = document.getElementById('years_of_experience');
-            var licenseInput = document.getElementById('driver_license');
-            var empIdInput = document.getElementById('emp_id');
-            var deptInput = document.getElementById('department');
-
-            function toggleFields() {
-                var designation = designationSelect.value;
-                if (designation === 'driver') {
-                    ageInput.style.display = 'block';
-                    yearsInput.style.display = 'block';
-                    licenseInput.style.display = 'block';
-                    empIdInput.style.display = 'none';
-                    deptInput.style.display = 'none';
-                } else {
-                    ageInput.style.display = 'none';
-                    yearsInput.style.display = 'none';
-                    licenseInput.style.display = 'none';
-                    empIdInput.style.display = 'block';
-                    deptInput.style.display = 'block';
-                }
-            }
-
-            toggleFields(); // Initial invocation
-            designationSelect.addEventListener('change', toggleFields);
-        };
-    </script>
 </head>
 
 <body>
@@ -61,37 +31,38 @@
                     <h1>Register</h1>
                     <p>Please fill out this form to register</p>
                     <div class="input-box">
-                        <label for="name">Name: <sup>*</sup></label>
+                        <!-- <label for="name">Name: <sup>*</sup></label> -->
                         <input type="text" name="name" value="<?php echo $data['name']; ?>" placeholder="Name">
                         <span><?php echo $data['name_err']; ?></span>
                     </div>
-                    <div class="input-box" id="emp_id">
-                        <label for="emp_id">Employee ID: <sup>*</sup></label>
+                    <div class="input-box">
+                        <!-- <label for="emp_id">Employee ID: <sup>*</sup></label> -->
                         <input type="text" name="emp_id" value="<?php echo $data['emp_id']; ?>"
                             placeholder="Employee ID">
                         <span><?php echo $data['emp_id_err']; ?></span>
                     </div>
-                    <div class="input-box" id="department">
-                        <label for="department">Department: <sup>*</sup></label>
-                        <input type="text" name="department" value="<?php echo $data['department']; ?>"
-                            placeholder="Department">
-                    </div>
                     <div class="input-box">
-                        <label for="email">Email: <sup>*</sup></label>
+                        <!-- <label for="email">Email: <sup>*</sup></label> -->
                         <input type="email" name="email" value="<?php echo $data['email']; ?>" placeholder="Email">
                         <span><?php echo $data['email_err']; ?></span>
                     </div>
                     <div class="input-box">
-                        <label for="contact_num">Contact: <sup>*</sup></label>
+                        <!-- <label for="contact_num">Contact: <sup>*</sup></label> -->
                         <input type="text" name="contact_num" value="<?php echo $data['contact_num']; ?>"
                             placeholder="Contact">
                     </div>
                     <div class="input-box">
-                        <label for="address">Address: <sup>*</sup></label>
+                        <!-- <label for="address">Address: <sup>*</sup></label> -->
                         <input type="text" name="address" value="<?php echo $data['address']; ?>" placeholder="Address">
                     </div>
                     <div class="input-box">
-                        <label for="designation">Designation: <sup>*</sup></label>
+                        <!-- <label for="department">Department: <sup>*</sup></label> -->
+                        <input type="text" name="department" value="<?php echo $data['department']; ?>"
+                            placeholder="Department">
+                    </div>
+                    <div class="input-box">
+                        <!-- <label for="designation">Designation: <sup>*</sup></label> -->
+                        <!-- <input type="text" name="designation" value="<?php echo $data['designation']; ?>" placeholder="Designation"> -->
                         <select class="select" name="designation" id="designation"
                             value="<?php echo $data['designation']; ?>" aria-placeholder="Designation">
                             <option disabled selected>Select designation...</option>
@@ -101,34 +72,27 @@
                             <option value="admin">Admin</option>
                         </select>
                     </div>
-                    <div class="input-box" id="age">
-                        <label for="age">Age: <sup>*</sup></label>
-                        <input type="number" name="age" value="<?php echo $data['age']; ?>" placeholder="Age">
-                        <span><?php echo $data['age_err']; ?></span>
+
+                    <!-- <div class="input-box" id="driverDetails1" style="display: none;">
+                        <input type="text" name="driver_license" placeholder="Driver License">
                     </div>
-                    <div class="input-box" id="years_of_experience">
-                        <label for="years_of_experience">Years of Experience: <sup>*</sup></label>
-                        <input type="number" name="years_of_experience" value="<?php echo $data['years_of_experience']; ?>" placeholder="Years of Experience">
-                        <span><?php echo $data['years_of_experience_err']; ?></span>
-                    </div>
-                    <div class="input-box" id="driver_license">
-                        <label for="driver_license">Driver License Number: <sup>*</sup></label>
-                        <input type="text" name="driver_license" value="<?php echo $data['driver_license']; ?>" placeholder="Driver License Number">
-                        <span><?php echo $data['driver_license_err']; ?></span>
-                    </div>
+                    <div class="input-box" id="driverDetails2" style="display: none;">
+                        <input type="text" name="vehicle_no" placeholder="Vehicle Number">
+                    </div> -->
                     <div class="input-box">
-                        <label for="password">Password: <sup>*</sup></label>
+                        <!-- <label for="password">Password: <sup>*</sup></label> -->
                         <input type="password" name="password" value="<?php echo $data['password']; ?>"
                             placeholder="Type Password">
                         <span><?php echo $data['password_err']; ?></span>
                     </div>
                     <div class="input-box">
-                        <label for="confirm_password">Confirm Password: <sup>*</sup></label>
+                        <!-- <label for="confirm_password">Confirm Password: <sup>*</sup></label> -->
                         <input type="password" name="confirm_password" value="<?php echo $data['confirm_password']; ?>"
                             placeholder="Re-type Password">
                         <span><?php echo $data['confirm_password_err']; ?></span>
                     </div>
                     <input type="submit" value="Register" class="btn">
+
                     <div class="register-link">
                         <p>Have an account? <a href="<?php echo URLROOT; ?>/users/login">Login</a></p>
                     </div>
@@ -136,6 +100,21 @@
             </div>
         </div>
     </div>
+
+    <!-- <script>
+        document.getElementById('designation').addEventListener('change', function () {
+            var driverDetails1 = document.getElementById('driverDetails1');
+            var driverDetails2 = document.getElementById('driverDetails2');
+            if (this.value === 'driver') {
+                driverDetails1.style.display = 'block';
+                driverDetails2.style.display = 'block';
+            } else {
+                driverDetails1.style.display = 'none';
+                driverDetails2.style.display = 'none';
+            }
+        });
+    </script> -->
+
 </body>
 
 </html>
