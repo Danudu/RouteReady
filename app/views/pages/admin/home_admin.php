@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,21 +51,44 @@
             <ul>
                 <li>
                     <a href="<?php echo URLROOT; ?>/admins/addVehicles">
-                        <i class="fas fa-users"></i>
+                    <i class="fa-solid fa-van-shuttle"></i>
                         <span class="icon_name">Vehicle</span>
                     </a>
-                    <span class="tooltip">vehicle</span>
+                    <span class="tooltip">Vehicle</span>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/hrmanagers/viewDrivers">
-                        <i class="fas fa-truck-fast"></i>
-                        <span class="icon_name">Drivers</span>
+                    <a href="<?php echo URLROOT; ?>/admins/redirectToTimetable">
+                    <i class="fa-regular fa-calendar-days"></i>
+                        <span class="icon_name"> Schedule</span>
                     </a>
-                    <span class="tooltip">Drivers</span>
+                    <span class="tooltip">Schedule</span>
                 </li>
             </ul>
+            
+          
+        
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/admins/handleFormSubmission">
+                    <i class="fa-solid fa-comments-dollar"></i>
+                        <span class="icon_name">ODSalary</span>
+                    </a>
+                    <span class="tooltip">ODSalary</span>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/admins/viewhr">
+                        <i class="fas fa-users"></i>
+                        <span class="icon_name">HRManager</span>
+                    </a>
+                    <span class="tooltip">HRManger</span>
+                </li>
+            </ul>
+           
             <ul>
                 <li>
                     <a href="<?php echo URLROOT; ?>/posts/terms">
@@ -100,7 +122,7 @@
                         <h3>Efficiency, Ease, Insights: <br>Your Corporate Mobility Revolution Begins with RouteReady</h3>
                     </div>
                     <div>
-                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/users/logout" class="bt">Login As Employee</a></button>
+                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/admins/asEmployee" class="bt">Login As Employee</a></button>
                         <!-- <button type="button" class="btn2"><a href="#" class="bt">Logout</a></button> -->
                     </div>
                 </section>
