@@ -146,39 +146,39 @@ class Admins extends Controller
 }
 
 
-  // Function to handle form submission and insert salary details
-  // function handleFormSubmission()
-  // {
-  //   // Check if form is submitted
-  //   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  //     $driver_id = $_POST['driver_id'];
-  //     $number_of_trips = $_POST['number_of_trips'];
-  //     $basic_payment = isset($_POST['edit_basic_payment']) ? $_POST['basic_payment'] : 2000;
-  //     $total_amount = $basic_payment * $number_of_trips;
-  //     $current_month = date("F"); // Month (Full name)
-  //     $current_year = date("Y"); // Year (4-digit)
 
-  //     $outSalaryModel = new OutSalaryModel();
-  //     $data = [
-  //       'driver_id' => $driver_id,
-  //       'number_of_trips' => $number_of_trips,
-  //       'basic_payment' => $basic_payment,
-  //       'total_amount' => $total_amount,
-  //       'month' => $current_month,
-  //       'year' => $current_year
-  //     ];
-  //     if ($outSalaryModel->insertSalary($data)) {
-  //       echo "Data inserted successfully!";
-  //     } else {
-  //       echo "Error inserting salary details.";
-  //     }
+  public function handleFormSubmission()
+  {
+    // Check if form is submitted
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $driver_id = $_POST['driver_id'];
+      $number_of_trips = $_POST['number_of_trips'];
+      $basic_payment = isset($_POST['edit_basic_payment']) ? $_POST['basic_payment'] : 2000;
+      $total_amount = $basic_payment * $number_of_trips;
+      $current_month = date("F"); // Month (Full name)
+      $current_year = date("Y"); // Year (4-digit)
 
-  //     $this->view('pages/admin/out_salary', $data);
-  //   } else {
-  //     // If request method is not POST, load the salary calculation view
-  //     $this->view('pages/admin/out_salary');
-  //   }
-  // }
+      $outSalaryModel = new OutSalaryModel();
+      $data = [
+        'driver_id' => $driver_id,
+        'number_of_trips' => $number_of_trips,
+        'basic_payment' => $basic_payment,
+        'total_amount' => $total_amount,
+        'month' => $current_month,
+        'year' => $current_year
+      ];
+      if ($outSalaryModel->insertSalary($data)) {
+        echo "Data inserted successfully!";
+      } else {
+        echo "Error inserting salary details.";
+      }
+
+      $this->view('pages/admin/out_salary', $data);
+    } else {
+      // If request method is not POST, load the salary calculation view
+      $this->view('pages/admin/out_salary');
+    }
+  }
   function redirectToTimetable()
   {
     if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['driver_id'])) {
