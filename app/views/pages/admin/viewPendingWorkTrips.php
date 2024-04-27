@@ -77,7 +77,7 @@
             <ul>
                 <li>
                     <a href="<?php echo URLROOT; ?>/admins/viewPendingWorkTrips">
-                        <i class="fas fa-book-bookmark"></i>
+                    <i class="fa-solid fa-suitcase-rolling"></i>
                         <span class="icon_name">WorkTrips</span>
                     </a>
                     <span class="tooltip">WorkTrips</span>

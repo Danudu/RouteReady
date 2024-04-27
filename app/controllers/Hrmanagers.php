@@ -1,4 +1,5 @@
 <?php
+
 class Hrmanagers extends Controller
 {
 
@@ -251,5 +252,4 @@ public function calculatePayments()
     // Load the view to display the payments for each user
     $this->view('pages/hrmanager/payments', $data);
 }
-
 }
