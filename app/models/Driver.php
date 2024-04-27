@@ -16,29 +16,29 @@ class Driver{
         return $results;
     }
 
-    public function getDrivers() {
-        $this->db->query("SELECT *,
-                                drivers.id as postId,
-                                users.id as userId,
-                                drivers.date as postCreated,
-                                users.date as userCreated
-                            FROM drivers
-                            INNER JOIN users
-                            ON drivers.user_id = users.id
-                            ORDER BY drivers.date DESC");
+    // public function getDrivers() {
+    //     $this->db->query("SELECT *,
+    //                             drivers.id as postId,
+    //                             users.id as userId,
+    //                             drivers.date as postCreated,
+    //                             users.date as userCreated
+    //                         FROM drivers
+    //                         INNER JOIN users
+    //                         ON drivers.user_id = users.id
+    //                         ORDER BY drivers.date DESC");
     
-        return $this->db->resultSet();
-    }
-    public function getDriverById($id){
-        $this->db->query('SELECT * FROM drivers WHERE id = :id');
-        $this->db->bind(':id', $id);
+    //     return $this->db->resultSet();
+    //}
+    // public function getDriverById($id){
+    //     $this->db->query('SELECT * FROM outsource_drivers AND users WHERE id = :id');
+    //     $this->db->bind(':id', $id);
     
-        $row = $this->db->single();
+    //     $row = $this->db->single();
     
-        return $row;
-    }
+    //     return $row;
+    // }
     public function getDriverByUserId($id){
-        $this->db->query('SELECT * FROM drivers WHERE user_id = :user_id');
+        $this->db->query('SELECT * FROM user WHERE user_id = :user_id AND designation="driver"AND status="approved";');
         $this->db->bind(':user_id', $id);
     
         $row = $this->db->single();

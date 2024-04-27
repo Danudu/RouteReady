@@ -124,29 +124,38 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewReservation">
-                        <i class="fa-solid fa-magnifying-glass-location"></i>
-                        <span class="icon_name">Reservations</span>
+                    <a href="<?php echo URLROOT; ?>/drivers/applyLeave">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                        <span class="icon_name">Apply Leaves</span>
                     </a>
-                    <span class="tooltip">Reservations</span>
+                    <span class="tooltip">Apply Leaves</span>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewWorkTrips">
-                        <i class="fa-solid fa-suitcase-rolling"></i>
-                        <span class="icon_name">WorkTrips</span>
+                    <a href="<?php echo URLROOT; ?>/drivers/generateSalaryReport">
+                    <i class="fa-solid fa-comments-dollar"></i>
+                        <span class="icon_name">Salary Report</span>
                     </a>
-                    <span class="tooltip">WorkTrips</span>
+                    <span class="tooltip">Salary Report</span>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments">
-                        <i class="fa-solid fa-hand-holding-dollar"></i>
-                        <span class="icon_name">Payment</span>
+                    <a href="<?php echo URLROOT; ?>/drivers/view_time_table">
+                    <i class="fa-solid fa-route"></i>
+                        <span class="icon_name">Schedule</span>
                     </a>
-                    <span class="tooltip">Payment</span>
+                    <span class="tooltip">Schedule</span>
+                </li>
+            </ul>
+            <ul>
+                <li id="showPopup">
+                    <a href="<?php echo URLROOT; ?>/drivers/add_bank_details">
+                    <i class="fa-solid fa-building-columns"></i>
+                        <span class="icon_name">Bank Details</span>
+                    </a>
+                    <span class="tooltip">Bank Details</span>
                 </li>
             </ul>
             <ul>
@@ -183,10 +192,7 @@
                         </h3>
                     </div>
                     <div>
-                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/drivers/applyLeave"
-                                class="bt">Leaves</a></button>
-                        <button type="button" class="btn2"><a href="<?php echo URLROOT;
-                        ; ?>/employees/viewWorkTrips" class="bt">Salaries</a></button>
+                        
                     </div>
                 </section>
             </div>

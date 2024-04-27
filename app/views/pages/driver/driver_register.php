@@ -65,17 +65,7 @@
                         <input type="text" name="name" value="<?php echo $data['name']; ?>" placeholder="Name">
                         <span><?php echo $data['name_err']; ?></span>
                     </div>
-                    <div class="input-box" id="emp_id">
-                        <label for="emp_id">Employee ID: <sup>*</sup></label>
-                        <input type="text" name="emp_id" value="<?php echo $data['emp_id']; ?>"
-                            placeholder="Employee ID">
-                        <span><?php echo $data['emp_id_err']; ?></span>
-                    </div>
-                    <div class="input-box" id="department">
-                        <label for="department">Department: <sup>*</sup></label>
-                        <input type="text" name="department" value="<?php echo $data['department']; ?>"
-                            placeholder="Department">
-                    </div>
+                    
                     <div class="input-box">
                         <label for="email">Email: <sup>*</sup></label>
                         <input type="email" name="email" value="<?php echo $data['email']; ?>" placeholder="Email">
@@ -90,31 +80,18 @@
                         <label for="address">Address: <sup>*</sup></label>
                         <input type="text" name="address" value="<?php echo $data['address']; ?>" placeholder="Address">
                     </div>
+                
                     <div class="input-box">
-                        <label for="designation">Designation: <sup>*</sup></label>
-                        <select class="select" name="designation" id="designation"
-                            value="<?php echo $data['designation']; ?>" aria-placeholder="Designation">
-                            <option disabled selected>Select designation...</option>
-                            <option value="employee">Employee</option>
-                            <option value="driver">Driver</option>
-                            <option value="hrmanager">HR Manager</option>
-                            <option value="admin">Admin</option>
-                        </select>
+                        <label for="address">Address: <sup>*</sup></label>
+                        <input type="text" name="address" value="<?php echo $data['address']; ?>" placeholder="Address">
                     </div>
-                    <div class="input-box" id="age">
-                        <label for="age">Age: <sup>*</sup></label>
-                        <input type="number" name="age" value="<?php echo $data['age']; ?>" placeholder="Age">
-                        <span><?php echo $data['age_err']; ?></span>
-                    </div>
-                    <div class="input-box" id="years_of_experience">
+                    <div class="input-box">
                         <label for="years_of_experience">Years of Experience: <sup>*</sup></label>
                         <input type="number" name="years_of_experience" value="<?php echo $data['years_of_experience']; ?>" placeholder="Years of Experience">
-                        <span><?php echo $data['years_of_experience_err']; ?></span>
                     </div>
-                    <div class="input-box" id="driver_license">
+                    <div class="input-box">
                         <label for="driver_license">Driver License Number: <sup>*</sup></label>
                         <input type="text" name="driver_license" value="<?php echo $data['driver_license']; ?>" placeholder="Driver License Number">
-                        <span><?php echo $data['driver_license_err']; ?></span>
                     </div>
                     <div class="input-box">
                         <label for="password">Password: <sup>*</sup></label>
