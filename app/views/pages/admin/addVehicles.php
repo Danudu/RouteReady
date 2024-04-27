@@ -7,6 +7,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:ital,wght@0,300;0,400;1,100&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/8ab9ce5f97.js" crossorigin="anonymous"></script>
+
 </head>
 <body style="background-image: linear-gradient(rgba(171, 167, 167, 0.428), rgb(255, 255, 255)), url(images/road.jpg);">
     <section class="header">

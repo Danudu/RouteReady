@@ -21,7 +21,7 @@
         </nav>
         <div class="wrapper">
             <div class="container2">
-                <h2>Employees</h2>
+                <h2>HR Managers</h2>
                 <table>
                     <thead>
                         <tr>
