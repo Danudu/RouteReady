@@ -31,7 +31,7 @@ class Admins extends Controller
     $this->workTripModel = $this->model('WorkTrip');
     // $this->bankModel = $this->model('BankModel');
     // $this->salaryModel = $this->model('Salary');
-    // $this->outsalaryModel = $this->model('OutSalaryModel');
+    $this->outsalaryModel = $this->model('OutSalaryModel');
     // $this->adminModel = $this->model('Admin');
 
 

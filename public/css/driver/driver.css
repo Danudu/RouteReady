@@ -95,7 +95,7 @@ a {
 .wrapper{
    
     background-color: rgb(31, 33, 37, 0.4);
-
+    
     border: 2px solid var(--primary-color-extra-light);
 
     color: var(--white);

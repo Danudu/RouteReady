@@ -104,6 +104,15 @@ class Hrmanagers extends Controller
     ];
     $this->view('pages/hrmanager/view_drivers', $data);
   }
+  public function viewOSDrivers()
+  {
+    $drivers = $this->userModel->getOSDrivers();
+    $data = [
+      'drivers' => $drivers
+
+    ];
+    $this->view('pages/hrmanager/view_osdrivers', $data);
+  }
 
   public function updatedriverStatus($id)
   {
@@ -132,6 +141,33 @@ class Hrmanagers extends Controller
       redirect('hrmanagers/moreDriver/' . $id . '');
     }
   }
+  public function updateosdriverStatus($id)
+  {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Handle the update using $id and $action
+      // For example:
+      $action = $_POST['action'];
+      if ($action === 'approve') {
+        $status = 'approved';
+      } elseif ($action === 'reject') {
+        $status = 'rejected';
+      } elseif ($action === 'approve') {
+        $status = 'approved';
+      } else {
+        // Handle invalid action
+        die('Invalid action');
+      }
+      if ($this->userModel->updatedriverStatus($id, $status)) {
+        flash('post_message', 'Driver status updated');
+        redirect('hrmanagers/moreOSDriver/' . $id . '');
+      } else {
+        die('Something went wrong');
+      }
+    } else {
+      // Handle if the POST request is not properly set
+      redirect('hrmanagers/moreOSDriver/' . $id . '');
+    }
+  }
 
   public function deletedriver($id)
   {
@@ -149,6 +185,22 @@ class Hrmanagers extends Controller
       redirect('hrmanagers/moreDriver/' . $id . '');
     }
   }
+  public function deleteosdriver($id)
+  {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Handle the delete using $id
+      // For example:
+      if ($this->userModel->deletedriver($id) && $this->userModel->deleteOSDriver($id) ) {
+        flash('post_message', 'Driver deleted');
+        redirect('hrmanagers/moreOSDriver/' . $id . '');
+      } else {
+        die('Something went wrong');
+      }
+    } else {
+      // Handle if the POST request is not properly set
+      redirect('hrmanagers/moreOSDriver/' . $id . '');
+    }
+  }
 
 
 
@@ -160,6 +212,17 @@ class Hrmanagers extends Controller
 
     ];
     $this->view('pages/hrmanager/view_drivers_more', $data);
+  }
+  public function moreOSDriver($id)
+  {
+    $driver = $this->userModel->getDriverById($id);
+    $osdriver = $this->userModel->getOSDriverById($id);
+    $data = [
+      'driver' => $driver,
+      'osdriver' => $osdriver
+
+    ];
+    $this->view('pages/hrmanager/view_osdrivers_more', $data);
   }
 
 

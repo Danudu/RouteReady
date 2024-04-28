@@ -40,7 +40,7 @@
                             <th>Email</th>
                             <th>Contact Number</th>
                             <th>Address</th>
-                            <th>Department</th>
+                            
                             <th>Status</th>
                             <th>Approve/Reject</th>
                             <th>Delete</th>
@@ -55,7 +55,7 @@
                                 <td><?php echo $driver->email; ?></td>
                                 <td><?php echo $driver->contact_num; ?></td>
                                 <td><?php echo $driver->address; ?></td>
-                                <td><?php echo $driver->department; ?></td>
+                   
                                 <td><?php echo $driver->status; ?></td>
                                 <td>
                                     <?php if ($driver->status === 'pending'): ?>

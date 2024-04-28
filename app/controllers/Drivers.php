@@ -30,7 +30,7 @@ class Drivers extends Controller
       $data = [
         'posts' => $posts,
         'lastdate' => $date
-    ];
+      ];
       $this->view('pages/driver/home_driver', $data);
     }
   }
@@ -126,7 +126,7 @@ class Drivers extends Controller
           $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
           if ($this->userModel->updateUser($data) && $this->driverModel->updateDriver($data)) {
 
-            
+
             flash('update_success', 'Profile updated successfully');
             redirect('drivers/profile/' . $id);
           } else {

@@ -96,6 +96,16 @@ class User
 
         return $row;
     }
+    public function getOSDriverById($id)
+    {
+        $this->db->query('SELECT * FROM outsourcedrivers WHERE odriver_id = :id');
+        //bind value
+        $this->db->bind(':id', $id);
+
+        $row = $this->db->single();
+
+        return $row;
+    }
 
     //edit user
     public function updateUser($data)
@@ -167,6 +177,14 @@ class User
 
         return $results;
     }
+    public function getOSDrivers()
+    {
+        $this->db->query('SELECT * FROM users WHERE designation = "osdriver"');
+
+        $results = $this->db->resultSet();
+
+        return $results;
+    }
 
     public function updatedriverStatus($id, $status)
     {
@@ -187,6 +205,19 @@ class User
     public function deleteDriver($id)
     {
         $this->db->query('DELETE FROM users WHERE id = :id');
+        // Bind values
+        $this->db->bind(':id', $id);
+
+        // Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function deleteOSDriver($id)
+    {
+        $this->db->query('DELETE FROM outsourcedrivers WHERE odriver_id = :id');
         // Bind values
         $this->db->bind(':id', $id);
 

@@ -8,6 +8,27 @@ class Driver {
         $this->db = new Database;
     }
 
+    public function register($data){
+        $this->db->query('INSERT INTO outsourceDrivers (name, age, email, password, contact, address, driver_license, status) VALUES(:name, :age, :email, :password, :contact_num, :address, :driver_license, :status)');
+        //bind values
+        $this->db->bind(':name', $data['name']);
+        $this->db->bind(':age', $data['age']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':contact_num', $data['contact_num']);
+        $this->db->bind(':address', $data['address']);
+        $this->db->bind(':driver_license', $data['driver_license']);
+        $this->db->bind(':status', 'pending');
+
+        //execute
+        if($this->db->execute()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     // Method to insert driver data
     public function insertDriverData($data){
         // Prepare SQL query to insert driver data
@@ -26,6 +47,31 @@ class Driver {
         }
     }
 
+
+    // Insert OS driver data
+    public function insertOSDriverData($data){
+        // Prepare SQL query to insert driver data
+        $this->db->query('INSERT INTO outsourcedrivers (Odriver_id, driver_license, vehicle_type, years_of_experience, nic_number, age, address, name, email, contact_num) VALUES (:Odriver_id, :driver_license, :vehicle_type, :years_of_experience, :nic_number, :age, :address, :name, :email, :contact_num)');
+        // Bind values
+        $this->db->bind(':Odriver_id', $data['Odriver_id']);
+        $this->db->bind(':driver_license', $data['driver_license']);
+        $this->db->bind(':vehicle_type', $data['vehicle_type']);
+        $this->db->bind(':years_of_experience', $data['years_of_experience']);
+        $this->db->bind(':nic_number', $data['nic_number']);
+        $this->db->bind(':age', $data['age']);
+        $this->db->bind(':address', $data['address']);
+        $this->db->bind(':name', $data['name']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':contact_num', $data['contact_num']);
+        
+
+        // Execute
+        if($this->db->execute()){
+            return true; // Insertion successful
+        } else {
+            return false; // Insertion failed
+        }
+    }
     public function getDriverById($id){
         $this->db->query('SELECT * FROM drivers WHERE user_id = :id');
         $this->db->bind(':id', $id);
