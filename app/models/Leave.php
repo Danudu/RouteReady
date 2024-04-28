@@ -54,7 +54,7 @@ class Leave {
 
 
     public function getDriverSalaryReport(){
-        $sql = 'SELECT * FROM salary_report';
+        $sql = 'SELECT * FROM staff_salary_payment';
 
         $this->db->query($sql);
         
@@ -64,7 +64,7 @@ class Leave {
     }
 
     public function getBankDetails($driver_id){
-        $sql = 'SELECT * FROM bank_details WHERE driver_id: driver_id';
+        $sql = 'SELECT * FROM bank WHERE driver_id: driver_id';
 
         $this->db->query($sql);
         $this->db->bind(':driver', $driver_id,);

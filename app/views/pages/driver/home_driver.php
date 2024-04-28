@@ -142,7 +142,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/drivers/viewSalaryReport">
+                    <a href="<?php echo URLROOT; ?>/drivers/salary">
                     <i class="fa-solid fa-file-invoice-dollar"></i>
                         <span class="icon_name">Salary Reports</span>
                     </a>
@@ -192,10 +192,7 @@
                         </h3>
                     </div>
                     <div>
-                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/drivers/applyLeave"
-                                class="bt">Leaves</a></button>
-                        <button type="button" class="btn2"><a href="<?php echo URLROOT;
-                        ; ?>/employees/viewWorkTrips" class="bt">Salaries</a></button>
+                        
                     </div>
                 </section>
             </div>
@@ -270,5 +267,3 @@
 </script>
 
 </html>
-
-<!-- https://www.youtube.com/watch?v=uy1tgKOnPB0 -->

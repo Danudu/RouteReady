@@ -25,43 +25,41 @@ class Drivers extends Controller
   {
     // Display home page for drivers
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      $driver_id = $_SESSION['designationDetails']->driver_id;
+     // $driver_id = $_SESSION['designationDetails']->driver_id;
+      $driver_id = $_POST['driver_id'];
       $accountNo = $_POST['accountNo'];
       $bankName = $_POST['bankName'];
       $branchName = $_POST['branchName'];
       $holdersName = $_POST['holdersName'];
 
-      $result= $this->bankDetailsModel->addBankDetails($driver_id, $accountNo, $bankName, $branchName, $holdersName);
+      $result = $this->bankDetailsModel->addBankDetails($driver_id, $accountNo, $bankName, $branchName, $holdersName);
+print_r ($result);
+exit;
 
-      
 
-      echo "Success";
-      
-    }else{
+      $this->view('pages/driver/edit_bank_details');
 
-      $data = [
-        
-      ];
+    } else {
 
-    $this->view('pages/driver/add_bank_details', $data);
+      $data = [];
+
+      $this->view('pages/driver/add_bank_details', $data);
     }
-    
   }
 
-  public function edit_bank_details(){
-    if ($_SERVER[''] == 'POST') {
-      $driver_id = $_POST[''];
-      $accountNo = $_POST[''];
-      $bankName = $_POST[''];
-      $branchName = $_POST[''];
-      $holderName = $_POST[''];
+  // public function edit_bank_details()
+  // {
+  //   if ($_SERVER[''] == 'POST') {
+  //     $driver_id = $_POST[''];
+  //     $accountNo = $_POST[''];
+  //     $bankName = $_POST[''];
+  //     $branchName = $_POST[''];
+  //     $holderName = $_POST[''];
 
-      $result= $this->bankDetailModel->editBankDetails($driver_id, $accountNo, $bankName, $branchName, $holderName);
-    }else{
-    }
-
-
-  }
+  //     $result = $this->bankDetailModel->editBankDetails($driver_id, $accountNo, $bankName, $branchName, $holderName);
+  //   } else {
+  //   }
+  // }
 
 
 
@@ -80,7 +78,7 @@ class Drivers extends Controller
   {
     $user_id = $_SESSION['user_id'];
     $data = [
-      'leaveTypeCount'=> $this->leaveModel->getLeaveCount($user_id),
+      'leaveTypeCount' => $this->leaveModel->getLeaveCount($user_id),
     ];
     // Display the Apply Leave view page
     $this->view('pages/driver/apply_leave', $data);
@@ -207,7 +205,8 @@ class Drivers extends Controller
     }
   }
 
-  public function getLeaveType(){
+  public function getLeaveType()
+  {
     $user_id = $_SESSION['user_id']; // Corrected session variable name
 
     $leaveTypeCount = $this->leaveModel->getLeaveCount($user_id);
@@ -215,27 +214,30 @@ class Drivers extends Controller
     var_dump($leaveTypeCount);
 
     $data = [
-        'leaveTypeCount'=> $leaveTypeCount
+      'leaveTypeCount' => $leaveTypeCount
     ];
 
     $this->view('pages/driver/apply_leave', $data);
-}
+  }
 
-public function view_time_table($driverId) {
-  // Retrieve timetable data from the model
-  $timetable = $this->timetable->getDriverTimetable($driverId);
+  public function view_time_table($driverId)
+  {
+    // Retrieve timetable data from the model
+    $timetable = $this->timetable->getDriverTimetable($driverId);
 
-  $data = [
-    'timetable'=> $timetable
-  ];
-
-
-  // Include the view to display the timetable
-
-  $this->view('pages/driver/driver_timetable_view', $data);}
+    $data = [
+      'timetable' => $timetable
+    ];
 
 
-  public function viewSalaryReport() {
+    // Include the view to display the timetable
+
+    $this->view('pages/driver/driver_timetable_view', $data);
+  }
+
+
+  public function viewSalaryReport()
+  {
 
     // Retrieve salary report data from the model
     $salaryReport = $this->leaveModel->getDriverSalaryReport();
@@ -243,14 +245,54 @@ public function view_time_table($driverId) {
 
     // Include the view to display the salary report
     $data = [
-      'salaryReport'=> $salaryReport
-  
-      ];
+      'salaryReport' => $salaryReport
 
-      $this->view('pages/driver/driver_salary_report_view', $data);
-    
+    ];
+
+    $this->view('pages/driver/driver_salary_report_view', $data);
+  }
+
+  public function salary()
+  {
+    $this->view('pages/driver/salary');
+
+
+
+
+
+
+
+  }
+
+  public function editBankDetails()
+  {
+    $this->view('pages/driver/edit_bank_details');
+
+
+
+
+
+
+
+
+  }
+
+  public function viewBankDetails()
+  {
+    $this->view('pages/driver/view_bank_details');
+
+
+
+
+
+
+
+
+  }
+
+
+
+
+
 }
-
-
-
-}
+ 
