@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule</title>
-    <style>
-        .cell.with-data {
-            background-color: yellow; /* Choose your desired highlight color */
+  <style>
+        body {
+            background-image: url('http://localhost:8888/RouteReady/public/img/pic5.jpg'); 
+            background-size: cover;
+            color: white;
         }
 
-        /* Add your CSS styles here */
+        .cell.with-data {
+            background-color: yellow;
+        }
+
         .timetable {
             display: grid;
-            grid-template-columns: repeat(8, 1fr); /* 7 days + 1 for time slots */
-            grid-template-rows: repeat(13, 1fr); /* 12 vertical rows + 1 for header */
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(13, 1fr);
             gap: 2px;
         }
 
@@ -21,36 +26,39 @@
             border: 1px solid #ccc;
             padding: 5px;
             text-align: center;
-            min-width: 100px; /* Adjust based on your content */
+            min-width: 100px;
         }
 
         .day-header {
-            background-color: black; /* Set the background color of the day of the week row */
-            color: white; /* Set the text color of the day of the week row */
+            background-color: black;
+            color: white;
         }
 
         .time-slot {
-            background-color: #888; /* Set the background color of the time slot columns */
-            color: white; /* Set the text color of the time slot columns */
+            background-color: #888;
+            color: white;
         }
+
         .form {
             text-align: center;
             margin-top: 20px;
         }
+
         .form-container {
-            width: 30%; 
+            width: 30%;
             margin: 0 auto;
-            border: 2px solid #ccc; 
-            padding: 20px; /* Padding inside the container */
-            box-sizing: border-box; /* Include padding and border in the width calculation */
+            border: 2px solid #ccc;
+            padding: 20px;
+            box-sizing: border-box;
         }
+
         .button-container {
             text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1 style="text-align: center;"> Schedule </h1>
+    <!-- <h1 style="text-align: center;"> Schedule </h1>
     <div class="button-container">
         <label for="week"><h2>For The Week:</h2></label>
         <input type="week" name="week" id="week" onchange="updateDateInput()">
@@ -62,6 +70,15 @@
         <a href="<?php echo URLROOT; ?>/admins/viewFullDayBooking" class="button">View Full Day Booking</a>
     
         </div>
+    <h2 style="text-align: center;">Short-Term Reservation</h2> -->
+    <h1 style="text-align: center;"> Schedule </h1>
+    <div class="button-container">
+        <label for="week"><h2>For The Week:</h2></label>
+        <input type="week" name="week" id="week" onchange="updateDateInput()">
+        <br>
+        <br>
+        <a href="<?php echo URLROOT; ?>/admins/viewFullDayBooking" class="button">View Full Day Booking</a>
+    </div>
     <h2 style="text-align: center;">Short-Term Reservation</h2>
 
     <div class="form-container">
@@ -167,9 +184,9 @@ $timeSlots = array(
         ?>
         <!-- Display the number of records and view button if there's at least one record, otherwise display an empty cell -->
         <?php if ($count > 0): ?>
-            <div class='cell with-data'>
+            <div class='cell with-data' style="color:black ">
                 Records: <?php echo $count; ?><br>
-                <a href="<?php echo URLROOT; ?>/admins/timetable_view" class="button">View</a>
+                <td><a  href="<?php echo URLROOT ?>/admins/timetable_view/<?php echo $day ?>/<?php echo $slot ?>">View More</a></td>
             </div>
         <?php else: ?>
             <div class='cell'></div>
@@ -195,7 +212,7 @@ $timeSlots = array(
             if ($connection->query($sql) === TRUE) {
                 echo "New record created successfully";
                 // Redirect to prevent form resubmission
-                header("Location: ".$_SERVER['PHP_SELF']);
+                header("Location: <?php echo URLROOT; ?>/admins/timetable_view/<?php echo $day ?>/<?php echo $slot ?>");
                 exit();
             } else {
                 echo "Error: " . $sql . "<br>" . $connection->error;
