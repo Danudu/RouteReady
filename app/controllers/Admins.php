@@ -133,10 +133,11 @@ class Admins extends Controller
                 'year' => $current_year
             ];
             if ($outSalaryModel->insertSalary($data)) {
-                echo "Data inserted successfully!";
-            } else {
-                echo "Error inserting salary details.";
-            }
+                echo "Payment successful. Total amount: $" . $total_amount;
+               ;
+           } else {
+               echo "Error inserting salary details.";
+           }
         
             $this->view('pages/admin/out_salary', $data);
             } else {
