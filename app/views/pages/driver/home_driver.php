@@ -124,7 +124,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/drivers/applyLeave">
+                    <a href="<?php echo URLROOT; ?>/drivers/submitLeaveApplication">
                     <i class="fa-solid fa-person-walking-arrow-right"></i>
                         <span class="icon_name">Apply Leaves</span>
                     </a>
@@ -142,7 +142,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/drivers/salary">
+                    <a href="<?php echo URLROOT; ?>/drivers/viewSalaryDetails/<?= $_SESSION['user_id'] ?>">
                     <i class="fa-solid fa-file-invoice-dollar"></i>
                         <span class="icon_name">Salary Reports</span>
                     </a>
@@ -151,7 +151,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/drivers/add_bank_details">
+                    <a href="<?php echo URLROOT; ?>/drivers/viewBankDetails">
                     <i class="fa-solid fa-money-check-dollar"></i>
                         <span class="icon_name">Payments</span>
                     </a>

@@ -121,6 +121,63 @@ class Driver{
             return false;
         }
     }
+    public function getBankDetailsByUserId($user_id)
+{
+    // Prepare SQL query to select bank details by user ID
+    $this->db->query('SELECT * FROM bank WHERE user_id = :user_id');
+    $this->db->bind(':user_id', $user_id);
 
+    // Fetch a single record (assuming each user has only one bank detail entry)
+    return $this->db->single();
+}
+public function updateBankDetails($data)
+{
+    // Prepare SQL query to update bank details
+    $this->db->query('UPDATE bank SET accountNo = :accountNo, bankName = :bankName, branchName = :branchName, holdersName = :holdersName WHERE user_id = :user_id');
+
+    // Bind values
+    $this->db->bind(':accountNo', $data['accountNo']);
+    $this->db->bind(':bankName', $data['bankName']);
+    $this->db->bind(':branchName', $data['branchName']);
+    $this->db->bind(':holdersName', $data['holdersName']);
+    $this->db->bind(':user_id', $data['user_id']);
+
+    // Execute the query
+    if ($this->db->execute()) {
+        return true; // Update successful
+    } else {
+        return false; // Update failed
+    }
+}
+public function insertBankDetails($data){
+    // Prepare SQL query to insert bank details
+    $this->db->query('INSERT INTO bank (accountNo, bankName, branchName, holdersName, user_id) VALUES (:accountNo, :bankName, :branchName, :holdersName, :user_id)');
+
+    // Get the user ID from the session
+    $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+
+    // Bind values
+    $this->db->bind(':accountNo', $data['accountNo']);
+    $this->db->bind(':bankName', $data['bankName']);
+    $this->db->bind(':branchName', $data['branchName']);
+    $this->db->bind(':holdersName', $data['holdersName']);
+    $this->db->bind(':user_id', $user_id);
+
+    // Execute
+    if($this->db->execute()){
+        return true; // Insertion successful
+    } else {
+        return false; // Insertion failed
+    }
+}
+
+public function getSalaryDetails($driver_id) {
+    // Prepare SQL query to fetch salary details for a specific driver
+    $this->db->query('SELECT * FROM out_salary WHERE driver_id = :driver_id');
+    $this->db->bind(':driver_id', $driver_id);
+    $salary_details = $this->db->resultSet();
+
+    return $salary_details;
+}
    
 }
