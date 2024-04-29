@@ -87,24 +87,30 @@
 
         input[type="submit"],
         .button {
-            width: calc(50% - 10px); /* Adjusted width */
-            height: 35px; /* Reduced height */
+            width: calc(50% - 10px);
+            /* Adjusted width */
+            height: 35px;
+            /* Reduced height */
             background: var(--text-light);
             border: none;
             outline: none;
-            border-radius: 20px; /* Reduced border radius */
+            border-radius: 20px;
+            /* Reduced border radius */
             box-shadow: 0 0 10px rgba(0, 0, 0, .1);
             cursor: pointer;
-            font-size: 16px; /* Reduced font size */
+            font-size: 16px;
+            /* Reduced font size */
             color: var(--primary-color);
             font-weight: 600;
             text-align: center;
-            line-height: 35px; /* Adjusted line height */
+            line-height: 35px;
+            /* Adjusted line height */
             display: inline-block;
             text-decoration: none;
             transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
             margin-top: 20px;
-            margin-right: 10px; /* Added margin between buttons */
+            margin-right: 10px;
+            /* Added margin between buttons */
         }
 
         input[type="submit"]:hover,
@@ -116,16 +122,16 @@
 
         .button-box {
             display: flex;
-            justify-content: center; /* Center the buttons */
+            justify-content: center;
+            /* Center the buttons */
             margin-top: 20px;
             margin-bottom: 20px;
         }
 
         .button-box button:last-child {
-            margin-right: 0; /* Remove margin from last button */
+            margin-right: 0;
+            /* Remove margin from last button */
         }
-
-
     </style>
 </head>
 
@@ -212,69 +218,71 @@
         let btn = document.querySelector("#btn");
         let sidebar = document.querySelector(".sidebar");
 
-        btn.onclick = function () {
+        btn.onclick = function() {
             sidebar.classList.toggle("active");
         };
     </script>
     <div class="main-content">
         <div class="wrapper">
-            
-            <h2>Monthly Payments</h2>
-    </br>
-            <form action="<?php echo URLROOT; ?>/employees/viewMonthlyPayments" method="post">
-                <div class="form-group">
-                    <label for="month">Select Month:</label>
-                    <select name="month" id="month">
-                        <?php for ($i = 1; $i <= 12; $i++): ?>
-                            <option value="<?php echo $i; ?>" <?php echo ($data['selectedMonth'] == $i) ? 'selected' : ''; ?>>
-                                <?php echo date('F', mktime(0, 0, 0, $i, 1)); ?>
-                            </option>
-                        <?php endfor; ?>
-                    </select>
-                </div>
+            <div id="document">
+                <h2>Monthly Payments</h2>
+                </br>
+                <form action="<?php echo URLROOT; ?>/employees/viewMonthlyPayments" method="post">
+                    <div class="form-group">
+                        <label for="month">Select Month:</label>
+                        <select name="month" id="month">
+                            <?php for ($i = 1; $i <= 12; $i++) : ?>
+                                <option value="<?php echo $i; ?>" <?php echo ($data['selectedMonth'] == $i) ? 'selected' : ''; ?>>
+                                    <?php echo date('F', mktime(0, 0, 0, $i, 1)); ?>
+                                </option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label for="year">Select Year:</label>
-                    <select name="year" id="year">
-                        <?php
-                        $currentYear = date('Y');
-                        $startYear = $currentYear - 10; // Adjust as needed
-                        $endYear = $currentYear + 10; // Adjust as needed
 
-                        for ($year = $startYear; $year <= $endYear; $year++) {
-                            echo '<option value="' . $year . '"' . ($data['selectedYear'] == $year ? ' selected' : '') . '>' . $year . '</option>';
-                        }
-                        ?>
-                    </select>
-                </div>
-                <?php if (isset($data['totalPayment'])): ?>
-    <div class="mt-3" style="text-align: center;" id="paymnet">
-       <p style="font-size: 20px;">Total Payment for <?php echo date('F', mktime(0, 0, 0, $data['selectedMonth'], 1)); ?>,
-            <?php echo $data['selectedYear']; ?>: $<?php echo $data['totalPayment']; ?>
-        
-    </div>
-<?php endif; ?>
-                
-                <div class="button-box">
-                    <button type="submit" class="button">View Payment</button>
-                    <!-- View Reservations Button -->
-                    <button type="button" class="button" id="viewReservationsBtn">View Reservations</button>
-                </div>
+                    <div class="form-group">
+                        <label for="year">Select Year:</label>
+                        <select name="year" id="year">
+                            <?php
+                            $currentYear = date('Y');
+                            $startYear = $currentYear - 10; // Adjust as needed
+                            $endYear = $currentYear + 10; // Adjust as needed
+
+                            for ($year = $startYear; $year <= $endYear; $year++) {
+                                echo '<option value="' . $year . '"' . ($data['selectedYear'] == $year ? ' selected' : '') . '>' . $year . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <?php if (isset($data['totalPayment'])) : ?>
+                        <div class="mt-3" style="text-align: center;" id="paymnet">
+                            <p style="font-size: 20px;">Total Payment for <?php echo date('F', mktime(0, 0, 0, $data['selectedMonth'], 1)); ?>,
+                                <?php echo $data['selectedYear']; ?>: $<?php echo $data['totalPayment']; ?>
+
+                        </div>
+                    <?php endif; ?>
+            </div>
+
+            <div class="button-box">
+                <button type="submit" class="button">View Payment</button>
+                <!-- View Reservations Button -->
+                <button type="button" class="button" id="viewReservationsBtn">View Reservations</button>
+            </div>
             </form>
 
-                    </br>
-    <div>        
-    <div class="button-box">
-    <a href="<?php echo URLROOT; ?>/pages/home/<?= $_SESSION['user_id'] ?>" class="button" id="back">Back</a>
-    <button id="downloadpdf" class="button">Download PDF</button>
-</div>
-
+            </br>
+            <div>
+                <div class="button-box">
+                    <a href="<?php echo URLROOT; ?>/pages/home/<?= $_SESSION['user_id'] ?>" class="button" id="back">Back</a>
+                    <button id="downloadpdf" class="button">Download PDF</button>
                 </div>
+
+            </div>
         </div>
     </div>
 
     <script>
-        document.getElementById('viewReservationsBtn').addEventListener('click', function () {
+        document.getElementById('viewReservationsBtn').addEventListener('click', function() {
             var month = document.getElementById('month').value;
             var year = document.getElementById('year').value;
             window.location.href = "<?php echo URLROOT; ?>/employees/viewMonthlyReservations?month=" + month + "&year=" + year;
@@ -282,13 +290,13 @@
     </script>
 </body>
 <script>
-    document.getElementById('showPopup').addEventListener('click', function () {
+    document.getElementById('showPopup').addEventListener('click', function() {
         console.log("Show popup clicked"); // Debug statement
         // Show the popup
         document.getElementById('popup').style.display = 'block';
     });
 
-    document.getElementById('close').addEventListener('click', function () {
+    document.getElementById('close').addEventListener('click', function() {
         console.log("Close button clicked"); // Debug statement
         // Close the popup
         document.getElementById('popup').style.display = 'none';
@@ -296,17 +304,18 @@
 </script>
 
 <script>
-        const filename = 'PDFFILE' + '.pdf';
-        document.getElementById('downloadpdf').addEventListener('click', function () {
-            // Select the element that you want to convert to PDF
-            const element = document.getElementById('payment');
+    const filename = 'PDFFILE' + '.pdf';
+    document.getElementById('downloadpdf').addEventListener('click', function() {
+        // Select the element that you want to convert to PDF
+        const element = document.getElementById('document');
 
-            // Specify the filename for the downloaded PDF
-            html2pdf().from(element).save(filename);
+        // Specify the filename for the downloaded PDF
+        html2pdf().from(element).save(filename);
 
-            // html2pdf(element, {
-            //     filename: filename
-            // });
-        });
-    </script>
+        // html2pdf(element, {
+        //     filename: filename
+        // });
+    });
+</script>
+
 </html>
