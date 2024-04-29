@@ -102,13 +102,6 @@
             color: var(--white);
             box-shadow: 0 0 10px var(--primary-color-extra-light);
         }
-
-        .button.back {
-            position: absolute;
-            right: 0;
-            margin-right: 20px;
-            
-        }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -142,83 +135,83 @@
 </head>
 
 <body>
-    <div class="sidebar">
+<div class="sidebar">
 
-        <div class="top">
-            <div class="logo">
-                <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
-                <span class="logo_name">Route Ready</span>
-            </div>
-            <i class="fa-solid fa-bars" id="btn"></i>
-        </div>
-        <div class="buttons">
-            <ul>
-                <li>
-                    <a href="home">
-                        <a href="<?php echo URLROOT; ?>/pages/home/<?= $_SESSION['user_id'] ?>">
-                            <i class="fa-solid fa-house"></i>
-                            <span class="icon_name">Home</span>
-                        </a>
-                        <span class="tooltip">HomePage</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/pages/profile/<?= $_SESSION['user_id'] ?>">
-                        <i class="fas fa-user"></i>
-                        <span class="icon_name">Profile</span>
-                    </a>
-                    <span class="tooltip">Profile</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewReservation">
-                        <i class="fa-solid fa-magnifying-glass-location"></i>
-                        <span class="icon_name">Reservations</span>
-                    </a>
-                    <span class="tooltip">Reservations</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewWorkTrips">
-                        <i class="fa-solid fa-suitcase-rolling"></i>
-                        <span class="icon_name">WorkTrips</span>
-                    </a>
-                    <span class="tooltip">WorkTrips</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments">
-                        <i class="fa-solid fa-hand-holding-dollar"></i>
-                        <span class="icon_name">Payment</span>
-                    </a>
-                    <span class="tooltip">Payment</span>
-                </li>
-            </ul>
-            <ul>
-                <li id="showPopup">
-                    <a href="#" onclick="event.preventDefault();" id="showPopup">
-                        <i class="fas fa-book-bookmark"></i>
-                        <span class="icon_name">T&C</span>
-                    </a>
-                    <span class="tooltip">Terms & Conditions</span>
-                </li>
-            </ul>
-
-            <ul class="lobtn">
-                <li>
-                    <a href="<?php echo URLROOT; ?>/users/logout">
-                        <i class="fas fa-arrow-right-from-bracket"></i>
-                        <span class="icon_name">Logout</span>
-                    </a>
-                    <span class="tooltip">Logout</span>
-                </li>
-            </ul>
-        </div>
+<div class="top">
+    <div class="logo">
+        <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
+        <span class="logo_name">Route Ready</span>
     </div>
+    <i class="fa-solid fa-bars" id="btn"></i>
+</div>
+<div class="buttons">
+    <ul>
+        <li>
+            <a href="home">
+                <a href="<?php echo URLROOT; ?>/pages/home/<?= $_SESSION['user_id'] ?>">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="icon_name">Home</span>
+                </a>
+                <span class="tooltip">HomePage</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/drivers/profile/<?= $_SESSION['user_id'] ?>">
+                <i class="fas fa-user"></i>
+                <span class="icon_name">Profile</span>
+            </a>
+            <span class="tooltip">Profile</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/drivers/viewTransportReservation">
+                <i class="fa-solid fa-magnifying-glass-location"></i>
+                <span class="icon_name">Reservations</span>
+            </a>
+            <span class="tooltip">Reservations</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/drivers/viewEmployeeWorkTrips">
+                <i class="fa-solid fa-suitcase-rolling"></i>
+                <span class="icon_name">WorkTrips</span>
+            </a>
+            <span class="tooltip">WorkTrips</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <span class="icon_name">Payment</span>
+            </a>
+            <span class="tooltip">Payment</span>
+        </li>
+    </ul>
+    <ul>
+        <li id="showPopup">
+            <a href="#" onclick="event.preventDefault();" id="showPopup">
+                <i class="fas fa-book-bookmark"></i>
+                <span class="icon_name">T&C</span>
+            </a>
+            <span class="tooltip">Terms & Conditions</span>
+        </li>
+    </ul>
+    <ul class="lobtn">
+        <li>
+            <a href="<?php echo URLROOT; ?>/users/logout">
+                <i class="fas fa-arrow-right-from-bracket"></i>
+                <span class="icon_name">Logout</span>
+            </a>
+            <span class="tooltip">Logout</span>
+        </li>
+    </ul>
+</div>
+</div>
+
 
     <script>
         let btn = document.querySelector("#btn");
@@ -244,24 +237,12 @@
                             <th>Destination</th>
                             <th>Comments</th>
                             <th>Status</th>
-                            <th colspan="2">Action</th>
+                      
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($data['workTripReservations'] as $workTripReservation): ?>
-                            <?php
-                                $disableButtons = false;
-
-                                // Check if the trip date is before the current date
-                                if (strtotime($workTripReservation->tripDate) < strtotime('today')) {
-                                    $disableButtons = true;
-                                } else {
-                                    // Check if the status is approved or rejected
-                                    if ($workTripReservation->status === 'approved' || $workTripReservation->status === 'rejected') {
-                                        $disableButtons = true;
-                                    }
-                                }
-                            ?>
+                           
                             <tr>
                                 <td><?php echo $workTripReservation->tripDate; ?></td>
                                 <td><?php echo date('H:i', strtotime($workTripReservation->tripTime)); ?></td>
@@ -270,41 +251,15 @@
                                 <td><?php echo $workTripReservation->destination; ?></td>
                                 <td><?php echo $workTripReservation->comments; ?></td>
                                 <td><?php echo $workTripReservation->status; ?></td>
-                                <td>
-                                    <a href="<?php echo URLROOT; ?>/employees/editWorkTrips/<?php echo $workTripReservation->tripID; ?>" <?php if ($disableButtons) echo 'disabled'; ?>>
-                                        <i class="fas fa-pencil-alt" style="color: <?php echo $disableButtons ? 'gray' : 'white'; ?>"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <form action="<?php echo URLROOT; ?>/employees/deleteWorkTripReservation/<?php echo $workTripReservation->tripID; ?>" method="post">
-                                        <button type="submit" class="btn-delete" <?php if ($disableButtons) echo 'disabled'; ?>>
-                                            <i class="fas fa-trash-alt" style="color: <?php echo $disableButtons ? 'gray' : ''; ?>"></i>
-                                        </button>
-                                    </form>
-                                </td>
+                              
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <a href="<?php echo URLROOT; ?>/pages/home" class="button back" id="back" >Back</a>
-                <a href="<?php echo URLROOT; ?>/employees/makeWorkTrip" class="button">Make a Reservation</a>
+                
             </div>
         </div>
     </div>
-    <script>
-    document.getElementById('showPopup').addEventListener('click', function () {
-        console.log("Show popup clicked"); // Debug statement
-        // Show the popup
-        document.getElementById('popup').style.display = 'block';
-    });
-
-    document.getElementById('close').addEventListener('click', function () {
-        console.log("Close button clicked"); // Debug statement
-        // Close the popup
-        document.getElementById('popup').style.display = 'none';
-    });
-</script>
 </body>
-
 
 </html>

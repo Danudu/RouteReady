@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar2.css">
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
 
     <style>
         :root {
@@ -123,6 +125,7 @@
             margin-right: 0; /* Remove margin from last button */
         }
 
+
     </style>
 </head>
 
@@ -215,6 +218,7 @@
     </script>
     <div class="main-content">
         <div class="wrapper">
+            
             <h2>Monthly Payments</h2>
     </br>
             <form action="<?php echo URLROOT; ?>/employees/viewMonthlyPayments" method="post">
@@ -243,7 +247,14 @@
                         ?>
                     </select>
                 </div>
-
+                <?php if (isset($data['totalPayment'])): ?>
+    <div class="mt-3" style="text-align: center;" id="paymnet">
+       <p style="font-size: 20px;">Total Payment for <?php echo date('F', mktime(0, 0, 0, $data['selectedMonth'], 1)); ?>,
+            <?php echo $data['selectedYear']; ?>: $<?php echo $data['totalPayment']; ?>
+        
+    </div>
+<?php endif; ?>
+                
                 <div class="button-box">
                     <button type="submit" class="button">View Payment</button>
                     <!-- View Reservations Button -->
@@ -252,14 +263,13 @@
             </form>
 
                     </br>
-            <?php if (isset($data['totalPayment'])): ?>
-    <div class="mt-3" style="text-align: center;">
-       <p style="font-size: 20px;">Total Payment for <?php echo date('F', mktime(0, 0, 0, $data['selectedMonth'], 1)); ?>,
-            <?php echo $data['selectedYear']; ?>: $<?php echo $data['totalPayment']; ?>
-        
-    </div>
-<?php endif; ?>
+    <div>        
+    <div class="button-box">
+    <a href="<?php echo URLROOT; ?>/pages/home/<?= $_SESSION['user_id'] ?>" class="button" id="back">Back</a>
+    <button id="downloadpdf" class="button">Download PDF</button>
+</div>
 
+                </div>
         </div>
     </div>
 
@@ -271,5 +281,32 @@
         });
     </script>
 </body>
+<script>
+    document.getElementById('showPopup').addEventListener('click', function () {
+        console.log("Show popup clicked"); // Debug statement
+        // Show the popup
+        document.getElementById('popup').style.display = 'block';
+    });
 
+    document.getElementById('close').addEventListener('click', function () {
+        console.log("Close button clicked"); // Debug statement
+        // Close the popup
+        document.getElementById('popup').style.display = 'none';
+    });
+</script>
+
+<script>
+        const filename = 'PDFFILE' + '.pdf';
+        document.getElementById('downloadpdf').addEventListener('click', function () {
+            // Select the element that you want to convert to PDF
+            const element = document.getElementById('payment');
+
+            // Specify the filename for the downloaded PDF
+            html2pdf().from(element).save(filename);
+
+            // html2pdf(element, {
+            //     filename: filename
+            // });
+        });
+    </script>
 </html>

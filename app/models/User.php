@@ -1,14 +1,17 @@
 <?php
 
-class User{
+class User
+{
     private $db;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->db = new Database;
     }
 
     //get all users
-    public function getUsers(){
+    public function getUsers()
+    {
         $this->db->query('SELECT * FROM users');
 
         $results = $this->db->resultSet();
@@ -17,7 +20,8 @@ class User{
     }
 
     //register user
-    public function register($data){
+    public function register($data)
+    {
         $this->db->query('INSERT INTO users (name, emp_id, email, password, contact_num, address, department, designation, status) VALUES(:name, :emp_id, :email, :password, :contact_num, :address, :department, :designation, :status)');
         //bind values
         $this->db->bind(':name', $data['name']);
@@ -31,7 +35,7 @@ class User{
         $this->db->bind(':status', 'pending');
 
         //execute
-        if($this->db->execute()){
+        if ($this->db->execute()) {
             return true;
         } else {
             return false;
@@ -39,13 +43,14 @@ class User{
     }
 
     //login user
-    public function login($email, $password){
+    public function login($email, $password)
+    {
         $this->db->query('SELECT * FROM users WHERE email = :email');
         $this->db->bind(':email', $email);
 
         $row = $this->db->single();
         $hashed_password = $row->password;
-        if(password_verify($password, $hashed_password) ){
+        if (password_verify($password, $hashed_password)) {
             return $row;
         } else {
             return false;
@@ -53,7 +58,8 @@ class User{
     }
 
     //find user by email
-    public function findUserByEmail($email){
+    public function findUserByEmail($email)
+    {
         $this->db->query('SELECT * FROM users WHERE email = :email');
         //bind value
         $this->db->bind(':email', $email);
@@ -61,7 +67,7 @@ class User{
         $row = $this->db->single();
 
         //check row
-        if($this->db->rowCount() > 0){
+        if ($this->db->rowCount() > 0) {
             return true;
         } else {
             return false;
@@ -69,7 +75,8 @@ class User{
     }
 
     //get user by id
-    public function getUserById($id){
+    public function getUserById($id)
+    {
         $this->db->query('SELECT * FROM users WHERE id = :id');
         //bind value
         $this->db->bind(':id', $id);
@@ -79,7 +86,8 @@ class User{
         return $row;
     }
 
-    public function getDriverById($id){
+    public function getDriverById($id)
+    {
         $this->db->query('SELECT * FROM users WHERE id = :id');
         //bind value
         $this->db->bind(':id', $id);
@@ -90,7 +98,8 @@ class User{
     }
 
     //edit user
-    public function updateUser($data){
+    public function updateUser($data)
+    {
         $this->db->query('UPDATE users SET name = :name, emp_id = :emp_id, email = :email, contact_num = :contact_num, address = :address, department = :department, password = :password WHERE id = :id');
         //bind values
         $this->db->bind(':id', $data['id']);
@@ -104,14 +113,15 @@ class User{
 
 
         //execute
-        if($this->db->execute()){
+        if ($this->db->execute()) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function getEmployees(){
+    public function getEmployees()
+    {
         $this->db->query('SELECT * FROM users WHERE designation = "employee"');
 
         $results = $this->db->resultSet();
@@ -119,35 +129,38 @@ class User{
         return $results;
     }
 
-    public function updatestatus($id, $status){
+    public function updatestatus($id, $status)
+    {
         $this->db->query('UPDATE users SET status = :status WHERE id = :id');
-        
+
         // Bind values
         $this->db->bind(':id', $id);
         $this->db->bind(':status', $status);
-    
+
         // Execute
-        if($this->db->execute()){
+        if ($this->db->execute()) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function deleteEmployee($id){
+    public function deleteEmployee($id)
+    {
         $this->db->query('DELETE FROM users WHERE id = :id');
         // Bind values
         $this->db->bind(':id', $id);
-    
+
         // Execute
-        if($this->db->execute()){
+        if ($this->db->execute()) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function getDrivers(){
+    public function getDrivers()
+    {
         $this->db->query('SELECT * FROM users WHERE designation = "driver"');
 
         $results = $this->db->resultSet();
@@ -155,35 +168,38 @@ class User{
         return $results;
     }
 
-    public function updatedriverStatus($id, $status){
+    public function updatedriverStatus($id, $status)
+    {
         $this->db->query('UPDATE users SET status = :status WHERE id = :id');
-        
+
         // Bind values
         $this->db->bind(':id', $id);
         $this->db->bind(':status', $status);
-    
+
         // Execute
-        if($this->db->execute()){
+        if ($this->db->execute()) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function deleteDriver($id){
+    public function deleteDriver($id)
+    {
         $this->db->query('DELETE FROM users WHERE id = :id');
         // Bind values
         $this->db->bind(':id', $id);
-    
+
         // Execute
-        if($this->db->execute()){
+        if ($this->db->execute()) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function getLastInsertedUserId(){
+    public function getLastInsertedUserId()
+    {
         // Prepare SQL query to get the last inserted user ID
         $this->db->query('SELECT LAST_INSERT_ID() as user_id');
 
@@ -197,23 +213,27 @@ class User{
         return $row->user_id;
     }
 
+    public function getAllUsers()
+    {
+        $this->db->query('SELECT * FROM users');
+        return $this->db->resultSet();
+    }
 
-    // Inside EmployeeReservation.php model
+    // Inside your UserModel class
 
+    public function getApprovedUsers()
+    {
+        // Query to get all users with 'approved' status
+        $this->db->query('SELECT * FROM users WHERE status = "approved"'); // Assuming 'approved' column represents approval status
+        return $this->db->resultSet();
+    }
 
+    public function getHrmanager(){
+        $this->db->query('SELECT * FROM users WHERE designation = "hrmanager"');
 
-public function getAllUsers()
-{
-    $this->db->query('SELECT * FROM users');
-    return $this->db->resultSet();
-}
+        $results = $this->db->resultSet();
 
-// Inside your UserModel class
-
-public function getApprovedUsers()
-{
-    $this->db->query('SELECT * FROM users WHERE status = "approved"'); // Assuming 'approved' column represents approval status
-    return $this->db->resultSet();
-}
+        return $results;
+    }
 
 }

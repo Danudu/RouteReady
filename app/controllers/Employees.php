@@ -634,6 +634,11 @@ public function viewMonthlyReservations() {
     
     // Load the TransportReservation model
     $this->employeeReservationModel = $this->model('EmployeeReservation');
+
+    $reservations = $this->employeeReservationModel->getReservationsForMonthYear($user_id, $selectedMonth, $selectedYear);
+    
+    // Get reservation count for the selected month and year
+    $reservationCount = count($reservations);
     
     // Get reservations for the selected month and year
     $reservations = $this->employeeReservationModel->getReservationsForMonthYear($user_id, $selectedMonth, $selectedYear);
@@ -681,5 +686,4 @@ public function checkReservationExistence()
 
 
 }
-
 

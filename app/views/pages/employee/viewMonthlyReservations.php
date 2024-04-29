@@ -89,6 +89,13 @@
     background-color: var(--primary-color-light);
     color: var(--white);
 }
+
+.button.back {
+            position: absolute;
+            right: 0;
+            margin-right: 20px;
+            
+        }
     </style>
 </head>
 
@@ -217,11 +224,27 @@
                     <?php endif; ?>
                 </div>
             </div>
+
         </div>
+        
         <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments" class="button" id="back" >Back</a>
         </div>
         
     </div>
+
+    <script>
+    document.getElementById('showPopup').addEventListener('click', function () {
+        console.log("Show popup clicked"); // Debug statement
+        // Show the popup
+        document.getElementById('popup').style.display = 'block';
+    });
+
+    document.getElementById('close').addEventListener('click', function () {
+        console.log("Close button clicked"); // Debug statement
+        // Close the popup
+        document.getElementById('popup').style.display = 'none';
+    });
+</script>
 </body>
 
 </html>

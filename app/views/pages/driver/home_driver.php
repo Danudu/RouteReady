@@ -125,7 +125,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewReservation">
+                    <a href="<?php echo URLROOT; ?>/drivers/viewTransportReservation">
                         <i class="fa-solid fa-magnifying-glass-location"></i>
                         <span class="icon_name">Reservations</span>
                     </a>
@@ -134,7 +134,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewWorkTrips">
+                    <a href="<?php echo URLROOT; ?>/drivers/viewEmployeeWorkTrips">
                         <i class="fa-solid fa-suitcase-rolling"></i>
                         <span class="icon_name">WorkTrips</span>
                     </a>
@@ -143,11 +143,11 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments">
+                    <a href="<?php echo URLROOT; ?>/drivers/viewBankDetails">
                         <i class="fa-solid fa-hand-holding-dollar"></i>
-                        <span class="icon_name">Payment</span>
+                        <span class="icon_name">Bank</span>
                     </a>
-                    <span class="tooltip">Payment</span>
+                    <span class="tooltip">Bank</span>
                 </li>
             </ul>
             <ul>

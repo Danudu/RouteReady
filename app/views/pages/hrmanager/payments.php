@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Payments</title>
+    <title>View Payments | RouteReady</title>
 
     <!-- Link to the CSS styles -->
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar2.css">
@@ -27,7 +27,7 @@
 
         .main-content {
             padding: 50px 0;
-            background-image: url(http://localhost:8888/RouteReady/public/img/pic5.jpg);
+            background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -222,7 +222,7 @@
             <form action="<?php echo URLROOT; ?>/hrmanagers/calculatePayments" method="post">
                 <label for="month">Select Month:</label>
                 <select name="month" id="month">
-                    <?php for ($i = 1; $i <= 12; $i++) : ?>
+                    <?php for ($i = 1; $i <= 12; $i++): ?>
                         <option value="<?php echo $i; ?>" <?php echo ($data['selectedMonth'] == $i) ? 'selected' : ''; ?>>
                             <?php echo date('F', mktime(0, 0, 0, $i, 1)); ?>
                         </option>
@@ -230,8 +230,9 @@
                 </select>
                 <label for="year">Select Year:</label>
                 <select name="year" id="year">
-                    <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
-                        <option value="<?php echo $i; ?>" <?php echo ($data['selectedYear'] == $i) ? 'selected' : ''; ?>><?php echo $i; ?></option>
+                    <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
+                        <option value="<?php echo $i; ?>" <?php echo ($data['selectedYear'] == $i) ? 'selected' : ''; ?>>
+                            <?php echo $i; ?></option>
                     <?php endfor; ?>
                 </select>
                 <button type="submit" class="button">View Payments</button>
@@ -241,62 +242,65 @@
             </br>
 
 
-                <!-- Display payments in a table -->
-                <?php if (!empty($data['payments'])) : ?>
-                   
-                    <h3 >Payments for <?php echo date('F Y', strtotime($data['selectedYear'] . '-' . $data['selectedMonth'] . '-01')); ?></h3>
-                    <table id = "report">
-                        <thead>
+            <!-- Display payments in a table -->
+            <?php if (!empty($data['payments'])): ?>
+
+                <h3>Payments for
+                    <?php echo date('F Y', strtotime($data['selectedYear'] . '-' . $data['selectedMonth'] . '-01')); ?></h3>
+                <table id="report">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>User Name</th>
+                            <th>Total Payment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data['payments'] as $payment): ?>
                             <tr>
-                                <th>User ID</th>
-                                <th>User Name</th>
-                                <th>Total Payment</th>
+                                <td><?php echo $payment['emp_id']; ?></td>
+                                <td><?php echo $payment['name']; ?></td>
+                                <td><?php echo $payment['totalPayment']; ?></td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($data['payments'] as $payment) : ?>
-                                <tr>
-                                    <td><?php echo $payment['emp_id']; ?></td>
-                                    <td><?php echo $payment['name']; ?></td>
-                                    <td><?php echo $payment['totalPayment']; ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                    </div> 
-                <?php else : ?>
-                    <p>No payments available for the selected month and year.</p>
-                <?php endif; ?>
-                <button id="downloadpdf">Download PDF</button></a>
-        </div>
-
-       
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php else: ?>
+            <p>No payments available for the selected month and year.</p>
+        <?php endif; ?>
+        <button id="downloadpdf">Download PDF</button></a>
     </div>
-        
-   
 
-        <script>
-            // JavaScript to submit form when month and year are selected
-            document.getElementById('month').addEventListener('change', function() {
-                document.getElementById('paymentForm').submit();
-            });
 
-            document.getElementById('year').addEventListener('change', function() {
-                document.getElementById('paymentForm').submit();
-            });
+    </div>
 
-            let btn = document.querySelector("#btn");
-            let sidebar = document.querySelector(".sidebar");
 
-            btn.onclick = function() {
-                sidebar.classList.toggle("active");
-            };
-        </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        // JavaScript to submit form when month and year are selected
+        document.getElementById('month').addEventListener('change', function () {
+            document.getElementById('paymentForm').submit();
+        });
+
+        document.getElementById('year').addEventListener('change', function () {
+            document.getElementById('paymentForm').submit();
+        });
+
+        let btn = document.querySelector("#btn");
+        let sidebar = document.querySelector(".sidebar");
+
+        btn.onclick = function () {
+            sidebar.classList.toggle("active");
+        };
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         const filename = 'PDFFILE' + '.pdf';
-        document.getElementById('downloadpdf').addEventListener('click', function() {
+        document.getElementById('downloadpdf').addEventListener('click', function () {
             // Select the element that you want to convert to PDF
             const element = document.getElementById('report');
 
@@ -310,3 +314,6 @@
 </body>
 
 </html>
+
+<!-- View: pages/hrmanager/payments.php -->
+

@@ -30,15 +30,15 @@
                     <span class="tooltip">HomePage</span>
                 </li>
             </ul>
-            <ul>
+            <!-- <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/hrmanagers/dashborad">
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/dashboard">
                         <i class="fa-solid fa-chart-line"></i>
                         <span class="icon_name">Dashboard</span>
                     </a>
                     <span class="tooltip">Dashboard</span>
                 </li>
-            </ul>
+            </ul> -->
             <ul>
                 <li>
                     <a href="<?php echo URLROOT; ?>/pages/profile/<?=$_SESSION['user_id']?>">
@@ -75,6 +75,7 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
+
             <ul>
                 <li>
                     <a href="<?php echo URLROOT; ?>/posts/terms">

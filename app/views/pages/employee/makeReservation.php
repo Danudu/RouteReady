@@ -418,6 +418,10 @@
                                 <section class="section">
                                     <div class="submit"><input type="submit" value="Reserve"></div>
                                 </section>
+
+                                <div class="register-link">
+                        <a href="<?php echo URLROOT; ?>/employees/viewReservation" class="button">View Transport Reservations</a>
+                    </div>
                             </div>
                         </form>
 
@@ -494,7 +498,11 @@
                                 <section class="section">
                                     <div class="submit"><input type="submit" value="Reserve" onclick="validateForm()"></div>
                                 </section>
-                            </div>
+                                </div>
+                                <div class="register-link">
+                        <a href="<?php echo URLROOT; ?>/employees/viewReservation" class="button">View Transport Reservations</a>
+                    </div>
+                           
                         </form>
                     </div>
                 </div>
@@ -506,6 +514,19 @@
 
 
 </body>
+<script>
+    document.getElementById('showPopup').addEventListener('click', function () {
+        console.log("Show popup clicked"); // Debug statement
+        // Show the popup
+        document.getElementById('popup').style.display = 'block';
+    });
+
+    document.getElementById('close').addEventListener('click', function () {
+        console.log("Close button clicked"); // Debug statement
+        // Close the popup
+        document.getElementById('popup').style.display = 'none';
+    });
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         daily(); // Call the daily function to set the initial state

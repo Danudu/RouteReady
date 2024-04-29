@@ -1,6 +1,7 @@
 <?php
 class Pages extends Controller
 {
+  private $userModel;
   public function __construct()
   {
     // if not logged in, redirect to landing page
@@ -56,7 +57,19 @@ class Pages extends Controller
 
   }
 
+  public function driverhome()
+  {
+    if (!isLoggedIn()) {
+      $this->view('pages/index');
+    } else {
+      $data = [
+        'title' => 'About us',
+        'description' => 'This is a simple MVC framework'
+      ];
+      $this->view('pages/driver/home_driver', $data);
+    }
 
+  }
 
   public function about()
   {

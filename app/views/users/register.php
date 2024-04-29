@@ -32,11 +32,9 @@
                     <p>Please fill out this form to register</p>
                     <div class="form-box">
                         <div class="button-box">
-                        <button type="button" class="toggle-btn active" onclick="other()">Other User</button>
-                        <button type="button" class="toggle-btn" onclick="outsource()">Outsource Drivers</button>
-
+                        <button type="button" class="toggle-btn active" onclick="other()">Company User</button>
+                        <button type="button" class="toggle-btn" onclick="outsource()">Outsource Drivers</button>                       
                         </div>
-
                         <form id="other" action="<?php echo URLROOT; ?>/users/register" method="post">
                     <div class="input-box">
                         <!-- <label for="name">Name: <sup>*</sup></label> -->
@@ -93,64 +91,137 @@
                     </div>
                     <input type="submit" value="Register" class="btn">
 
-                    <div class="register-link">
-                        <p>Have an account? <a href="<?php echo URLROOT; ?>/users/login">Login</a></p>
-                    </div>
-                </form>
-
-                <form id="outsource" action="<?php echo URLROOT; ?>/drivers/register" method="post">
-                <div class="input-box">
-                        <!-- <label for="name">Name: <sup>*</sup></label> -->
-                        <input type="text" name="name" value="<?php echo $data['name']; ?>" placeholder="full Name">
-                        <span><?php echo $data['name_err']; ?></span>
-                    </div>
-                    <div class="input-box">
-                        <!-- <label for="emp_id">Employee ID: <sup>*</sup></label> -->
-                        <input type="text" name="age" value="<?php echo $data['Age']; ?>"
-                            placeholder="Age">
-                        <span><?php echo $data['age_err']; ?></span>
-                    </div>
-                    <div class="input-box">
-                        <!-- <label for="email">Email: <sup>*</sup></label> -->
-                        <input type="email" name="email" value="<?php echo $data['email']; ?>" placeholder="Email">
-                        <span><?php echo $data['email_err']; ?></span>
-                    </div>
-                    <div class="input-box">
-                        <!-- <label for="contact_num">Contact: <sup>*</sup></label> -->
-                        <input type="text" name="contact_num" value="<?php echo $data['contact_num']; ?>"
-                            placeholder="Contact">
-                    </div>
-                    <div class="input-box">
-                        <!-- <label for="address">Address: <sup>*</sup></label> -->
-                        <input type="text" name="address" value="<?php echo $data['address']; ?>" placeholder="Address">
-                    </div>
-
-
-                    <div class="input-box" id="driverDetails1">
-                        <input type="text" name="driver_license" placeholder="Driver License Number">
-                    </div>
-                    <div class="input-box">
-                        <!-- <label for="password">Password: <sup>*</sup></label> -->
-                        <input type="password" name="password" value="<?php echo $data['password']; ?>"
-                            placeholder="Type Password">
-                        <span><?php echo $data['password_err']; ?></span>
-                    </div>
-                    <div class="input-box">
-                        <!-- <label for="confirm_password">Confirm Password: <sup>*</sup></label> -->
-                        <input type="password" name="confirm_password" value="<?php echo $data['confirm_password']; ?>"
-                            placeholder="Re-type Password">
-                        <span><?php echo $data['confirm_password_err']; ?></span>
-                    </div>
-                    <input type="submit" value="Register" class="btn">
 
                     <div class="register-link">
                         <p>Have an account? <a href="<?php echo URLROOT; ?>/users/login">Login</a></p>
                     </div>
                 </form>
+                
+                    <form id="outsource" action="<?php echo URLROOT; ?>/drivers/add" method="post">
+                        
+                        <div class="input-box">
+                            <!-- <label for="name">Name: <sup>*</sup></label> -->
+                            <input type="text" name="name" value="<?php echo $data['name']; ?>" placeholder="Name">
+                            <span><?php echo $data['name_err']; ?></span>
+                        </div>
+                        <div class="input-box">
+                            <!-- <label for="emp_id">Employee ID: <sup>*</sup></label> -->
+                            <input type="text" name="age" value="<?php echo $data['age']; ?>" placeholder="Age">
+                            <span><?php echo $data['age_err']; ?></span>
+                        </div>
+                        <div class="input-box">
+                            <!-- <label for="email">Email: <sup>*</sup></label> -->
+                            <input type="email" name="email" value="<?php echo $data['email']; ?>" placeholder="Email">
+                            <span><?php echo $data['email_err']; ?></span>
+                        </div>
+                        <div class="input-box">
+                            <!-- <label for="contact_num">Contact: <sup>*</sup></label> -->
+                            <input type="text" name="contact_num" value="<?php echo $data['contact_num']; ?>"
+                                placeholder="Contact">
+                        </div>
+                        <div class="input-box">
+                            <!-- <label for="address">Address: <sup>*</sup></label> -->
+                            <input type="text" name="address" value="<?php echo $data['address']; ?>" placeholder="Address">
+                        </div>
+                        <div class="input-box">
+                     
+                        <input type="text" name="nic_number" value="<?php echo $data['nic_number']; ?>" placeholder="NIC">
+                    </div>
+                     
+
+                        <div class="input-box" >
+                            <input type="text" name="driver_license" value="<?php echo $data['driver_license']; ?>"placeholder="Driver License Number">
+                        </div>
+                        <div class="input-box" >
+                            <input type="text" name="vehicle_type" value="<?php echo $data['vehicle_type']; ?>" placeholder="Vehicle Type ">
+                        </div>
+                        <div class="input-box">
+                        <input type="text" name="years_of_experience"  placeholder="Years of experience ">
+                    </div>
+
+                        <div class="input-box">
+                            <!-- <label for="password">Password: <sup>*</sup></label> -->
+                            <input type="password" name="password" value="<?php echo $data['password']; ?>"
+                                placeholder="Type Password">
+                            <span><?php echo $data['password_err']; ?></span>
+                        </div>
+                        <div class="input-box">
+                            <!-- <label for="confirm_password">Confirm Password: <sup>*</sup></label> -->
+                            <input type="password" name="confirm_password" value="<?php echo $data['confirm_password']; ?>"
+                                placeholder="Re-type Password">
+                            <span><?php echo $data['confirm_password_err']; ?></span>
+                        </div>
+
+                        <div class="input-box">
+                            
+                                <input type="text" id="v_no" name="v_no" placeholder="Enter Vehicle Number">
+                            </div>
+
+                            <div class="input-box">
+                                
+                                <input type="text" id="name" name="name" placeholder="Enter Vehicle Type">
+                            </div>
+
+                            <div class="input-box">
+                                
+                                <input type="text" id="model" name="model" placeholder="Enter Vehicle Model">
+                            </div>
+
+                            <div class="input-box">
+                                
+                                <input type="text" id="r_year" name="r_year" placeholder="Enter Vehicle Registration Year">
+                            </div>
+
+                            <div class="input-box">
+                            
+                                <input type="text" id="vin" name="vin" placeholder="Enter Vehicle VIN Number">
+                            </div>
+
+                            <div class="input-box">
+                            
+                                <input type="text" id="year" name="year" placeholder="Enter Vehicle Manufacture Year">
+                            </div>
+
+                            <div class="input-box">
+                            
+                                <input type="text" id="insu_pro" name="insu_pro" placeholder="Enter Insurance Company">
+                            </div>
+
+                            <div class="input-box">
+                            
+                                <input type="text" id="insu_pn" name="insu_pn" placeholder="Enter Insurance Number">
+                            </div>
+
+                            <div class="input-box">
+                                
+                                <input type="text" id="passenger_capacity" name="passenger_capacity"
+                                    placeholder="Enter Passenger Capacity">
+</div>
+
+                            
+                        <input type="submit" value="Register" class="btn">
+
+                        <div class="register-link">
+                            <p>Have an account? <a href="<?php echo URLROOT; ?>/users/login">Login</a></p>
+                        </div>
+                    </form>
             </div>
         </div>
     </div>
 
+    <script>
+        document.getElementById('designation').addEventListener('change', function () {
+            var driverDetails1 = document.getElementById('driverDetails1');
+            var driverDetails2 = document.getElementById('driverDetails2');
+            if (this.value === 'driver') {
+                driverDetails1.style.display = 'block';
+                driverDetails2.style.display = 'block';
+            } else {
+                driverDetails1.style.display = 'none';
+                driverDetails2.style.display = 'none';
+            }
+        });
+    </script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         other(); // Call the other function to set the initial state
@@ -175,6 +246,9 @@
         outsourceBtn.classList.add("active");
     }
 </script>
+
+
+
 
 </body>
 

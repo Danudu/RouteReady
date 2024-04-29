@@ -48,7 +48,7 @@
                                     <td><?php echo $employee->department; ?></td>
                                     <td><?php echo $employee->status; ?></td>
                                     <td>
-                                    <?php if ($employee->status === 'pending'): ?>
+                                        <?php if ($employee->status === 'pending'): ?>
                                             <form
                                             action="<?php echo URLROOT; ?>/hrmanagers/updateEmployeeStatus/<?php echo $employee->id; ?>"
                                             method="POST">
