@@ -270,7 +270,7 @@ public function calculateMonthlyPayments($userId, $startMonth, $endMonth, $year)
 
     for ($month = $startMonth; $month <= $endMonth; $month++) {
         $dailyReservationsCount = $this->getDailyReservationCountByUserAndMonth($userId, $year, $month);
-        $payment = 400 * $dailyReservationsCount;
+        $payment = 200 * $dailyReservationsCount;
         
         // Add payment for the month to the payments array
         $payments[] = [
