@@ -142,4 +142,32 @@ class Drivers extends Controller
 
   }
 
+  public function viewSalaryDetails($id)
+    {
+        // Check if user is logged in
+        if (!isLoggedIn()) {
+            // Redirect to login page if not logged in
+            redirect('users/login');
+        }
+
+     
+        // Fetch salary details for the logged-in user
+        $salary_details = $this->driverModel->getSalaryDetails($id);
+
+        // Check if salary details exist
+        if ($salary_details) {
+            // Salary details found, pass them to the view
+            $data = [
+                'salary_details' => $salary_details
+            ];
+
+            // Load the view for displaying salary details
+            $this->view('pages/driver/view_salary_details', $data);
+        } else {
+            // No salary details found
+            redirect('drivers/home');
+        }
+    }
+
+
 }

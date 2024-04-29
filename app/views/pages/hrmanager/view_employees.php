@@ -30,7 +30,7 @@
                             <th>Email</th>
                             <th>Contact Number</th>
                             <th>Address</th>
-                            <th>Department</th>
+                            
                             <th>Status</th>
                             <th>Approve/Reject</th>
                             <th>Delete</th>
@@ -45,7 +45,7 @@
                                     <td><?php echo $employee->email; ?></td>
                                     <td><?php echo $employee->contact_num; ?></td>
                                     <td><?php echo $employee->address; ?></td>
-                                    <td><?php echo $employee->department; ?></td>
+                                   
                                     <td><?php echo $employee->status; ?></td>
                                     <td>
                                         <?php if ($employee->status === 'pending'): ?>

@@ -185,6 +185,29 @@ class Vehicle {
             mysqli_free_result($results);
             return $booked_days;
         }
+
+        public function getAvailableVehicles($date) {
+            // Prepare the SQL query to select vehicles not booked on the given date
+            $sql = "SELECT vd.Registration_Number, vd.Vehicle_Number, vd.Vehicle_Name, vd.capacity
+                    FROM vehicledetails vd
+                    LEFT JOIN fullday_timetable ft ON vd.Vehicle_Number = ft.vehicle_id AND ft.b_date = :date
+                    LEFT JOIN timetable t ON vd.Vehicle_Number = t.vehicle_id AND t.date = :date
+                    WHERE ft.vehicle_id IS NULL AND t.vehicle_id IS NULL";
+        
+            // Bind the date parameter to the query
+            $this->db->query($sql);
+            $this->db->bind(':date', $date);
+            
+
+            // Execute the query
+            $this->db->execute();
+        
+            // Fetch the result set
+            $results = $this->db->resultSet();
+        
+            // Return the result set
+            return $results;
+        }
        
     }
     

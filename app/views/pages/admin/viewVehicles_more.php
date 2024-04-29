@@ -23,7 +23,7 @@
             --white: #ffffff;
         }
 
-        .main-content{
+        .main-content {
             padding: 50px 0;
             background-image: url(http://localhost/RouteReady/public/img/pic7.jpg);
             background-position: center;
@@ -118,14 +118,14 @@
                 </li>
             </ul>
             <!-- <ul>
-<li>
-    <a href="<?php echo URLROOT; ?>/hrmanagers/dashboard">
-        <i class="fa-solid fa-chart-line"></i>
-        <span class="icon_name">Dashboard</span>
-    </a>
-    <span class="tooltip">Dashboard</span>
-</li>
-</ul> -->
+        <li>
+            <a href="<?php echo URLROOT; ?>/hrmanagers/dashboard">
+                <i class="fa-solid fa-chart-line"></i>
+                <span class="icon_name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+        </li>
+    </ul> -->
             <ul>
                 <li>
                     <a href="<?php echo URLROOT; ?>/pages/profile/<?= $_SESSION['user_id'] ?>">
@@ -188,10 +188,10 @@
             <ul>
                 <li>
                     <a href="<?php echo URLROOT; ?>/posts/terms">
-                        <i class="fas fa-book-bookmark"></i>
-                        <span class="icon_name">T&C</span>
+                        <i class="fa-solid fa-plus-minus"></i>
+                        <span class="icon_name">Leaves</span>
                     </a>
-                    <span class="tooltip">Terms & Conditions</span>
+                    <span class="tooltip">Leaves</span>
                 </li>
             </ul>
             <ul class="lobtn">

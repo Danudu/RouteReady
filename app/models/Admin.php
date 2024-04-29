@@ -10,17 +10,12 @@ class Admin
         $this->db = new Database;
     }
 
-    public function getbooking()
+    public function getBooking()
     {
-        $this->db->query("SELECT *
-                                
-                            FROM fullday_timetable
-                            
-                            ORDER BY b_date");
+        $this->db->query("SELECT * FROM fullday_timetable ORDER BY b_date");
 
         return $this->db->resultSet();
     }
-
 
     public function addbooking($data)
     {
@@ -70,31 +65,35 @@ class Admin
         }
     }
 
-    public function get_timetable($day, $timeSlot)
+
+    public function get_Timetable($day, $slot)
     {
-        // Build the SQL query
-        $sql = "SELECT *
-                FROM timetable
-                WHERE day = ? AND time_slot = ?
-                ORDER BY b_date";
 
-        // Execute the query with parameters
-        $query = $this->db->query($sql, array($day, $timeSlot));
+        $timeSlots = array(
+            "6:00AM-8:00AM" => "6:00 AM - 8:00 AM",
+            "8:00AM-10:00AM" => "8:00 AM - 10:00 AM",
+            "10:00AM-12:00NOON" => "10:00 AM - 12:00 NOON",
+            "12:00NOON-2:00PM" => "12:00 NOON - 2:00 PM",
+            "2:00PM-4:00PM" => "2:00 PM - 4:00 PM",
+            "4:00PM-6:00PM" => "4:00 PM - 6:00 PM",
+            "6:00PM-8:00PM" => "6:00 PM - 8:00 PM",
+            "8:00PM-10:00PM" => "8:00 PM - 10:00 PM",
+            "10:00PM-12:00PM" => "10:00 PM - 12:00 PM"
+        );
 
-        // Check for query execution error
-        if (!$query) {
-            // Query execution failed, return false
+        $this->db->query("SELECT * FROM timetable WHERE day = :day AND time_slot = :slot");
+        $this->db->bind(':day', $day);
+        // Corrected the slot mapping
+        $this->db->bind(':slot', $timeSlots[$slot]); // Use the mapped slot from $timeSlots array
+
+        // Execute
+        if ($this->db->execute()) {
+            $results = $this->db->resultSet();
+            return $results;
+        } else {
             return false;
         }
-
-        // Check if there are any rows returned
-        if ($query->num_rows() > 0) {
-            return $query->getResultArray(); // Return an array of rows
-        } else {
-            return false; // No rows found
-        }
     }
-
 
 
 }

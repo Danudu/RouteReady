@@ -39,6 +39,9 @@ class Users extends Controller
                 'designation' => trim($_POST['designation']),
                 'driver_license' => trim($_POST['driver_license']),
                 'vehicle_type' => trim($_POST['vehicle_type']),
+                'age' => trim($_POST['age']),
+                'nic_number' => trim($_POST['nic_number']),
+                'years_of_experience' => trim($_POST['years_of_experience']),
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
@@ -93,13 +96,13 @@ class Users extends Controller
 
                     if ($data['designation'] == 'driver') {
                         $driverData = [
-                            'driver_id' => $user_id,
+                            'user_id' => $user_id,
                             'driver_license' => $data['driver_license'],
                             'vehicle_type' => $data['vehicle_type'],
-                            'name' => $data['name'],
-                            'email' => $data['email'],
-                            'contact_num' => $data['contact_num'],
-                            'address' => $data['address']
+                            'age' => $data['age'],
+                            'nic_number' => $data['nic_number'],
+                            'years_of_experience' => $data['years_of_experience']
+                            
                         ];
                         $this->driverModel->insertDriverData($driverData);
                     }
@@ -128,6 +131,9 @@ class Users extends Controller
                 'designation' => '',
                 'driver_license' => '',
                 'vehicle_type' => '',
+                'age' => '',
+                'nic_number' => '',
+                'years_of_experience' => '',
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',

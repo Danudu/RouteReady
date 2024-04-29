@@ -20,6 +20,7 @@
             --white: #ffffff;
             --max-width: 1200px;
         }
+
         /* Style for the toggle buttons */
         .toggle-btn {
             display: inline-block;
@@ -32,7 +33,7 @@
 
             background-color: var(--primary-color-extra-light);
             /* Change the background color as desired */
-            color: #fff;    
+            color: #fff;
             /* Change the text color as desired */
             transition: background-color 0.3s ease;
         }
@@ -83,7 +84,8 @@
                         </div>
                         <div class="input-box">
                             <!-- <label for="emp_id">Employee ID: <sup>*</sup></label> -->
-                            <input type="text" name="emp_id" value="<?php echo isset($data['emp_id']) ? $data['emp_id'] : ''; ?>"
+                            <input type="text" name="emp_id"
+                                value="<?php echo isset($data['emp_id']) ? $data['emp_id'] : ''; ?>"
                                 placeholder="Employee ID">
                             <span><?php echo $data['emp_id_err']; ?></span>
                         </div>
@@ -102,18 +104,35 @@
                             <input type="text" name="address" value="<?php echo $data['address']; ?>"
                                 placeholder="Address">
                         </div>
-                        
+
                         <div class="input-box">
-                            <!-- <label for="designation">Designation: <sup>*</sup></label> -->
-                            <!-- <input type="text" name="designation" value="<?php echo $data['designation']; ?>" placeholder="Designation"> -->
-                            <select class="select" name="designation" id="designation"
-                                value="<?php echo $data['designation']; ?>" aria-placeholder="Designation">
-                                <option disabled selected>Select designation...</option>
-                                <option value="employee">Employee</option>
-                                <option value="hrmanager">HR Manager</option>
-                                <option value="admin">Admin</option>
-                            </select>
-                        </div>
+                        <!-- <label for="designation">Designation: <sup>*</sup></label> -->
+                        <!-- <input type="text" name="designation" value="<?php echo $data['designation']; ?>" placeholder="Designation"> -->
+                        <select class="select" name="designation" id="designation"
+                            value="<?php echo $data['designation']; ?>" aria-placeholder="Designation">
+                            <option disabled selected>Select designation...</option>
+                            <option value="employee">Employee</option>
+                            <option value="driver">Driver</option>
+                            <option value="hrmanager">HR Manager</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box" id="driverDetails1" style="display: none;">
+                        <input type="text" name="driver_license" placeholder="Driver License Number">
+                    </div>
+                    <div class="input-box" id="driverDetails2" style="display: none;">
+                        <input type="text" name="vehicle_type" placeholder="Vehicle Type ">
+                    </div>
+                    <div class="input-box" id="driverDetails3" style="display: none;">
+                        <input type="text" name="age" placeholder="Age ">
+                    </div>
+                    <div class="input-box" id="driverDetails4" style="display: none;">
+                        <input type="text" name="nic_number" placeholder="NIC Number ">
+                    </div>
+                    <div class="input-box" id="driverDetails5" style="display: none;">
+                        <input type="text" name="years_of_experience" placeholder="Years Of Experience ">
+                    </div>
                         <div class="input-box">
                             <!-- <label for="password">Password: <sup>*</sup></label> -->
                             <input type="password" name="password" value="<?php echo $data['password']; ?>"
@@ -191,36 +210,41 @@
                         <div class="input-box">
                             <!-- <label for="years_of_experience">Years of Experience: <sup>*</sup></label> -->
                             <input type="text" name="years_of_experience"
-                            value="<?php echo isset($data['years_of_experience']) ? $data['years_of_experience'] : ''; ?>"
-                            placeholder="Years of Experience">
+                                value="<?php echo isset($data['years_of_experience']) ? $data['years_of_experience'] : ''; ?>"
+                                placeholder="Years of Experience">
                         </div>
-                       
+
                         <!-- Vehicle Details -->
                         <p>Add Vehicle Details</p>
 
                         <div class="input-box">
                             <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
-                            <input type="text" name="vehicle_number" value="<?php echo isset($data['vehicle_number']) ? $data['vehicle_number'] : ''; ?>"
+                            <input type="text" name="vehicle_number"
+                                value="<?php echo isset($data['vehicle_number']) ? $data['vehicle_number'] : ''; ?>"
                                 placeholder="Vehicle License Plate No.">
                         </div>
                         <div class="input-box">
                             <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
-                            <input type="text" name="vehicle_name" value="<?php echo isset($data['vehicle_name']) ? $data['vehicle_name'] : ''; ?>"
+                            <input type="text" name="vehicle_name"
+                                value="<?php echo isset($data['vehicle_name']) ? $data['vehicle_name'] : ''; ?>"
                                 placeholder="Vehicle Name">
                         </div>
                         <div class="input-box">
                             <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
-                            <input type="text" name="vehicle_year" value="<?php echo isset($data['vehicle_year']) ? $data['vehicle_year'] : ''; ?>"
+                            <input type="text" name="vehicle_year"
+                                value="<?php echo isset($data['vehicle_year']) ? $data['vehicle_year'] : ''; ?>"
                                 placeholder="Vehicle Manufactured Year">
                         </div>
                         <div class="input-box">
                             <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
-                            <input type="text" name="model" value="<?php echo isset($data['model']) ? $data['model'] : ''; ?>"
+                            <input type="text" name="model"
+                                value="<?php echo isset($data['model']) ? $data['model'] : ''; ?>"
                                 placeholder="Vehicle MODEL">
                         </div>
                         <div class="input-box">
                             <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
-                            <input type="text" name="r_year" value="<?php echo isset($data['r_year']) ? $data['r_year'] : ''; ?>"
+                            <input type="text" name="r_year"
+                                value="<?php echo isset($data['r_year']) ? $data['r_year'] : ''; ?>"
                                 placeholder="Vehicle Reg Year">
                         </div>
                         <div class="input-box">
@@ -230,17 +254,20 @@
                         </div>
                         <div class="input-box">
                             <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
-                            <input type="text" name="insu_pro" value="<?php echo isset($data['insu_pro']) ? $data['insu_pro'] : ''; ?>"
+                            <input type="text" name="insu_pro"
+                                value="<?php echo isset($data['insu_pro']) ? $data['insu_pro'] : ''; ?>"
                                 placeholder="Insuarance Company Name">
                         </div>
                         <div class="input-box">
                             <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
-                            <input type="text" name="insu_pr" value="<?php echo isset($data['insu_pr']) ? $data['insu_pr'] : ''; ?>"
+                            <input type="text" name="insu_pr"
+                                value="<?php echo isset($data['insu_pr']) ? $data['insu_pr'] : ''; ?>"
                                 placeholder="Insuarance No.">
                         </div>
                         <div class="input-box">
                             <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
-                            <input type="text" name="capacity" value="<?php echo isset($data['capacity']) ? $data['capacity'] : ''; ?>"
+                            <input type="text" name="capacity"
+                                value="<?php echo isset($data['capacity']) ? $data['capacity'] : ''; ?>"
                                 placeholder="Vehicle Capacity">
                         </div>
 
@@ -270,6 +297,28 @@
         </div>
 
         <script>
+
+            document.getElementById('designation').addEventListener('change', function () {
+                var driverDetails1 = document.getElementById('driverDetails1');
+                var driverDetails2 = document.getElementById('driverDetails2');
+                var driverDetails3 = document.getElementById('driverDetails3');
+                var driverDetails4 = document.getElementById('driverDetails4');
+                var driverDetails5 = document.getElementById('driverDetails5');
+                if (this.value === 'driver') {
+                    driverDetails1.style.display = 'block';
+                    driverDetails2.style.display = 'block';
+                    driverDetails3.style.display = 'block';
+                    driverDetails4.style.display = 'block';
+                    driverDetails5.style.display = 'block';
+                } else {
+                    driverDetails1.style.display = 'none';
+                    driverDetails2.style.display = 'none';
+                    driverDetails3.style.display = 'none';
+                    driverDetails4.style.display = 'none';
+                    driverDetails5.style.display = 'none';
+                }
+            });
+
             document.addEventListener("DOMContentLoaded", function () {
                 other(); // Call the other function to set the initial state
             });

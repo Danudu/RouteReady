@@ -125,11 +125,11 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewReservation">
+                    <a href="<?php echo URLROOT; ?>/drivers/viewSalaryDetails">
                         <i class="fa-solid fa-magnifying-glass-location"></i>
-                        <span class="icon_name">Reservations</span>
+                        <span class="icon_name">Salary Details</span>
                     </a>
-                    <span class="tooltip">Reservations</span>
+                    <span class="tooltip">Salary Details</span>
                 </li>
             </ul>
             <ul>

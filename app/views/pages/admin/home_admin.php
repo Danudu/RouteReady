@@ -89,7 +89,7 @@
                     <span class="tooltip">HRManger</span>
                 </li>
             </ul>
-            
+
             <ul>
                 <li>
                     <a href="<?php echo URLROOT; ?>/admins/viewPendingWorkTrips">
@@ -101,11 +101,11 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/posts/terms">
-                        <i class="fas fa-book-bookmark"></i>
-                        <span class="icon_name">T&C</span>
+                    <a href="<?php echo URLROOT; ?>/admins/leaves_admin">
+                        <i class="fa-solid fa-plus-minus"></i>
+                        <span class="icon_name">Leaves</span>
                     </a>
-                    <span class="tooltip">Terms & Conditions</span>
+                    <span class="tooltip">Leaves</span>
                 </li>
             </ul>
             <ul class="lobtn">

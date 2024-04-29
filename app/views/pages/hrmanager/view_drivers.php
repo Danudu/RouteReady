@@ -28,7 +28,10 @@
                             <th>Name</th>
                             <th>Driver ID</th>
                             <th>Status</th>
-    
+                            <th></th>
+                            <th>
+                                <a class="button" href="<?php echo URLROOT; ?>/pages/home">Add Drivers</a>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
