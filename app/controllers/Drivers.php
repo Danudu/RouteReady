@@ -5,6 +5,8 @@ class Drivers extends Controller
   private $postModel;
   private $driverModel;
   private $leaveModel;
+
+  private $db;
   public function __construct()
   {
     // if not logged in, redirect to landing page
@@ -61,7 +63,7 @@ class Drivers extends Controller
     } else {
       $user = $this->userModel->getUserById($id);
       $driver = $this->driverModel->getDriverById($id);
-      
+
       $data = [
         'id' => $id,
         'designation' => $user->designation,
@@ -155,10 +157,10 @@ class Drivers extends Controller
     } else {
       $user = $this->userModel->getUserById($id);
       $osdriver = $this->driverModel->getOSDriverById($id);
-      
+
       $data = [
         'id' => $id,
-        'designation'=>$user->designation,
+        'designation' => $user->designation,
         'odriver_id' => $user->id,
         'name' => $user->name,
         'emp_id' => $user->emp_id,
@@ -182,7 +184,7 @@ class Drivers extends Controller
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         $data = [
           'id' => $id,
-          'designation'=>$user->designation,
+          'designation' => $user->designation,
           'odriver_id' => $user->id,
           'name' => trim($_POST['name']),
           'emp_id' => trim($_POST['emp_id']),
@@ -244,40 +246,50 @@ class Drivers extends Controller
   }
 
   public function viewSalaryDetails($id)
-    {
-        // Check if user is logged in
-        if (!isLoggedIn()) {
-            // Redirect to login page if not logged in
-            redirect('users/login');
-        }
-
-     
-        // Fetch salary details for the logged-in user
-        $salary_details = $this->driverModel->getSalaryDetails($id);
-
-        // Check if salary details exist
-        if ($salary_details) {
-            // Salary details found, pass them to the view
-            $data = [
-                'salary_details' => $salary_details
-            ];
-
-            // Load the view for displaying salary details
-            $this->view('pages/driver/view_salary_details', $data);
-        } else {
-            // No salary details found
-            redirect('drivers/home');
-        }
+  {
+    // Check if user is logged in
+    if (!isLoggedIn()) {
+      // Redirect to login page if not logged in
+      redirect('users/login');
     }
 
 
+    // Fetch salary details for the logged-in user
+    $salary_details = $this->driverModel->getSalaryDetails($id);
 
-    public function submitLeaveApplication()
+    // Check if salary details exist
+    if ($salary_details) {
+      // Salary details found, pass them to the view
+      $data = [
+        'salary_details' => $salary_details
+      ];
+
+      // Load the view for displaying salary details
+      $this->view('pages/driver/view_salary_details', $data);
+    } else {
+      // No salary details found
+      redirect('drivers/home');
+    }
+  }
+
+  public function getSalaryDetails($driver_id) {
+    // Prepare SQL query to fetch salary details for a specific driver
+    $this->db->query('SELECT * FROM out_salary WHERE driver_id = :driver_id');
+    $this->db->bind(':driver_id', $driver_id);
+    $salary_details = $this->db->resultSet();
+
+    return $salary_details;
+}
+
+
+
+
+  public function submitLeaveApplication()
   {
     // Check if form is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // Get form data
-      $user_id = $_SESSION['user_id']; 
+      $user_id = $_SESSION['user_id'];
       $type = $_POST['type'];
       $medical_report = $_POST['medical_report'];
       $std_date = $_POST['std_date'];
@@ -302,7 +314,7 @@ class Drivers extends Controller
       }
 
       // Process leave application
-      $result = $this->leaveModel->submitLeaveApplication($user_id, $type, $medical_report, $std_date, $end_date, $no_of_days, $reason,);
+      $result = $this->leaveModel->submitLeaveApplication($user_id, $type, $medical_report, $std_date, $end_date, $no_of_days, $reason, );
 
       // Check if leave application was successful
       if ($result) {
@@ -316,80 +328,206 @@ class Drivers extends Controller
       $user_id = $_SESSION['user_id'];
       // If form is not submitted, redirect to home page
       $medicalCount = $this->leaveModel->getLeaveCountByLeaveType($user_id, 'Medical Leave');
-       $sickCount = $this->leaveModel->getLeaveCountByLeaveType($user_id, 'Sick Leave');
-       $personalCount = $this->leaveModel->getLeaveCountByLeaveType($user_id, 'Personal');
-       $otherCount = $this->leaveModel->getLeaveCountByLeaveType($user_id, 'Other');
-    
-     
+      $sickCount = $this->leaveModel->getLeaveCountByLeaveType($user_id, 'Sick Leave');
+      $personalCount = $this->leaveModel->getLeaveCountByLeaveType($user_id, 'Personal');
+      $otherCount = $this->leaveModel->getLeaveCountByLeaveType($user_id, 'Other');
+
+
       $data = [
         'medicalCount' => $medicalCount,
-         'sickCount' => $sickCount,
-         'personalCount' => $personalCount,
-         'otherCount' => $otherCount,
-    ];
+        'sickCount' => $sickCount,
+        'personalCount' => $personalCount,
+        'otherCount' => $otherCount,
+      ];
       print_r($data);
       $this->view('pages/driver/apply_leaves', $data);
     }
   }
 
 
-  public function appliedLeaves() {
+  public function appliedLeaves()
+  {
     // Assuming $userId is available or can be retrieved
     $userId = $_SESSION['user_id']; // Assuming user_id is stored in session after login
-  
+
     // Fetch applied leaves for the user
     $appliedLeaves = $this->leaveModel->getAppliedLeaves($userId);
-  
+
     // Load the view with the leave data
     $this->view('pages/driver/applied_leaves', ['appliedLeaves' => $appliedLeaves]);
   }
 
   public function updateLeaveApplication($leave_id)
-{
+  {
     // Check if form is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Get form data
-        $leave_id = $_POST['leave_id'];
-        $type = $_POST['type'];
-        $std_date = $_POST['std_date'];
-        $end_date = $_POST['end_date'];
-        $no_of_days = $_POST['no_of_days'];
-        $reason = $_POST['reason'];
-        $status = $_POST['status'];
+      // Get form data
+      $leave_id = $_POST['leave_id'];
+      $type = $_POST['type'];
+      $std_date = $_POST['std_date'];
+      $end_date = $_POST['end_date'];
+      $no_of_days = $_POST['no_of_days'];
+      $reason = $_POST['reason'];
+      $status = $_POST['status'];
 
-        // Process leave update
-        $result = $this->leaveModel->updateLeaveApplication($leave_id, $type, $std_date, $end_date, $no_of_days, $reason, $status);
+      // Process leave update
+      $result = $this->leaveModel->updateLeaveApplication($leave_id, $type, $std_date, $end_date, $no_of_days, $reason, $status);
 
-        // Check if leave update was successful
-        if ($result) {
-            // Leave update successful, redirect to home page with success message
-            redirect('drivers/appliedLeaves', ['success' => 'Leave application updated successfully.']);
-        } else {
-            // Leave update failed, redirect to leaves page with error message
-            redirect('drivers/appliedLeaves', ['error' => 'Failed to update leave application. Please try again.']);
-        }
-    }else{
+      // Check if leave update was successful
+      if ($result) {
+        // Leave update successful, redirect to home page with success message
+        redirect('drivers/appliedLeaves', ['success' => 'Leave application updated successfully.']);
+      } else {
+        // Leave update failed, redirect to leaves page with error message
+        redirect('drivers/appliedLeaves', ['error' => 'Failed to update leave application. Please try again.']);
+      }
+    } else {
       $leave = $this->leaveModel->getLeaveById($leave_id);
-      $data = 
-      ['leave'=> $leave];
+      $data =
+        ['leave' => $leave];
       $this->view('pages/driver/edit_applied_leaves', $data);
     }
-}
+  }
 
-public function deleteLeaveApplication($leave_id)
-{
+  public function deleteLeaveApplication($leave_id)
+  {
     // Process leave deletion
     $result = $this->leaveModel->deleteLeaveApplication($leave_id);
 
     // Check if leave deletion was successful
     if ($result) {
-        // Leave deletion successful, redirect to home page with success message
-        redirect('drivers/home', ['success' => 'Leave application deleted successfully.']);
+      // Leave deletion successful, redirect to home page with success message
+      redirect('drivers/home', ['success' => 'Leave application deleted successfully.']);
     } else {
-        // Leave deletion failed, redirect to leaves page with error message
-        redirect('drivers/leaves', ['error' => 'Failed to delete leave application. Please try again.']);
+      // Leave deletion failed, redirect to leaves page with error message
+      redirect('drivers/leaves', ['error' => 'Failed to delete leave application. Please try again.']);
     }
-}
+  }
+  public function addBankDetails()
+  {
+      // Check if the form is submitted
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          // Sanitize POST data
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+  
+          // Check if user is logged in
+          if (!isset($_SESSION['user_id'])) {
+              redirect('login');
+          }
+  
+          // Retrieve user ID from session
+          $user_id = $_SESSION['user_id'];
+  
+          // Data to be passed to the model
+          $data = [
+              'accountNo' => trim($_POST['accountNo']),
+              'bankName' => trim($_POST['bankName']),
+              'branchName' => trim($_POST['branchName']),
+              'holdersName' => trim($_POST['holdersName']),
+              'user_id' => $user_id
+          ];
+  
+          // Call the model method to insert bank details
+          if ($this->driverModel->insertBankDetails($data)) {
+              // Bank details added successfully, redirect to view bank details
+              redirect('drivers/viewBankDetails');
+          } else {
+              // Something went wrong
+              die('Unable to add bank details');
+          }
+      } else {
+          // Load the view for adding bank details
+          $this->view('pages/driver/add_bank_details');
+      }
+  }
+  
+    public function viewBankDetails()
+    {
+        // Check if user is logged in
+        if (!isset($_SESSION['user_id'])) {
+            redirect('login');
+        }
+    
+        // Retrieve user ID from session
+        $user_id = $_SESSION['user_id'];
+    
+        // Fetch bank details for the user
+        $bankDetails = $this->driverModel->getBankDetailsByUserId($user_id);
+    
+        // Check if bank details exist
+        if ($bankDetails) {
+            // Bank details found, pass them to the view
+            $data = [
+                'bankDetails' => $bankDetails
+            ];
+    
+            // Load the view for displaying bank details
+            $this->view('pages/driver/view_bank_details', $data);
+        } else {
+            // No bank details found, redirect to add bank details page
+            redirect('drivers/addBankDetails');
+        }
+    }
+    public function editBankDetails()
+  {
+      // Check if the form is submitted
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          // Sanitize POST data
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+  
+          // Check if user is logged in
+          if (!isset($_SESSION['user_id'])) {
+              redirect('login');
+          }
+  
+          // Retrieve user ID from session
+          $user_id = $_SESSION['user_id'];
+  
+          // Data to be passed to the model
+          $data = [
+              'accountNo' => trim($_POST['accountNo']),
+              'bankName' => trim($_POST['bankName']),
+              'branchName' => trim($_POST['branchName']),
+              'holdersName' => trim($_POST['holdersName']),
+              'user_id' => $user_id
+          ];
+  
+          // Call the model method to update bank details
+          if ($this->driverModel->updateBankDetails($data)) {
+              // Bank details updated successfully
+              flash('bank_details_updated', 'Bank details updated successfully');
+              redirect('drivers/viewBankDetails');
+          } else {
+              // Something went wrong
+              die('Unable to update bank details');
+          }
+      } else {
+          // Retrieve user ID from session
+          $user_id = $_SESSION['user_id'];
+  
+          // Fetch bank details for the user
+          $bankDetails = $this->driverModel->getBankDetailsByUserId($user_id);
+  
+          // Check if bank details exist
+          if ($bankDetails) {
+              // Bank details found, pass them to the view
+              $data = [
+                  'bankDetails' => $bankDetails
+              ];
+  
+              // Load the view for editing bank details
+              $this->view('pages/driver/edit_bank_details', $data);
+          } else {
+              // No bank details found
+              redirect('drivers/viewBankDetails');
+          }
+      }
+  
+  
+  }
+  
+  
+  
 
 
 }

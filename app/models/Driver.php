@@ -153,13 +153,22 @@ class Driver {
     }
 
     public function getSalaryDetails($driver_id) {
-
-
         // Prepare SQL query to fetch salary details for a specific driver
         $this->db->query('SELECT * FROM out_salary WHERE driver_id = :driver_id');
-       
+        $this->db->bind(':driver_id', $driver_id);
+        $salary_details = $this->db->resultSet();
     
-        return $this->db->resultSet();
+        return $salary_details;
+    }
+    
+    public function getBankDetailsByUserId($user_id)
+    {
+        // Prepare SQL query to select bank details by user ID
+        $this->db->query('SELECT * FROM bank WHERE user_id = :user_id');
+        $this->db->bind(':user_id', $user_id);
+    
+        // Fetch a single record (assuming each user has only one bank detail entry)
+        return $this->db->single();
     }
     
 }
