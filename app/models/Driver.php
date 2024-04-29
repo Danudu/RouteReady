@@ -51,7 +51,7 @@ class Driver {
     // Insert OS driver data
     public function insertOSDriverData($data){
         // Prepare SQL query to insert driver data
-        $this->db->query('INSERT INTO outsourcedrivers (Odriver_id, driver_license, vehicle_type, years_of_experience, nic_number, age, address, name, email, contact_num) VALUES (:Odriver_id, :driver_license, :vehicle_type, :years_of_experience, :nic_number, :age, :address, :name, :email, :contact_num)');
+        $this->db->query('INSERT INTO outsourcedrivers (Odriver_id, driver_license, vehicle_type, years_of_experience, nic_number, age, address, name, email, contact_num, vehicle_number, vehicle_name, vehicle_year, model, r_year, vin, insu_pro, insu_pr, capacity) VALUES (:Odriver_id, :driver_license, :vehicle_type, :years_of_experience, :nic_number, :age, :address, :name, :email, :contact_num, :vehicle_number, :vehicle_name, :vehicle_year, :model, :r_year, :vin, :insu_pro, :insu_pr, :capacity)');
         // Bind values
         $this->db->bind(':Odriver_id', $data['Odriver_id']);
         $this->db->bind(':driver_license', $data['driver_license']);
@@ -63,6 +63,18 @@ class Driver {
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':contact_num', $data['contact_num']);
+        $this->db->bind(':vehicle_number', $data['vehicle_number']);
+        $this->db->bind(':vehicle_name', $data['vehicle_name']);
+        $this->db->bind(':vehicle_year', $data['vehicle_year']);
+        $this->db->bind(':model', $data['model']);
+        $this->db->bind(':r_year', $data['r_year']);
+        $this->db->bind(':vin', $data['vin']);
+        $this->db->bind(':insu_pro', $data['insu_pro']);
+        $this->db->bind(':insu_pr', $data['insu_pr']);
+        $this->db->bind(':capacity', $data['capacity']);
+
+        
+
         
 
         // Execute

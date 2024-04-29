@@ -96,36 +96,39 @@ function getClassBasedOnSchedule($currentType, $expectedType) {
             margin-bottom: 20px;
         }
 
-        .submit input[type="submit"] {
-            width: 100%;
-            height: 45px;
-            /* Increased height for larger button */
-            background: var(--text-light);
-            border: none;
-            outline: none;
-            border-radius: 40px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-            cursor: pointer;
-            font-size: 20px;
-            /* Increased font size */
-            color: var(--primary-color);
-            font-weight: 600;
-            text-align: center;
-            line-height: 45px;
-            /* Centering text vertically */
-            display: inline-block;
-            text-decoration: none;
-            transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
-            margin-top: 20px;
-            /* Added margin top */
-        }
+       
 
-        .submit input[type="submit"]:hover {
-            background-color: var(--primary-color-light);
-            color: var(--white);
-            box-shadow: 0 0 10px var(--primary-color-extra-light);
-        }
+        input[type="submit"],
+    .button {
+        width: 100%;
+        height: 45px;
+        /* Increased height for larger button */
+        background: var(--text-light);
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        cursor: pointer;
+        font-size: 20px;
+        /* Increased font size */
+        color: var(--primary-color);
+        font-weight: 600;
+        text-align: center;
+        line-height: 45px;
+        /* Centering text vertically */
+        display: inline-block;
+        text-decoration: none;
+        transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+        margin-top: 20px;
+        /* Added margin top */
+    }
 
+    input[type="submit"]:hover,
+    .button:hover {
+        background-color: var(--primary-color-light);
+        color: var(--white);
+        box-shadow: 0 0 10px var(--primary-color-extra-light);
+    }
         input[type="text"],
         input[type="date"] {
             width: 100%;
@@ -148,6 +151,30 @@ function getClassBasedOnSchedule($currentType, $expectedType) {
             box-sizing: border-box;
             font-size: medium;
         }
+
+        .button.back {
+            position: absolute;
+            right: 0;
+            margin-right: 20px;
+            
+        }
+        .register-link {
+        text-align: center;
+    }
+
+    .register-link .button {
+        border: 2px solid var(--text-light);
+        /* Added border */
+        background: transparent;
+        color: var(--text-light);
+    }
+
+    .register-link .button:hover {
+        background: var(--primary-color-light);
+        /* Background on hover */
+        color: var(--white);
+    }
+
     </style>
 
 
@@ -207,83 +234,82 @@ function getClassBasedOnSchedule($currentType, $expectedType) {
 </head>
 
 <body>
-    <div class="sidebar">
+<div class="sidebar">
 
-        <div class="top">
-            <div class="logo">
-                <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
-                <span class="logo_name">Route Ready</span>
-            </div>
-            <i class="fa-solid fa-bars" id="btn"></i>
-        </div>
-        <div class="buttons">
-            <ul>
-                <li>
-                    <a href="home">
-                        <a href="<?php echo URLROOT; ?>/pages/home/<?= $_SESSION['user_id'] ?>">
-                            <i class="fa-solid fa-house"></i>
-                            <span class="icon_name">Home</span>
-                        </a>
-                        <span class="tooltip">HomePage</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/pages/profile/<?= $_SESSION['user_id'] ?>">
-                        <i class="fas fa-user"></i>
-                        <span class="icon_name">Profile</span>
-                    </a>
-                    <span class="tooltip">Profile</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewReservation">
-                        <i class="fa-solid fa-magnifying-glass-location"></i>
-                        <span class="icon_name">Reservations</span>
-                    </a>
-                    <span class="tooltip">Reservations</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewWorkTrips">
-                        <i class="fa-solid fa-suitcase-rolling"></i>
-                        <span class="icon_name">WorkTrips</span>
-                    </a>
-                    <span class="tooltip">WorkTrips</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments">
-                        <i class="fa-solid fa-hand-holding-dollar"></i>
-                        <span class="icon_name">Payment</span>
-                    </a>
-                    <span class="tooltip">Payment</span>
-                </li>
-            </ul>
-            <ul>
-                <li id="showPopup">
-                    <a href="#" onclick="event.preventDefault();" id="showPopup">
-                        <i class="fas fa-book-bookmark"></i>
-                        <span class="icon_name">T&C</span>
-                    </a>
-                    <span class="tooltip">Terms & Conditions</span>
-                </li>
-            </ul>
-
-            <ul class="lobtn">
-                <li>
-                    <a href="<?php echo URLROOT; ?>/users/logout">
-                        <i class="fas fa-arrow-right-from-bracket"></i>
-                        <span class="icon_name">Logout</span>
-                    </a>
-                    <span class="tooltip">Logout</span>
-                </li>
-            </ul>
-        </div>
+<div class="top">
+    <div class="logo">
+        <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
+        <span class="logo_name">Route Ready</span>
     </div>
+    <i class="fa-solid fa-bars" id="btn"></i>
+</div>
+<div class="buttons">
+    <ul>
+        <li>
+            <a href="home">
+                <a href="<?php echo URLROOT; ?>/pages/home/<?= $_SESSION['user_id'] ?>">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="icon_name">Home</span>
+                </a>
+                <span class="tooltip">HomePage</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/pages/profile/<?= $_SESSION['user_id'] ?>">
+                <i class="fas fa-user"></i>
+                <span class="icon_name">Profile</span>
+            </a>
+            <span class="tooltip">Profile</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/employees/viewReservation">
+                <i class="fa-solid fa-magnifying-glass-location"></i>
+                <span class="icon_name">Reservations</span>
+            </a>
+            <span class="tooltip">Reservations</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/employees/viewWorkTrips">
+                <i class="fa-solid fa-suitcase-rolling"></i>
+                <span class="icon_name">WorkTrips</span>
+            </a>
+            <span class="tooltip">WorkTrips</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <span class="icon_name">Payment</span>
+            </a>
+            <span class="tooltip">Payment</span>
+        </li>
+    </ul>
+    <!-- <ul>
+        <li id="showPopup">
+            <a href="#" onclick="event.preventDefault();" id="showPopup">
+                <i class="fas fa-book-bookmark"></i>
+                <span class="icon_name">T&C</span>
+            </a>
+            <span class="tooltip">Terms & Conditions</span>
+        </li>
+    </ul> -->
+    <ul class="lobtn">
+        <li>
+            <a href="<?php echo URLROOT; ?>/users/logout">
+                <i class="fas fa-arrow-right-from-bracket"></i>
+                <span class="icon_name">Logout</span>
+            </a>
+            <span class="tooltip">Logout</span>
+        </li>
+    </ul>
+</div>
+</div>
 
     <div class="main-content">
         <div class="container">
@@ -350,6 +376,10 @@ function getClassBasedOnSchedule($currentType, $expectedType) {
                         <section class="section">
                             <div class="submit"><input type="submit" value="Update"></div>
                         </section>
+                      
+                    </div>
+                    <div class="register-link">
+                        <a href="<?php echo URLROOT; ?>/employees/viewReservation" class="button">View Transport Reservations</a>
                     </div>
                 </form>
             </div>
@@ -358,7 +388,19 @@ function getClassBasedOnSchedule($currentType, $expectedType) {
     
 
 </body>
+<!-- <script>
+    document.getElementById('showPopup').addEventListener('click', function () {
+        console.log("Show popup clicked"); // Debug statement
+        // Show the popup
+        document.getElementById('popup').style.display = 'block';
+    });
 
+    document.getElementById('close').addEventListener('click', function () {
+        console.log("Close button clicked"); // Debug statement
+        // Close the popup
+        document.getElementById('popup').style.display = 'none';
+    });
+</script> -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         daily(); // Call the daily function to set the initial state

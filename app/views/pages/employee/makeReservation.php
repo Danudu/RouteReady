@@ -1,7 +1,8 @@
+
 <html>
 <title>Make Reservation | RouteReady</title>
 <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
-<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/Reservation.css">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -135,42 +136,41 @@
         padding: 10px;
         border-radius: 15px;
         border: 1px solid var(--primary-color-light);
-        background-color: var(--primary-color);
         color: var(--white);
         box-sizing: border-box;
         font-size: medium;
     }
 
     .button-box {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
-    .toggle-btn {
-        width: 45%;
-        height: 45px;
-        background: transparent;
-        border: white 2px solid;
-        outline: none;
-        border-radius: 40px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-        cursor: pointer;
-        font-size: 16px;
-        color: var(--white);
-        font-weight: 600;
-        text-align: center;
-        line-height: 40px;
-        text-decoration: none;
-        transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
-    }
+.toggle-btn {
+    width: 45%;
+    height: 45px;
+    background: transparent;
+    border: white 2px solid;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--white);
+    font-weight: 600;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+}
 
-    .toggle-btn:hover {
-        background-color: var(--primary-color-extra-light);
-        color: var(--white);
-        box-shadow: 0 0 10px var(--primary-color-extra-light);
-    }
+.toggle-btn:hover {
+    background-color: var(--primary-color-extra-light);
+    color: var(--white);
+    box-shadow: 0 0 10px var(--primary-color-extra-light);
+}
 </style>
 
 
@@ -244,6 +244,7 @@
 
 
 
+
 </script>
 
 
@@ -308,6 +309,15 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
+            <!-- <ul>
+                <li id="showPopup">
+                    <a href="#" onclick="event.preventDefault();" id="showPopup">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="icon_name">T&C</span>
+                    </a>
+                    <span class="tooltip">Terms & Conditions</span>
+                </li>
+            </ul> -->
 
             <ul class="lobtn">
                 <li>
@@ -351,8 +361,8 @@
                         </div>
 
                         <form id="Daily" action="<?php echo URLROOT; ?>/employees/makeReservation" method="post"
-                            class="input-group">
-                            < class="column">
+                            class="input-group" >
+                            <div class="column">
                                 <section class="section">
                                     <span class="dropdown-topic"><label class="topic" for="schedule">Schedule
                                             Type</label></span>
@@ -375,48 +385,51 @@
                                         <option value="Awissawella">Awissawella</option>
                                     </select>
                                 </section>
-                    </div>
-
-                    <div class="column">
-                        <section class="section">
-                            <span class="date-topic"></span> <label for="reservationDate">Reservation
-                                Date</label></span>
-                            <div class="date">
-                                <input type="text" id="reservationDateDaily" name="Date" placeholder="reservation Date"
-                                    readonly>
                             </div>
-                        </section>
-                        <div class="column">
-                            <section class="section" id="pickup">
-                                <span class="pickup-topic"></span><label for="pickup">Pick Up</label>
-                                <div class="pickup"> <input type="text" id="pickup" name="pickup"
-                                        placeholder="Enter pickup city" value="<?php echo $data['pickup']; ?>">
-                                </div>
-                            </section>
-                        </div>
 
-                        <div class="column">
-                            <section class="section" id="dropoff">
-                                <span class="drop-topic"></span><label for="dropoff">Drop Off</label>
-                                <div class="pickup"> <input type="text" id="dropoff" name="dropoff"
-                                        placeholder="Enter drop off city" value="<?php echo $data['dropoff']; ?>">
-                                </div>
-                            </section>
-                        </div>
+                            <div class="column">
+                                <section class="section">
+                                    <span class="date-topic"></span> <label for="reservationDate">Reservation
+                                        Date</label></span>
+                                    <div class="date">
+                                        <input type="text" id="reservationDateDaily" name="Date"
+                                            placeholder="reservation Date" readonly>
+                                    </div>
+                                </section>
+                                <div class="column">
+                                <section class="section" id="pickup">
+                                    <span class="pickup-topic"></span><label for="pickup">Pick Up</label>
+                                    <div class="pickup"> <input type="text" id="pickup" name="pickup"
+                                            placeholder="Enter pickup city" value="<?php echo $data['pickup']; ?>">
+                                    </div>
+                                </section>
+                            </div>
 
-                        <div class="column">
-                            <section class="section">
-                                <div class="submit"><input type="submit" value="Reserve"></div>
-                            </section>
-                        </div>
+                          
+                                <section class="section" id="dropoff">
+                                    <span class="drop-topic"></span><label for="dropoff">Drop Off</label>
+                                    <div class="pickup"> <input type="text" id="dropoff" name="dropoff"
+                                            placeholder="Enter drop off city" value="<?php echo $data['dropoff']; ?>">
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div class="column">
+                                <section class="section">
+                                    <div class="submit"><input type="submit" value="Reserve"></div>
+                                </section>
+
+                                <div class="register-link">
+                        <a href="<?php echo URLROOT; ?>/employees/viewReservation" class="button">View Transport Reservations</a>
+                    </div>
+                            </div>
                         </form>
 
                         <?php if (flash('error')): ?>
-                            <div class="alert alert-danger" role="alert">
-                                <?php echo flash('error'); ?>
-                            </div>
-                        <?php endif; ?>
-
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo flash('error'); ?>
+                        </div>
+                    <?php endif; ?>
                         <form id="Monthly" action="<?php echo URLROOT; ?>/employees/monthlyMakeReservation"
                             method="post" class="input-group">
                             <div class="column">
@@ -435,7 +448,7 @@
                                     <span class="dropdown-topic"><label class="topic">Route</label></span>
                                     <div class="dropdown">
                                         <select name="route" class="route" value="<?php echo $data['route']; ?>">
-                                            <option disabled selected>Select Route...</option>
+                                        <option disabled selected>Select Route...</option>
                                             <option value="Nugegoda">Nugegoda</option>
                                             <option value="Kaluthara">Kaluthara</option>
                                             <option value="Gampaha">Gampaha</option>
@@ -483,9 +496,13 @@
 
                             <div class="column">
                                 <section class="section">
-                                    <div class="submit"><input type="submit" value="Reserve"></div>
+                                    <div class="submit"><input type="submit" value="Reserve" onclick="validateForm()"></div>
                                 </section>
-                            </div>
+                                </div>
+                                <div class="register-link">
+                        <a href="<?php echo URLROOT; ?>/employees/viewReservation" class="button">View Transport Reservations</a>
+                    </div>
+                           
                         </form>
                     </div>
                 </div>
@@ -497,6 +514,19 @@
 
 
 </body>
+<!-- <script>
+    document.getElementById('showPopup').addEventListener('click', function () {
+        console.log("Show popup clicked"); // Debug statement
+        // Show the popup
+        document.getElementById('popup').style.display = 'block';
+    });
+
+    document.getElementById('close').addEventListener('click', function () {
+        console.log("Close button clicked"); // Debug statement
+        // Close the popup
+        document.getElementById('popup').style.display = 'none';
+    });
+</script> -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         daily(); // Call the daily function to set the initial state
@@ -527,62 +557,57 @@
     });
 
     function setupFlatpickr() {
-        var today = new Date();
-        var tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
-        var tomorrowString = tomorrow.toISOString().split('T')[0];
+    var today = new Date();
+    var tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
+    var tomorrowString = tomorrow.toISOString().split('T')[0];
+    
+    // Calculate next month's first day and last day
+    var nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1); // Next month's first day
+    var lastDayOfNextMonth = new Date(today.getFullYear(), today.getMonth() + 2, 0); // Next month's last day
 
-        // Calculate next month's first day and last day
-        var nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1); // Next month's first day
-        var lastDayOfNextMonth = new Date(today.getFullYear(), today.getMonth() + 2, 0); // Next month's last day
+    flatpickr("#reservationDateDaily", {
+        defaultDate: tomorrowString, // Set the default date to tomorrow
+        dateFormat: "Y-m-d",
+        appendTo: document.getElementById("reservationDateDaily").parentNode,
+        static: true,
+        position: "below",
+        minDate: tomorrowString, // Set the minimum date to tomorrow
+        maxDate: tomorrowString // Set the maximum date to tomorrow
+    });
 
-        flatpickr("#reservationDateDaily", {
-            defaultDate: tomorrowString, // Set the default date to tomorrow
-            dateFormat: "Y-m-d",
-            appendTo: document.getElementById("reservationDateDaily").parentNode,
-            static: true,
-            position: "below",
-            minDate: tomorrowString, // Set the minimum date to tomorrow
-            maxDate: tomorrowString // Set the maximum date to tomorrow
-        });
-        flatpickr("#reservationStartDate", {
-            defaultDate: nextMonth, // Set the default start date to the first day of next month
-            dateFormat: "Y-m-d",
-            appendTo: document.getElementById("reservationStartDate").parentNode,
-            static: true,
-            position: "below",
-            minDate: nextMonth, // Set the minimum start date to the first day of next month
-            maxDate: nextMonth, // Set the maximum start date to the last day of the next month
-            disable: [
-                function (date) {
-                    // Disable all dates apart from the first day of each month
-                    return (date.getDate() !== 1);
-                }
-            ]
-        });
+    flatpickr("#reservationStartDate", {
+        defaultDate: nextMonth, // Set the default start date to the first day of next month
+        dateFormat: "Y-m-d",
+        appendTo: document.getElementById("reservationStartDate").parentNode,
+        static: true,
+        position: "below",
+        minDate: nextMonth, // Set the minimum start date to the first day of next month
+        maxDate: nextMonth, // Set the maximum start date to the last day of the next month
+        disable: [
+            function(date) {
+                // Disable all dates apart from the first day of each month
+                return (date.getDate() !== 1);
+            }
+        ]
+    });
 
-        flatpickr("#reservationEndDate", {
-            defaultDate: lastDayOfNextMonth, // Set the default end date to the last day of the next month
-            dateFormat: "Y-m-d",
-            appendTo: document.getElementById("reservationEndDate").parentNode,
-            static: true,
-            position: "below",
-            minDate: lastDayOfNextMonth, // Set the minimum end date to the last day of the next month
-            maxDate: lastDayOfNextMonth, // Set the maximum end date to the last day of the next month
-            disable: [
-                function (date) {
-                    // Disable all dates apart from the last day of each month
-                    return (date.getDate() !== lastDayOfNextMonth.getDate());
-                }
-            ]
-        });
-    }
-
-    function getNextDay(date) {
-        var nextDay = new Date(date);
-        nextDay.setDate(date.getDate() + 1); // Get the date of the next day
-        return nextDay;
-    }
+    flatpickr("#reservationEndDate", {
+        defaultDate: lastDayOfNextMonth, // Set the default end date to the last day of the next month
+        dateFormat: "Y-m-d",
+        appendTo: document.getElementById("reservationEndDate").parentNode,
+        static: true,
+        position: "below",
+        minDate: lastDayOfNextMonth, // Set the minimum end date to the last day of the next month
+        maxDate: lastDayOfNextMonth, // Set the maximum end date to the last day of the next month
+        disable: [
+            function(date) {
+                // Disable all dates apart from the last day of each month
+                return (date.getDate() !== lastDayOfNextMonth.getDate());
+            }
+        ]
+    });
+}
 
 
 </script>

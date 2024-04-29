@@ -101,35 +101,82 @@
             margin-bottom: 20px;
         }
 
-        .submit input[type="submit"] {
+        input[type="submit"],
+    .button {
+        width: 100%;
+        height: 45px;
+        /* Increased height for larger button */
+        background: var(--text-light);
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        cursor: pointer;
+        font-size: 20px;
+        /* Increased font size */
+        color: var(--primary-color);
+        font-weight: 600;
+        text-align: center;
+        line-height: 45px;
+        /* Centering text vertically */
+        display: inline-block;
+        text-decoration: none;
+        transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+        margin-top: 20px;
+        /* Added margin top */
+    }
+
+    input[type="submit"]:hover,
+    .button:hover {
+        background-color: var(--primary-color-light);
+        color: var(--white);
+        box-shadow: 0 0 10px var(--primary-color-extra-light);
+    }
+        input[type="text"],
+        input[type="date"] {
             width: 100%;
-            height: 45px;
-            /* Increased height for larger button */
-            background: var(--text-light);
-            border: none;
-            outline: none;
-            border-radius: 40px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-            cursor: pointer;
-            font-size: 20px;
-            /* Increased font size */
-            color: var(--primary-color);
-            font-weight: 600;
-            text-align: center;
-            line-height: 45px;
-            /* Centering text vertically */
-            display: inline-block;
-            text-decoration: none;
-            transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
-            margin-top: 20px;
-            /* Added margin top */
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-color-light);
+            background-color: var(--primary-color);
+            color: var(--white);
+            box-sizing: border-box;
+            font-size: medium;
         }
 
-        .submit input[type="submit"]:hover {
-            background-color: var(--primary-color-light);
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-color-light);
+            background-color: var(--primary-color);
             color: var(--white);
-            box-shadow: 0 0 10px var(--primary-color-extra-light);
+            box-sizing: border-box;
+            font-size: medium;
         }
+
+        .button.back {
+            position: absolute;
+            right: 0;
+            margin-right: 20px;
+            
+        }
+        .register-link {
+        text-align: center;
+    }
+
+    .register-link .button {
+        border: 2px solid var(--text-light);
+        /* Added border */
+        background: transparent;
+        color: var(--text-light);
+    }
+
+    .register-link .button:hover {
+        background: var(--primary-color-light);
+        /* Background on hover */
+        color: var(--white);
+    }
 
         input[type="text"],
         input[type="email"],
@@ -172,6 +219,8 @@
             box-sizing: border-box;
             font-size: medium;
         }
+
+        
     </style>
 
 
@@ -234,7 +283,7 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
-            <ul>
+            <!-- <ul>
                 <li id="showPopup">
                     <a href="#" onclick="event.preventDefault();" id="showPopup">
                         <i class="fas fa-book-bookmark"></i>
@@ -242,7 +291,7 @@
                     </a>
                     <span class="tooltip">Terms & Conditions</span>
                 </li>
-            </ul>
+            </ul> -->
             
             <ul class="lobtn">
                 <li>
@@ -355,13 +404,27 @@
                     <section class="section">
                         <div class="submit"><input type="submit" value="Update"></div>
                     </section>
-                </div>
+                    <div class="register-link">
+                        <a href="<?php echo URLROOT; ?>/employees/viewWorkTrips" class="button">View Work Trips</a>
+                    </div>
             </form>
         </div>
     </div>
 </div>
 
+<!-- <script>
+    document.getElementById('showPopup').addEventListener('click', function () {
+        console.log("Show popup clicked"); // Debug statement
+        // Show the popup
+        document.getElementById('popup').style.display = 'block';
+    });
 
+    document.getElementById('close').addEventListener('click', function () {
+        console.log("Close button clicked"); // Debug statement
+        // Close the popup
+        document.getElementById('popup').style.display = 'none';
+    });
+</script> -->
 <script>
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -14,7 +14,6 @@ class Admins extends Controller
 
 
 
-
   public function __construct()
   {
 
@@ -85,14 +84,7 @@ class Admins extends Controller
       ];
 
       if ($this->vehicleModel->addVehicle($data)) {
-        // Handle file uploads separately
-        $front_photo = $this->uploadFile('image');
-        $side_photo_1 = $this->uploadFile('images1');
-        $side_photo_2 = $this->uploadFile('images2');
-
-        // Update the database with file paths
-        $this->vehicleModel->updatePhotos($front_photo, $side_photo_1, $side_photo_2);
-
+        
         redirect('admins/addVehicles');
     } else {
         die('Something went wrong.'); // Handle error if insertion fails
@@ -114,37 +106,6 @@ class Admins extends Controller
       $this->view('pages/admin/addVehicles', $data); // Load the view with form fields
     }
   }
-
-  private function uploadFile($fileInputName)
-{
-    $uploadDirectory = 'uploads/';
-
-    $fileName = basename($_FILES[$fileInputName]['name']);
-    $targetFile = $uploadDirectory . $fileName;
-    $fileType = pathinfo($targetFile, PATHINFO_EXTENSION);
-
-    // Check if file already exists
-    if (file_exists($targetFile)) {
-        return null; // Return null if file already exists
-    }
-
-    // Check file size
-    if ($_FILES[$fileInputName]['size'] > 500000) {
-        return null; // Return null if file size exceeds limit
-    }
-
-    // Allow certain file formats
-    if ($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg" && $fileType != "gif") {
-        return null; // Return null if file format is not allowed
-    }
-    // Upload file
-    if (move_uploaded_file($_FILES[$fileInputName]["tmp_name"], $targetFile)) {
-        return $fileName; // Return the uploaded file name
-    } else {
-        return null; // Return null if file upload fails
-    }
-}
-
 
 
   public function handleFormSubmission()

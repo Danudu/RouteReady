@@ -20,7 +20,6 @@
 
             /* backdrop-filter: blur(10px) brightness(0.5); */
         }
-
         .container {
             margin: 0 auto;
             padding: 20px;
@@ -66,28 +65,36 @@
 
         }
 
-        .button {
-            width: 150px;
-            height: 45px;
-            background: var(--text-light);
-            border: none;
-            outline: none;
-            border-radius: 40px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-            cursor: pointer;
-            font-size: 16px;
-            color: var(--primary-color);
-            font-weight: 600;
-            text-align: center;
-            line-height: 45px;
-            display: inline-block;
-            text-decoration: none;
-            transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
-        }
+      
+.button {
+    width: 150px;
+    height: 45px;
+    background: var(--text-light);
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-align: center;
+    line-height: 45px;
+    display: inline-block;
+    text-decoration: none;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+}
 
-        .button:hover {
-            background-color: var(--primary-color-light);
-            color: var(--white);
+.button:hover {
+    background-color: var(--primary-color-light);
+    color: var(--white);
+}
+
+.button.back {
+            position: absolute;
+            right: 0;
+            margin-right: 20px;
+            
         }
     </style>
 </head>
@@ -149,7 +156,16 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
-
+            <!-- <ul>
+                <li id="showPopup">
+                    <a href="#" onclick="event.preventDefault();" id="showPopup">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="icon_name">T&C</span>
+                    </a>
+                    <span class="tooltip">Terms & Conditions</span>
+                </li>
+            </ul>
+             -->
             <ul class="lobtn">
                 <li>
                     <a href="<?php echo URLROOT; ?>/users/logout">
@@ -175,47 +191,60 @@
     <div class="main-content">
         <div class="wrapper">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="mt-3">Reservations -
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="mt-3">Reservations - <?php echo date('F Y', strtotime($data['selectedYear'] . '-' . $data['selectedMonth'] . '-01')); ?></h2>
+                    <?php if (empty($data['reservations'])): ?>
+                        <p>No reservations have been made for
                             <?php echo date('F Y', strtotime($data['selectedYear'] . '-' . $data['selectedMonth'] . '-01')); ?>
-                        </h2>
-
-                        <?php if (empty($data['reservations'])): ?>
-                            <p>No reservations have been made for
-                                <?php echo date('F Y', strtotime($data['selectedYear'] . '-' . $data['selectedMonth'] . '-01')); ?>
-                            </p>
-                        <?php else: ?>
-                            <table class="table">
-                                <thead>
+                        </p>
+                    <?php else: ?>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Schedule Type</th>
+                                    <th>Route</th>
+                                    <th>Date</th>
+                                    <th>PickUp</th>
+                                    <th>DropOff</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($data['reservations'] as $reservation): ?>
                                     <tr>
-                                        <th>Schedule Type</th>
-                                        <th>Route</th>
-                                        <th>Date</th>
-                                        <th>PickUp</th>
-                                        <th>DropOff</th>
+                                        <td><?php echo $reservation->ScheduleType; ?></td>
+                                        <td><?php echo $reservation->Route; ?></td>
+                                        <td><?php echo $reservation->Date; ?></td>
+                                        <td><?php echo $reservation->PickUp; ?></td>
+                                        <td><?php echo $reservation->DropOff; ?></td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($data['reservations'] as $reservation): ?>
-                                        <tr>
-                                            <td><?php echo $reservation->ScheduleType; ?></td>
-                                            <td><?php echo $reservation->Route; ?></td>
-                                            <td><?php echo $reservation->Date; ?></td>
-                                            <td><?php echo $reservation->PickUp; ?></td>
-                                            <td><?php echo $reservation->DropOff; ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        <?php endif; ?>
-                    </div>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php endif; ?>
                 </div>
             </div>
-            <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments" class="button" id="back">Back</a>
-        </div>
 
+        </div>
+        
+        <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments" class="button" id="back" >Back</a>
+        </div>
+        
     </div>
+
+    <!-- <script>
+    document.getElementById('showPopup').addEventListener('click', function () {
+        console.log("Show popup clicked"); // Debug statement
+        // Show the popup
+        document.getElementById('popup').style.display = 'block';
+    });
+
+    document.getElementById('close').addEventListener('click', function () {
+        console.log("Close button clicked"); // Debug statement
+        // Close the popup
+        document.getElementById('popup').style.display = 'none';
+    });
+</script> -->
 </body>
 
 </html>

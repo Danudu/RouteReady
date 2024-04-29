@@ -27,26 +27,21 @@
                 timeInput.value = formattedTime;
             });
         });
+    
     </script>
 
     <style>
-        :root {
-            --primary-color: #111317;
-            --primary-color-light: #1f2125;
-            --primary-color-extra-light: #35373b;
-            --text-light: #d1d5db;
-            --white: #ffffff;
-            --max-width: 1200px;
-        }
-
-        .background {
-            background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 
-        }
+.background {
+    background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+}
 
         .main-content {
             padding: 50px 0;
@@ -226,6 +221,15 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
+            <!-- <ul>
+                <li id="showPopup">
+                    <a href="#" onclick="event.preventDefault();" id="showPopup">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="icon_name">T&C</span>
+                    </a>
+                    <span class="tooltip">Terms & Conditions</span>
+                </li>
+            </ul> -->
 
             <ul class="lobtn">
                 <li>
@@ -258,19 +262,18 @@
                         </div>
                     <?php endif; ?>
                     <form action="<?php echo URLROOT; ?>/employees/makeWorkTrip" method="post">
-                        <div class="form-group">
-                            <label for="e_name">Employee Name:</label>
-                            <input type="text" id="e_name" name="e_name" placeholder="Employee Name"
-                                value="<?php echo $_SESSION['user_name']; ?>" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address:</label>
-                            <input type="email" id="email" name="email" placeholder="Email Address"
-                                value="<?php echo $_SESSION['user_email']; ?>" readonly>
-                        </div>
+                    <div class="form-group">
+    <label for="e_name">Employee Name:</label>
+    <input type="text" id="e_name" name="e_name" placeholder="Employee Name" value="<?php echo $_SESSION['user_name']; ?>" readonly>
+</div>
+<div class="form-group">
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" placeholder="Email Address" value="<?php echo $_SESSION['user_email']; ?>" readonly>
+</div>
+
                         <div class="form-group">
                             <label for="reason">Reason for Vehicle use:</label>
-                            <input type="text" id="reason" name="reason" placeholder="Reason for Vehicle use">
+                            <input type="text" id="reason" name="reason" placeholder="Reason for Vehicle use"> 
                         </div>
                         <div class="form-group">
                             <label for="p_no">Number of Passengers:</label>
@@ -308,32 +311,48 @@
             </div>
         </div>
     </div>
+    <!-- <script>
+    document.getElementById('showPopup').addEventListener('click', function () {
+        console.log("Show popup clicked"); // Debug statement
+        // Show the popup
+        document.getElementById('popup').style.display = 'block';
+    });
 
-
+    document.getElementById('close').addEventListener('click', function () {
+        console.log("Close button clicked"); // Debug statement
+        // Close the popup
+        document.getElementById('popup').style.display = 'none';
+    });
+</script> -->
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            setupFlatpickr(); // Call the setupFlatpickr function when the document is fully loaded
-        });
 
-        function setupFlatpickr() {
-            var today = new Date();
-            var tomorrow = new Date(today);
-            tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
-            var tomorrowString = tomorrow.toISOString().split('T')[0];
+document.addEventListener("DOMContentLoaded", function () {
+    setupFlatpickr(); // Call the setupFlatpickr function when the document is fully loaded
+});
+
+function setupFlatpickr() {
+    var today = new Date();
+    var tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
+    var tomorrowString = tomorrow.toISOString().split('T')[0];
+
+    
+
+    // Set up Flatpickr with default date as tomorrow and minDate as tomorrow
+    flatpickr("#tripdate", {
+        defaultDate: tomorrow,
+        minDate: tomorrow,
+        dateFormat: "Y-m-d", // You can change the date format as needed
+        static: true,
+        position: "below"
+    });
+}
 
 
 
-            // Set up Flatpickr with default date as tomorrow and minDate as tomorrow
-            flatpickr("#tripdate", {
-                defaultDate: tomorrow,
-                minDate: tomorrow,
-                dateFormat: "Y-m-d", // You can change the date format as needed
-                static: true,
-                position: "below"
-            });
-        }
-    </script>
+</script>
+
 </body>
 
 </html>

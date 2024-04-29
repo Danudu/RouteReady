@@ -33,7 +33,7 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
-
+        
         .container {
             backdrop-filter: blur(10px) brightness(0.8);
             /* max-width: 800px;
@@ -90,35 +90,82 @@
             margin-bottom: 20px;
         }
 
-        .submit input[type="submit"] {
+        input[type="submit"],
+    .button {
+        width: 100%;
+        height: 45px;
+        /* Increased height for larger button */
+        background: var(--text-light);
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        cursor: pointer;
+        font-size: 20px;
+        /* Increased font size */
+        color: var(--primary-color);
+        font-weight: 600;
+        text-align: center;
+        line-height: 45px;
+        /* Centering text vertically */
+        display: inline-block;
+        text-decoration: none;
+        transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+        margin-top: 20px;
+        /* Added margin top */
+    }
+
+    input[type="submit"]:hover,
+    .button:hover {
+        background-color: var(--primary-color-light);
+        color: var(--white);
+        box-shadow: 0 0 10px var(--primary-color-extra-light);
+    }
+        input[type="text"],
+        input[type="date"] {
             width: 100%;
-            height: 45px;
-            /* Increased height for larger button */
-            background: var(--text-light);
-            border: none;
-            outline: none;
-            border-radius: 40px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-            cursor: pointer;
-            font-size: 20px;
-            /* Increased font size */
-            color: var(--primary-color);
-            font-weight: 600;
-            text-align: center;
-            line-height: 45px;
-            /* Centering text vertically */
-            display: inline-block;
-            text-decoration: none;
-            transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
-            margin-top: 20px;
-            /* Added margin top */
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-color-light);
+            background-color: var(--primary-color);
+            color: var(--white);
+            box-sizing: border-box;
+            font-size: medium;
         }
 
-        .submit input[type="submit"]:hover {
-            background-color: var(--primary-color-light);
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-color-light);
+            background-color: var(--primary-color);
             color: var(--white);
-            box-shadow: 0 0 10px var(--primary-color-extra-light);
+            box-sizing: border-box;
+            font-size: medium;
         }
+
+        .button.back {
+            position: absolute;
+            right: 0;
+            margin-right: 20px;
+            
+        }
+        .register-link {
+        text-align: center;
+    }
+
+    .register-link .button {
+        border: 2px solid var(--text-light);
+        /* Added border */
+        background: transparent;
+        color: var(--text-light);
+    }
+
+    .register-link .button:hover {
+        background: var(--primary-color-light);
+        /* Background on hover */
+        color: var(--white);
+    }
 
         input[type="text"],
         input[type="date"] {
@@ -142,46 +189,31 @@
             box-sizing: border-box;
             font-size: medium;
         }
+
+      
     </style>
 
     <script>
-        function changeRoute() {
-            var schedule = document.getElementById("schedule").value;
-            var pickup = document.getElementById("pickup");
-            var dropoff = document.getElementById("dropoff");
+       function changeRoute() {
+        var schedule = document.getElementById("schedule").value;
+        var pickup = document.getElementById("pickup");
+        var dropoff = document.getElementById("dropoff");
 
-            if (schedule == "ToWork") {
-                pickup.style.display = "block";
-                dropoff.style.display = "none";
-                // Clear the drop off field
-                document.getElementById("dropoffField").value = "";
-            } else if (schedule == "FromWork") {
-                pickup.style.display = "none";
-                dropoff.style.display = "block";
-                // Clear the pick up field
-                document.getElementById("pickupField").value = "";
-            } else {
-                pickup.style.display = "block";
-                dropoff.style.display = "block";
-            }
+        if (schedule == "ToWork") {
+            pickup.style.display = "block";
+            dropoff.style.display = "none";
+            // Clear the drop off field
+            document.getElementById("dropoffField").value = "";
+        } else if (schedule == "FromWork") {
+            pickup.style.display = "none";
+            dropoff.style.display = "block";
+            // Clear the pick up field
+            document.getElementById("pickupField").value = "";
+        } else {
+            pickup.style.display = "block";
+            dropoff.style.display = "block";
         }
-
-        function changeRouteMonthly() {
-            var schedule = document.getElementById("monthly_schedule").value;
-            var monthly_pickup = document.getElementById("monthly_pickup");
-            var monthly_dropoff = document.getElementById("monthly_dropoff");
-
-            if (schedule == "ToWork") {
-                monthly_pickup.style.display = "block";
-                monthly_dropoff.style.display = "none";
-            } else if (schedule == "FromWork") {
-                monthly_pickup.style.display = "none";
-                monthly_dropoff.style.display = "block";
-            } else {
-                monthly_pickup.style.display = "block";
-                monthly_dropoff.style.display = "block";
-            }
-        }
+    }
 
         function setupFlatpickr() {
             flatpickr("#reservationDateDaily", {
@@ -265,6 +297,15 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
+            <!-- <ul>
+                <li id="showPopup">
+                    <a href="#" onclick="event.preventDefault();" id="showPopup">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="icon_name">T&C</span>
+                    </a>
+                    <span class="tooltip">Terms & Conditions</span>
+                </li>
+            </ul> -->
 
             <ul class="lobtn">
                 <li>
@@ -294,11 +335,11 @@
                 <h2>Edit Monthly Reservation</h2>
             </div>
             <div class="form-box">
-                <?php if (flash('error')): ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?php echo flash('error'); ?>
-                    </div>
-                <?php endif; ?>
+            <?php if (flash('error')): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo flash('error'); ?>
+                        </div>
+                    <?php endif; ?>
                 <form action="<?php echo URLROOT; ?>/employees/updateMonthlyReservation" method="post"
                     class="input-group" id="Daily">
                     <input type="hidden" name="MReservationID"
@@ -348,35 +389,45 @@
                     </div>
                     <div class="column">
 
-                        <section class="section" id="pickup"
-                            style="<?php echo ($data['reservation']->ScheduleType == 'ToWork') ? 'display:block;' : 'display:none;'; ?>">
-                            <span class="pickup-topic"></span><label for="pickup">Pick Up</label>
-                            <div class="pickup">
-                                <input type="text" id="pickupField" name="pickup"
-                                    value="<?php echo $data['reservation']->PickUp; ?>">
-                            </div>
-                        </section>
+                    <section class="section" id="pickup" style="<?php echo ($data['reservation']->ScheduleType == 'ToWork') ? 'display:block;' : 'display:none;'; ?>">
+    <span class="pickup-topic"></span><label for="pickup">Pick Up</label>
+    <div class="pickup">
+        <input type="text" id="pickupField" name="pickup" value="<?php echo $data['reservation']->PickUp; ?>">
+    </div>
+</section>
 
-
-                        <section class="section" id="dropoff"
-                            style="<?php echo ($data['reservation']->ScheduleType == 'FromWork') ? 'display:block;' : 'display:none;'; ?>">
-                            <span class="drop-topic"></span><label for="dropoff">Drop Off</label>
-                            <div class="pickup">
-                                <input type="text" id="dropoffField" name="dropoff"
-                                    value="<?php echo $data['reservation']->DropOff; ?>">
-                            </div>
-                        </section>
-                    </div>
+<section class="section" id="dropoff" style="<?php echo ($data['reservation']->ScheduleType == 'FromWork') ? 'display:block;' : 'display:none;'; ?>">
+    <span class="drop-topic"></span><label for="dropoff">Drop Off</label>
+    <div class="pickup">
+        <input type="text" id="dropoffField" name="dropoff" value="<?php echo $data['reservation']->DropOff; ?>">
+    </div>
+</section>
 
                     <div class="column">
                         <section class="section">
                             <div class="submit"><input type="submit" value="Update"></div>
                         </section>
+                        <div class="register-link">
+                        <a href="<?php echo URLROOT; ?>/employees/viewReservation" class="button">View Transport Reservations</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    <!-- <script>
+    document.getElementById('showPopup').addEventListener('click', function () {
+        console.log("Show popup clicked"); // Debug statement
+        // Show the popup
+        document.getElementById('popup').style.display = 'block';
+    });
+
+    document.getElementById('close').addEventListener('click', function () {
+        console.log("Close button clicked"); // Debug statement
+        // Close the popup
+        document.getElementById('popup').style.display = 'none';
+    });
+</script> -->
 </body>
 
 </html>

@@ -6,11 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkTrip Reservations | RouteReady</title>
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
-
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/worktrip.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -106,6 +102,13 @@
             color: var(--white);
             box-shadow: 0 0 10px var(--primary-color-extra-light);
         }
+
+        .button.back {
+            position: absolute;
+            right: 0;
+            margin-right: 20px;
+            
+        }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -195,6 +198,15 @@
                     <span class="tooltip">Payment</span>
                 </li>
             </ul>
+            <!-- <ul>
+                <li id="showPopup">
+                    <a href="#" onclick="event.preventDefault();" id="showPopup">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="icon_name">T&C</span>
+                    </a>
+                    <span class="tooltip">Terms & Conditions</span>
+                </li>
+            </ul> -->
 
             <ul class="lobtn">
                 <li>
@@ -218,7 +230,7 @@
     </script>
 
 
-    <div class="main-content">
+<div class="main-content">
         <div class="wrapper">
             <div class="container">
                 <h2>Work Trip Reservations</h2>
@@ -238,17 +250,17 @@
                     <tbody>
                         <?php foreach ($data['workTripReservations'] as $workTripReservation): ?>
                             <?php
-                            $disableButtons = false;
+                                $disableButtons = false;
 
-                            // Check if the trip date is before the current date
-                            if (strtotime($workTripReservation->tripDate) < strtotime('today')) {
-                                $disableButtons = true;
-                            } else {
-                                // Check if the status is approved or rejected
-                                if ($workTripReservation->status === 'approved' || $workTripReservation->status === 'rejected') {
+                                // Check if the trip date is before the current date
+                                if (strtotime($workTripReservation->tripDate) < strtotime('today')) {
                                     $disableButtons = true;
+                                } else {
+                                    // Check if the status is approved or rejected
+                                    if ($workTripReservation->status === 'approved' || $workTripReservation->status === 'rejected') {
+                                        $disableButtons = true;
+                                    }
                                 }
-                            }
                             ?>
                             <tr>
                                 <td><?php echo $workTripReservation->tripDate; ?></td>
@@ -259,21 +271,14 @@
                                 <td><?php echo $workTripReservation->comments; ?></td>
                                 <td><?php echo $workTripReservation->status; ?></td>
                                 <td>
-                                    <a href="<?php echo URLROOT; ?>/employees/editWorkTrips/<?php echo $workTripReservation->tripID; ?>"
-                                        <?php if ($disableButtons)
-                                            echo 'disabled'; ?>>
-                                        <i class="fas fa-pencil-alt"
-                                            style="color: <?php echo $disableButtons ? 'gray' : 'white'; ?>"></i>
+                                    <a href="<?php echo URLROOT; ?>/employees/editWorkTrips/<?php echo $workTripReservation->tripID; ?>" <?php if ($disableButtons) echo 'disabled'; ?>>
+                                        <i class="fas fa-pencil-alt" style="color: <?php echo $disableButtons ? 'gray' : 'white'; ?>"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <form
-                                        action="<?php echo URLROOT; ?>/employees/deleteWorkTripReservation/<?php echo $workTripReservation->tripID; ?>"
-                                        method="post">
-                                        <button type="submit" class="btn-delete" <?php if ($disableButtons)
-                                            echo 'disabled'; ?>>
-                                            <i class="fas fa-trash-alt"
-                                                style="color: <?php echo $disableButtons ? 'gray' : ''; ?>"></i>
+                                    <form action="<?php echo URLROOT; ?>/employees/deleteWorkTripReservation/<?php echo $workTripReservation->tripID; ?>" method="post">
+                                        <button type="submit" class="btn-delete" <?php if ($disableButtons) echo 'disabled'; ?>>
+                                            <i class="fas fa-trash-alt" style="color: <?php echo $disableButtons ? 'gray' : ''; ?>"></i>
                                         </button>
                                     </form>
                                 </td>
@@ -281,14 +286,25 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <a href="<?php echo URLROOT; ?>/pages/home" class="button back" id="back" >Back</a>
                 <a href="<?php echo URLROOT; ?>/employees/makeWorkTrip" class="button">Make a Reservation</a>
             </div>
         </div>
     </div>
+    <!-- <script>
+    document.getElementById('showPopup').addEventListener('click', function () {
+        console.log("Show popup clicked"); // Debug statement
+        // Show the popup
+        document.getElementById('popup').style.display = 'block';
+    });
 
-
-
-
+    document.getElementById('close').addEventListener('click', function () {
+        console.log("Close button clicked"); // Debug statement
+        // Close the popup
+        document.getElementById('popup').style.display = 'none';
+    });
+</script> -->
 </body>
+
 
 </html>

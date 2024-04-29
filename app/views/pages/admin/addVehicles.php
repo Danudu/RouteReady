@@ -325,20 +325,7 @@
                                 placeholder="Enter Passenger Capacity">
                         </div>
 
-                        <div class="form-group">
-                            <label for="image">Vehicle Front Photo:</label>
-                            <input type="file" name="image" id="image" accept="image/*" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="images1">Vehicle Side Photo 1:</label>
-                            <input type="file" name="images1" id="images1" accept="image/*" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="images2">Vehicle Side Photo 2:</label>
-                            <input type="file" name="images2" id="images2" accept="image/*" required>
-                        </div>
+                        
 
                         <div class="form-group">
                             <input type="submit" value="Register" class="register-button2">

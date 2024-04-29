@@ -83,7 +83,7 @@
                         </div>
                         <div class="input-box">
                             <!-- <label for="emp_id">Employee ID: <sup>*</sup></label> -->
-                            <input type="text" name="emp_id" value="<?php echo $data['emp_id']; ?>"
+                            <input type="text" name="emp_id" value="<?php echo isset($data['emp_id']) ? $data['emp_id'] : ''; ?>"
                                 placeholder="Employee ID">
                             <span><?php echo $data['emp_id_err']; ?></span>
                         </div>
@@ -195,9 +195,60 @@
                         <div class="input-box">
                             <!-- <label for="years_of_experience">Years of Experience: <sup>*</sup></label> -->
                             <input type="text" name="years_of_experience"
-                                value="<?php echo isset($data['years_of_experience']) ? $data['years_of_experience'] : ''; ?>"
-                                placeholder="Years of Experience">
+                            value="<?php echo isset($data['years_of_experience']) ? $data['years_of_experience'] : ''; ?>"
+                            placeholder="Years of Experience">
                         </div>
+                       
+                        <!-- Vehicle Details -->
+                        <p>Add Vehicle Details</p>
+
+                        <div class="input-box">
+                            <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
+                            <input type="text" name="vehicle_number" value="<?php echo isset($data['vehicle_number']) ? $data['vehicle_number'] : ''; ?>"
+                                placeholder="Vehicle License Plate No.">
+                        </div>
+                        <div class="input-box">
+                            <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
+                            <input type="text" name="vehicle_name" value="<?php echo isset($data['vehicle_name']) ? $data['vehicle_name'] : ''; ?>"
+                                placeholder="Vehicle Name">
+                        </div>
+                        <div class="input-box">
+                            <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
+                            <input type="text" name="vehicle_year" value="<?php echo isset($data['vehicle_year']) ? $data['vehicle_year'] : ''; ?>"
+                                placeholder="Vehicle Manufactured Year">
+                        </div>
+                        <div class="input-box">
+                            <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
+                            <input type="text" name="model" value="<?php echo isset($data['model']) ? $data['model'] : ''; ?>"
+                                placeholder="Vehicle MODEL">
+                        </div>
+                        <div class="input-box">
+                            <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
+                            <input type="text" name="r_year" value="<?php echo isset($data['r_year']) ? $data['r_year'] : ''; ?>"
+                                placeholder="Vehicle Reg Year">
+                        </div>
+                        <div class="input-box">
+                            <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
+                            <input type="text" name="vin" value="<?php echo isset($data['vin']) ? $data['vin'] : ''; ?>"
+                                placeholder="VIN Number">
+                        </div>
+                        <div class="input-box">
+                            <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
+                            <input type="text" name="insu_pro" value="<?php echo isset($data['insu_pro']) ? $data['insu_pro'] : ''; ?>"
+                                placeholder="Insuarance Company Name">
+                        </div>
+                        <div class="input-box">
+                            <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
+                            <input type="text" name="insu_pr" value="<?php echo isset($data['insu_pr']) ? $data['insu_pr'] : ''; ?>"
+                                placeholder="Insuarance No.">
+                        </div>
+                        <div class="input-box">
+                            <!-- <label for="vehicle_type">Vehicle Type: <sup>*</sup></label> -->
+                            <input type="text" name="capacity" value="<?php echo isset($data['capacity']) ? $data['capacity'] : ''; ?>"
+                                placeholder="Vehicle Capacity">
+                        </div>
+
+                        <p>Add Your Password</p>
 
                         <div class="input-box">
                             <!-- <label for="password">Password: <sup>*</sup></label> -->

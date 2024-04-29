@@ -17,17 +17,10 @@ class Vehicle {
     // Example method for saving to a database
     public function addVehicle($data) {
         try {
-            // Check if file is uploaded and not empty
-            if (!empty($_FILES['image']['tmp_name'])) {
-                // Read file contents
-                $imageData = file_get_contents($_FILES['image']['tmp_name']);
-            } else {
-                // If file is not uploaded, set image data to null
-                $imageData = null;
-            }
+            
 
             // Prepare query
-            $this->db->query('INSERT INTO VehicleDetails (Registration_Number, Vehicle_Number, Vehicle_Name, Vehicle_Year, model, r_year, vin, insu_pro, insu_pn, capacity, V_Image, images1, images2) VALUES (:reg_no, :v_no, :name, :year, :model, :r_year, :vin, :insu_pro, :insu_pn, :capacity, :image, :images1, :images2)');
+            $this->db->query('INSERT INTO VehicleDetails (Registration_Number, Vehicle_Number, Vehicle_Name, Vehicle_Year, model, r_year, vin, insu_pro, insu_pn, capacity) VALUES (:reg_no, :v_no, :name, :year, :model, :r_year, :vin, :insu_pro, :insu_pn, :capacity)');
 
             // Bind parameters
             $capacity = intval($data['passenger_capacity']);
@@ -41,9 +34,7 @@ class Vehicle {
             $this->db->bind(':insu_pro', $data['insurance_company']);
             $this->db->bind(':insu_pn', $data['insurance_number']);
             $this->db->bind(':capacity', $capacity); // Use the converted integer value
-            $this->db->bind(':image', $imageData); // Bind image data
-            $this->db->bind(':images1', $data['images1']);
-            $this->db->bind(':images2', $data['images2']);
+   
 
             // Execute query
             if ($this->db->execute()) {
