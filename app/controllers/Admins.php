@@ -166,14 +166,7 @@ class Admins extends Controller
             // Your existing code here
         
             
-            
-                // Method to handle displaying available vehicles
-                public function availableVehicles() {
-                    
-                    $bookedDays = $this->vehicleModel->getBookedDays();
-                    
-                    include('pages/admin/available_vehicles.php');
-                }
+       
                 public function viewSchedule($day, $timeSlot) {
                     include 'Model.php'; // Include the Model
                     
@@ -317,7 +310,7 @@ public function updateHRStatus($id)
         //sanitize
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-        $data = array(
+        $data = [
                 'b_date' => trim($_POST['b_date']),
                 'location' =>  trim($_POST['location']),
                 'no_pas' =>  trim($_POST['no_pas']),
@@ -327,7 +320,7 @@ public function updateHRStatus($id)
                 'location_err' => '',
                 'no_pas_err' => '',
                 'driver_id_err' => '',
-                'vehicle_id_err' => '')
+                'vehicle_id_err' => '']
         ;
             
         
@@ -382,6 +375,26 @@ public function updateHRStatus($id)
    
     $this->view('pages/admin/schedule_view', $data);
 }
+public function availableVehicles($date) {
+    
+        // Retrieve date from the URL query parameters
+        $date = $_GET['date'];
+
+        // Call the method from the Vehicle model to get available vehicles for the given date
+        $availableVehicles = $this->vehicleModel->getAvailableVehicles($date);
+
+        // Pass available vehicles data to the view
+        $data = [
+            'availableVehicles' => $availableVehicles,
+            'date' => $date // Pass the date to use in the view
+        ];
+
+        // Load the view with available vehicles data
+        $this->view('pages/admin/available_vehicles', $data);
+    
+}
+
+
 
    
 }   

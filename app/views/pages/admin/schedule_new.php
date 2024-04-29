@@ -83,95 +83,6 @@
 
     <div class="form-container">
 
-        <form method="post" action="<?php echo URLROOT; ?>/admins/redirectToTimetable">
-            <label for="b_date">Date:</label>
-            <input type="date" id="date" name="date" min="<?php echo date('Y-m-d'); ?>" required><br><br>
-
-            <label for="day">Select Day:</label>
-            <select name="day" id="day">
-                <option value="Monday">Monday</option>
-                <option value="Tuesday">Tuesday</option>
-                <option value="Wednesday">Wednesday</option>
-                <option value="Thursday">Thursday</option>
-                <option value="Friday">Friday</option>
-                <option value="Saturday">Saturday</option>
-                <option value="Sunday">Sunday</option>
-            </select><br><br>
-
-            <label for="time_slot">Select Time Slot:</label>
-            <select name="time_slot" id="time_slot">
-                <?php
-                $timeSlots = array(
-                    "6:00 AM - 8:00 AM",
-                    "8:00 AM - 10:00 AM",
-                    "10:00 AM - 12:00 NOON",
-                    "12:00 NOON - 2:00 PM",
-                    "2:00 PM - 4:00 PM",
-                    "4:00 PM - 6:00 PM",
-                    "6:00 PM - 8:00 PM",
-                    "8:00 PM - 10:00 PM",
-                    "10:00 PM - 12:00 PM"
-                );
-
-                foreach ($timeSlots as $slot) {
-                    echo "<option value='$slot'>$slot</option>";
-                }
-                ?>
-            </select><br><br>
-
-            <label for="activity">Activity:</label>
-            <input type="text" name="activity" id="activity"><br><br>
-            <label for="driver_id">Driver ID:</label>
-            <input type="text" name="driver_id" id="driver_id"><br><br>
-            <label for="vehicle_id">Vehicle ID:</label>
-            <input type="text" name="vehicle_id" id="vehicle_id"><br><br>
-            <a href="<?php echo URLROOT; ?>/admins/availableVehicles/<?php echo date('Y-m-d'); ?>" class="button">View Available Vehicles</a>
-
-            <input type="submit" name="submit" value="Submit">
-        </form>
-    </div>
-
-    <h2 style="text-align: center;">Schedule Time Table</h2>
-
-    <div class="timetable">
-        <!-- Header -->
-        <div class="cell day-header"></div>
-        <div class="cell day-header">Monday</div>
-        <div class="cell day-header">Tuesday</div>
-        <div class="cell day-header">Wednesday</div>
-        <div class="cell day-header">Thursday</div>
-        <div class="cell day-header">Friday</div>
-        <div class="cell day-header">Saturday</div>
-        <div class="cell day-header">Sunday</div>
-
-        <!-- Time slots -->
-        <?php
-// Establish database connection
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$database = "routeready_db";
-
-$connection = new mysqli($servername, $username, $password, $database);
-
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-}
-
-// Define time slots
-$timeSlots = array(
-    "6:00 AM - 8:00 AM",
-    "8:00 AM - 10:00 AM",
-    "10:00 AM - 12:00 NOON",
-    "12:00 NOON - 2:00 PM",
-    "2:00 PM - 4:00 PM",
-    "4:00 PM - 6:00 PM",
-    "6:00 PM - 8:00 PM",
-    "8:00 PM - 10:00 PM",
-    "10:00 PM - 12:00 PM"
-);
-?>
-
    
    <?php foreach ($timeSlots as $slot): ?>
     <div class='cell time-slot'><?php echo $slot; ?></div>
@@ -314,7 +225,5 @@ $timeSlots = array(
             window.location.href = '<?php echo URLROOT; ?>/admins/viewSchedule?day=' + day + '&timeSlot=' + slot;
         }
     </script>
-
-
 </body>
 </html>
