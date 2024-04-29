@@ -99,11 +99,12 @@
 </head>
 
 <body>
-<div class="main-content">
+    <div class="main-content">
         <div class="wrapper">
             <div class="container">
                 <h2 style="text-decoration: underline">Timetable View</h2>
-                <h3>More Details About Reservations</h3>
+                <h3>More Details About Reservations </h3>
+
                 <table class="table">
                     <thead>
                         <tr>
@@ -115,8 +116,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (!empty($timetable)): ?>
-                            <?php foreach ($timetable as $row): ?>
+                        <?php if (!empty($data['timetable'])): ?>
+
+                            <?php foreach ($data['timetable'] as $row): ?>
+
                                 <tr>
                                     <td><?php echo $row->day; ?></td>
                                     <td><?php echo $row->time_slot; ?></td>
@@ -136,4 +139,5 @@
         </div>
     </div>
 </body>
+
 </html>

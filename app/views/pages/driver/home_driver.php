@@ -28,7 +28,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-            z-index: 9999;
+            z-index: 1000;
         }
 
         .popup-content {
@@ -43,6 +43,7 @@
 
             max-width: 800px;
             color: var(--text-light);
+            
         }
 
         .close {
@@ -125,29 +126,38 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/drivers/viewSalaryDetails">
-                        <i class="fa-solid fa-magnifying-glass-location"></i>
-                        <span class="icon_name">Salary Details</span>
+                    <a href="<?php echo URLROOT; ?>/drivers/submitLeaveApplication">
+                    <i class="fa-solid fa-person-walking-arrow-right"></i>
+                        <span class="icon_name">Leaves</span>
                     </a>
-                    <span class="tooltip">Salary Details</span>
+                    <span class="tooltip">Apply Leaves</span>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewWorkTrips">
-                        <i class="fa-solid fa-suitcase-rolling"></i>
-                        <span class="icon_name">WorkTrips</span>
+                    <a href="<?php echo URLROOT; ?>/deivers/view_time_table">
+                    <i class="fa-regular fa-calendar-days"></i>
+                        <span class="icon_name">Schedule</span>
                     </a>
-                    <span class="tooltip">WorkTrips</span>
+                    <span class="tooltip">Schedule</span>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/employees/viewMonthlyPayments">
-                        <i class="fa-solid fa-hand-holding-dollar"></i>
-                        <span class="icon_name">Payment</span>
+                    <a href="<?php echo URLROOT; ?>/drivers/viewSalaryDetails/<?= $_SESSION['user_id'] ?>">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                        <span class="icon_name">Salary</span>
                     </a>
-                    <span class="tooltip">Payment</span>
+                    <span class="tooltip">Salary Reports</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/drivers/viewBankDetails">
+                    <i class="fa-solid fa-money-check-dollar"></i>
+                        <span class="icon_name">Payments</span>
+                    </a>
+                    <span class="tooltip">Payments</span>
                 </li>
             </ul>
             <ul>
@@ -174,7 +184,7 @@
     <div class="main-content">
         <div class="container">
             <div class="header">
-                <h1>Route Ready Driver</h1>
+                <h1>Route Ready</h1>
             </div>
             <div class="main">
                 <section class="welcome">
@@ -184,10 +194,7 @@
                         </h3>
                     </div>
                     <div>
-                        <button type="button" class="btn2"><a href="<?php echo URLROOT; ?>/drivers/applyLeave"
-                                class="bt">Leaves</a></button>
-                        <button type="button" class="btn2"><a href="<?php echo URLROOT;
-                        ; ?>/employees/viewWorkTrips" class="bt">Salaries</a></button>
+                        
                     </div>
                 </section>
             </div>
@@ -262,5 +269,3 @@
 </script>
 
 </html>
-
-<!-- https://www.youtube.com/watch?v=uy1tgKOnPB0 -->

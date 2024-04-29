@@ -186,14 +186,14 @@
                 </li>
             </ul>
             <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/posts/terms">
-                        <i class="fa-solid fa-plus-minus"></i>
-                        <span class="icon_name">Leaves</span>
-                    </a>
-                    <span class="tooltip">Leaves</span>
-                </li>
-            </ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/admins/leaves_admin">
+                <i class="fa-solid fa-plus-minus"></i>
+                <span class="icon_name">Leaves</span>
+            </a>
+            <span class="tooltip">Leaves</span>
+        </li>
+    </ul>
             <ul class="lobtn">
                 <li>
                     <a href="<?php echo URLROOT; ?>/users/logout">

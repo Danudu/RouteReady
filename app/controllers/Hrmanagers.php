@@ -67,6 +67,32 @@ class Hrmanagers extends Controller
       }
 
       if ($this->userModel->updatestatus($id, $status)) {
+        $user = $this->userModel->getUserById($id);
+        $mail = new Mail();
+        if ($status == 'approved') {
+          $htmlBody = "
+                                                <p>Dear '$user->name',</p>
+                                                <p>Exciting News!</p>
+                                                <p>We are writing to inform you about the status of your RouteReady account.</p>
+                                                <p>Your account is: <strong>Approved</strong></p>
+                                                <p>Now you can log-in to your RouteReady account, <br>
+                                                please click <br>
+                                                <a href=\"http://localhost/RouteReady/users/login\"style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;\">Here</a></p>
+                                                <p>If you have any questions or need further assistance, please don't hesitate to contact us.</p>
+                                                <p>Thank you for choosing RouteReady.</p>";
+          $mail->send($user->email, 'Account Approved', $htmlBody);
+        } elseif ($status == 'rejected') {
+          $htmlBody = "
+                                                <p>Dear '$user->name',</p>
+                                                <p>We are writing to inform you about the status of your RouteReady account.</p>
+                                                <p>Your account status: <strong>Rejected</strong></p>
+                                                <p>You can register again, <br>
+                                                please click <br>
+                                                <a href=\"http://localhost/RouteReady/\"style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;\">Here</a></p>
+                                                <p>If you have any questions or need further assistance, please don't hesitate to contact us.</p>
+                                                <p>Thank you for choosing RouteReady.</p>";
+                        $mail->send($user->email, 'Account Rejected', $htmlBody);
+        }
         flash('post_message', 'Employee status updated');
         redirect('hrmanagers/viewEmployees');
       } else {
@@ -131,6 +157,32 @@ class Hrmanagers extends Controller
         die('Invalid action');
       }
       if ($this->userModel->updatedriverStatus($id, $status)) {
+        $user = $this->userModel->getUserById($id);
+        $mail = new Mail();
+        if ($status == 'approved') {
+          $htmlBody = "
+                                                <p>Dear '$user->name',</p>
+                                                <p>Exciting News!</p>
+                                                <p>We are writing to inform you about the status of your RouteReady account.</p>
+                                                <p>Your account is: <strong>Approved</strong></p>
+                                                <p>Now you can log-in to your RouteReady account, <br>
+                                                please click <br>
+                                                <a href=\"http://localhost/RouteReady/users/login\"style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;\">Here</a></p>
+                                                <p>If you have any questions or need further assistance, please don't hesitate to contact us.</p>
+                                                <p>Thank you for choosing RouteReady.</p>";
+          $mail->send($user->email, 'Account Approved', $htmlBody);
+        } elseif ($status == 'rejected') {
+          $htmlBody = "
+                                                <p>Dear '$user->name',</p>
+                                                <p>We are writing to inform you about the status of your RouteReady account.</p>
+                                                <p>Your account status: <strong>Rejected</strong></p>
+                                                <p>You can register again, <br>
+                                                please click <br>
+                                                <a href=\"http://localhost/RouteReady/\"style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;\">Here</a></p>
+                                                <p>If you have any questions or need further assistance, please don't hesitate to contact us.</p>
+                                                <p>Thank you for choosing RouteReady.</p>";
+                        $mail->send($user->email, 'Account Rejected', $htmlBody);
+        }
         flash('post_message', 'Driver status updated');
         redirect('hrmanagers/moreDriver/' . $id . '');
       } else {
@@ -158,6 +210,32 @@ class Hrmanagers extends Controller
         die('Invalid action');
       }
       if ($this->userModel->updatedriverStatus($id, $status)) {
+        $user = $this->userModel->getUserById($id);
+        $mail = new Mail();
+        if ($status == 'approved') {
+          $htmlBody = "
+                                                <p>Dear '$user->name',</p>
+                                                <p>Exciting News!</p>
+                                                <p>We are writing to inform you about the status of your RouteReady account.</p>
+                                                <p>Your account is: <strong>Approved</strong></p>
+                                                <p>Now you can log-in to your RouteReady account, <br>
+                                                please click <br>
+                                                <a href=\"http://localhost/RouteReady/users/login\"style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;\">Here</a></p>
+                                                <p>If you have any questions or need further assistance, please don't hesitate to contact us.</p>
+                                                <p>Thank you for choosing RouteReady.</p>";
+          $mail->send($user->email, 'Account Approved', $htmlBody);
+        } elseif ($status == 'rejected') {
+          $htmlBody = "
+                                                <p>Dear '$user->name',</p>
+                                                <p>We are writing to inform you about the status of your RouteReady account.</p>
+                                                <p>Your account status: <strong>Rejected</strong></p>
+                                                <p>You can register again, <br>
+                                                please click <br>
+                                                <a href=\"http://localhost/RouteReady/\"style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;\">Here</a></p>
+                                                <p>If you have any questions or need further assistance, please don't hesitate to contact us.</p>
+                                                <p>Thank you for choosing RouteReady.</p>";
+                        $mail->send($user->email, 'Account Rejected', $htmlBody);
+        }
         flash('post_message', 'Driver status updated');
         redirect('hrmanagers/moreOSDriver/' . $id . '');
       } else {
@@ -190,7 +268,7 @@ class Hrmanagers extends Controller
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // Handle the delete using $id
       // For example:
-      if ($this->userModel->deletedriver($id) && $this->userModel->deleteOSDriver($id) ) {
+      if ($this->userModel->deletedriver($id) && $this->userModel->deleteOSDriver($id)) {
         flash('post_message', 'Driver deleted');
         redirect('hrmanagers/moreOSDriver/' . $id . '');
       } else {

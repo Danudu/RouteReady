@@ -48,6 +48,9 @@ class Pages extends Controller
         case 'driver':
             redirect('drivers/home');
             break;
+        case 'osdriver':
+            redirect('drivers/home');
+            break;
         default:
             echo 'Invalid role';
         break;

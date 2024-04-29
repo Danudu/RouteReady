@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 </html>
 
 <!DOCTYPE html>
@@ -30,24 +31,45 @@
             <h1>Profile</h1>
             <p class="welcome">Welcome, <?php echo $data['user']->name; ?>!</p>
             <p>This is your profile page where you can view and manage your information.</p>
-            <ul>
-                <li><strong>Name:</strong> <?php echo $data['user']->name; ?></li>
-                <li><strong>Driver ID:</strong> <?php echo $data['user']->emp_id; ?></li>
-                <li><strong>Age:</strong> <?php echo $data['driver']->age; ?></li>
-                <li><strong>Contact:</strong> <?php echo $data['user']->contact_num; ?></li>
-                <li><strong>Address:</strong> <?php echo $data['user']->address; ?></li>
-                <li><strong>NIC Number:</strong> <?php echo $data['driver']->nic_number; ?></li>
-                <li><strong>License Number:</strong> <?php echo $data['driver']->driver_license; ?></li>
-                <li><strong>Vehicle Type:</strong> <?php echo $data['driver']->vehicle_type; ?></li>
-                <li><strong>Role:</strong> <?php echo $data['user']->designation; ?></li>
-                <li><strong>Years Of Experience:</strong> <?php echo $data['driver']->years_of_experience; ?></li>
-                <li><strong>E-mail:</strong> <?php echo $data['user']->email; ?></li>
-                
-            </ul>
-            <div class="button-container">
-                <a href="<?php echo URLROOT; ?>/drivers/edit_profile/<?= $_SESSION['user_id'] ?>" class="button">Edit Profile</a>
-                <a href="<?php echo URLROOT; ?>/pages/home" class="button">Back</a>
-            </div>
+            <?php if ($data['user']->designation == 'driver'): ?>
+                <ul>
+                    <li><strong>Name:</strong> <?php echo $data['user']->name; ?></li>
+                    <li><strong>Driver ID:</strong> <?php echo $data['user']->emp_id; ?></li>
+                    <li><strong>Age:</strong> <?php echo $data['driver']->age; ?></li>
+                    <li><strong>Contact:</strong> <?php echo $data['user']->contact_num; ?></li>
+                    <li><strong>Address:</strong> <?php echo $data['user']->address; ?></li>
+                    <li><strong>NIC Number:</strong> <?php echo $data['driver']->nic_number; ?></li>
+                    <li><strong>License Number:</strong> <?php echo $data['driver']->driver_license; ?></li>
+                    <li><strong>Vehicle Type:</strong> <?php echo $data['driver']->vehicle_type; ?></li>
+                    <li><strong>Years Of Experience:</strong> <?php echo $data['driver']->years_of_experience; ?></li>
+                    <li><strong>E-mail:</strong> <?php echo $data['user']->email; ?></li>
+
+                </ul>
+                <div class="button-container">
+                    <a href="<?php echo URLROOT; ?>/drivers/edit_profile/<?= $_SESSION['user_id'] ?>" class="button">Edit
+                        Profile</a>
+                    <a href="<?php echo URLROOT; ?>/pages/home" class="button">Back</a>
+                </div>
+            <?php elseif ($data['user']->designation == 'osdriver'): ?>
+                <ul>
+                    <li><strong>Name:</strong> <?php echo $data['user']->name; ?></li>
+                    <li><strong>Driver ID:</strong> <?php echo $data['user']->emp_id; ?></li>
+                    <li><strong>Age:</strong> <?php echo $data['osdriver']->age; ?></li>
+                    <li><strong>Contact:</strong> <?php echo $data['user']->contact_num; ?></li>
+                    <li><strong>Address:</strong> <?php echo $data['user']->address; ?></li>
+                    <li><strong>NIC Number:</strong> <?php echo $data['osdriver']->nic_number; ?></li>
+                    <li><strong>License Number:</strong> <?php echo $data['osdriver']->driver_license; ?></li>
+                    <li><strong>Vehicle Type:</strong> <?php echo $data['osdriver']->vehicle_type; ?></li>
+                    <li><strong>Years Of Experience:</strong> <?php echo $data['osdriver']->years_of_experience; ?></li>
+                    <li><strong>E-mail:</strong> <?php echo $data['user']->email; ?></li>
+
+                </ul>
+                <div class="button-container">
+                    <a href="<?php echo URLROOT; ?>/drivers/edit_osprofile/<?= $_SESSION['user_id'] ?>" class="button">Edit
+                        Profile</a>
+                    <a href="<?php echo URLROOT; ?>/pages/home" class="button">Back</a>
+                </div>
+            <?php endif; ?>
         </div>
 
     </div>

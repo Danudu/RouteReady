@@ -87,16 +87,22 @@ class Driver {
             return false; // Insertion failed
         }
     }
-    public function getDriverById($id){
-        $this->db->query('SELECT * FROM drivers WHERE user_id = :id');
-        $this->db->bind(':id', $id);
-    
-        $row = $this->db->single();
-    
+    public function getDriverById($id)
+{
+    $this->db->query('SELECT * FROM drivers WHERE user_id = :id');
+    $this->db->bind(':id', $id);
+
+    $row = $this->db->single();
+
+    // Check if driver exists
+    if ($this->db->rowCount() > 0) {
         return $row;
+    } else {
+        return null; // Return null if driver does not exist
     }
+}
     public function getOSDriverById($id){
-        $this->db->query('SELECT * FROM drivers WHERE odriver_id = :id');
+        $this->db->query('SELECT * FROM outsourcedrivers WHERE odriver_id = :id');
         $this->db->bind(':id', $id);
     
         $row = $this->db->single();

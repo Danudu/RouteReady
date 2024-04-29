@@ -232,7 +232,7 @@
     </ul>
     <ul>
         <li>
-            <a href="<?php echo URLROOT; ?>/posts/terms">
+            <a href="<?php echo URLROOT; ?>/admins/leaves_admin">
                 <i class="fa-solid fa-plus-minus"></i>
                 <span class="icon_name">Leaves</span>
             </a>

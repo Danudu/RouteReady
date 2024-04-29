@@ -32,7 +32,7 @@ class Admins extends Controller
     // $this->bankModel = $this->model('BankModel');
     // $this->salaryModel = $this->model('Salary');
     $this->outsalaryModel = $this->model('OutSalaryModel');
-    $this->adminModel = $this->model('Admin'); 
+    $this->adminModel = $this->model('Admin');
     $this->leaveModel = $this->model('Leave');
 
 
@@ -408,11 +408,11 @@ class Admins extends Controller
 
   public function showTimetable()
   {
-      // Fetch all data from the fullday_timetable table sorted by date
-      $timetableData = $this->adminModel->getBooking() ;
+    // Fetch all data from the fullday_timetable table sorted by date
+    $timetableData = $this->adminModel->getBooking();
     //   print_r()
-      // Pass the data to the view
-      return $this->view('pages/admin/full_booking', ['timetableData' => $timetableData]);
+    // Pass the data to the view
+    return $this->view('pages/admin/full_booking', ['timetableData' => $timetableData]);
   }
 
   public function viewPendingWorkTrips()
@@ -470,7 +470,8 @@ class Admins extends Controller
 
   }
 
-  public function timetable_view($day, $slot) {
+  public function timetable_view($day, $slot)
+  {
     // echo ($day);
     // echo ($slot);
     // Load model
@@ -482,48 +483,61 @@ class Admins extends Controller
     // Pass data to the view
     $data['day'] = $day;
     $data['timeSlot'] = $slot;
-   
+
     $this->view('pages/admin/schedule_view', $data);
-}
+  }
 
 
 
 
-public function leaves_admin() {
-  // Assuming you have a method in the LeaveModel to fetch all leave applications
-  $leaveApplications = $this->leaveModel->getAllLeaveApplications();
-  // var_dump($leaveApplications);
+  public function leaves_admin()
+  {
+    // Assuming you have a method in the LeaveModel to fetch all leave applications
+    $leaveApplications = $this->leaveModel->getAllLeaveApplications();
+    // var_dump($leaveApplications);
 
-  $data = [
-    'leaveApplications' => $leaveApplications,
-  ];
+    $data = [
+      'leaveApplications' => $leaveApplications,
+    ];
 
-  // Pass leave applications data to the view
-  $this->view('pages/admin/leaves_admin',$data);
-}
+    // Pass leave applications data to the view
+    $this->view('pages/admin/leaves_admin', $data);
+  }
 
-public function processLeaveAction() {
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    $leaveId = $_POST['leave_id'];
-    $action = $_POST['action']; 
+  public function processLeaveAction()
+  {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    
-    $result = $this->leaveModel->updateLeaveStatus($leaveId, $action);
+      $leaveId = $_POST['leave_id'];
+      $action = $_POST['action'];
 
-    if ($result) {
-        
+
+      $result = $this->leaveModel->updateLeaveStatus($leaveId, $action);
+
+      if ($result) {
+
         redirect('pages/driver/leaves_admin', ['success' => 'Leave application action processed successfully.']);
-    } else {
-       
+      } else {
+
         redirect('pages/driver/leaves_admin', ['error' => 'Failed to process leave application action. Please try again.']);
+      }
+    } else {
+
+      redirect('pages/driver/leaves_admin');
     }
-} else {
-    
-    redirect('pages/driver/leaves_admin');
-}
-}
-  
+  }
+  public function viewSchedule($day, $timeSlot)
+  {
+    include 'Model.php'; // Include the Model
+
+    $timetable = $model->getTimetable($day, $timeSlot);
+
+    if ($timetable !== null) {
+      $this->view('pages/admin/schedule_view', );// Include the View
+    } else {
+      echo "No timetable data available.";
+    }
+  }
 }
 
 

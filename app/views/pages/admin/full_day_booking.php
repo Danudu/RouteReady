@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/content.css">
+    <title>Full Day Booking | RouteReady</title>
+    <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
+</head>
     <title>Full Day Booking</title>
     <style>
         /* Provided CSS styles */
@@ -77,23 +84,30 @@
 
         input[type="submit"],
         .button {
-            width: 100%;
-            height: 45px;
+            width: calc(50% - 10px);
+            /* Adjusted width */
+            height: 35px;
+            /* Reduced height */
             background: var(--text-light);
             border: none;
             outline: none;
-            border-radius: 40px;
+            border-radius: 20px;
+            /* Reduced border radius */
             box-shadow: 0 0 10px rgba(0, 0, 0, .1);
             cursor: pointer;
-            font-size: 20px;
+            font-size: 16px;
+            /* Reduced font size */
             color: var(--primary-color);
             font-weight: 600;
             text-align: center;
-            line-height: 45px;
+            line-height: 35px;
+            /* Adjusted line height */
             display: inline-block;
             text-decoration: none;
             transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
             margin-top: 20px;
+            margin-right: 10px;
+            /* Added margin between buttons */
         }
 
         input[type="submit"]:hover,
@@ -102,20 +116,133 @@
             color: var(--white);
             box-shadow: 0 0 10px var(--primary-color-extra-light);
         }
+
+        .button-box {
+            display: flex;
+            justify-content: center;
+            /* Center the buttons */
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .button-box button:last-child {
+            margin-right: 0;
+            /* Remove margin from last button */
+        }
     </style>
 </head>
-<body class="background">
-    <div class="main-content">
-    <div>
-         <a href="<?php echo URLROOT; ?>/admins/redirectToTimetable" class="btn">Go To Schedule Page</a>
-        
-</div>
-<div>
-         <a href="<?php echo URLROOT; ?>/admins/showTimetable" class="btn">View Bookings</a>
-        
-</div>
-        <div class="container">
-            <div class="wrapper">
+
+<div class="sidebar">
+
+        <div class="top">
+            <div class="logo">
+                <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
+                <span class="logo_name">Route Ready</span>
+            </div>
+            <i class="fa-solid fa-bars" id="btn"></i>
+        </div>
+        <div class="buttons">
+            <ul>
+                <li>
+                    <a href="home">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="icon_name">Home</span>
+                    </a>
+                    <span class="tooltip">HomePage</span>
+                </li>
+            </ul>
+            <!-- <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/hrmanagers/dashboard">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span class="icon_name">Dashboard</span>
+                    </a>
+                    <span class="tooltip">Dashboard</span>
+                </li>
+            </ul> -->
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/pages/profile/<?= $_SESSION['user_id'] ?>">
+                        <i class="fas fa-user"></i>
+                        <span class="icon_name">Profile</span>
+                    </a>
+                    <span class="tooltip">Profile</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/admins/addVehicles">
+                        <i class="fa-solid fa-van-shuttle"></i>
+                        <span class="icon_name">Vehicle</span>
+                    </a>
+                    <span class="tooltip">Vehicle</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/admins/redirectToTimetable">
+                        <i class="fa-regular fa-calendar-days"></i>
+                        <span class="icon_name"> Schedule</span>
+                    </a>
+                    <span class="tooltip">Schedule</span>
+                </li>
+            </ul>
+
+
+
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/admins/handleFormSubmission">
+                        <i class="fa-solid fa-comments-dollar"></i>
+                        <span class="icon_name">ODSalary</span>
+                    </a>
+                    <span class="tooltip">ODSalary</span>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/admins/viewhr">
+                        <i class="fas fa-users"></i>
+                        <span class="icon_name">HRManager</span>
+                    </a>
+                    <span class="tooltip">HRManger</span>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/admins/viewPendingWorkTrips">
+                        <i class="fa-solid fa-suitcase-rolling"></i>
+                        <span class="icon_name">WorkTrips</span>
+                    </a>
+                    <span class="tooltip">WorkTrips</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/admins/leaves_admin">
+                        <i class="fa-solid fa-plus-minus"></i>
+                        <span class="icon_name">Leaves</span>
+                    </a>
+                    <span class="tooltip">Leaves</span>
+                </li>
+            </ul>
+            <ul class="lobtn">
+                <li>
+                    <a href="<?php echo URLROOT; ?>/users/logout">
+                        <i class="fas fa-arrow-right-from-bracket"></i>
+                        <span class="icon_name">Logout</span>
+                    </a>
+                    <span class="tooltip">Logout</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+<div class="background">
+        <div class="main-content">
+            <div class="container">
+                <div class="wrapper">    
                 <h1>Full Day Booking</h1>
                 <form method="post" action="<?php echo URLROOT ?>/admins/viewFullDayBooking">
                     <div class="form-group">
@@ -143,10 +270,38 @@
                         <input type="text" id="vehicle_id" name="vehicle_id" required>
                     </div>
 
+                   
+                    <div class="button-box">
                     <input type="submit" value="Submit" class="button">
+                
+                <!-- View Reservations Button -->
+                <a href="<?php echo URLROOT; ?>/admins/redirectToTimetable" class="button" id="back">Back</a>
+            </div>
+            </form>
+
+            <div>
+                <div class="button-box">
+                 
+                <a href="<?php echo URLROOT; ?>/admins/redirectToTimetable" class="button">Go To Schedule Page</a>
+                <a href="<?php echo URLROOT; ?>/admins/showTimetable" class="button">View Bookings</a>
+
+
+                </div>
+
+            </div>
                 </form>
+                </div>
+                </div>
             </div>
         </div>
     </div>
+    <script>
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+
+    btn.onclick = function () {
+        sidebar.classList.toggle("active");
+    };
+</script>
 </body>
 </html>

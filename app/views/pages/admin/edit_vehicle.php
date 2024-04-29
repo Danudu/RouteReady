@@ -4,36 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Vehicle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar2.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:ital,wght@0,300;0,400;1,100&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/8ab9ce5f97.js" crossorigin="anonymous"></script>
+    <title>Edit Vehicles | RouteReady</title>
+    <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
+
     <style>
-        /* Styles from editworktrip.php */
-        :root {
-            --primary-color: #111317;
-            --primary-color-light: #1f2125;
-            --primary-color-extra-light: #35373b;
-            --text-light: #d1d5db;
-            --white: #ffffff;
-            --max-width: 1200px;
-        }
+       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+
+.background {
+    background-image: url(http://localhost/RouteReady/public/img/pic5.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+}
 
         .main-content {
             padding: 50px 0;
-            background-image: url(http://localhost:8888/RouteReady/public/img/pic5.jpg);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        
-        .container {
             backdrop-filter: blur(10px) brightness(0.8);
-            /* max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.4);
-            border-radius: 10px; */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .wrapper {
             background-color: rgba(31, 33, 37, 0.4);
             border: 2px solid var(--primary-color-extra-light);
             color: var(--white);
@@ -44,31 +46,214 @@
             width: 800px;
         }
 
-        .topic-content {
-            text-align: center;
-            margin-bottom: 30px;
+        h1 {
+            color: var(--white);
+            margin-bottom: 20px;
         }
 
-        .topic-content h2 {
-            color: #fff;
-            font-size: 28px;
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--white);
             font-weight: 600;
         }
 
-        .form-box {
-            background-color: rgba(31, 33, 37, 0.8);
-            padding: 20px;
-            border-radius: 10px;
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-color-light);
+            background-color: var(--primary-color);
+            color: var(--white);
+            box-sizing: border-box;
+            font-size: medium;
         }
 
-        /* Adjustments specific to edit_vehicle.php */
-        /* Adjustments if any */
+        input[type="submit"],
+        .edit-button {
+            width: 100%;
+            height: 45px;
+            /* Increased height for larger button */
+            background: var(--text-light);
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            cursor: pointer;
+            font-size: 20px;
+            /* Increased font size */
+            color: var(--primary-color);
+            font-weight: 600;
+            text-align: center;
+            line-height: 45px;
+            /* Centering text vertically */
+            display: inline-block;
+            text-decoration: none;
+            transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+            margin-top: 20px;
+            /* Added margin top */
+        }
+
+        input[type="submit"]:hover,
+        .edit-button:hover {
+            background-color: var(--primary-color-light);
+            color: var(--white);
+            box-shadow: 0 0 10px var(--primary-color-extra-light);
+        }
+
+        .register-link {
+            text-align: center;
+        }
+
+        .register-link .button {
+            border: 2px solid var(--text-light);
+            /* Added border */
+            background: transparent;
+            color: var(--text-light);
+        }
+
+        .register-link .button:hover {
+            background: var(--primary-color-light);
+            /* Background on hover */
+            color: var(--white);
+        }
+
+        .input-box textarea {
+            height: 120px;
+            /* Adjust the height as needed */
+            resize: vertical;
+            /* Allow vertical resizing */
+            width: 100%;
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-color-light);
+            background-color: var(--primary-color);
+            color: var(--white);
+            box-sizing: border-box;
+            font-size: medium;
+        }
     </style>
+
 </head>
 
 <body>
+<div class="sidebar">
 
-    <div class="edit-vehicle-form">
+<div class="top">
+    <div class="logo">
+        <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
+        <span class="logo_name">Route Ready</span>
+    </div>
+    <i class="fa-solid fa-bars" id="btn"></i>
+</div>
+<div class="buttons">
+    <ul>
+        <li>
+            <a href="home">
+                <i class="fa-solid fa-house"></i>
+                <span class="icon_name">Home</span>
+            </a>
+            <span class="tooltip">HomePage</span>
+        </li>
+    </ul>
+    <!-- <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/hrmanagers/dashboard">
+                <i class="fa-solid fa-chart-line"></i>
+                <span class="icon_name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+        </li>
+    </ul> -->
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/pages/profile/<?= $_SESSION['user_id'] ?>">
+                <i class="fas fa-user"></i>
+                <span class="icon_name">Profile</span>
+            </a>
+            <span class="tooltip">Profile</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/admins/addVehicles">
+                <i class="fa-solid fa-van-shuttle"></i>
+                <span class="icon_name">Vehicle</span>
+            </a>
+            <span class="tooltip">Vehicle</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/admins/redirectToTimetable">
+                <i class="fa-regular fa-calendar-days"></i>
+                <span class="icon_name"> Schedule</span>
+            </a>
+            <span class="tooltip">Schedule</span>
+        </li>
+    </ul>
+
+
+
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/admins/handleFormSubmission">
+                <i class="fa-solid fa-comments-dollar"></i>
+                <span class="icon_name">ODSalary</span>
+            </a>
+            <span class="tooltip">ODSalary</span>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/admins/viewhr">
+                <i class="fas fa-users"></i>
+                <span class="icon_name">HRManager</span>
+            </a>
+            <span class="tooltip">HRManger</span>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/admins/viewPendingWorkTrips">
+                <i class="fa-solid fa-suitcase-rolling"></i>
+                <span class="icon_name">WorkTrips</span>
+            </a>
+            <span class="tooltip">WorkTrips</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/admins/leaves_admin">
+                <i class="fa-solid fa-plus-minus"></i>
+                <span class="icon_name">Leaves</span>
+            </a>
+            <span class="tooltip">Leaves</span>
+        </li>
+    </ul>
+    <ul class="lobtn">
+        <li>
+            <a href="<?php echo URLROOT; ?>/users/logout">
+                <i class="fas fa-arrow-right-from-bracket"></i>
+                <span class="icon_name">Logout</span>
+            </a>
+            <span class="tooltip">Logout</span>
+        </li>
+    </ul>
+</div>
+</div>
+<div class="background">
+        <div class="main-content">
+            <div class="container">
+                <div class="wrapper">    
+   
         <h3>Edit Vehicle</h3>
         <form action="<?php echo URLROOT; ?>/admins/editVehicle/<?php echo $data['registration_number']; ?>" method="POST" class="vehicle-form">
             <label for="vehicleNumber">Vehicle Number:</label>
@@ -101,6 +286,11 @@
             <button type="submit" class="edit-button">Update</button>
         </form>
     </div>
+    </div>
+                </div>
+            </div>
+        </div>
+\
 
     <script>
         let btn = document.querySelector("#btn");
