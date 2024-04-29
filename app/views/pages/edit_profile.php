@@ -55,10 +55,10 @@
                         <label for="address">Address:</label>
                         <input type="text" name="address" value="<?php echo $data['address']; ?>">
                     </div>
-                    <div class="input-box">
+                    <!-- <div class="input-box">
                         <label for="department">Department:</label>
                         <input type="text" name="department" value="<?php echo $data['department']; ?>">
-                    </div>
+                    </div> -->
                   
                     <div class="input-box">
                         <label for="password">Password:</label>

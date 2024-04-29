@@ -33,7 +33,7 @@
                 <li><strong>E-mail:</strong> <?php echo $data['user']->email; ?></li>
                 <li><strong>Contact:</strong> <?php echo $data['user']->contact_num; ?></li>
                 <li><strong>Address:</strong> <?php echo $data['user']->address; ?></li>
-                <li><strong>Department:</strong> <?php echo $data['user']->department; ?></li>
+                <!-- <li><strong>Department:</strong> <?php echo $data['user']->department; ?></li> -->
                 <li><strong>Role:</strong> <?php echo $data['user']->designation; ?></li>
                 <li><strong>Registered Date:</strong> <?php echo $data['user']->date; ?></li>
             </ul>

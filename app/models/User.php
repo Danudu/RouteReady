@@ -22,7 +22,7 @@ class User
     //register user
     public function register($data)
     {
-        $this->db->query('INSERT INTO users (name, emp_id, email, password, contact_num, address, department, designation, status) VALUES(:name, :emp_id, :email, :password, :contact_num, :address, :department, :designation, :status)');
+        $this->db->query('INSERT INTO users (name, emp_id, email, password, contact_num, address, designation, status) VALUES(:name, :emp_id, :email, :password, :contact_num, :address, :designation, :status)');
         //bind values
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':emp_id', $data['emp_id']);
@@ -30,7 +30,7 @@ class User
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':contact_num', $data['contact_num']);
         $this->db->bind(':address', $data['address']);
-        $this->db->bind(':department', $data['department']);
+       // $this->db->bind(':department', $data['department']);
         $this->db->bind(':designation', $data['designation']);
         $this->db->bind(':status', 'pending');
 
@@ -110,7 +110,7 @@ class User
     //edit user
     public function updateUser($data)
     {
-        $this->db->query('UPDATE users SET name = :name, emp_id = :emp_id, email = :email, contact_num = :contact_num, address = :address, department = :department, password = :password WHERE id = :id');
+        $this->db->query('UPDATE users SET name = :name, emp_id = :emp_id, email = :email, contact_num = :contact_num, address = :address,  password = :password WHERE id = :id');
         //bind values
         $this->db->bind(':id', $data['id']);
         $this->db->bind(':name', $data['name']);
@@ -118,7 +118,7 @@ class User
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':contact_num', $data['contact_num']);
         $this->db->bind(':address', $data['address']);
-        $this->db->bind(':department', $data['department']);
+      //  $this->db->bind(':department', $data['department']);
         $this->db->bind(':password', $data['password']);
 
 

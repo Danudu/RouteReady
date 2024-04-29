@@ -102,11 +102,7 @@
                             <input type="text" name="address" value="<?php echo $data['address']; ?>"
                                 placeholder="Address">
                         </div>
-                        <div class="input-box">
-                            <!-- <label for="department">Department: <sup>*</sup></label> -->
-                            <input type="text" name="department" value="<?php echo $data['department']; ?>"
-                                placeholder="Department">
-                        </div>
+                        
                         <div class="input-box">
                             <!-- <label for="designation">Designation: <sup>*</sup></label> -->
                             <!-- <input type="text" name="designation" value="<?php echo $data['designation']; ?>" placeholder="Designation"> -->
