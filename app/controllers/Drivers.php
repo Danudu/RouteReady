@@ -6,6 +6,7 @@ class Drivers extends Controller
   private $userModel;
   
   private $driverModel ;
+private $scheduleModel;
   
   private BankDetailsModel $bankDetailsModel;
 
@@ -23,6 +24,7 @@ class Drivers extends Controller
     $this->timetable = $this->model('DriverTimeTableModel');
     $this->driverModel = $this->model('Driver');
     $this->bankDetailsModel = $this->model('BankDetailsModel');
+    $this->scheduleModel = $this->model('Schedule');
   }
 
   public function add_bank_details()
@@ -553,4 +555,35 @@ public function viewSalaryDetails($id)
         }
     }
 
+
+    public function viewSchedule()
+    {
+        // Get full day bookings and timetable details for the current date
+        $currentDate = date('Y-m-d');
+
+        // Get full day bookings and timetable details for the current date
+        $fullDayBookings = $this->scheduleModel->getFullDayBookings($currentDate);
+        $timetableDetails = $this->scheduleModel->getTimetableDetails($currentDate);
+    
+        // Pass data to the view
+        $data = [
+            'fullDayBookings' => $fullDayBookings,
+            'timetableDetails' => $timetableDetails
+        ];
+        $this->view('pages/driver/view_schedule',$data);
+    }
+    
+
+    public function viewSalary($id){
+      if (!isLoggedIn()) {
+        $this->view('pages/index');
+      } else {
+        $salary = $this->driverModel->getSalaryById($id);
+        $data = [
+          
+          'salary' => $salary
+        ];
+        $this->view('pages/driver/view_salary_details', $data);
+      }
+    }
 }

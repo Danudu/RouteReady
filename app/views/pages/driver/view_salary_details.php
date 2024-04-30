@@ -16,16 +16,22 @@
             <th>Month</th>
             <th>Year</th>
         </tr>
-        <?php foreach ($salary_details as $detail): ?>
+        <?php if(is_array($data['salary']) || is_object($data['salary'])): ?>
+            <?php foreach ($data['salary'] as $detail): ?>
+                <tr>
+                    <td><?php echo $detail->driver_id; ?></td>
+                    <td><?php echo $detail->number_of_trips; ?></td>
+                    <td><?php echo $detail->basic_payment; ?></td>
+                    <td><?php echo $detail->total_amount; ?></td>
+                    <td><?php echo $detail->month; ?></td>
+                    <td><?php echo $detail->year; ?></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
             <tr>
-                <td><?php echo $detail['driver_id']; ?></td>
-                <td><?php echo $detail['number_of_trips']; ?></td>
-                <td><?php echo $detail['basic_payment']; ?></td>
-                <td><?php echo $detail['total_amount']; ?></td>
-                <td><?php echo $detail['month']; ?></td>
-                <td><?php echo $detail['year']; ?></td>
+                <td colspan="6">No salary details available</td>
             </tr>
-        <?php endforeach; ?>
+        <?php endif; ?>
     </table>
 </body>
 </html>

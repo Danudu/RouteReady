@@ -179,5 +179,14 @@ public function getSalaryDetails($driver_id) {
 
     return $salary_details;
 }
+
+public function getSalaryById($id){
+    $this->db->query('SELECT * FROM out_salary WHERE driver_id = :id');
+    $this->db->bind(':id', $id);
+
+    $row = $this->db->single();
+
+    return $row;
+}
    
 }
