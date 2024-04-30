@@ -525,9 +525,73 @@ class Drivers extends Controller
   
   
   }
+
+  // public function viewSalary($id){
+  //   if (!isLoggedIn()) {
+  //     $this->view('pages/index');
+  //   } else {
+  //     $salary = $this->driverModel->getSalaryById($id);
+  //     $data = [
+        
+  //       'salary' => $salary
+  //     ];
+  //     $this->view('pages/driver/view_salary_details', $data);
+  //   }
+  // }
   
+  public function viewSalary($id){
+    if (!isLoggedIn()) {
+        $this->view('pages/index');
+    } else {
+        $salary = $this->driverModel->getSalaryById($id);
+        if ($salary !== null && !empty($salary)) {
+            $data = [
+                'salary' => $salary
+            ];
+            $this->view('pages/driver/view_salary_details', $data);
+        } else {
+            // Handle case when no salary data is found
+            // For example, redirect to an error page or display a message
+            redirect('drivers/home');
+        }
+    }
+}
+
+
+  // public function viewSchedule()
+  //   {
+  //       // Get full day bookings and timetable details for the current date
+  //       $currentDate = date('Y-m-d');
+
+  //       // Get full day bookings and timetable details for the current date
+  //       $fullDayBookings = $this->driverModel->getFullDayBookings($currentDate);
+  //       $timetableDetails = $this->driverModel->getTimetableDetails($currentDate);
+    
+  //       // Pass data to the view
+  //       $data = [
+  //           'fullDayBookings' => $fullDayBookings,
+  //           'timetableDetails' => $timetableDetails
+  //       ];
+  //       $this->view('pages/driver/view_schedule',$data);
+  //     }
   
-  
+      public function viewSchedule()
+      {
+        
+        $fullDayBookings = $this->driverModel->getFullDayBookings(date('Y-m-d'));
+        $timetableDetails = $this->driverModel->getTimetableDetails(date('Y-m-d'));
+        
+    
+        if (!isLoggedIn()) {
+          $this->view('pages/index');
+        } else {
+          $data = [
+            'fullDayBookings' => $fullDayBookings,
+            'timetableDetails' => $timetableDetails
+          ];
+          $this->view('pages/driver/view_schedule', $data);
+        }
+      }
 
 
 }

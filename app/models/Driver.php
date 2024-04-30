@@ -171,4 +171,67 @@ class Driver {
         return $this->db->single();
     }
     
+    public function insertBankDetails($data){
+        // Prepare SQL query to insert bank details
+        $this->db->query('INSERT INTO bank (accountNo, bankName, branchName, holdersName, user_id) VALUES (:accountNo, :bankName, :branchName, :holdersName, :user_id)');
+    
+        // Get the user ID from the session
+        $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+    
+        // Bind values
+        $this->db->bind(':accountNo', $data['accountNo']);
+        $this->db->bind(':bankName', $data['bankName']);
+        $this->db->bind(':branchName', $data['branchName']);
+        $this->db->bind(':holdersName', $data['holdersName']);
+        $this->db->bind(':user_id', $user_id);
+    
+        // Execute
+        if($this->db->execute()){
+            return true; // Insertion successful
+        } else {
+            return false; // Insertion failed
+        }
+    }
+
+    public function updateBankDetails($data)
+{
+    // Prepare SQL query to update bank details
+    $this->db->query('UPDATE bank SET accountNo = :accountNo, bankName = :bankName, branchName = :branchName, holdersName = :holdersName WHERE user_id = :user_id');
+
+    // Bind values
+    $this->db->bind(':accountNo', $data['accountNo']);
+    $this->db->bind(':bankName', $data['bankName']);
+    $this->db->bind(':branchName', $data['branchName']);
+    $this->db->bind(':holdersName', $data['holdersName']);
+    $this->db->bind(':user_id', $data['user_id']);
+
+    // Execute the query
+    if ($this->db->execute()) {
+        return true; // Update successful
+    } else {
+        return false; // Update failed
+    }
+}
+
+public function getSalaryByID($id){
+    $this->db->query('SELECT * FROM out_salary WHERE driver_id = :id');
+    $this->db->bind(':id', $id);
+
+    $results = $this->db->resultSet();
+    
+    return $results;
+}
+
+public function getFullDayBookings($date) {
+    $this->db->query("SELECT * FROM fullday_timetable WHERE b_date = :date");
+    $this->db->bind(':date', $date);
+    return $this->db->resultSet();
+}
+
+public function getTimetableDetails($date) {
+    $this->db->query("SELECT * FROM timetable WHERE `date` = :date");
+    $this->db->bind(':date', $date);
+    return $this->db->resultSet();
+}
+
 }

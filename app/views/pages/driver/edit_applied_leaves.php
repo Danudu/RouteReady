@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Leave Application</title>
-    <link rel="stylesheet" href="path/to/your/css/style.css"> <!-- Include your CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/navbar.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/content.css">
+    <title>Edit Bank details | RouteReady</title>
+    <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
     <style>
         /* Color Variables */
         :root {
@@ -90,24 +93,6 @@
             height: 80px; /* Adjusted height */
         }
 
-        .button {
-            width: 100%;
-            height: 45px;
-            background: var(--text-light);
-            border: none;
-            outline: none;
-            border-radius: 40px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-            cursor: pointer;
-            font-size: 16px;
-            color: #333;
-            font-weight: 600;
-            text-align: center;
-            line-height: 45px;
-            text-decoration: none;
-            transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
-            margin-top: 10px; /* Adjusted margin */
-        }
 
         .button:hover {
             background-color: var(--primary-color-light);
@@ -123,9 +108,33 @@
             margin-bottom: 10px;
             text-align: center;
         }
+        .button {
+        width: 100%;
+        height: 45px;
+        /* Increased height for larger button */
+        background: var(--text-light);
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        cursor: pointer;
+        font-size: 20px;
+        /* Increased font size */
+        color: var(--primary-color);
+        font-weight: 600;
+        text-align: center;
+        line-height: 45px;
+        /* Centering text vertically */
+        display: inline-block;
+        text-decoration: none;
+        transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+        margin-top: 20px;
+        /* Added margin top */
+    }
     </style>
 </head>
 <body>
+    
     <div class="container">
        
         <h2>Edit Leave Application</h2>

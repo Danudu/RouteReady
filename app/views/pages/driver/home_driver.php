@@ -135,7 +135,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/deivers/view_time_table">
+                    <a href="<?php echo URLROOT; ?>/drivers/viewSchedule">
                     <i class="fa-regular fa-calendar-days"></i>
                         <span class="icon_name">Schedule</span>
                     </a>
@@ -144,7 +144,7 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/drivers/viewSalaryDetails/<?= $_SESSION['user_id'] ?>">
+                    <a href="<?php echo URLROOT; ?>/drivers/viewSalary/<?= $_SESSION['user_id'] ?>">
                     <i class="fa-solid fa-file-invoice-dollar"></i>
                         <span class="icon_name">Salary</span>
                     </a>
@@ -155,9 +155,9 @@
                 <li>
                     <a href="<?php echo URLROOT; ?>/drivers/viewBankDetails">
                     <i class="fa-solid fa-money-check-dollar"></i>
-                        <span class="icon_name">Payments</span>
+                        <span class="icon_name">BankDetails</span>
                     </a>
-                    <span class="tooltip">Payments</span>
+                    <span class="tooltip">Bank Details</span>
                 </li>
             </ul>
             <ul>

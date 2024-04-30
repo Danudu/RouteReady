@@ -428,7 +428,7 @@
                                 <div class='cell with-data' style="color:black ">
                                     Records: <?php echo $count; ?><br>
                                     <td><a
-                                            href="<?php echo URLROOT ?>/admins/viewSchedule/<?php echo $day ?>/<?php echo $slot ?>">View
+                                            href="<?php echo URLROOT ?>/admins/timetable_view/<?php echo $day ?>/<?php echo $slot ?>">View
                                             More</a></td>
                                 </div>
                             <?php else: ?>

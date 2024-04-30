@@ -147,91 +147,91 @@
 </head>
 
 <body>
-    <div class="sidebar">
+<div class="sidebar">
 
-        <div class="top">
-            <div class="logo">
-                <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
-                <span class="logo_name">Route Ready</span>
-            </div>
-            <i class="fa-solid fa-bars" id="btn"></i>
-        </div>
-        <div class="buttons">
-            <ul>
-                <li>
-                    <a href="home">
-                        <a href="<?php echo URLROOT; ?>/pages/home/<?= $_SESSION['user_id'] ?>">
-                            <i class="fa-solid fa-house"></i>
-                            <span class="icon_name">Home</span>
-                        </a>
-                        <span class="tooltip">HomePage</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/drivers/profile/<?= $_SESSION['user_id'] ?>">
-                        <i class="fas fa-user"></i>
-                        <span class="icon_name">Profile</span>
-                    </a>
-                    <span class="tooltip">Profile</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/drivers/submitLeaveApplication">
-                        <i class="fa-solid fa-person-walking-arrow-right"></i>
-                        <span class="icon_name">Leaves</span>
-                    </a>
-                    <span class="tooltip">Apply Leaves</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/deivers/view_time_table">
-                        <i class="fa-regular fa-calendar-days"></i>
-                        <span class="icon_name">Schedule</span>
-                    </a>
-                    <span class="tooltip">Schedule</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/drivers/viewSalaryDetails/<?= $_SESSION['user_id'] ?>">
-                        <i class="fa-solid fa-file-invoice-dollar"></i>
-                        <span class="icon_name">Salary</span>
-                    </a>
-                    <span class="tooltip">Salary Reports</span>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="<?php echo URLROOT; ?>/drivers/viewBankDetails">
-                        <i class="fa-solid fa-money-check-dollar"></i>
-                        <span class="icon_name">Payments</span>
-                    </a>
-                    <span class="tooltip">Payments</span>
-                </li>
-            </ul>
-            <!-- <ul>
-                <li id="showPopup">
-                    <a href="#" onclick="event.preventDefault();" id="showPopup">
-                        <i class="fas fa-book-bookmark"></i>
-                        <span class="icon_name">T&C</span>
-                    </a>
-                    <span class="tooltip">Terms & Conditions</span>
-                </li>
-            </ul> -->
-            <ul class="lobtn">
-                <li>
-                    <a href="<?php echo URLROOT; ?>/users/logout">
-                        <i class="fas fa-arrow-right-from-bracket"></i>
-                        <span class="icon_name">Logout</span>
-                    </a>
-                    <span class="tooltip">Logout</span>
-                </li>
-            </ul>
-        </div>
+<div class="top">
+    <div class="logo">
+        <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
+        <span class="logo_name">Route Ready</span>
     </div>
+    <i class="fa-solid fa-bars" id="btn"></i>
+</div>
+<div class="buttons">
+    <ul>
+        <li>
+            <a href="home">
+                <a href="<?php echo URLROOT; ?>/pages/home/<?= $_SESSION['user_id'] ?>">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="icon_name">Home</span>
+                </a>
+                <span class="tooltip">HomePage</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/drivers/profile/<?= $_SESSION['user_id'] ?>">
+                <i class="fas fa-user"></i>
+                <span class="icon_name">Profile</span>
+            </a>
+            <span class="tooltip">Profile</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/drivers/submitLeaveApplication">
+            <i class="fa-solid fa-person-walking-arrow-right"></i>
+                <span class="icon_name">Leaves</span>
+            </a>
+            <span class="tooltip">Apply Leaves</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/drivers/viewSchedule">
+            <i class="fa-regular fa-calendar-days"></i>
+                <span class="icon_name">Schedule</span>
+            </a>
+            <span class="tooltip">Schedule</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/drivers/viewSalary/<?= $_SESSION['user_id'] ?>">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+                <span class="icon_name">Salary</span>
+            </a>
+            <span class="tooltip">Salary Reports</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="<?php echo URLROOT; ?>/drivers/viewBankDetails">
+            <i class="fa-solid fa-money-check-dollar"></i>
+                <span class="icon_name">BankDetails</span>
+            </a>
+            <span class="tooltip">Bank Details</span>
+        </li>
+    </ul>
+    <!-- <ul>
+        <li id="showPopup">
+            <a href="#" onclick="event.preventDefault();" id="showPopup">
+                <i class="fas fa-book-bookmark"></i>
+                <span class="icon_name">T&C</span>
+            </a>
+            <span class="tooltip">Terms & Conditions</span>
+        </li>
+    </ul> -->
+    <ul class="lobtn">
+        <li>
+            <a href="<?php echo URLROOT; ?>/users/logout">
+                <i class="fas fa-arrow-right-from-bracket"></i>
+                <span class="icon_name">Logout</span>
+            </a>
+            <span class="tooltip">Logout</span>
+        </li>
+    </ul>
+</div>
+</div>
     <script>
         let btn = document.querySelector("#btn");
         let sidebar = document.querySelector(".sidebar");
