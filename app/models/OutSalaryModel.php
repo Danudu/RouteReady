@@ -21,14 +21,16 @@ class OutSalaryModel {
             $this->db->bind(':year', $data['year']);
 
             // Execute query
-            if ($this->db->execute()) {
-                return true;
+            if ($data['total_amount'] !== false) {
+                // If successful, echo the success message along with the total amount
+                echo "<span style='color: white;'>Calculated Successfully. Total amount: Rs." . $data['total_amount'];
             } else {
-                return false;
+                // If not successful, echo an error message
+                echo "Failed to calculate total amount.";
             }
         } catch (PDOException $e) {
             // Log or display the error
-            echo 'Error: ' . $e->getMessage();
+            echo 'Error: ' ;
             return false;
         }
     }

@@ -169,7 +169,7 @@ class Vehicle {
        
         public function getAvailableVehicles($date) {
             // Prepare the SQL query to select vehicles not booked on the given date
-            $sql = "SELECT vd.Registration_Number
+            $sql = "SELECT vd.Registration_Number ,  vd.Vehicle_Number , vd.capacity
                     FROM VehicleDetails vd
                     LEFT JOIN fullday_timetable ft ON vd.Vehicle_Number = ft.vehicle_id AND ft.b_date = :date
                     LEFT JOIN timetable t ON vd.Vehicle_Number = t.vehicle_id AND t.date = :date

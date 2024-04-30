@@ -12,6 +12,7 @@
         
 
             <li><?php echo $vehicle->Registration_Number; ?></li>
+          
         <?php endforeach; ?>
     </ul>
 </body>
