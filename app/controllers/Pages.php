@@ -1,6 +1,7 @@
 <?php
 class Pages extends Controller
 {
+  private $userModel;
   public function __construct()
   {
     // if not logged in, redirect to landing page
@@ -12,7 +13,8 @@ class Pages extends Controller
 
 
   }
-  public function index(){
+  public function index()
+  {
 
     if (isLoggedIn()) {
       redirect('pages/home');
@@ -26,18 +28,42 @@ class Pages extends Controller
     $this->view('pages/index', $data);
   }
 
-  public function home(){
+  public function home()
+  {
     if (!isLoggedIn()) {
       $this->view('pages/index');
     } else {
-      $data = [
-        'title' => 'Home',
-        'description' => 'This is a simple MVC framework'
-      ];
-      $this->view('pages/home', $data);
+      
+       // Redirect based on user role
+       switch($_SESSION['user_designation']) {
+        case 'admin':
+            redirect('admins/home');
+            break;
+        case 'hrmanager':
+            redirect('hrmanagers/home');
+            break;
+        case 'employee':
+            redirect('employees/home');
+            break;
+        case 'driver':
+            redirect('drivers/home');
+            break;
+        case 'osdriver':
+            redirect('drivers/home');
+            break;
+        default:
+            echo 'Invalid role';
+        break;
     }
+      $this->view('pages/home');
+    }
+
   }
-  public function about(){
+
+
+
+  public function about()
+  {
     if (!isLoggedIn()) {
       $this->view('pages/index');
     } else {
@@ -51,7 +77,8 @@ class Pages extends Controller
   }
 
 
-  public function profile($id = ''){
+  public function profile($id = '')
+  {
     if (!isLoggedIn()) {
       $this->view('pages/index');
     } else {
@@ -63,7 +90,8 @@ class Pages extends Controller
     }
   }
 
-  public function edit_profile($id = ''){
+  public function edit_profile($id)
+  {
     if (!isLoggedIn()) {
       $this->view('pages/index');
     } else {
@@ -75,7 +103,7 @@ class Pages extends Controller
         'email' => $user->email,
         'contact_num' => $user->contact_num,
         'address' => $user->address,
-        'department' => $user->department,
+        //'department' => $user->department,
         'password' => $user->password,
         'confirm_password' => $user->password,
         'name_err' => '',
@@ -93,7 +121,7 @@ class Pages extends Controller
           'email' => trim($_POST['email']),
           'contact_num' => trim($_POST['contact_num']),
           'address' => trim($_POST['address']),
-          'department' => trim($_POST['department']),
+         // 'department' => trim($_POST['department']),
           'password' => trim($_POST['password']),
           'confirm_password' => trim($_POST['confirm_password']),
           'name_err' => '',

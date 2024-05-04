@@ -1,0 +1,326 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #111317;
+  --primary-color-light: #1f2125;
+  --primary-color-extra-light: #35373b;
+  --text-light: #d1d5db;
+  --white: #ffffff;
+  --max-width: 1200px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  .bg__blur {
+    position: absolute;
+    box-shadow: 0 0 1000px 50px var(--white);
+    z-index: -1;
+  }
+  
+body {
+    /* font-family: "Poppins", sans-serif; */
+    /* background-color: var(--primary-color); */
+    background-image: url(http://localhost/RouteReady/public/img/pic3.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    
+    /* min-height: 100vh; */
+    /* max-height: none; */
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center;
+    min-height: 100vh; */
+  }
+  
+  .container{
+    backdrop-filter: blur(10px) brightness(0.3);
+    min-height: 100vh;
+  }
+
+  .container .form{
+    padding-bottom: 30px;
+  }
+  nav {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  a {
+    text-decoration: none;
+  }
+  .nav__logo {
+    max-width: 90px;
+    
+  }
+  
+  .nav__logo img {
+    width: 75%;
+    border-radius: 30%;
+  }
+  
+  .nav__links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+  
+  .link a {
+    position: relative;
+    padding-bottom: 0.75rem;
+    color: var(--white);
+  }
+  
+  .link a::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 0;
+    left: 0;
+    bottom: 0;
+    background-color: var(--text-light);
+    transition: 0.3s;
+  }
+  
+  .link a:hover::after {
+    width: 50%;
+  }
+
+  .wrapper{
+    max-width: 420px;
+    background-color: rgb(31, 33, 37, 0.4);
+    
+    border: 2px solid var(--primary-color-extra-light);
+    /* backdrop-filter: blur(9px); */
+    color: var(--white);
+    border-radius: 12px;
+    padding: 30px 40px;
+    margin: auto;
+    margin-top: 30px;
+    /* margin-bottom: 30px; */
+  }
+  .wrapper h1{
+    font-size: 36px;
+    text-align: center;
+  }
+
+  .wrapper p{
+    font-size: 16px;
+    margin: 10px 0 30px;
+    text-align: center;
+  }
+
+  .wrapper .input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    
+    margin: 45px 0;
+  }
+  .wrapper .remember-forgot{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: 0px 0 15px;
+    padding-top: 5px;
+  }
+  .wrapper .btn{
+    width: 100%;
+    height: 45px;
+    background: var(--text-light);
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .wrapper .btn:hover{
+    box-shadow: 0 0 10px var(--text-light) ;
+  }
+  .wrapper .register-link{
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+    
+  }
+  .input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid var(--text-light);
+    border-radius: 40px;
+    font-size: 16px;
+    color: var(--white);
+    padding: 20px 45px 20px 20px;
+  }
+  .input-box input::placeholder{
+    color: var(--white);
+  }
+  .input-box i{
+    position: absolute;
+    right: 10px;
+    top: 65%;
+    transform: translate(-50%);
+    font-size: 20px;
+  
+  }
+  .remember-forgot label input{
+    accent-color: var(--white);
+    margin-right: 3px;
+    
+  }
+  .remember-forgot a{
+    color: var(--white);
+      text-decoration: none;
+      
+    }
+    .remember-forgot a:hover{
+      text-decoration: underline;
+    }
+    .register-link p a{
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  .register-link p a:hover{
+    text-decoration: underline;
+  }
+
+
+
+  /* Register */
+
+  .wrapper__reg{
+    max-width: 700px;
+    background-color: rgb(31, 33, 37, 0.4);
+    
+    border: 2px solid var(--primary-color-extra-light);
+    /* backdrop-filter: blur(9px); */
+    color: var(--white);
+    border-radius: 12px;
+    padding: 30px 40px;
+    margin: auto;
+    margin-top: 30px;
+    /* margin-bottom: 30px; */
+  }
+  .wrapper__reg h1{
+    font-size: 36px;
+    text-align: center;
+  }
+
+  .wrapper__reg p{
+    font-size: 16px;
+    margin: 10px 0 30px;
+    text-align: center;
+  }
+
+  .wrapper__reg .input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    
+    margin: 30px 0;
+  }
+  .wrapper__reg .remember-forgot{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: 0px 0 15px;
+    padding-top: 5px;
+  }
+  .wrapper__reg .btn{
+    width: 100%;
+    height: 45px;
+    background: var(--text-light);
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .wrapper__reg .btn:hover{
+    box-shadow: 0 0 10px var(--text-light) ;
+  }
+  .wrapper__reg .register-link{
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+    
+  }
+
+/*select*/
+.select {
+  
+  background-color: transparent;
+  border: 2px solid var(--text-light);
+  border-radius: 40px;
+  padding: 10px 45px 10px 20px;
+  font-size: 16px;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  color: var(--white);
+}
+
+.select:after {
+  content: '\25BC';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+/* Styles for when the select is focused */
+.select:focus {
+  box-shadow: 0 0 10px var(--text-light) ;
+}
+
+/* Styles for when the select is hovered */
+.select:hover {
+  box-shadow: 0 0 10px var(--text-light) ;
+}
+
+/* Styles for the dropdown menu */
+select option {
+  background-color: var(--white);
+  color: var(--primary-color-extra-light);
+  padding: 10px;
+}
+
+/* Styles for when the dropdown menu option is hovered */
+select option:hover {
+  background-color: var(--primary-color-extra-light);
+  color: var(--white);
+}
+
+
+
+  @media (width < 900px) {
+    .nav__links {
+      display: none;
+    }
+  }
+
+
+  

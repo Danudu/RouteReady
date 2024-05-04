@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +10,14 @@
     <title>Welcome -To RouteReady</title>
     <link rel="icon" href="<?php echo URLROOT; ?>/img/logo.jpg" type="image/x-icon">
 </head>
+
 <body>
-<div class="sidebar">
+    <div class="sidebar">
 
         <div class="top">
             <div class="logo">
-                    <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
-                    <span class="logo_name">Route Ready</span>
+                <img src="<?php echo URLROOT; ?>/img/logo.jpg" alt="">
+                <span class="logo_name">Route Ready</span>
             </div>
             <i class="fa-solid fa-bars" id="btn"></i>
         </div>
@@ -32,14 +33,23 @@
             </ul>
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/pages/profile/<?=$_SESSION['user_id']?>">
+                    <a href="home">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span class="icon_name">Dashboard</span>
+                    </a>
+                    <span class="tooltip">Dashboard</span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/pages/profile/<?= $_SESSION['user_id'] ?>">
                         <i class="fas fa-user"></i>
                         <span class="icon_name">Profile</span>
                     </a>
                     <span class="tooltip">Profile</span>
                 </li>
             </ul>
-            <ul>
+            <!-- <ul>
                 <li>
                     <a href="<?php echo URLROOT; ?>/posts/employees">
                         <i class="fas fa-users"></i>
@@ -56,10 +66,10 @@
                     </a>
                     <span class="tooltip">Drivers</span>
                 </li>
-            </ul>
+            </ul> -->
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="<?php echo URLROOT; ?>/posts/terms_conditons">
                         <i class="fas fa-book-bookmark"></i>
                         <span class="icon_name">T&C</span>
                     </a>
@@ -87,11 +97,12 @@
                 <section class="welcome">
                     <div class="content">
                         <h1>Welcome Aboard!</h1>
-                        <h3>Efficiency, Ease, Insights: <br>Your Corporate Mobility Revolution Begins with RouteReady</h3>
+                        <h3>Efficiency, Ease, Insights: <br>Your Corporate Mobility Revolution Begins with RouteReady
+                        </h3>
                     </div>
                     <div>
-                        <button type="button" class="btn2"><span class="spanbtn2">Book your ride, Click here now!</span><a href="#" class="bt">Login <br>As Employee</a></button>
-                        <button type="button" class="btn2"><span class="spanbtn2">Manage Employees & Drivers</span><a href="#" class="bt">Manage <br>Employees and Drivers</a></button>
+                        <button type="button" class="btn2"><a href="#" class="bt">Login <br>As Employee</a></button>
+                        <button type="button" class="btn2"><a href="#" class="bt">Logout</a></button>
                     </div>
                 </section>
             </div>
@@ -101,27 +112,32 @@
                 <div class="footer-social">
                     <div class="footer-links">
                         <ul>
-                            <li class="social"><a href="https://www.facebook.com/" class="social"><i class="fa-brands fa-facebook"></i></a></li>
-                            <li class="social"><a href="https://twitter.com/" class="social"><i class="fa-brands fa-twitter"></i></a></li>
-                            <li class="social"><a href="https://www.instagram.com/" class="social"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li class="social"><a href="https://www.linkedin.com/" class="social"><i class="fa-brands fa-linkedin"></i></a></li>
+                            <li class="social"><a href="https://www.facebook.com/" class="social"><i
+                                        class="fa-brands fa-facebook"></i></a></li>
+                            <li class="social"><a href="https://twitter.com/" class="social"><i
+                                        class="fa-brands fa-twitter"></i></a></li>
+                            <li class="social"><a href="https://www.instagram.com/" class="social"><i
+                                        class="fa-brands fa-instagram"></i></a></li>
+                            <li class="social"><a href="https://www.linkedin.com/" class="social"><i
+                                        class="fa-brands fa-linkedin"></i></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
 </body>
 
 <script>
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
 
-    btn.onclick = function() {
+    btn.onclick = function () {
         sidebar.classList.toggle("active");
     };
 </script>
+
 </html>
 
 <!-- https://www.youtube.com/watch?v=uy1tgKOnPB0 -->

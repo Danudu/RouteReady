@@ -1,16 +1,33 @@
 /*Google Fonts*/
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
 
+:root {
+    --primary-color: #111317;
+    --primary-color-light: #1f2125;
+    --primary-color-extra-light: #35373b;
+    --text-light: #d1d5db;
+    --white: #ffffff;
+    --max-width: 1200px;
+  }
+
+
 *{
     margin: 0;
     padding: 0;
     text-decoration: none;
     box-sizing: border-box;
-    font-family: "poppins", sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 body{
-    background-color: #6e6e6e;
+    background-image: url(http://localhost/RouteReady/public/img/highway.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(10px) brightness(0.5);
+    min-width: var(--max-width);
+    
+
 }
 .logo{
     position: relative;
@@ -18,7 +35,7 @@ body{
     height: 50px;
     margin: 0.8rem auto;
     line-height: 50px; 
-    color: aliceblue;
+    color:var(--text-light);
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -42,7 +59,7 @@ body{
 }
 
 .logo_name{
-    color: aliceblue;
+    color: var(--text-light);
 }
 .buttons{
     padding-top: 50px;
@@ -53,7 +70,7 @@ body{
     left: 0;
     height: 100%;
     width: 85px;
-    background: #202020;
+    background: var(--primary-color);
     padding: 0.4rem 0.8rem;
     transition: all 0.5s ease;
     z-index: 1000;
@@ -70,7 +87,7 @@ body{
 
 .sidebar #btn{
     position: absolute;
-    color: aliceblue;
+    color: var(--white);
     top: 5.5rem;
     left: 50%;
     font-size: 1.2rem;
@@ -102,7 +119,7 @@ body{
 }
 
 .sidebar ul li a{
-    color: aliceblue;
+    color: var(--text-light);
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -110,8 +127,8 @@ body{
 }
 
 .sidebar ul li a:hover{
-    color: black;
-    background: #4a4949;
+    color: var(--primary-color);
+    background: var(--primary-color-extra-light);
     scale: 1.2;
     transition: all 0.3s ease;
 }
@@ -133,7 +150,7 @@ body{
 }
 
 .sidebar ul li .tooltip{
-    background-color: aliceblue;
+    background-color: var(--text-light);
     position: absolute;
     left: 130px;
     top: 50%;

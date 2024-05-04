@@ -1,0 +1,229 @@
+Date : 2024-04-30 18:55:18
+Directory : c:\xampp\htdocs\routeready\public
+Total : 169 files,  -18937 codes, -4209 comments, -2045 blanks, all -25191 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| CSS        |         11 |      2,064 |         64 |        429 |      2,557 |
+| JavaScript |          1 |          0 |          0 |          1 |          1 |
+| JSON       |          1 |        -79 |          0 |         -1 |        -80 |
+| Markdown   |          2 |       -187 |          0 |         -2 |       -189 |
+| PHP        |        154 |    -20,735 |     -4,273 |     -2,472 |    -27,480 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                              | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                 |        169 |    -18,937 |     -4,209 |     -2,045 |    -25,191 |
+| . (Files)                                                                         |          1 |          3 |          1 |          1 |          5 |
+| ..                                                                                |        156 |    -21,004 |     -4,274 |     -2,476 |    -27,754 |
+| ..\app                                                                            |        156 |    -21,004 |     -4,274 |     -2,476 |    -27,754 |
+| ..\app (Files)                                                                    |          1 |         -7 |         -7 |         -4 |        -18 |
+| ..\app\config                                                                     |          1 |         -8 |         -4 |         -4 |        -16 |
+| ..\app\controllers                                                                |          9 |     -2,245 |       -376 |       -519 |     -3,140 |
+| ..\app\helpers                                                                    |          2 |        -32 |         -4 |        -10 |        -46 |
+| ..\app\libraries                                                                  |         70 |     -5,754 |     -3,410 |        -93 |     -9,257 |
+| ..\app\libraries (Files)                                                          |          4 |       -142 |        -32 |        -27 |       -201 |
+| ..\app\libraries\mail                                                             |         66 |     -5,612 |     -3,378 |        -66 |     -9,056 |
+| ..\app\libraries\mail (Files)                                                     |          4 |       -383 |        -48 |         -4 |       -435 |
+| ..\app\libraries\mail\language                                                    |         55 |     -1,188 |       -324 |        -55 |     -1,567 |
+| ..\app\libraries\mail\src                                                         |          7 |     -4,041 |     -3,006 |         -7 |     -7,054 |
+| ..\app\models                                                                     |         12 |     -1,136 |       -172 |       -340 |     -1,648 |
+| ..\app\views                                                                      |         61 |    -11,822 |       -301 |     -1,506 |    -13,629 |
+| ..\app\views\includes                                                             |          3 |        -15 |          0 |         -2 |        -17 |
+| ..\app\views\pages                                                                |         56 |    -11,435 |       -295 |     -1,466 |    -13,196 |
+| ..\app\views\pages (Files)                                                        |          5 |       -469 |         -2 |        -40 |       -511 |
+| ..\app\views\pages\admin                                                          |         15 |     -3,418 |        -89 |       -445 |     -3,952 |
+| ..\app\views\pages\driver                                                         |         12 |     -2,275 |        -55 |       -241 |     -2,571 |
+| ..\app\views\pages\employee                                                       |         10 |     -3,369 |       -132 |       -461 |     -3,962 |
+| ..\app\views\pages\hrmanager                                                      |         14 |     -1,904 |        -17 |       -279 |     -2,200 |
+| ..\app\views\pages\hrmanager (Files)                                              |         10 |     -1,150 |         -8 |       -145 |     -1,303 |
+| ..\app\views\pages\hrmanager\t&c                                                  |          4 |       -754 |         -9 |       -134 |       -897 |
+| ..\app\views\users                                                                |          2 |       -372 |         -6 |        -38 |       -416 |
+| css                                                                               |         11 |      2,064 |         64 |        429 |      2,557 |
+| css (Files)                                                                       |          7 |        989 |         41 |        204 |      1,234 |
+| css\driver                                                                        |          1 |        129 |          2 |         32 |        163 |
+| css\employee                                                                      |          1 |        130 |          2 |         31 |        163 |
+| css\index                                                                         |          1 |        554 |          1 |        116 |        671 |
+| css\logreg                                                                        |          1 |        262 |         18 |         46 |        326 |
+| js                                                                                |          1 |          0 |          0 |          1 |          1 |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                          | language   | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\xampp\htdocs\routeready\app\config\config.php                                  | PHP        |         -8 |         -4 |         -4 |        -16 |
+| c:\xampp\htdocs\routeready\app\controllers\Admins.php                             | PHP        |       -389 |        -59 |       -132 |       -580 |
+| c:\xampp\htdocs\routeready\app\controllers\Drivers.php                            | PHP        |       -436 |        -89 |        -72 |       -597 |
+| c:\xampp\htdocs\routeready\app\controllers\Employees.php                          | PHP        |       -463 |        -96 |       -130 |       -689 |
+| c:\xampp\htdocs\routeready\app\controllers\Hrmanagers.php                         | PHP        |       -321 |        -43 |        -40 |       -404 |
+| c:\xampp\htdocs\routeready\app\controllers\Pages.php                              | PHP        |       -150 |         -4 |        -17 |       -171 |
+| c:\xampp\htdocs\routeready\app\controllers\Posts.php                              | PHP        |       -134 |        -27 |        -45 |       -206 |
+| c:\xampp\htdocs\routeready\app\controllers\Reports.php                            | PHP        |          0 |          0 |         -1 |         -1 |
+| c:\xampp\htdocs\routeready\app\controllers\ReservationPayment.php                 | PHP        |        -27 |         -5 |         -9 |        -41 |
+| c:\xampp\htdocs\routeready\app\controllers\Users.php                              | PHP        |       -325 |        -53 |        -73 |       -451 |
+| c:\xampp\htdocs\routeready\app\helpers\session_helper.php                         | PHP        |        -28 |         -3 |         -9 |        -40 |
+| c:\xampp\htdocs\routeready\app\helpers\url_helper.php                             | PHP        |         -4 |         -1 |         -1 |         -6 |
+| c:\xampp\htdocs\routeready\app\init.php                                           | PHP        |         -7 |         -7 |         -4 |        -18 |
+| c:\xampp\htdocs\routeready\app\libraries\Controller.php                           | PHP        |        -14 |         -8 |         -3 |        -25 |
+| c:\xampp\htdocs\routeready\app\libraries\Core.php                                 | PHP        |        -33 |        -16 |        -10 |        -59 |
+| c:\xampp\htdocs\routeready\app\libraries\Database.php                             | PHP        |        -58 |         -8 |        -13 |        -79 |
+| c:\xampp\htdocs\routeready\app\libraries\Mail.php                                 | PHP        |        -37 |          0 |         -1 |        -38 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\README.md                           | Markdown   |       -168 |          0 |         -1 |       -169 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\SECURITY.md                         | Markdown   |        -19 |          0 |         -1 |        -20 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\composer.json                       | JSON       |        -79 |          0 |         -1 |        -80 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\get_oauth_token.php                 | PHP        |       -117 |        -48 |         -1 |       -166 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-af.php      | PHP        |        -20 |         -4 |         -1 |        -25 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-ar.php      | PHP        |        -20 |         -5 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-as.php      | PHP        |        -28 |         -5 |         -1 |        -34 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-az.php      | PHP        |        -19 |         -6 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-ba.php      | PHP        |        -20 |         -5 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-be.php      | PHP        |        -19 |         -6 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-bg.php      | PHP        |        -20 |         -5 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-bn.php      | PHP        |        -28 |         -5 |         -1 |        -34 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-ca.php      | PHP        |        -19 |         -6 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-cs.php      | PHP        |        -22 |         -4 |         -1 |        -27 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-da.php      | PHP        |        -27 |         -7 |         -1 |        -35 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-de.php      | PHP        |        -22 |         -4 |         -1 |        -27 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-el.php      | PHP        |        -27 |         -4 |         -1 |        -32 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-eo.php      | PHP        |        -20 |         -4 |         -1 |        -25 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-es.php      | PHP        |        -23 |         -6 |         -1 |        -30 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-et.php      | PHP        |        -20 |         -6 |         -1 |        -27 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-fa.php      | PHP        |        -20 |         -6 |         -1 |        -27 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-fi.php      | PHP        |        -13 |        -12 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-fo.php      | PHP        |        -13 |        -12 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-fr.php      | PHP        |        -27 |         -8 |         -1 |        -36 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-gl.php      | PHP        |        -19 |         -6 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-he.php      | PHP        |        -19 |         -6 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-hi.php      | PHP        |        -27 |         -6 |         -1 |        -34 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-hr.php      | PHP        |        -20 |         -5 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-hu.php      | PHP        |        -20 |         -5 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-hy.php      | PHP        |        -20 |         -5 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-id.php      | PHP        |        -22 |         -7 |         -1 |        -30 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-it.php      | PHP        |        -20 |         -6 |         -1 |        -27 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-ja.php      | PHP        |        -20 |         -7 |         -1 |        -28 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-ka.php      | PHP        |        -20 |         -5 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-ko.php      | PHP        |        -20 |         -5 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-lt.php      | PHP        |        -19 |         -6 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-lv.php      | PHP        |        -19 |         -6 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-mg.php      | PHP        |        -20 |         -5 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-mn.php      | PHP        |        -20 |         -5 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-ms.php      | PHP        |        -20 |         -5 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-nb.php      | PHP        |        -27 |         -4 |         -1 |        -32 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-nl.php      | PHP        |        -27 |         -5 |         -1 |        -33 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-pl.php      | PHP        |        -27 |         -4 |         -1 |        -32 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-pt.php      | PHP        |        -20 |         -5 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-pt_br.php   | PHP        |        -27 |         -9 |         -1 |        -37 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-ro.php      | PHP        |        -27 |         -4 |         -1 |        -32 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-ru.php      | PHP        |        -20 |         -6 |         -1 |        -27 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-si.php      | PHP        |        -27 |         -5 |         -1 |        -33 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-sk.php      | PHP        |        -22 |         -6 |         -1 |        -29 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-sl.php      | PHP        |        -27 |         -7 |         -1 |        -35 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-sr.php      | PHP        |        -20 |         -6 |         -1 |        -27 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-sr_latn.php | PHP        |        -20 |         -6 |         -1 |        -27 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-sv.php      | PHP        |        -19 |         -6 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-tl.php      | PHP        |        -20 |         -6 |         -1 |        -27 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-tr.php      | PHP        |        -20 |         -9 |         -1 |        -30 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-uk.php      | PHP        |        -20 |         -6 |         -1 |        -27 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-vi.php      | PHP        |        -19 |         -6 |         -1 |        -26 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-zh.php      | PHP        |        -20 |         -7 |         -1 |        -28 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\language\phpmailer.lang-zh_cn.php   | PHP        |        -27 |         -7 |         -1 |        -35 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\src\DSNConfigurator.php             | PHP        |       -136 |        -80 |         -1 |       -217 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\src\Exception.php                   | PHP        |         -9 |        -28 |         -1 |        -38 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\src\OAuth.php                       | PHP        |        -46 |        -79 |         -1 |       -126 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\src\OAuthTokenProvider.php          | PHP        |         -6 |        -35 |         -1 |        -42 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\src\PHPMailer.php                   | PHP        |     -2,926 |     -1,933 |         -1 |     -4,860 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\src\POP3.php                        | PHP        |       -181 |       -234 |         -1 |       -416 |
+| c:\xampp\htdocs\routeready\app\libraries\mail\src\SMTP.php                        | PHP        |       -737 |       -617 |         -1 |     -1,355 |
+| c:\xampp\htdocs\routeready\app\models\Admin.php                                   | PHP        |        -73 |         -8 |        -18 |        -99 |
+| c:\xampp\htdocs\routeready\app\models\BankModel.php                               | PHP        |        -20 |         -4 |         -6 |        -30 |
+| c:\xampp\htdocs\routeready\app\models\Driver.php                                  | PHP        |       -165 |        -30 |        -42 |       -237 |
+| c:\xampp\htdocs\routeready\app\models\EmployeeReservation.php                     | PHP        |       -228 |        -18 |        -46 |       -292 |
+| c:\xampp\htdocs\routeready\app\models\Leave.php                                   | PHP        |        -94 |        -15 |        -56 |       -165 |
+| c:\xampp\htdocs\routeready\app\models\Model.php                                   | PHP        |        -32 |        -24 |        -11 |        -67 |
+| c:\xampp\htdocs\routeready\app\models\OutSalaryModel.php                          | PHP        |        -26 |         -5 |         -4 |        -35 |
+| c:\xampp\htdocs\routeready\app\models\Post.php                                    | PHP        |        -61 |         -6 |        -13 |        -80 |
+| c:\xampp\htdocs\routeready\app\models\ReservationModel.php                        | PHP        |        -15 |         -1 |         -3 |        -19 |
+| c:\xampp\htdocs\routeready\app\models\User.php                                    | PHP        |       -185 |        -33 |        -53 |       -271 |
+| c:\xampp\htdocs\routeready\app\models\Vehicle.php                                 | PHP        |       -145 |        -23 |        -70 |       -238 |
+| c:\xampp\htdocs\routeready\app\models\WorkTrip.php                                | PHP        |        -92 |         -5 |        -18 |       -115 |
+| c:\xampp\htdocs\routeready\app\views\includes\footer.php                          | PHP        |         -3 |          0 |          0 |         -3 |
+| c:\xampp\htdocs\routeready\app\views\includes\header.php                          | PHP        |        -12 |          0 |         -1 |        -13 |
+| c:\xampp\htdocs\routeready\app\views\includes\navbar.php                          | PHP        |          0 |          0 |         -1 |         -1 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\addVehicles.php                  | PHP        |       -326 |        -16 |        -57 |       -399 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\as_employee.php                  | PHP        |        -54 |          0 |         -6 |        -60 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\available_vehicles.php           | PHP        |       -216 |         -5 |        -35 |       -256 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\edit_vehicle.php                 | PHP        |       -256 |         -8 |        -41 |       -305 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\full_booking.php                 | PHP        |        -74 |          0 |         -5 |        -79 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\full_day_booking.php             | PHP        |       -265 |         -9 |        -33 |       -307 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\home_admin.php                   | PHP        |       -162 |          0 |        -15 |       -177 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\leaves_admin.php                 | PHP        |       -262 |         -2 |        -23 |       -287 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\out_salary.php                   | PHP        |       -246 |         -1 |        -27 |       -274 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\schedule_view.php                | PHP        |       -120 |         -5 |        -18 |       -143 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\viewPendingWorkTrips.php         | PHP        |       -237 |         -1 |        -25 |       -263 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\viewVehicles.php                 | PHP        |       -241 |         -5 |        -35 |       -281 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\viewVehicles_more.php            | PHP        |       -218 |         -5 |        -22 |       -245 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\view_hr.php                      | PHP        |       -267 |         -1 |        -32 |       -300 |
+| c:\xampp\htdocs\routeready\app\views\pages\admin\view_schedule.php                | PHP        |       -474 |        -31 |        -71 |       -576 |
+| c:\xampp\htdocs\routeready\app\views\pages\driver\add_bank_details.php            | PHP        |       -123 |         -2 |         -9 |       -134 |
+| c:\xampp\htdocs\routeready\app\views\pages\driver\applied_leaves.php              | PHP        |       -226 |         -1 |        -19 |       -246 |
+| c:\xampp\htdocs\routeready\app\views\pages\driver\apply_leaves.php                | PHP        |       -318 |        -19 |        -40 |       -377 |
+| c:\xampp\htdocs\routeready\app\views\pages\driver\driver_edit_osprofile.php       | PHP        |        -95 |          0 |        -11 |       -106 |
+| c:\xampp\htdocs\routeready\app\views\pages\driver\driver_edit_profile.php         | PHP        |        -95 |          0 |        -11 |       -106 |
+| c:\xampp\htdocs\routeready\app\views\pages\driver\driver_profile.php              | PHP        |        -69 |          0 |         -9 |        -78 |
+| c:\xampp\htdocs\routeready\app\views\pages\driver\edit_applied_leaves.php         | PHP        |       -155 |         -6 |        -15 |       -176 |
+| c:\xampp\htdocs\routeready\app\views\pages\driver\edit_bank_details.php           | PHP        |       -248 |         -2 |        -20 |       -270 |
+| c:\xampp\htdocs\routeready\app\views\pages\driver\home_driver.php                 | PHP        |       -243 |         -2 |        -26 |       -271 |
+| c:\xampp\htdocs\routeready\app\views\pages\driver\view_bank_details.php           | PHP        |       -275 |        -13 |        -27 |       -315 |
+| c:\xampp\htdocs\routeready\app\views\pages\driver\view_salary_details.php         | PHP        |       -206 |         -5 |        -26 |       -237 |
+| c:\xampp\htdocs\routeready\app\views\pages\driver\view_schedule.php               | PHP        |       -222 |         -5 |        -28 |       -255 |
+| c:\xampp\htdocs\routeready\app\views\pages\edit_profile.php                       | PHP        |        -79 |          0 |         -8 |        -87 |
+| c:\xampp\htdocs\routeready\app\views\pages\employee\editDailyReservation.php      | PHP        |       -416 |        -20 |        -60 |       -496 |
+| c:\xampp\htdocs\routeready\app\views\pages\employee\editMonthlyReservation.php    | PHP        |       -372 |        -16 |        -45 |       -433 |
+| c:\xampp\htdocs\routeready\app\views\pages\employee\editWorkTrips.php             | PHP        |       -379 |        -20 |        -62 |       -461 |
+| c:\xampp\htdocs\routeready\app\views\pages\employee\employeeHome.php              | PHP        |       -239 |         -2 |        -25 |       -266 |
+| c:\xampp\htdocs\routeready\app\views\pages\employee\makeReservation.php           | PHP        |       -515 |        -17 |        -81 |       -613 |
+| c:\xampp\htdocs\routeready\app\views\pages\employee\makeWorkTrip.php              | PHP        |       -303 |        -11 |        -44 |       -358 |
+| c:\xampp\htdocs\routeready\app\views\pages\employee\viewMonthlyPayments.php       | PHP        |       -271 |        -15 |        -35 |       -321 |
+| c:\xampp\htdocs\routeready\app\views\pages\employee\viewMonthlyReservations.php   | PHP        |       -214 |         -3 |        -33 |       -250 |
+| c:\xampp\htdocs\routeready\app\views\pages\employee\viewReservations.php          | PHP        |       -392 |        -19 |        -43 |       -454 |
+| c:\xampp\htdocs\routeready\app\views\pages\employee\viewWorkTrips.php             | PHP        |       -268 |         -9 |        -33 |       -310 |
+| c:\xampp\htdocs\routeready\app\views\pages\home.php                               | PHP        |       -134 |          0 |         -9 |       -143 |
+| c:\xampp\htdocs\routeready\app\views\pages\hrmanager\about.php                    | PHP        |         -3 |          0 |         -2 |         -5 |
+| c:\xampp\htdocs\routeready\app\views\pages\hrmanager\as_employee.php              | PHP        |        -54 |          0 |         -6 |        -60 |
+| c:\xampp\htdocs\routeready\app\views\pages\hrmanager\dashboard_hr.php             | PHP        |       -111 |          0 |        -12 |       -123 |
+| c:\xampp\htdocs\routeready\app\views\pages\hrmanager\home_hr.php                  | PHP        |       -153 |          0 |        -11 |       -164 |
+| c:\xampp\htdocs\routeready\app\views\pages\hrmanager\payments.php                 | PHP        |       -275 |         -3 |        -42 |       -320 |
+| c:\xampp\htdocs\routeready\app\views\pages\hrmanager\t&c\add_t&c.php              | PHP        |       -208 |         -3 |        -39 |       -250 |
+| c:\xampp\htdocs\routeready\app\views\pages\hrmanager\t&c\edit_t&c.php             | PHP        |       -204 |         -4 |        -33 |       -241 |
+| c:\xampp\htdocs\routeready\app\views\pages\hrmanager\t&c\show_t&c.php             | PHP        |       -159 |         -1 |        -32 |       -192 |
+| c:\xampp\htdocs\routeready\app\views\pages\hrmanager\t&c\t&c.php                  | PHP        |       -183 |         -1 |        -30 |       -214 |
+| c:\xampp\htdocs\routeready\app\views\pages\hrmanager\view_drivers.php             | PHP        |        -56 |          0 |         -5 |        -61 |
+| c:\xampp\htdocs\routeready\app\views\pages\hrmanager\view_drivers_more.php        | PHP        |        -94 |          0 |        -11 |       -105 |
+| c:\xampp\htdocs\routeready\app\views\pages\hrmanager\view_employees.php           | PHP        |        -90 |          0 |         -6 |        -96 |
+| c:\xampp\htdocs\routeready\app\views\pages\hrmanager\view_osdrivers.php           | PHP        |        -58 |          0 |         -6 |        -64 |
+| c:\xampp\htdocs\routeready\app\views\pages\hrmanager\view_osdrivers_more.php      | PHP        |       -256 |         -5 |        -44 |       -305 |
+| c:\xampp\htdocs\routeready\app\views\pages\index.php                              | PHP        |       -140 |          0 |         -8 |       -148 |
+| c:\xampp\htdocs\routeready\app\views\pages\profile.php                            | PHP        |        -44 |          0 |         -5 |        -49 |
+| c:\xampp\htdocs\routeready\app\views\pages\terms_conditions.php                   | PHP        |        -72 |         -2 |        -10 |        -84 |
+| c:\xampp\htdocs\routeready\app\views\users\login.php                              | PHP        |        -58 |          0 |         -6 |        -64 |
+| c:\xampp\htdocs\routeready\app\views\users\register.php                           | PHP        |       -314 |         -6 |        -32 |       -352 |
+| c:\xampp\htdocs\routeready\public\css\content.css                                 | CSS        |        114 |          4 |         21 |        139 |
+| c:\xampp\htdocs\routeready\public\css\dashboard.css                               | CSS        |        159 |         11 |         27 |        197 |
+| c:\xampp\htdocs\routeready\public\css\driver\driver.css                           | CSS        |        129 |          2 |         32 |        163 |
+| c:\xampp\htdocs\routeready\public\css\edit_profile.css                            | CSS        |        215 |         16 |         52 |        283 |
+| c:\xampp\htdocs\routeready\public\css\employee\employee.css                       | CSS        |        130 |          2 |         31 |        163 |
+| c:\xampp\htdocs\routeready\public\css\index\index.css                             | CSS        |        554 |          1 |        116 |        671 |
+| c:\xampp\htdocs\routeready\public\css\logreg\logreg.css                           | CSS        |        262 |         18 |         46 |        326 |
+| c:\xampp\htdocs\routeready\public\css\navbar.css                                  | CSS        |        157 |          1 |         25 |        183 |
+| c:\xampp\htdocs\routeready\public\css\navbar2.css                                 | CSS        |        157 |          2 |         28 |        187 |
+| c:\xampp\htdocs\routeready\public\css\profile.css                                 | CSS        |        187 |          7 |         50 |        244 |
+| c:\xampp\htdocs\routeready\public\css\style.css                                   | CSS        |          0 |          0 |          1 |          1 |
+| c:\xampp\htdocs\routeready\public\index.php                                       | PHP        |          3 |          1 |          1 |          5 |
+| c:\xampp\htdocs\routeready\public\js\main.js                                      | JavaScript |          0 |          0 |          1 |          1 |
+| Total                                                                             |            |    -18,937 |     -4,209 |     -2,045 |    -25,191 |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

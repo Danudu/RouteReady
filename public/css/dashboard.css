@@ -1,0 +1,197 @@
+/*Google Fonts*/
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+
+:root {
+    --primary-color: #111317;
+    --primary-color-light: #1f2125;
+    --primary-color-extra-light: #35373b;
+    --text-light: #d1d5db;
+    --white: #ffffff;
+    --max-width: 1200px;
+  }
+
+
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    /* background-image: url(http://localhost/RouteReady/public/img/highway.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(10px) brightness(0.5); */
+    
+
+}
+.logo{
+    position: relative;
+    list-style-type: none;
+    height: 50px;
+    margin: 0.8rem auto;
+    line-height: 50px; 
+    color:var(--text-light);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 0.8rem;
+    transition: all 0.3s ease;
+}
+.logo img{
+    width: 60px;
+    height: 60px;
+    border-radius: 30%;
+    transition: all 0.3s ease;
+}   
+
+.logo span{
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+
+}
+
+.logo_name{
+    color: var(--text-light);
+}
+.buttons{
+    padding-top: 50px;
+}
+
+/* Main Content */
+.main-content{
+    position: relative;
+    min-height: 100vh;
+    top: 0;
+    left: 85px;
+    transition: all 0.5s ease;
+    width: calc(100% - 85px);
+    /* background-image: url(/hrmanager/img/highway.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 85px;
+    background: var(--primary-color);
+    padding: 0.4rem 0.8rem;
+    transition: all 0.5s ease;
+    z-index: 1000;
+}
+
+.sidebar.active ~ .main-content{
+    left: 260px;
+    width: calc(100% - 260px);
+}
+
+.sidebar.active{
+    width: 260px;
+}
+
+.sidebar #btn{
+    position: absolute;
+    color: var(--white);
+    top: 5.5rem;
+    left: 50%;
+    font-size: 1.2rem;
+    line-height: 50px;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.sidebar.active #btn{
+    top: 1.2rem;
+    left: 90%;
+}
+
+.logo_name{
+    opacity: 0;
+}
+
+.sidebar.active .logo_name{
+    opacity: 1;
+}
+
+.sidebar ul li{
+    position: relative;
+    list-style-type: none;
+    height: 50px;
+    width: 90%;
+    margin: 0.8rem auto;
+    line-height: 50px;
+}
+
+.sidebar ul li a{
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 0.8rem;
+}
+
+.sidebar ul li a:hover{
+    color: var(--primary-color);
+    background: var(--primary-color-extra-light);
+    scale: 1.2;
+    transition: all 0.3s ease;
+}
+
+.sidebar ul li a i{
+    scale: 1.5;
+    min-width: 50px;
+    text-align: center;
+    height: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+}
+
+.sidebar .icon_name{
+    opacity: 0;
+}
+.sidebar.active .icon_name{
+    opacity: 1;
+}
+
+.sidebar ul li .tooltip{
+    background-color: var(--text-light);
+    position: absolute;
+    left: 130px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
+    border-radius: 0.6rem;
+    padding: 0.4rem 1.2rem;
+    line-height: 1.8rem;
+    z-index: 3;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.sidebar ul li:hover .tooltip{
+    opacity: 1;
+}
+
+.sidebar.active ul li .tooltip{
+    display: none;
+}
+
+#btn:hover{
+    scale: 1.3;
+    transition: all 0.3s ease;
+}
+
+.lobtn{
+    position: absolute;
+    bottom: 0;
+}
