@@ -82,6 +82,10 @@
                             <input type="text" name="name" value="<?php echo $data['name']; ?>" placeholder="Name">
                             <span><?php echo $data['name_err']; ?></span>
                         </div>
+                        <!-- TASK -->
+                        <div class="input-box">
+                            <input type="text" name="company_name" value="<?php echo $data['company_name']; ?>" placeholder="Company name">
+                        </div>
                         <div class="input-box">
                             <!-- <label for="emp_id">Employee ID: <sup>*</sup></label> -->
                             <input type="text" name="emp_id"

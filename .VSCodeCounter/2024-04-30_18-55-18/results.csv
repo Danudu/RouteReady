@@ -1,0 +1,15 @@
+"filename", "language", "CSS", "PHP", "JavaScript", "comment", "blank", "total"
+"c:\xampp\htdocs\routeready\public\css\content.css", "CSS", 114, 0, 0, 4, 21, 139
+"c:\xampp\htdocs\routeready\public\css\dashboard.css", "CSS", 159, 0, 0, 11, 27, 197
+"c:\xampp\htdocs\routeready\public\css\driver\driver.css", "CSS", 129, 0, 0, 2, 32, 163
+"c:\xampp\htdocs\routeready\public\css\edit_profile.css", "CSS", 215, 0, 0, 16, 52, 283
+"c:\xampp\htdocs\routeready\public\css\employee\employee.css", "CSS", 130, 0, 0, 2, 31, 163
+"c:\xampp\htdocs\routeready\public\css\index\index.css", "CSS", 554, 0, 0, 1, 116, 671
+"c:\xampp\htdocs\routeready\public\css\logreg\logreg.css", "CSS", 262, 0, 0, 18, 46, 326
+"c:\xampp\htdocs\routeready\public\css\navbar.css", "CSS", 157, 0, 0, 1, 25, 183
+"c:\xampp\htdocs\routeready\public\css\navbar2.css", "CSS", 157, 0, 0, 2, 28, 187
+"c:\xampp\htdocs\routeready\public\css\profile.css", "CSS", 187, 0, 0, 7, 50, 244
+"c:\xampp\htdocs\routeready\public\css\style.css", "CSS", 0, 0, 0, 0, 1, 1
+"c:\xampp\htdocs\routeready\public\index.php", "PHP", 0, 3, 0, 1, 1, 5
+"c:\xampp\htdocs\routeready\public\js\main.js", "JavaScript", 0, 0, 0, 0, 1, 1
+"Total", "-", 2064, 3, 0, 65, 431, 2563

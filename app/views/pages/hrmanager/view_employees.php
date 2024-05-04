@@ -26,6 +26,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Company Name</th>
                             <th>Employee ID</th>
                             <th>Email</th>
                             <th>Contact Number</th>
@@ -41,6 +42,7 @@
                             <?php foreach ($data['employees'] as $employee): ?>
                                 <tr>
                                     <td><?php echo $employee->name; ?></td>
+                                    <td><?php echo $employee->company_name; ?></td>
                                     <td><?php echo $employee->emp_id; ?></td>
                                     <td><?php echo $employee->email; ?></td>
                                     <td><?php echo $employee->contact_num; ?></td>

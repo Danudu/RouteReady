@@ -10,14 +10,15 @@ class Leave
         $this->db = new Database;
     }
     
-    public function getAllLeaveApplications()
+    public function getSickLeaveApplications()
     {
-    
-        $this->db->query('SELECT * FROM leaves');
-    
+        $this->db->query("SELECT * FROM leaves WHERE type = 'Sick Leave'");
         return $this->db->resultSet();
-    
     }
+    
+
+
+   
     public function updateLeaveStatus($leaveId, $action)
     {
         // Determine the status based on the action

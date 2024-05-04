@@ -493,7 +493,7 @@ class Admins extends Controller
   public function leaves_admin()
   {
     // Assuming you have a method in the LeaveModel to fetch all leave applications
-    $leaveApplications = $this->leaveModel->getAllLeaveApplications();
+    $leaveApplications = $this->leaveModel->getSickLeaveApplications();
     // var_dump($leaveApplications);
 
     $data = [
@@ -503,6 +503,12 @@ class Admins extends Controller
     // Pass leave applications data to the view
     $this->view('pages/admin/leaves_admin', $data);
   }
+
+  
+
+
+
+  
 
   public function processLeaveAction()
   {

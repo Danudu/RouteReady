@@ -22,9 +22,10 @@ class User
     //register user
     public function register($data)
     {
-        $this->db->query('INSERT INTO users (name, emp_id, email, password, contact_num, address, designation, status) VALUES(:name, :emp_id, :email, :password, :contact_num, :address, :designation, :status)');
+        $this->db->query('INSERT INTO users (name,company_name, emp_id, email, password, contact_num, address, designation, status) VALUES(:name, :company_name, :emp_id, :email, :password, :contact_num, :address, :designation, :status)');
         //bind values
         $this->db->bind(':name', $data['name']);
+        $this->db->bind(':company_name', $data['company_name']);
         $this->db->bind(':emp_id', $data['emp_id']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);

@@ -29,6 +29,7 @@ class Users extends Controller
             //init data
             $data = [
                 'name' => trim($_POST['name']),
+                'company_name' => trim($_POST['company_name']),
                 'emp_id' => trim($_POST['emp_id']),
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password']),
@@ -121,6 +122,7 @@ class Users extends Controller
             // Init data
             $data = [
                 'name' => '',
+                'company_name' => '',
                 'emp_id' => '',
                 'email' => '',
                 'password' => '',
